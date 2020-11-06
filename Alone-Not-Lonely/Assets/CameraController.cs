@@ -23,9 +23,12 @@ public class CameraController : MonoBehaviour
     float rotationX = 0f;
     float rotationY = 0f;
 
+    private PlayerMovementController player;
+
     // Start is called before the first frame update
     void Start()
     {
+        player = (PlayerMovementController)FindObjectOfType(typeof(PlayerMovementController));
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
 
         if (Input.GetKey(KeyCode.Escape))
@@ -47,5 +50,11 @@ public class CameraController : MonoBehaviour
 
         // rotate game objects accordingly
         transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0);
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1f, player.transform.position.z);
+    }
+
+    public Vector3 GetCameraRotation()
+    {
+        return new Vector3(-rotationX, rotationY, 0);
     }
 }

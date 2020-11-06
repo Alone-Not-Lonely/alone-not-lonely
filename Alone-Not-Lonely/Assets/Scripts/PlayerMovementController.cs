@@ -13,12 +13,15 @@ public class PlayerMovementController : MonoBehaviour
     protected CharacterController playerController;
     //private DefaultControls _actionMap;
     private float moveDirY = 0;
+    private Quaternion rotation = Quaternion.identity;
+    private CameraController camController;
 
     private void Awake()
     {
         //_actionMap = new DefaultControls();
         //_actionMap.Enable();
         playerController = this.GetComponent<CharacterController>();
+        camController = (CameraController)FindObjectOfType(typeof(CameraController));
     }
 
     /*private void OnEnable()
@@ -65,6 +68,12 @@ public class PlayerMovementController : MonoBehaviour
         {
             moveDirY -= gravity * Time.deltaTime;
         }
-        playerController.Move(new Vector3(horizDirection, moveDirY, vertDirection) * walkSpeed * Time.deltaTime);
+        Vector3 moveDirection = new Vector3(horizDirection, moveDirY, vertDirection);
+        moveDirection = transform.TransformDirection(moveDirection);
+        playerController.Move(moveDirection * walkSpeed * Time.deltaTime);
+        Vector3 camRotation = camController.GetCameraRotation();
+        playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
+        
     }
+
 }
