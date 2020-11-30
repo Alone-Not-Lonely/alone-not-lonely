@@ -8,7 +8,6 @@ public class PlayerMovementController : MonoBehaviour
     public float walkSpeed;
     public float jumpHeight;
     public float gravity = 2f;
-    bool moving = false;
     
     protected CharacterController playerController;
     //private DefaultControls _actionMap;
