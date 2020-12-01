@@ -39,7 +39,7 @@ public class PlayerAbilityController : MonoBehaviour
             releaseText.gameObject.SetActive(true);
             currentGrab.gameObject.transform.parent = this.transform;
             //currentGrab.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
-            currentGrab.GetComponent<SphereCollider>().enabled = false;
+            //currentGrab.GetComponent<SphereCollider>().enabled = false;
             holdingObj = true;
             waitingForInput = false;
         }
@@ -49,7 +49,7 @@ public class PlayerAbilityController : MonoBehaviour
             Debug.Log("dropped");
             currentGrab.gameObject.transform.parent = null;
             //currentGrab.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
-            currentGrab.GetComponent<SphereCollider>().enabled = true;
+            //currentGrab.GetComponent<SphereCollider>().enabled = true;
             holdingObj = false;
         }
     }
