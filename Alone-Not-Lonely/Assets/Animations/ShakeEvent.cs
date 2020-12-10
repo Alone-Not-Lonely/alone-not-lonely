@@ -30,6 +30,7 @@ public class ShakeEvent : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             Shake();
+            Debug.Log("entered");
         }
     }
 }
