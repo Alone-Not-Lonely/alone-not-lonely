@@ -52,7 +52,7 @@ public class CameraController : MonoBehaviour
 
         // rotate game objects accordingly
         transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0);
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 2f, player.transform.position.z);
     }
 
     public Vector3 GetCameraRotation()
