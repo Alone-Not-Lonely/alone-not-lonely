@@ -18,6 +18,11 @@ public class MainMenuController : MonoBehaviour
         
     }
 
+    public void LoadGame(string scenenamepass)
+    {
+        SceneManager.LoadScene(scenenamepass);
+    }
+
     public void LoadGame()
     {
         SceneManager.LoadScene(SceneName);
