@@ -14,6 +14,7 @@ public class PlayerMovementController : MonoBehaviour
     private float moveDirY = 0;
     private Quaternion rotation = Quaternion.identity;
     private CameraController camController;
+    private Player thisPlayer;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class PlayerMovementController : MonoBehaviour
         //_actionMap.Enable();
         playerController = this.GetComponent<CharacterController>();
         camController = (CameraController)FindObjectOfType(typeof(CameraController));
+        thisPlayer = (Player)FindObjectOfType(typeof(Player));
     }
 
     /*private void OnEnable()
@@ -57,22 +59,24 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
-        float horizDirection = Input.GetAxis("Horizontal");
-        float vertDirection = Input.GetAxis("Vertical");
-        if(playerController.isGrounded && Input.GetKeyDown(KeyCode.Space))
+        if(!thisPlayer.paused)
         {
-            moveDirY = jumpHeight;
+            float horizDirection = Input.GetAxis("Horizontal");
+            float vertDirection = Input.GetAxis("Vertical");
+            if(playerController.isGrounded && Input.GetKeyDown(KeyCode.Space))
+            {
+                moveDirY = jumpHeight;
+            }
+            if(!playerController.isGrounded)
+            {
+                moveDirY -= gravity * Time.deltaTime;
+            }
+            Vector3 moveDirection = new Vector3(horizDirection, moveDirY, vertDirection);
+            moveDirection = transform.TransformDirection(moveDirection);
+            playerController.Move(moveDirection * walkSpeed * Time.deltaTime);
+            Vector3 camRotation = camController.GetCameraRotation();
+            playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
         }
-        if(!playerController.isGrounded)
-        {
-            moveDirY -= gravity * Time.deltaTime;
-        }
-        Vector3 moveDirection = new Vector3(horizDirection, moveDirY, vertDirection);
-        moveDirection = transform.TransformDirection(moveDirection);
-        playerController.Move(moveDirection * walkSpeed * Time.deltaTime);
-        Vector3 camRotation = camController.GetCameraRotation();
-        playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
-        
     }
 
 }

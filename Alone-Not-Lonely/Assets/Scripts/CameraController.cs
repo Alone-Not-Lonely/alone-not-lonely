@@ -23,14 +23,14 @@ public class CameraController : MonoBehaviour
     float rotationX = 0f;
     float rotationY = 0f;
 
-    private PlayerMovementController player;
+    private Player player;
 
     private Vector3 velocity = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = (PlayerMovementController)FindObjectOfType(typeof(PlayerMovementController));
+        player = (Player)FindObjectOfType(typeof(Player));
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
 
         if (Input.GetKey(KeyCode.Escape))
@@ -43,16 +43,26 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // update current values
-        rotationY += Input.GetAxis("Mouse X") * sensitivityX;
-        rotationX += Input.GetAxis("Mouse Y") * sensitivityY;
+        if(!player.paused)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            // update current values
+            rotationY += Input.GetAxis("Mouse X") * sensitivityX;
+            rotationX += Input.GetAxis("Mouse Y") * sensitivityY;
 
-        // constrain x
-        rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);
+            // constrain x
+            rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);
 
-        // rotate game objects accordingly
-        transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0);
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 2f, player.transform.position.z);
+            // rotate game objects accordingly
+            transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0);
+            transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 2f, player.transform.position.z);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     public Vector3 GetCameraRotation()
