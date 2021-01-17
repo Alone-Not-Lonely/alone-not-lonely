@@ -33,11 +33,11 @@ public class CameraController : MonoBehaviour
         player = (Player)FindObjectOfType(typeof(Player));
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
 
-        if (Input.GetKey(KeyCode.Escape))
+        /*if (Input.GetKey(KeyCode.Escape))
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-        }
+        }*/
     }
 
     // Update is called once per frame
