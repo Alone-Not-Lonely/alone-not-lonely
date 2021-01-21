@@ -11,9 +11,15 @@ public class PauseMenuController : MonoBehaviour
     public GameObject pausePrefab;
 
     private Player playerRef;
+    private AudioHighPassFilter highPassFilter;
+    private AudioLowPassFilter lowPassFilter;
     void Start()
     {
         pausePrefab.SetActive(false);
+        highPassFilter = GetComponent<AudioHighPassFilter>();
+        lowPassFilter = GetComponent<AudioLowPassFilter>();
+        highPassFilter.enabled = false;
+        lowPassFilter.enabled = false;
     }
 
     // Update is called once per frame
@@ -49,6 +55,8 @@ public class PauseMenuController : MonoBehaviour
         Time.timeScale = 0;
         gamePaused = true;
         pausePrefab.SetActive(true);
+        highPassFilter.enabled = true;
+        lowPassFilter.enabled = true;
     }
 
     public void Unpause()
@@ -56,6 +64,8 @@ public class PauseMenuController : MonoBehaviour
         Time.timeScale = 1;
         gamePaused = false;
         pausePrefab.SetActive(false);
+        highPassFilter.enabled = false;
+        lowPassFilter.enabled = false;
     }
 
     public void GoToMainMenu()
