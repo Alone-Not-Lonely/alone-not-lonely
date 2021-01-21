@@ -17,6 +17,7 @@ public class PatrolPointsController : MonoBehaviour
     private float colliderCooldown = 2f;
     private float currentColliderCooldown = 0f;
     private bool inColliderCooldown = false;
+    private Collider lastPortalCollider;
 
     private Vector3 lastTransform;
     private bool stuck = false;
@@ -28,6 +29,7 @@ public class PatrolPointsController : MonoBehaviour
         currentGoal = 0;
         currentState = State.Moving;
         lastTransform = this.transform.position;
+        lastPortalCollider = null;
     }
 
     void FixedUpdate() {
@@ -85,8 +87,10 @@ public class PatrolPointsController : MonoBehaviour
         }
         else if(inColliderCooldown && currentColliderCooldown >= colliderCooldown)
         {
-            this.GetComponent<Collider>().enabled = true;
+            lastPortalCollider.enabled = true;
+            lastPortalCollider = null;
             currentColliderCooldown = 0f;
+            inColliderCooldown = false;
         }
         lastTransform = this.transform.position;
     }
@@ -97,7 +101,8 @@ public class PatrolPointsController : MonoBehaviour
         {
             this.transform.position = other.GetComponent<PortalController>().partnerPortal.transform.position;
             inColliderCooldown = true;
-            this.GetComponent<Collider>().enabled = false;
+            lastPortalCollider = other.GetComponent<PortalController>().partnerPortal.gameObject.GetComponent<Collider>();
+            lastPortalCollider.enabled = false;
         }
     }
 }
