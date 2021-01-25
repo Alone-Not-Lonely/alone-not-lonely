@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class PatrolPointsController : MonoBehaviour
 {
-    public Transform[] patrolPoints;
+    public List<Transform> patrolPoints;
     public float speed = 5f;
-    private int currentGoal;
+    public int currentGoal;
 
-    private enum State {Waiting, Moving};
-    private State currentState;
+    public enum State {Waiting, Moving};
+    public State currentState;
 
     private float waitTime = 3f;
     private float currentWaitTime = 0;
 
     private float colliderCooldown = 2f;
     private float currentColliderCooldown = 0f;
-    private bool inColliderCooldown = false;
+    public bool inColliderCooldown = false;
     private Collider lastPortalCollider;
 
     private Vector3 lastTransform;
-    private bool stuck = false;
+    public bool stuck = false;
     private float stuckTimer;
     public float stuckTimeToMove = 3f;
     // Start is called before the first frame update
@@ -45,7 +45,7 @@ public class PatrolPointsController : MonoBehaviour
 
         float movementLastFrame = Vector3.Distance(this.transform.position, lastTransform);
         Debug.Log("Movement last frame: " + movementLastFrame);
-        if(currentState == State.Moving && movementLastFrame < speed/100f)
+        if(currentState == State.Moving && movementLastFrame < (.01f * speed) - .002f)
         {
             stuck = true;
         }
@@ -62,9 +62,9 @@ public class PatrolPointsController : MonoBehaviour
         else if(stuck && stuckTimer >= stuckTimeToMove)
         {
             currentGoal++;
-            if(currentGoal >= patrolPoints.Length)
+            if(currentGoal >= patrolPoints.Count)
             {
-                currentGoal = currentGoal % patrolPoints.Length;
+                currentGoal = currentGoal % patrolPoints.Count;
             }
         }
 
@@ -77,9 +77,9 @@ public class PatrolPointsController : MonoBehaviour
             currentState = State.Moving;
             currentWaitTime = 0f;
             currentGoal++;
-            if(currentGoal >= patrolPoints.Length)
+            if(currentGoal >= patrolPoints.Count)
             {
-                currentGoal = currentGoal % patrolPoints.Length;
+                currentGoal = currentGoal % patrolPoints.Count;
             }
         }
 
@@ -105,6 +105,10 @@ public class PatrolPointsController : MonoBehaviour
             inColliderCooldown = true;
             lastPortalCollider = other.GetComponent<PortalController>().partnerPortal.gameObject.GetComponent<Collider>();
             lastPortalCollider.enabled = false;
+            if(other.gameObject.name == "Portal2")
+            {
+                currentGoal ++;
+            }
         }
     }
 }
