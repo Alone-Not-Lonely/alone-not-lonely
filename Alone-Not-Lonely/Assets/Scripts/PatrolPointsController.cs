@@ -42,12 +42,14 @@ public class PatrolPointsController : MonoBehaviour
             currentState = State.Waiting;
             currentWaitTime += Time.deltaTime;
         }
+
         float movementLastFrame = Vector3.Distance(this.transform.position, lastTransform);
-        if(currentState == State.Moving && movementLastFrame < .099999f)
+        Debug.Log("Movement last frame: " + movementLastFrame);
+        if(currentState == State.Moving && movementLastFrame < speed/100f)
         {
             stuck = true;
         }
-        else if(currentState == State.Moving && movementLastFrame >= .099999f)
+        else if(currentState == State.Moving && movementLastFrame >= speed/100f)
         {
             stuck = false;
             stuckTimer = 0f;
