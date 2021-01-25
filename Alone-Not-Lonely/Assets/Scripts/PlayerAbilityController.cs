@@ -67,6 +67,7 @@ public class PlayerAbilityController : MonoBehaviour
         if(collision.gameObject.CompareTag("Grabable"))
         {
             grabText.gameObject.SetActive(false);
+            waitingForInput = false; // - A
         }
     }
 }
