@@ -8,7 +8,7 @@ public class PatrolPointsController : MonoBehaviour
     public float speed = 5f;
     public int currentGoal;
 
-    public enum State {Waiting, Moving};
+    public enum State {Waiting, Moving, Collided};
     public State currentState;
 
     private float waitTime = 3f;
@@ -22,7 +22,9 @@ public class PatrolPointsController : MonoBehaviour
     private Vector3 lastTransform;
     public bool stuck = false;
     private float stuckTimer;
-    public float stuckTimeToMove = 3f;
+    public float stuckTimeToMove = 1f;
+
+    private Rigidbody thisRB;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,7 @@ public class PatrolPointsController : MonoBehaviour
         currentState = State.Moving;
         lastTransform = this.transform.position;
         lastPortalCollider = null;
+        thisRB = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate() {
@@ -44,15 +47,24 @@ public class PatrolPointsController : MonoBehaviour
         }
 
         float movementLastFrame = Vector3.Distance(this.transform.position, lastTransform);
-        Debug.Log("Movement last frame: " + movementLastFrame);
-        if(currentState == State.Moving && movementLastFrame < (.01f * speed) - .002f)
+        
+        if(!stuck && currentState == State.Moving && movementLastFrame < (.01f * speed) - .001f)
         {
             stuck = true;
+            /*Debug.Log("Movement last frame: " + movementLastFrame);
+            Debug.Log("Speed: " + speed * .01f);*/
         }
-        else if(currentState == State.Moving && movementLastFrame >= speed/100f)
+        else if(stuck && currentState == State.Moving && movementLastFrame >= (.01f * speed) - .001f)
         {
+            Debug.Log("Movement last frame: " + movementLastFrame);
+            Debug.Log("Speed: " + speed * .01f);
             stuck = false;
             stuckTimer = 0f;
+        }
+        else if(currentState == State.Collided)
+        {
+            stuck = true;
+            transform.position = Vector3.MoveTowards(transform.position, patrolPoints[currentGoal].position, .01f * speed);
         }
 
         if(stuck && stuckTimer < stuckTimeToMove)
@@ -62,6 +74,7 @@ public class PatrolPointsController : MonoBehaviour
         else if(stuck && stuckTimer >= stuckTimeToMove)
         {
             currentGoal++;
+            currentState = State.Moving;
             if(currentGoal >= patrolPoints.Count)
             {
                 currentGoal = currentGoal % patrolPoints.Count;
@@ -105,10 +118,29 @@ public class PatrolPointsController : MonoBehaviour
             inColliderCooldown = true;
             lastPortalCollider = other.GetComponent<PortalController>().partnerPortal.gameObject.GetComponent<Collider>();
             lastPortalCollider.enabled = false;
-            if(other.gameObject.name == "Portal2")
-            {
-                currentGoal ++;
-            }
+            thisRB.velocity = Vector3.zero;
+            thisRB.angularVelocity = Vector3.zero;
+        }
+        else if(other.CompareTag("BackPortal"))
+        {
+            this.transform.position = other.GetComponent<PortalController>().partnerPortal.transform.position;
+            inColliderCooldown = true;
+            lastPortalCollider = other.GetComponent<PortalController>().partnerPortal.gameObject.GetComponent<Collider>();
+            lastPortalCollider.enabled = false;
+            thisRB.velocity = Vector3.zero;
+            thisRB.angularVelocity = Vector3.zero;
+            //advance current patrolpoint
+            currentGoal ++;
+        }
+    }
+
+    private void OnCollisionEnter(Collision other) 
+    {
+        thisRB.velocity = Vector3.zero;
+        thisRB.angularVelocity = Vector3.zero;
+        if(other.gameObject.CompareTag("Grabable"))
+        {
+            //other.gameObject.transform.parent.transform.parent = this.transform;
         }
     }
 }
