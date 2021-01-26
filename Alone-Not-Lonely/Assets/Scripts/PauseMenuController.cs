@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenuController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool gamePaused;
+    private bool gamePaused;
 
     public GameObject pausePrefab;
 
@@ -24,22 +24,26 @@ public class PauseMenuController : MonoBehaviour
  
     void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+
         playerRef = (Player)FindObjectOfType<Player>();
 
-        playerRef._actionMap.Platforming.Pause.performed += pause =>
+        playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
+    }
+
+    public void PauseControl()
+    {
+        gamePaused = !gamePaused;
+
+        if (gamePaused)
         {
-            gamePaused = !gamePaused;
+            Pause();
+        }
 
-            if (gamePaused)
-            {
-                Pause();
-            }
-
-            else
-            {
-                Unpause();
-            }
-        };
+        else
+        {
+            Unpause();
+        }
     }
     // Update is called once per frame
     /*  
@@ -72,20 +76,28 @@ public class PauseMenuController : MonoBehaviour
 
     public void Pause()
     {
+        Debug.Log("pausing");
         Time.timeScale = 0;
         gamePaused = true;
         pausePrefab.SetActive(true);
         highPassFilter.enabled = true;
         lowPassFilter.enabled = true;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void Unpause()
     {
+        Debug.Log("Unpausing");
         Time.timeScale = 1;
         gamePaused = false;
         pausePrefab.SetActive(false);
         highPassFilter.enabled = false;
         lowPassFilter.enabled = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void GoToMainMenu()

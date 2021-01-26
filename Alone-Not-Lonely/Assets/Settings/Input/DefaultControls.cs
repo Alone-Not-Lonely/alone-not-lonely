@@ -49,6 +49,14 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Use"",
+                    ""type"": ""Button"",
+                    ""id"": ""23a1d8a2-6c60-4a7b-a4fc-11e8e606d15a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -183,6 +191,17 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99362815-f727-4074-9408-e7f0010b6339"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -201,6 +220,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         m_Platforming_Jump = m_Platforming.FindAction("Jump", throwIfNotFound: true);
         m_Platforming_Camera = m_Platforming.FindAction("Camera", throwIfNotFound: true);
         m_Platforming_Pause = m_Platforming.FindAction("Pause", throwIfNotFound: true);
+        m_Platforming_Use = m_Platforming.FindAction("Use", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -254,6 +274,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Platforming_Jump;
     private readonly InputAction m_Platforming_Camera;
     private readonly InputAction m_Platforming_Pause;
+    private readonly InputAction m_Platforming_Use;
     public struct PlatformingActions
     {
         private @DefaultControls m_Wrapper;
@@ -262,6 +283,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Platforming_Jump;
         public InputAction @Camera => m_Wrapper.m_Platforming_Camera;
         public InputAction @Pause => m_Wrapper.m_Platforming_Pause;
+        public InputAction @Use => m_Wrapper.m_Platforming_Use;
         public InputActionMap Get() { return m_Wrapper.m_Platforming; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -283,6 +305,9 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnPause;
+                @Use.started -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnUse;
+                @Use.performed -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnUse;
+                @Use.canceled -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnUse;
             }
             m_Wrapper.m_PlatformingActionsCallbackInterface = instance;
             if (instance != null)
@@ -299,6 +324,9 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Use.started += instance.OnUse;
+                @Use.performed += instance.OnUse;
+                @Use.canceled += instance.OnUse;
             }
         }
     }
@@ -318,5 +346,6 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnUse(InputAction.CallbackContext context);
     }
 }

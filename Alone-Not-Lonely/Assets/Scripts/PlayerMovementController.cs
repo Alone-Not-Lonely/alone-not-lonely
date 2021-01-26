@@ -25,25 +25,10 @@ public class PlayerMovementController : MonoBehaviour
         camController = (CameraController)FindObjectOfType(typeof(CameraController));
         thisPlayer = (Player)FindObjectOfType(typeof(Player));
 
+        thisPlayer._actionMap.Platforming.Move.performed += cont => Move(cont.ReadValue<Vector2>());
+        thisPlayer._actionMap.Platforming.Move.canceled += cont => Move(Vector2.zero);
 
-        thisPlayer._actionMap.Platforming.Move.performed += move => 
-        { 
-            horizDirection = move.ReadValue<Vector2>().x;
-            vertDirection = move.ReadValue<Vector2>().y;
-        };
-
-        thisPlayer._actionMap.Platforming.Move.canceled += move => {
-            horizDirection = 0;
-            vertDirection = 0;
-        };
-
-        thisPlayer._actionMap.Platforming.Jump.performed += jump =>
-        {
-            if (playerController.isGrounded)
-            {
-                moveDirY = jumpHeight;
-            }
-        };
+        thisPlayer._actionMap.Platforming.Jump.performed += jump => Jump();
     }
 
     /*
@@ -54,35 +39,27 @@ public class PlayerMovementController : MonoBehaviour
         _actionMap.Platforming.Camera.performed -= MoveCamera;
         _actionMap.Disable();
     }
-   
+   */
     
-    public void move(InputAction.CallbackContext context)
+    public void Move(Vector2 movement)
     {
-        if (context.performed)
-        {
-            horizDirection = context.ReadValue<Vector2>().x;
-            vertDirection = context.ReadValue<Vector2>().y;
-        }
-        else
-        {
-            horizDirection = 0;
-            vertDirection = 0;
-        }
-        //Vector2 value = context.ReadValue<Vector2>();
-        //playerController.Move(new Vector3(value.x, 0f, value.y) * walkSpeed * Time.deltaTime);
-        Debug.Log("walk");
+            horizDirection = movement.x;
+            vertDirection = movement.y;
     }
 
-    //private void Jump()//InputAction.CallbackContext context)
+    private void Jump()
+    {
+        if (playerController.isGrounded)
+        {
+            moveDirY = jumpHeight;
+        }
+    }
+
+    //private void MoveCamera(InputAction.CallbackContext context)
     //{
-        //float value = context.ReadValue<float>();
-   // }
-
-    private void MoveCamera(InputAction.CallbackContext context)
-    {
-        Vector2 value = context.ReadValue<Vector2>();
-    }
-     */
+    //    Vector2 value = context.ReadValue<Vector2>();
+    //}
+ 
     void FixedUpdate()
     {
         if(!thisPlayer.paused)
@@ -102,7 +79,6 @@ public class PlayerMovementController : MonoBehaviour
             moveDirection = new Vector3(horizDirection, moveDirY, vertDirection);
             moveDirection = transform.TransformDirection(moveDirection);
             playerController.Move(moveDirection * walkSpeed * Time.deltaTime);
-            //print("moving: " + moveDirection);
             Vector3 camRotation = camController.GetCameraRotation(); 
             playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0)); 
         }

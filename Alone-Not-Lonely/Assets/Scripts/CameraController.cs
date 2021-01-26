@@ -37,29 +37,20 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = (Player)FindObjectOfType(typeof(Player));
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-
-        /*if (Input.GetKey(KeyCode.Escape))
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }*/
+        //Moved mouse logic to Pause Menu Controller
     }
 
     private void Awake()
     {
-        _actionMap = new DefaultControls();
-        _actionMap.Enable();
+        player = (Player)FindObjectOfType(typeof(Player));
 
-
-        _actionMap.Platforming.Camera.performed += look =>
+        player._actionMap.Platforming.Camera.performed += look =>
         {
             inX = look.ReadValue<Vector2>().x;
             iny = look.ReadValue<Vector2>().y;
         };
 
-        _actionMap.Platforming.Camera.canceled += look =>
+        player._actionMap.Platforming.Camera.canceled += look =>
         {
             inX = 0;
             iny = 0;
@@ -70,8 +61,8 @@ public class CameraController : MonoBehaviour
     {
         if(!player.paused)
         {
-            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
             // update current values
             rotationY += inX * sensitivityX;
             rotationX += iny * sensitivityY;
@@ -83,11 +74,11 @@ public class CameraController : MonoBehaviour
             transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0);
             transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 2f, player.transform.position.z);
         }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+        //else
+        //{
+            //Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
+        //}
     }
 
     public Vector3 GetCameraRotation()

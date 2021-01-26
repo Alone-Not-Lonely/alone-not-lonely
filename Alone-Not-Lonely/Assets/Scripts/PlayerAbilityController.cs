@@ -21,12 +21,17 @@ public class PlayerAbilityController : MonoBehaviour
         playerRef = (Player)FindObjectOfType(typeof(Player));
     }
 
-    // Update is called once per frame
-    void Update()
+    void Awake()
     {
-        if(!playerRef.paused)
+        playerRef = (Player)FindObjectOfType(typeof(Player));
+        playerRef._actionMap.Platforming.Use.performed += grab => GrabAttempt();
+    }
+
+    void GrabAttempt()
+    {
+        if (!playerRef.paused)
         {
-            if(waitingForInput && currentGrab != null && Input.GetKeyDown(KeyCode.E))
+            if (waitingForInput && currentGrab != null)
             {
                 Debug.Log("grabbed");
                 grabText.gameObject.SetActive(false);
@@ -37,7 +42,7 @@ public class PlayerAbilityController : MonoBehaviour
                 holdingObj = true;
                 waitingForInput = false;
             }
-            else if(holdingObj && Input.GetKeyDown(KeyCode.E))
+            else if (holdingObj)
             {
                 grabText.gameObject.SetActive(true);
                 Debug.Log("dropped");
@@ -47,7 +52,6 @@ public class PlayerAbilityController : MonoBehaviour
                 holdingObj = false;
             }
         }
-
     }
 
     private void OnTriggerEnter(Collider collision)
