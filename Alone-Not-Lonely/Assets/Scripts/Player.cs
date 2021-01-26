@@ -10,11 +10,14 @@ public class Player : MonoBehaviour
     private Vector3 camSpawnPosition;
     private Quaternion camSpawnRotation;
     private PauseMenuController pmController;
+    public DefaultControls _actionMap;
+    public bool paused;
+
     private void Awake()
     {
-        
+        _actionMap = new DefaultControls();
+        _actionMap.Enable();
     }
-    public bool paused;
 
     void Start()
     {

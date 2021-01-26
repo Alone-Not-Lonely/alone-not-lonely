@@ -21,31 +21,50 @@ public class PauseMenuController : MonoBehaviour
         highPassFilter.enabled = false;
         lowPassFilter.enabled = false;
     }
+ 
+    void Awake()
+    {
+        playerRef = (Player)FindObjectOfType<Player>();
 
+        playerRef._actionMap.Platforming.Pause.performed += pause =>
+        {
+            gamePaused = !gamePaused;
+
+            if (gamePaused)
+            {
+                Pause();
+            }
+
+            else
+            {
+                Unpause();
+            }
+        };
+    }
     // Update is called once per frame
-    /*
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape) && gamePaused == false)
-        {
-            Pause();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && gamePaused == true)
-        {
-            Unpause();
-        }
+    /*  
+      void Update()
+      {
+          if(Input.GetKeyDown(KeyCode.Escape) && gamePaused == false)
+          {
+              Pause();
+          }
+          else if (Input.GetKeyDown(KeyCode.Escape) && gamePaused == true)
+          {
+              Unpause();
+          }
 
-        if(gamePaused)
-        {
-            UpdatePauseUI();
-        }
-    }
+          if(gamePaused)
+          {
+              UpdatePauseUI();
+          }
+      }
+
+      void UpdatePauseUI()
+      {
+
+      }
    */
-    void UpdatePauseUI()
-    {
-
-    }
-
     public bool isPaused()
     {
         return gamePaused;

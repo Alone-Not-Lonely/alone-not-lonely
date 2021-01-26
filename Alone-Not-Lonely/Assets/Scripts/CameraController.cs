@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    // player input object
+    private DefaultControls _actionMap;
+
     // movement constraints
     public float minimumX = -60f;
     public float maximumX = 60f;
@@ -22,6 +25,10 @@ public class CameraController : MonoBehaviour
     // current roation
     float rotationX = 0f;
     float rotationY = 0f;
+
+    //controller input values:
+    float inX = 0f;
+    float iny = 0f;
 
     private Player player;
 
@@ -40,7 +47,25 @@ public class CameraController : MonoBehaviour
         }*/
     }
 
-    // Update is called once per frame
+    private void Awake()
+    {
+        _actionMap = new DefaultControls();
+        _actionMap.Enable();
+
+
+        _actionMap.Platforming.Camera.performed += look =>
+        {
+            inX = look.ReadValue<Vector2>().x;
+            iny = look.ReadValue<Vector2>().y;
+        };
+
+        _actionMap.Platforming.Camera.canceled += look =>
+        {
+            inX = 0;
+            iny = 0;
+        };
+    }
+
     void Update()
     {
         if(!player.paused)
@@ -48,8 +73,8 @@ public class CameraController : MonoBehaviour
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             // update current values
-            //rotationY += Input.GetAxis("Mouse X") * sensitivityX;
-            //rotationX += Input.GetAxis("Mouse Y") * sensitivityY;
+            rotationY += inX * sensitivityX;
+            rotationX += iny * sensitivityY;
 
             // constrain x
             rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);

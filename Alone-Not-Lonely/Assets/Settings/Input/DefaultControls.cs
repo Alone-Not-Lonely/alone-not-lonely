@@ -41,6 +41,14 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""92e30b5d-927f-49f7-818f-893edb07e096"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -153,6 +161,28 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                     ""action"": ""Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9038aebf-e45d-472b-9e88-dd9ee51228a3"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultControlScheme"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c6f4a6d-e792-41c0-a9e1-d94e2369310f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultControlScheme"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -170,6 +200,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         m_Platforming_Move = m_Platforming.FindAction("Move", throwIfNotFound: true);
         m_Platforming_Jump = m_Platforming.FindAction("Jump", throwIfNotFound: true);
         m_Platforming_Camera = m_Platforming.FindAction("Camera", throwIfNotFound: true);
+        m_Platforming_Pause = m_Platforming.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -222,6 +253,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Platforming_Move;
     private readonly InputAction m_Platforming_Jump;
     private readonly InputAction m_Platforming_Camera;
+    private readonly InputAction m_Platforming_Pause;
     public struct PlatformingActions
     {
         private @DefaultControls m_Wrapper;
@@ -229,6 +261,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Platforming_Move;
         public InputAction @Jump => m_Wrapper.m_Platforming_Jump;
         public InputAction @Camera => m_Wrapper.m_Platforming_Camera;
+        public InputAction @Pause => m_Wrapper.m_Platforming_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Platforming; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -247,6 +280,9 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                 @Camera.started -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnCamera;
                 @Camera.performed -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnCamera;
                 @Camera.canceled -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnCamera;
+                @Pause.started -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlatformingActionsCallbackInterface = instance;
             if (instance != null)
@@ -260,6 +296,9 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                 @Camera.started += instance.OnCamera;
                 @Camera.performed += instance.OnCamera;
                 @Camera.canceled += instance.OnCamera;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -278,5 +317,6 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
