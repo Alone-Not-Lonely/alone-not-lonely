@@ -1,6 +1,6 @@
 // GENERATED AUTOMATICALLY FROM 'Assets/Settings/Input/DefaultControls.inputactions'
 
-/*using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
@@ -280,4 +280,3 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         void OnCamera(InputAction.CallbackContext context);
     }
 }
-*/

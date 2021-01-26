@@ -48,8 +48,8 @@ public class CameraController : MonoBehaviour
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             // update current values
-            rotationY += Input.GetAxis("Mouse X") * sensitivityX;
-            rotationX += Input.GetAxis("Mouse Y") * sensitivityY;
+            //rotationY += Input.GetAxis("Mouse X") * sensitivityX;
+            //rotationX += Input.GetAxis("Mouse Y") * sensitivityY;
 
             // constrain x
             rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);
