@@ -36,35 +36,14 @@ public class PatrolPointsController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if(currentState == State.Moving && Vector3.Distance(transform.position, patrolPoints[currentGoal].position) > .1f)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, patrolPoints[currentGoal].position, .01f * speed);
-        }
-        else if(currentState == State.Moving && Vector3.Distance(transform.position, patrolPoints[currentGoal].position) <= .1f)
-        {
-            currentState = State.Waiting;
-            currentWaitTime += Time.deltaTime;
-        }
-
         float movementLastFrame = Vector3.Distance(this.transform.position, lastTransform);
-        
-        if(!stuck && currentState == State.Moving && movementLastFrame < (.01f * speed) - .001f)
-        {
-            stuck = true;
-            /*Debug.Log("Movement last frame: " + movementLastFrame);
-            Debug.Log("Speed: " + speed * .01f);*/
-        }
-        else if(stuck && currentState == State.Moving && movementLastFrame >= (.01f * speed) - .001f)
+        if(stuck && currentState == State.Moving && movementLastFrame >= (.01f * speed) - .001f)
         {
             Debug.Log("Movement last frame: " + movementLastFrame);
             Debug.Log("Speed: " + speed * .01f);
+            Debug.Log("Velocity: " + thisRB.velocity);
             stuck = false;
             stuckTimer = 0f;
-        }
-        else if(currentState == State.Collided)
-        {
-            stuck = true;
-            transform.position = Vector3.MoveTowards(transform.position, patrolPoints[currentGoal].position, .01f * speed);
         }
 
         if(stuck && stuckTimer < stuckTimeToMove)
@@ -108,39 +87,57 @@ public class PatrolPointsController : MonoBehaviour
             inColliderCooldown = false;
         }
         lastTransform = this.transform.position;
+
+                if(currentState == State.Moving && Vector3.Distance(transform.position, patrolPoints[currentGoal].position) > .1f)
+        {
+            //transform.position = Vector3.MoveTowards(transform.position, patrolPoints[currentGoal].position, .01f * speed);
+            thisRB.MovePosition(Vector3.MoveTowards(transform.position, patrolPoints[currentGoal].position, .01f * speed));
+        }
+        else if(currentState == State.Moving && Vector3.Distance(transform.position, patrolPoints[currentGoal].position) <= .1f)
+        {
+            currentState = State.Waiting;
+            currentWaitTime += Time.deltaTime;
+        }
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Portal"))
         {
-            this.transform.position = other.GetComponent<PortalController>().partnerPortal.transform.position;
+            GameObject partnerPortal = other.GetComponent<PortalController>().partnerPortal;
+            this.transform.position = partnerPortal.transform.position + (partnerPortal.transform.forward * .1f);
             inColliderCooldown = true;
-            lastPortalCollider = other.GetComponent<PortalController>().partnerPortal.gameObject.GetComponent<Collider>();
+            lastPortalCollider = partnerPortal.gameObject.GetComponent<Collider>();
             lastPortalCollider.enabled = false;
             thisRB.velocity = Vector3.zero;
             thisRB.angularVelocity = Vector3.zero;
         }
         else if(other.CompareTag("BackPortal"))
         {
-            this.transform.position = other.GetComponent<PortalController>().partnerPortal.transform.position;
+            GameObject partnerPortal = other.GetComponent<PortalController>().partnerPortal;
+            this.transform.position = partnerPortal.transform.position + (partnerPortal.transform.forward * .1f);
             inColliderCooldown = true;
-            lastPortalCollider = other.GetComponent<PortalController>().partnerPortal.gameObject.GetComponent<Collider>();
+            lastPortalCollider = partnerPortal.gameObject.GetComponent<Collider>();
             lastPortalCollider.enabled = false;
             thisRB.velocity = Vector3.zero;
             thisRB.angularVelocity = Vector3.zero;
             //advance current patrolpoint
             currentGoal ++;
+            if(currentGoal >= patrolPoints.Count)
+            {
+                currentGoal = 6;
+            }
         }
     }
 
-    private void OnCollisionEnter(Collision other) 
+    private void OnCollisionStay(Collision other) 
     {
-        thisRB.velocity = Vector3.zero;
-        thisRB.angularVelocity = Vector3.zero;
-        if(other.gameObject.CompareTag("Grabable"))
+        float movementLastFrame = Vector3.Distance(this.transform.position, lastTransform);
+        if(!stuck && currentState == State.Moving && movementLastFrame < (.01f * speed) - .001f)
         {
-            //other.gameObject.transform.parent.transform.parent = this.transform;
+            stuck = true;
+            /*Debug.Log("Movement last frame: " + movementLastFrame);
+            Debug.Log("Speed: " + speed * .01f);*/
         }
     }
 }
