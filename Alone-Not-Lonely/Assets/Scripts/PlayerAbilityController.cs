@@ -56,13 +56,15 @@ public class PlayerAbilityController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.CompareTag("Grabable"))
-        {
-            grabText.gameObject.SetActive(true);
-            releaseText.gameObject.SetActive(false);
-            currentGrab = collision.gameObject;
+        if(!holdingObj && collision.gameObject.CompareTag("Grabable"))
+        {  
+            if(!waitingForInput)
+            {
+                grabText.gameObject.SetActive(true);
+                releaseText.gameObject.SetActive(false);
+                currentGrab = collision.gameObject;
+            }
             waitingForInput = true;
-            Debug.Log("waiting for input");
         }
     }
 

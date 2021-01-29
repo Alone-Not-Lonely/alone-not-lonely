@@ -46,14 +46,17 @@ public class PatrolPointsController : MonoBehaviour
             stuckTimer = 0f;
         }
 
+        //constinue being stuck
         if(stuck && stuckTimer < stuckTimeToMove)
         {
             stuckTimer += Time.deltaTime;
         }
-        else if(stuck && stuckTimer >= stuckTimeToMove)
+        else if(stuck && stuckTimer >= stuckTimeToMove) // turn around to get unstuck
         {
             currentGoal++;
             currentState = State.Moving;
+            thisRB.velocity = Vector3.zero;
+            thisRB.angularVelocity = Vector3.zero;
             if(currentGoal >= patrolPoints.Count)
             {
                 currentGoal = currentGoal % patrolPoints.Count;
