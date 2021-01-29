@@ -49,7 +49,7 @@ public class PlayerAbilityController : MonoBehaviour
                 Debug.Log("dropped");
                 currentGrab.gameObject.transform.parent = null;
                 //currentGrab.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
-                currentGrab.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                currentGrab.gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 currentGrab.GetComponent<Collider>().enabled = true;
                 holdingObj = false;
             }
