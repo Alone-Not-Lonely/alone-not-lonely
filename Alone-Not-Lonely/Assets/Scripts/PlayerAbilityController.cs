@@ -76,7 +76,7 @@ public class PlayerAbilityController : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider collision) 
+    private void OnTriggerExit(Collider collision)
     {
         if(collision.gameObject.CompareTag("Grabable"))
         {

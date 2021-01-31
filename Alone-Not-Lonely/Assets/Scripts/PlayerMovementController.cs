@@ -43,8 +43,9 @@ public class PlayerMovementController : MonoBehaviour
     
     public void Move(Vector2 movement)
     {
-            horizDirection = movement.x;
-            vertDirection = movement.y;
+        Debug.Log("move: " + movement);
+        horizDirection = movement.x;
+        vertDirection = movement.y;
     }
 
     private void Jump()
@@ -78,6 +79,7 @@ public class PlayerMovementController : MonoBehaviour
 
             moveDirection = new Vector3(horizDirection, moveDirY, vertDirection);
             moveDirection = transform.TransformDirection(moveDirection);
+            //Debug.Log("moveDirection: " + moveDirection);
             playerController.Move(moveDirection * walkSpeed * Time.deltaTime);
             Vector3 camRotation = camController.GetCameraRotation(); 
             playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0)); 

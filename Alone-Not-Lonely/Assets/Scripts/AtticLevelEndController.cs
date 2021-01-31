@@ -9,21 +9,29 @@ public class AtticLevelEndController : MonoBehaviour
     // Start is called before the first frame update
     public Animator ballFallingAnim;
     public Text interactionUI;
+    public Text cantInteractUI;
 
     private bool ableToInteract;
     private Collider interactionCollider;
+    private AtticLadderController ladderController;
 
+    private void Awake() {
+        Player playerRef = (Player)FindObjectOfType(typeof(Player));
+        playerRef._actionMap.Platforming.Use.performed += grab => InteractAttempt();
+    }
     void Start()
     {
         interactionUI.gameObject.SetActive(false);
+        cantInteractUI.gameObject.SetActive(false);
         ableToInteract = false;
         interactionCollider = GetComponent<SphereCollider>();
+        ladderController = (AtticLadderController)FindObjectOfType(typeof(AtticLadderController));
     }
 
     // Update is called once per frame
-    void Update()
+    void InteractAttempt()
     {
-        if(ableToInteract && Input.GetKeyDown(KeyCode.E))
+        if(ableToInteract && !ladderController.boxBlockingExit)
         {
             interactionCollider.enabled = false;
             //trigger animation
@@ -39,7 +47,28 @@ public class AtticLevelEndController : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             ableToInteract = true;
+            if(!ladderController.boxBlockingExit)
+            {
+                interactionUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                cantInteractUI.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    void OnTriggerStay(Collider other) 
+    {
+        if(ladderController.boxBlockingExit)
+        {
+            interactionUI.gameObject.SetActive(false);
+            cantInteractUI.gameObject.SetActive(true);
+        }
+        else
+        {
             interactionUI.gameObject.SetActive(true);
+            cantInteractUI.gameObject.SetActive(false);
         }
     }
 
@@ -48,7 +77,14 @@ public class AtticLevelEndController : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             ableToInteract = false;
-            interactionUI.gameObject.SetActive(false);
+            if(interactionUI.gameObject.activeInHierarchy)
+            {
+                interactionUI.gameObject.SetActive(false);
+            }
+            else
+            {
+                cantInteractUI.gameObject.SetActive(false);
+            }
         }
     }
 }
