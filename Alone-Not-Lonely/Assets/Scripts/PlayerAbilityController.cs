@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class PlayerAbilityController : MonoBehaviour
 {
+    [SerializeField]
     bool waitingForInput = false;
+    [SerializeField]
     GameObject currentGrab = null;
+    [SerializeField]
     bool holdingObj = false;
     public Text grabText;
     public Text releaseText;
@@ -32,6 +35,7 @@ public class PlayerAbilityController : MonoBehaviour
         {
             if (waitingForInput && currentGrab != null)
             {
+                waitingForInput = false;
                 Debug.Log("grabbed");
                 grabText.gameObject.SetActive(false);
                 releaseText.gameObject.SetActive(true);
@@ -40,7 +44,7 @@ public class PlayerAbilityController : MonoBehaviour
                 currentGrab.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 currentGrab.GetComponent<Collider>().enabled = false;//changed sphere collider to more general collider
                 holdingObj = true;
-                waitingForInput = false;
+                
             }
             else if (holdingObj)
             {
@@ -53,6 +57,7 @@ public class PlayerAbilityController : MonoBehaviour
                 currentGrab.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
                 currentGrab.GetComponent<Collider>().enabled = true;
                 holdingObj = false;
+                waitingForInput = true;
             }
         }
     }
