@@ -21,7 +21,6 @@ public class PlayerAbilityController : MonoBehaviour
     {
         grabText.gameObject.SetActive(false);
         releaseText.gameObject.SetActive(false);
-        playerRef = (Player)FindObjectOfType(typeof(Player));
     }
 
     void Awake()
@@ -32,20 +31,20 @@ public class PlayerAbilityController : MonoBehaviour
 
     void GrabAttempt()
     {
+        Debug.Log("Grab Attempted");
         if (!playerRef.paused)
         {
-            if (waitingForInput && currentGrab != null)
+            if (currentGrab != null && !holdingObj)//(waitingForInput && currentGrab != null)
             {
-                waitingForInput = false;
-                Debug.Log("grabbed");
+                //waitingForInput = false;
+                //Debug.Log("grabbed waiting for output = " + waitingForInput);
                 grabText.gameObject.SetActive(false);
                 releaseText.gameObject.SetActive(true);
                 currentGrab.gameObject.transform.parent = this.transform;
                 //currentGrab.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
                 currentGrab.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                currentGrab.GetComponent<Collider>().enabled = false;//changed sphere collider to more general collider
+                //currentGrab.GetComponent<Collider>().enabled = false;//changed sphere collider to more general collider
                 holdingObj = true;
-                
             }
             else if (holdingObj)
             {
@@ -54,22 +53,26 @@ public class PlayerAbilityController : MonoBehaviour
                 currentGrab.gameObject.transform.parent = null;
                 //currentGrab.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
                 currentGrab.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-                currentGrab.GetComponent<Collider>().enabled = true;
+                //currentGrab.GetComponent<Collider>().enabled = true;
                 holdingObj = false;
-                waitingForInput = true;
+                //waitingForInput = true;
             }
         }
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.CompareTag("Grabable")) //&& currentGrab == null)
+        if(collision.gameObject.CompareTag("Grabable"))// && currentGrab == null)
         {
-            grabText.gameObject.SetActive(true);
-            releaseText.gameObject.SetActive(false);
+            Debug.Log("OnTriggerEnter");
+
+            if (!holdingObj)
+            {
+                grabText.gameObject.SetActive(true);
+                releaseText.gameObject.SetActive(false);
+            }
             currentGrab = collision.gameObject;
-            waitingForInput = true;
-            Debug.Log("waiting for input");
+            //waitingForInput = true;
         }
     }
 
@@ -77,6 +80,10 @@ public class PlayerAbilityController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Grabable"))
         {
+            if (currentGrab == collision.gameObject)
+            {
+                currentGrab = null;
+            }
             grabText.gameObject.SetActive(false);
             waitingForInput = false; // - A
         }

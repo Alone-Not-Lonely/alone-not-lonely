@@ -196,7 +196,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""99362815-f727-4074-9408-e7f0010b6339"",
                     ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Use"",
