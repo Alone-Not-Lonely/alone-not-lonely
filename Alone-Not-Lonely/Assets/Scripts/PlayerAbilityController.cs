@@ -5,11 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerAbilityController : MonoBehaviour
 {
-    [SerializeField]
-    bool waitingForInput = false;
-    [SerializeField]
+    //bool waitingForInput = false;
     GameObject currentGrab = null;
-    [SerializeField]
     bool holdingObj = false;
     public Text grabText;
     public Text releaseText;
@@ -36,8 +33,7 @@ public class PlayerAbilityController : MonoBehaviour
         {
             if (currentGrab != null && !holdingObj)//(waitingForInput && currentGrab != null)
             {
-                //waitingForInput = false;
-                //Debug.Log("grabbed waiting for output = " + waitingForInput);
+                //Debug.Log("grabbed");
                 grabText.gameObject.SetActive(false);
                 releaseText.gameObject.SetActive(true);
                 currentGrab.gameObject.transform.parent = this.transform;
@@ -72,7 +68,6 @@ public class PlayerAbilityController : MonoBehaviour
                 releaseText.gameObject.SetActive(false);
             }
             currentGrab = collision.gameObject;
-            //waitingForInput = true;
         }
     }
 
@@ -85,7 +80,6 @@ public class PlayerAbilityController : MonoBehaviour
                 currentGrab = null;
             }
             grabText.gameObject.SetActive(false);
-            waitingForInput = false; // - A
         }
     }
 }
