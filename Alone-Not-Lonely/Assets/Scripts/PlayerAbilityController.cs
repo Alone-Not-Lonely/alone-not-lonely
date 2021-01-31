@@ -18,7 +18,6 @@ public class PlayerAbilityController : MonoBehaviour
     {
         grabText.gameObject.SetActive(false);
         releaseText.gameObject.SetActive(false);
-        playerRef = (Player)FindObjectOfType(typeof(Player));
     }
 
     void Awake()
@@ -50,6 +49,8 @@ public class PlayerAbilityController : MonoBehaviour
                 currentGrab.gameObject.transform.parent = null;
                 //currentGrab.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
                 currentGrab.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                currentGrab.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                currentGrab.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
                 currentGrab.GetComponent<Collider>().enabled = true;
                 holdingObj = false;
             }
