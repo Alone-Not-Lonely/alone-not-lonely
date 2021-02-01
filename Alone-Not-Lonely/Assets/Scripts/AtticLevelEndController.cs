@@ -12,22 +12,23 @@ public class AtticLevelEndController : MonoBehaviour
 
     private bool ableToInteract;
     private Collider interactionCollider;
-    private AtticLadderController ladderController;
+    public AtticLadderController ladderController;
 
     private Rigidbody thisRb;
+    public Player playerRef;
 
     private void Awake() {
-
-    } 
+    }
     void Start()
     {
-        Player playerRef = (Player)FindObjectOfType(typeof(Player));
+        playerRef = (Player)FindObjectOfType<Player>();
+        Debug.Log("Player: " + playerRef);
         playerRef._actionMap.Platforming.Use.performed += grab => InteractAttempt();
         interactionUI.gameObject.SetActive(false);
         cantInteractUI.gameObject.SetActive(false);
         ableToInteract = false;
         interactionCollider = GetComponent<SphereCollider>();
-        ladderController = (AtticLadderController)FindObjectOfType(typeof(AtticLadderController));
+        //ladderController = (AtticLadderController)FindObjectOfType(typeof(AtticLadderController));
         thisRb = GetComponent<Rigidbody>();
         thisRb.Sleep();
     }
@@ -61,7 +62,7 @@ public class AtticLevelEndController : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other) 
+    void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Player"))
         {
@@ -78,7 +79,7 @@ public class AtticLevelEndController : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other) 
+    void OnTriggerExit(Collider other)
     {
         if(other.CompareTag("Player"))
         {

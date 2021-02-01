@@ -23,7 +23,11 @@ public class PlayerMovementController : MonoBehaviour
     {
         playerController = this.GetComponent<CharacterController>();
         camController = (CameraController)FindObjectOfType(typeof(CameraController));
-        thisPlayer = (Player)FindObjectOfType(typeof(Player));
+    }
+
+    private void Start() 
+    {
+        thisPlayer = (Player)FindObjectOfType<Player>();
 
         thisPlayer._actionMap.Platforming.Move.performed += cont => Move(cont.ReadValue<Vector2>());
         thisPlayer._actionMap.Platforming.Move.canceled += cont => Move(Vector2.zero);
@@ -43,7 +47,6 @@ public class PlayerMovementController : MonoBehaviour
     
     public void Move(Vector2 movement)
     {
-        Debug.Log("move: " + movement);
         horizDirection = movement.x;
         vertDirection = movement.y;
     }
