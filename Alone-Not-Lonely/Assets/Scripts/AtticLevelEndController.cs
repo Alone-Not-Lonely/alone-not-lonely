@@ -12,21 +12,23 @@ public class AtticLevelEndController : MonoBehaviour
 
     private bool ableToInteract;
     private Collider interactionCollider;
-    private AtticLadderController ladderController;
+    public AtticLadderController ladderController;
 
     private Rigidbody thisRb;
+    public Player playerRef;
 
     private void Awake() {
-        Player playerRef = (Player)FindObjectOfType(typeof(Player));
-        playerRef._actionMap.Platforming.Use.performed += grab => InteractAttempt();
     }
     void Start()
     {
+        playerRef = (Player)FindObjectOfType<Player>();
+        Debug.Log("Player: " + playerRef);
+        playerRef._actionMap.Platforming.Use.performed += grab => InteractAttempt();
         interactionUI.gameObject.SetActive(false);
         cantInteractUI.gameObject.SetActive(false);
         ableToInteract = false;
         interactionCollider = GetComponent<SphereCollider>();
-        ladderController = (AtticLadderController)FindObjectOfType(typeof(AtticLadderController));
+        //ladderController = (AtticLadderController)FindObjectOfType(typeof(AtticLadderController));
         thisRb = GetComponent<Rigidbody>();
         thisRb.Sleep();
     }
