@@ -29,8 +29,11 @@ public class PlayerMovementController : MonoBehaviour
     {
         thisPlayer = (Player)FindObjectOfType<Player>();
 
-        thisPlayer._actionMap.Platforming.Move.performed += cont => Move(cont.ReadValue<Vector2>());
-        thisPlayer._actionMap.Platforming.Move.canceled += cont => Move(Vector2.zero);
+        thisPlayer._actionMap.Platforming.MoveVert.performed += cont => MoveVert(cont.ReadValue<float>());
+        thisPlayer._actionMap.Platforming.MoveVert.canceled += cont => MoveVert(0f);
+
+        thisPlayer._actionMap.Platforming.MoveHoriz.performed += cont => MoveHoriz(cont.ReadValue<float>());
+        thisPlayer._actionMap.Platforming.MoveHoriz.canceled += cont => MoveHoriz(0f);
 
         thisPlayer._actionMap.Platforming.Jump.performed += jump => Jump();
     }
@@ -45,10 +48,14 @@ public class PlayerMovementController : MonoBehaviour
     }
    */
     
-    public void Move(Vector2 movement)
+    public void MoveHoriz(float horizMvmt)
     {
-        horizDirection = movement.x;
-        vertDirection = movement.y;
+        horizDirection = horizMvmt;
+    }
+
+    public void MoveVert(float vertMvmt)
+    {
+        vertDirection = vertMvmt;
     }
 
     private void Jump()

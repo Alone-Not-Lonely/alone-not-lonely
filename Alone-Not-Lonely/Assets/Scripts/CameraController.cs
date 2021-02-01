@@ -48,6 +48,7 @@ public class CameraController : MonoBehaviour
         {
             inX = look.ReadValue<Vector2>().x;
             iny = look.ReadValue<Vector2>().y;
+            Debug.Log(look.ReadValue<Vector2>());
         };
 
         player._actionMap.Platforming.Camera.canceled += look =>
@@ -65,8 +66,8 @@ public class CameraController : MonoBehaviour
             //Cursor.lockState = CursorLockMode.Locked;
             //Cursor.visible = false;
             // update current values
-            rotationY += inX * sensitivityX;
-            rotationX += iny * sensitivityY;
+            rotationY += inX * sensitivityX * Time.deltaTime;
+            rotationX += iny * sensitivityY * Time.deltaTime;
 
             // constrain x
             rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);

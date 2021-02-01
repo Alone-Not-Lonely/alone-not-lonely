@@ -14,9 +14,9 @@ public class AtticLevelEndController : MonoBehaviour
     private Collider interactionCollider;
     public AtticLadderController ladderController;
 
-    private Rigidbody thisRb;
     public Player playerRef;
 
+    private MeshRenderer meshRenderer;
     private void Awake() {
     }
     void Start()
@@ -28,9 +28,8 @@ public class AtticLevelEndController : MonoBehaviour
         cantInteractUI.gameObject.SetActive(false);
         ableToInteract = false;
         interactionCollider = GetComponent<SphereCollider>();
+        meshRenderer = GetComponent<MeshRenderer>();
         //ladderController = (AtticLadderController)FindObjectOfType(typeof(AtticLadderController));
-        thisRb = GetComponent<Rigidbody>();
-        thisRb.Sleep();
     }
 
     // Update is called once per frame
@@ -97,7 +96,7 @@ public class AtticLevelEndController : MonoBehaviour
 
     void TriggerLadderFall()
     {
-        thisRb.WakeUp();
         ladderController.AnimateOpenLadder();
+        meshRenderer.enabled = false;
     }
 }

@@ -57,6 +57,22 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MoveHoriz"",
+                    ""type"": ""Value"",
+                    ""id"": ""3e3dba55-3d30-403d-9656-744c4d77b55a"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MoveVert"",
+                    ""type"": ""Value"",
+                    ""id"": ""9e48e90d-28d4-4947-8bb9-273e511a61d5"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -202,6 +218,138 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                     ""action"": ""Use"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""LeftStick [Gamepad]"",
+                    ""id"": ""c7ea81e8-a227-42bc-b6e2-9e5244ec20ba"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveHoriz"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""a2568ff4-5f0c-430c-a15b-95d45ef6feb8"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultControlScheme"",
+                    ""action"": ""MoveHoriz"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""a9547259-0c77-4444-bb38-b3db0aed9c97"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultControlScheme"",
+                    ""action"": ""MoveHoriz"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""a0514df0-f6a4-40b9-b7cb-d8f0d25d5f5e"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveHoriz"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""48ef4db5-ec2c-4988-9961-ac41eb82f9ea"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultControlScheme"",
+                    ""action"": ""MoveHoriz"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""f25da8e2-94f0-4827-aadd-da559f125be7"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultControlScheme"",
+                    ""action"": ""MoveHoriz"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""LeftStick [Gamepad]"",
+                    ""id"": ""f628c82a-b750-4d44-afac-6b0132661810"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveVert"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""a9352f61-2cb0-4e05-bfcc-b414b9c51287"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultControlScheme"",
+                    ""action"": ""MoveVert"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""4f0f86ab-8aca-4be5-b5ae-ac141d9bb053"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultControlScheme"",
+                    ""action"": ""MoveVert"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""d5f7b2da-ca93-4834-8359-bb7ddbfcb2bc"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveVert"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""ca9f8662-e92b-41c3-9f17-a3273acb1c0b"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultControlScheme"",
+                    ""action"": ""MoveVert"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""b6643b22-5404-481e-a0a8-ab349b2c1db1"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultControlScheme"",
+                    ""action"": ""MoveVert"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -221,6 +369,8 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         m_Platforming_Camera = m_Platforming.FindAction("Camera", throwIfNotFound: true);
         m_Platforming_Pause = m_Platforming.FindAction("Pause", throwIfNotFound: true);
         m_Platforming_Use = m_Platforming.FindAction("Use", throwIfNotFound: true);
+        m_Platforming_MoveHoriz = m_Platforming.FindAction("MoveHoriz", throwIfNotFound: true);
+        m_Platforming_MoveVert = m_Platforming.FindAction("MoveVert", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -275,6 +425,8 @@ public class @DefaultControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Platforming_Camera;
     private readonly InputAction m_Platforming_Pause;
     private readonly InputAction m_Platforming_Use;
+    private readonly InputAction m_Platforming_MoveHoriz;
+    private readonly InputAction m_Platforming_MoveVert;
     public struct PlatformingActions
     {
         private @DefaultControls m_Wrapper;
@@ -284,6 +436,8 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         public InputAction @Camera => m_Wrapper.m_Platforming_Camera;
         public InputAction @Pause => m_Wrapper.m_Platforming_Pause;
         public InputAction @Use => m_Wrapper.m_Platforming_Use;
+        public InputAction @MoveHoriz => m_Wrapper.m_Platforming_MoveHoriz;
+        public InputAction @MoveVert => m_Wrapper.m_Platforming_MoveVert;
         public InputActionMap Get() { return m_Wrapper.m_Platforming; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -308,6 +462,12 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                 @Use.started -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnUse;
                 @Use.performed -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnUse;
                 @Use.canceled -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnUse;
+                @MoveHoriz.started -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnMoveHoriz;
+                @MoveHoriz.performed -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnMoveHoriz;
+                @MoveHoriz.canceled -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnMoveHoriz;
+                @MoveVert.started -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnMoveVert;
+                @MoveVert.performed -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnMoveVert;
+                @MoveVert.canceled -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnMoveVert;
             }
             m_Wrapper.m_PlatformingActionsCallbackInterface = instance;
             if (instance != null)
@@ -327,6 +487,12 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                 @Use.started += instance.OnUse;
                 @Use.performed += instance.OnUse;
                 @Use.canceled += instance.OnUse;
+                @MoveHoriz.started += instance.OnMoveHoriz;
+                @MoveHoriz.performed += instance.OnMoveHoriz;
+                @MoveHoriz.canceled += instance.OnMoveHoriz;
+                @MoveVert.started += instance.OnMoveVert;
+                @MoveVert.performed += instance.OnMoveVert;
+                @MoveVert.canceled += instance.OnMoveVert;
             }
         }
     }
@@ -347,5 +513,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         void OnCamera(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
+        void OnMoveHoriz(InputAction.CallbackContext context);
+        void OnMoveVert(InputAction.CallbackContext context);
     }
 }
