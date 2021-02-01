@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class AtticLevelEndController : MonoBehaviour
 {
@@ -15,6 +14,8 @@ public class AtticLevelEndController : MonoBehaviour
     private Collider interactionCollider;
     private AtticLadderController ladderController;
 
+    private Rigidbody thisRb;
+
     private void Awake() {
         Player playerRef = (Player)FindObjectOfType(typeof(Player));
         playerRef._actionMap.Platforming.Use.performed += grab => InteractAttempt();
@@ -26,6 +27,8 @@ public class AtticLevelEndController : MonoBehaviour
         ableToInteract = false;
         interactionCollider = GetComponent<SphereCollider>();
         ladderController = (AtticLadderController)FindObjectOfType(typeof(AtticLadderController));
+        thisRb = GetComponent<Rigidbody>();
+        thisRb.Sleep();
     }
 
     // Update is called once per frame
@@ -34,11 +37,10 @@ public class AtticLevelEndController : MonoBehaviour
         if(ableToInteract && !ladderController.boxBlockingExit)
         {
             interactionCollider.enabled = false;
-            //trigger animation
+            ballFallingAnim.SetBool("PushBall", true);
             //fancy camera movements? VFX? all fair game
             //and then transition into next level (or transitional animation)
             interactionUI.gameObject.SetActive(false);
-            SceneManager.LoadScene("EndPlaytest");
         }
     }
 
@@ -60,15 +62,18 @@ public class AtticLevelEndController : MonoBehaviour
 
     void OnTriggerStay(Collider other) 
     {
-        if(ladderController.boxBlockingExit)
+        if(other.CompareTag("Player"))
         {
-            interactionUI.gameObject.SetActive(false);
-            cantInteractUI.gameObject.SetActive(true);
-        }
-        else
-        {
-            interactionUI.gameObject.SetActive(true);
-            cantInteractUI.gameObject.SetActive(false);
+            if(ladderController.boxBlockingExit)
+            {
+                interactionUI.gameObject.SetActive(false);
+                cantInteractUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                interactionUI.gameObject.SetActive(true);
+                cantInteractUI.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -86,5 +91,11 @@ public class AtticLevelEndController : MonoBehaviour
                 cantInteractUI.gameObject.SetActive(false);
             }
         }
+    }
+
+    void TriggerLadderFall()
+    {
+        thisRb.WakeUp();
+        ladderController.AnimateOpenLadder();
     }
 }
