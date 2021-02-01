@@ -17,11 +17,12 @@ public class AtticLevelEndController : MonoBehaviour
     private Rigidbody thisRb;
 
     private void Awake() {
-        Player playerRef = (Player)FindObjectOfType(typeof(Player));
-        playerRef._actionMap.Platforming.Use.performed += grab => InteractAttempt();
-    }
+
+    } 
     void Start()
     {
+        Player playerRef = (Player)FindObjectOfType(typeof(Player));
+        playerRef._actionMap.Platforming.Use.performed += grab => InteractAttempt();
         interactionUI.gameObject.SetActive(false);
         cantInteractUI.gameObject.SetActive(false);
         ableToInteract = false;

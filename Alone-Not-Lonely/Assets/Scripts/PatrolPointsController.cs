@@ -39,9 +39,11 @@ public class PatrolPointsController : MonoBehaviour
 
     private float directionDot; //updated in fixedUpdate
     void FixedUpdate() {
-        Vector3 movementLastFrame = this.transform.position - lastTransform;
+        Vector3 movementLastFrame = this.transform.position - lastTransform;//Total movement after one frame
         directionDot = Vector3.Dot(Vector3.Normalize(movementLastFrame), Vector3.Normalize(patrolPoints[currentGoal].position - transform.position));//dot product of last frame movement and movement to goal
-        if(stuck && currentState == State.Moving && directionDot >= allowableMoveMargin)//old evaluation: movementLastFrame >= (.01f * speed) - allowableMoveMargin
+
+        //unsticks if monster's way has been cleared
+        if (stuck && currentState == State.Moving && directionDot >= allowableMoveMargin)//old evaluation: movementLastFrame >= (.01f * speed) - allowableMoveMargin
         {
             stuck = false;
             stuckTimer = 0f;
