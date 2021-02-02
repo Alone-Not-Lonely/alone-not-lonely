@@ -18,10 +18,7 @@ public class PlayerAbilityController : MonoBehaviour
     {
         grabText.gameObject.SetActive(false);
         releaseText.gameObject.SetActive(false);
-    }
 
-    void Awake()
-    {
         playerRef = (Player)FindObjectOfType(typeof(Player));
         playerRef._actionMap.Platforming.Use.performed += grab => GrabAttempt();
     }
