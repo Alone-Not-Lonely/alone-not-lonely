@@ -10,8 +10,8 @@ public class PanicMeterController : MonoBehaviour
     private float currentAnxietyPoints;
     private Player thisPlayer;
     public float anxietySpeed = 10f;
-    [SerializeField]
-    private Animator playerAnimator;
+    //[SerializeField]
+    //private Animator playerAnimator;
 
     bool monsterInRadius;
     
@@ -20,7 +20,6 @@ public class PanicMeterController : MonoBehaviour
         currentAnxietyPoints = 0;
         anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         monsterInRadius = false;
-        Debug.Log(playerAnimator.GetBool("conscious"));
         thisPlayer = (Player)FindObjectOfType<Player>();
     }
 
