@@ -30,6 +30,13 @@ public class Player : MonoBehaviour
         camSpawnRotation = Camera.main.gameObject.transform.rotation;
     }
 
+    //Resets player to beginning state
+    public void backToSpawn()
+    {
+        transform.position = spawnPosition;
+        transform.rotation = spawnRotation;
+    }
+
     // Update is called once per frame
     void Update()
     {
