@@ -61,7 +61,7 @@ public class AtticLevelEndController : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other) 
+    void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Player"))
         {
@@ -78,7 +78,7 @@ public class AtticLevelEndController : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other) 
+    void OnTriggerExit(Collider other)
     {
         if(other.CompareTag("Player"))
         {

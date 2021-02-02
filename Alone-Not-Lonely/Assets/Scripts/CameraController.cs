@@ -38,10 +38,6 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         //Moved mouse logic to Pause Menu Controller
-    }
-
-    private void Awake()
-    {
         player = (Player)FindObjectOfType(typeof(Player));
 
         player._actionMap.Platforming.Camera.performed += look =>
@@ -56,6 +52,11 @@ public class CameraController : MonoBehaviour
             inX = 0;
             iny = 0;
         };
+    }
+
+    private void Awake()
+    {
+       
     }
 
     private Vector3 refRot;

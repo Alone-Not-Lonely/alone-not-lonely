@@ -20,15 +20,16 @@ public class PauseMenuController : MonoBehaviour
         lowPassFilter = GetComponent<AudioLowPassFilter>();
         highPassFilter.enabled = false;
         lowPassFilter.enabled = false;
+
+
+        playerRef = (Player)FindObjectOfType<Player>();
+        playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
     }
  
     void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-        playerRef = (Player)FindObjectOfType<Player>();
-
-        playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
     }
 
     public void PauseControl()
