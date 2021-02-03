@@ -51,7 +51,7 @@ public class PanicMeterController : MonoBehaviour
     private IEnumerator faint()
     {
         //playerAnimator.SetBool("up", false);
-        yield return new WaitForSeconds(1);//should be length of animation
+        yield return new WaitForSeconds(.001f);//should be length of animation
         //playerAnimator.SetBool("up", true);
         anxietyMeter.fillAmount = 0;
         currentAnxietyPoints = 0;
