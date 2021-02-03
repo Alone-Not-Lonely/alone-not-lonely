@@ -10,7 +10,7 @@ public class PanicMeterController : MonoBehaviour
     private float currentAnxietyPoints;
     private Player thisPlayer;
     public float anxietySpeed = 10f;
-    private Animator playerAnimator;
+    //private Animator playerAnimator;
 
     bool monsterInRadius;
     
@@ -20,8 +20,7 @@ public class PanicMeterController : MonoBehaviour
         anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         monsterInRadius = false;
         thisPlayer = (Player)FindObjectOfType<Player>();
-        playerAnimator = GetComponent<Animator>();
-        //playerAnimator.SetBool("up", false);
+        //playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -51,9 +50,9 @@ public class PanicMeterController : MonoBehaviour
     
     private IEnumerator faint()
     {
-        playerAnimator.SetBool("up", false);
+        //playerAnimator.SetBool("up", false);
         yield return new WaitForSeconds(1);//should be length of animation
-        playerAnimator.SetBool("up", true);
+        //playerAnimator.SetBool("up", true);
         anxietyMeter.fillAmount = 0;
         currentAnxietyPoints = 0;
         thisPlayer.backToSpawn();

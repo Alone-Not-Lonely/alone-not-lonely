@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     //Resets player to beginning state
     public void backToSpawn()
     {
+        //Debug.Log("Return to start");
         transform.position = spawnPosition;
         transform.rotation = spawnRotation;
     }
