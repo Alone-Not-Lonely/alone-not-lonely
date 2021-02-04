@@ -106,8 +106,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5208380783774449057}
   - component: {fileID: 5563056428226545819}
-  - component: {fileID: 5563056428226545818}
   - component: {fileID: 5563056428226545816}
+  - component: {fileID: 6933034125214677776}
   m_Layer: 0
   m_Name: GrabbableChest
   m_TagString: Grabable
@@ -145,21 +145,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
---- !u!135 &5563056428226545818
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4831291574047008539}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.31
-  m_Center: {x: 0, y: 1.39, z: 0}
 --- !u!114 &5563056428226545816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +160,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 3
+--- !u!65 &6933034125214677776
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831291574047008539}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7, y: 1, z: 5}
+  m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!1 &9039973902334219338
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,8 +10,7 @@ public class PanicMeterController : MonoBehaviour
     private float currentAnxietyPoints;
     private Player thisPlayer;
     public float anxietySpeed = 10f;
-    [SerializeField]
-    private Animator playerAnimator;
+    //private Animator playerAnimator;
 
     bool monsterInRadius;
     
@@ -20,8 +19,8 @@ public class PanicMeterController : MonoBehaviour
         currentAnxietyPoints = 0;
         anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         monsterInRadius = false;
-        Debug.Log(playerAnimator.GetBool("conscious"));
         thisPlayer = (Player)FindObjectOfType<Player>();
+        //playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -40,24 +39,22 @@ public class PanicMeterController : MonoBehaviour
 
         if (currentAnxietyPoints > totalAnxietyPoints)
         {
-            anxietyMeter.fillAmount = 0;
-            currentAnxietyPoints = 0;
-            thisPlayer.backToSpawn();
+
+            StartCoroutine("faint");
         }
     }
 
-    /*
+    
     private IEnumerator faint()
     {
-        //playerAnimator.SetBool("conscious", false);
-        //yield return new WaitForSeconds(1);//should be length of animation
+        //playerAnimator.SetBool("up", false);
+        yield return new WaitForSeconds(.001f);//should be length of animation
+        //playerAnimator.SetBool("up", true);
         anxietyMeter.fillAmount = 0;
         currentAnxietyPoints = 0;
         thisPlayer.backToSpawn();
-        yield return;
-        //playerAnimator.SetBool("conscious", true);
     }
-    */
+    
 
     private void OnTriggerEnter(Collider other) 
     {

@@ -43,7 +43,7 @@ public class PlayerAbilityController : MonoBehaviour
                 //currentGrab.GetComponent<Collider>().enabled = false;//changed sphere collider to more general collider
                 holdingObj = true;
             }
-            else if (holdingObj)
+            else if (currentGrab != null && holdingObj)//current grab redundant but colliders are wierd...
             {
                 grabText.gameObject.SetActive(true);
                 Debug.Log("dropped");
@@ -59,9 +59,8 @@ public class PlayerAbilityController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.CompareTag("Grabable"))// && currentGrab == null)
+        if (collision.gameObject.CompareTag("Grabable"))// && currentGrab == null)
         {
-            Debug.Log("OnTriggerEnter");
 
             if (!holdingObj)
             {
