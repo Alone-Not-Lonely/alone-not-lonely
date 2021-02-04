@@ -59,10 +59,8 @@ public class PlayerAbilityController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("OnTriggerEnter1");
         if (collision.gameObject.CompareTag("Grabable"))// && currentGrab == null)
         {
-            Debug.Log("OnTriggerEnter2");
 
             if (!holdingObj)
             {
