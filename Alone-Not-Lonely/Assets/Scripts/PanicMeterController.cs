@@ -39,10 +39,7 @@ public class PanicMeterController : MonoBehaviour
 
         if (currentAnxietyPoints > totalAnxietyPoints)
         {
-            //anxietyMeter.fillAmount = 0;
-            //currentAnxietyPoints = 0;
 
-            //thisPlayer.backToSpawn();
             StartCoroutine("faint");
         }
     }
