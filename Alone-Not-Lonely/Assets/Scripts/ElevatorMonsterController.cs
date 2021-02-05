@@ -33,18 +33,18 @@ public class ElevatorMonsterController : MonoBehaviour
             other.gameObject.GetComponent<Rigidbody>().Sleep();
             heldObject = other.gameObject;
             holdingObject = true;
-            other.gameObject.transform.parent = this.transform;
+            //other.gameObject.transform.parent = this.transform;
         }
     }
 
-    void OnCollisionExit(Collision other)
+    /*void OnCollisionExit(Collision other)
     {
         if(other.gameObject.CompareTag("Grabable"))
         {
             other.gameObject.GetComponent<Rigidbody>().WakeUp();
             heldObject = null;
             holdingObject = false;
-            other.gameObject.transform.parent = null;
+            //other.gameObject.transform.parent = null;
         }
-    }
+    }*/
 }
