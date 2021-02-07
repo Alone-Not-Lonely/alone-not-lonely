@@ -12,6 +12,7 @@ public class PlayerAbilityController : MonoBehaviour
     public Text releaseText;
 
     private Player playerRef;
+    public float holdDistance = 2.75f;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,7 @@ public class PlayerAbilityController : MonoBehaviour
                 //Debug.Log("grabbed");
                 grabText.gameObject.SetActive(false);
                 releaseText.gameObject.SetActive(true);
-                currentGrab.gameObject.transform.parent = this.transform;
+                //currentGrab.gameObject.transform.parent = this.transform;
                 //currentGrab.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
                 currentGrab.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 //currentGrab.GetComponent<Collider>().enabled = false;//changed sphere collider to more general collider
@@ -47,13 +48,21 @@ public class PlayerAbilityController : MonoBehaviour
             {
                 grabText.gameObject.SetActive(true);
                 Debug.Log("dropped");
-                currentGrab.gameObject.transform.parent = null;
+                //currentGrab.gameObject.transform.parent = null;
                 //currentGrab.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
                 currentGrab.gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 //currentGrab.GetComponent<Collider>().enabled = true;
                 holdingObj = false;
                 //waitingForInput = true;
             }
+        }
+    }
+
+    private void FixedUpdate() {
+        if(currentGrab != null && holdingObj)
+        {
+            currentGrab.GetComponent<Rigidbody>().MovePosition(this.transform.position + - this.transform.up + this.transform.forward * holdDistance);
+            currentGrab.GetComponent<Rigidbody>().MoveRotation(this.transform.rotation);
         }
     }
 
