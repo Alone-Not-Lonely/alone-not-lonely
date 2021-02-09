@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ElevatorMonsterController : MonoBehaviour
 {
-    private GameObject heldObject;
-    private Vector3 topPoint;
+    public GameObject heldObject;
+    public Vector3 topPoint;
     public float height = 2f;
     public float speed = 1f;
 
-    private bool holdingObject;
+    public bool holdingObject;
     void Start()
     {
         topPoint = this.transform.position + (this.transform.up * height);
@@ -21,8 +21,8 @@ public class ElevatorMonsterController : MonoBehaviour
     {
         if(holdingObject && Vector3.Distance(heldObject.transform.position, topPoint) > .1f)
         {
-            //heldObject.GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(heldObject.transform.position, topPoint, .01f * speed));
-            heldObject.transform.position = Vector3.MoveTowards(heldObject.transform.position, topPoint, .01f * speed);
+            heldObject.GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(heldObject.transform.position, topPoint, .01f * speed));
+            //heldObject.transform.position = Vector3.MoveTowards(heldObject.transform.position, topPoint, .01f * speed);
         }
     }
 
@@ -30,7 +30,7 @@ public class ElevatorMonsterController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Grabable"))
         {
-            other.gameObject.GetComponent<Rigidbody>().Sleep();
+            other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             heldObject = other.gameObject;
             holdingObject = true;
             //other.gameObject.transform.parent = this.transform;

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class PlayerAbilityController : MonoBehaviour
 {
     //bool waitingForInput = false;
-    GameObject currentGrab = null;
-    bool holdingObj = false;
+    public GameObject currentGrab = null;
+    public bool holdingObj = false;
     public Text grabText;
     public Text releaseText;
 
@@ -51,6 +51,8 @@ public class PlayerAbilityController : MonoBehaviour
                 //currentGrab.gameObject.transform.parent = null;
                 //currentGrab.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
                 currentGrab.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                currentGrab.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                currentGrab.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
                 //currentGrab.GetComponent<Collider>().enabled = true;
                 holdingObj = false;
                 //waitingForInput = true;
