@@ -61,7 +61,7 @@ public class PlayerAbilityController : MonoBehaviour
     private void FixedUpdate() {
         if(currentGrab != null && holdingObj)
         {
-            currentGrab.GetComponent<Rigidbody>().MovePosition(this.transform.position + - this.transform.up + this.transform.forward * holdDistance);
+            currentGrab.GetComponent<Rigidbody>().MovePosition(this.transform.position + (- this.transform.up * .5f) + this.transform.forward * holdDistance);
             currentGrab.GetComponent<Rigidbody>().MoveRotation(this.transform.rotation);
         }
     }
