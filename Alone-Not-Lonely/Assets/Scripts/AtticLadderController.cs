@@ -11,7 +11,7 @@ public class AtticLadderController : MonoBehaviour
     public bool canUseLadder;
 
     private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Grabable"))
+        if(other.CompareTag("PhysicalGrabable"))
         {
             boxBlockingExit = true;
         }
@@ -22,7 +22,7 @@ public class AtticLadderController : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
-        if(other.CompareTag("Grabable"))
+        if(other.CompareTag("PhysicalGrabable"))
         {
             boxBlockingExit = false;
         }

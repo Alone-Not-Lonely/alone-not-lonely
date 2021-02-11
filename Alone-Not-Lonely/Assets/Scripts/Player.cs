@@ -13,10 +13,13 @@ public class Player : MonoBehaviour
     public DefaultControls _actionMap;
     public bool paused;
 
+    public float volume;
+
     private void Awake()
     {
         _actionMap = new DefaultControls();
         _actionMap.Enable();
+        volume = 1;
     }
 
     void Start()
@@ -54,5 +57,10 @@ public class Player : MonoBehaviour
             Camera.main.gameObject.transform.rotation = camSpawnRotation;
             this.gameObject.SetActive(true);
         }
+    }
+
+    public void OnSliderValueChanged(float value)
+    {
+        volume = value;
     }
 }
