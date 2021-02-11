@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class PauseMenuController : MonoBehaviour
 {
@@ -12,16 +12,14 @@ public class PauseMenuController : MonoBehaviour
     public GameObject pausePrefab;
 
     private Player playerRef;
-    private AudioHighPassFilter highPassFilter;
-    private AudioLowPassFilter lowPassFilter;
+    public AudioMixer mixer;
+    public AudioMixerSnapshot[] passFilters;
+    public AudioMixerSnapshot[] defaultSnap;
+    public float volume = 0;
     void Start()
     {
         pausePrefab.SetActive(false);
-        highPassFilter = GetComponent<AudioHighPassFilter>();
-        lowPassFilter = GetComponent<AudioLowPassFilter>();
-        highPassFilter.enabled = false;
-        lowPassFilter.enabled = false;
-
+        mixer.SetFloat("Volume", Mathf.Log10(1) * 20);
 
         playerRef = (Player)FindObjectOfType<Player>();
         playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
@@ -82,9 +80,8 @@ public class PauseMenuController : MonoBehaviour
         Time.timeScale = 0;
         gamePaused = true;
         pausePrefab.SetActive(true);
-        highPassFilter.enabled = true;
-        lowPassFilter.enabled = true;
-
+        float[] weights = {1f};
+        mixer.TransitionToSnapshots(passFilters, weights, .01f);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -95,8 +92,8 @@ public class PauseMenuController : MonoBehaviour
         Time.timeScale = 1;
         gamePaused = false;
         pausePrefab.SetActive(false);
-        highPassFilter.enabled = false;
-        lowPassFilter.enabled = false;
+        float[] weights = {1f};
+        mixer.TransitionToSnapshots(defaultSnap, weights, .01f);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -111,5 +108,11 @@ public class PauseMenuController : MonoBehaviour
     {
         Debug.Log("Application closed");
         Application.Quit();
+    }
+
+    public void OnSliderValueChanged(float value)
+    {
+        volume = value;
+        mixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
     }
 }

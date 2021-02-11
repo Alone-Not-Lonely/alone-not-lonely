@@ -1,21 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MoodModuleController : MonoBehaviour
 {
     private AudioSource[] music;
     private int currentSource = 0;
-    private Player playerRef;
 
     private float maxVolume;
     private bool fadingVolume;
     public float fadeSpeed = .01f;
+
+    private AudioMixer mixer;
     void Start()
     {
         music = GetComponents<AudioSource>();
-        playerRef = GetComponent<Player>();
-        maxVolume = playerRef.volume;
+        mixer = ((PauseMenuController)FindObjectOfType<PauseMenuController>()).mixer;
+        maxVolume = 1;
         music[0].volume = maxVolume;
         fadingVolume = false;
     }
@@ -29,8 +31,6 @@ public class MoodModuleController : MonoBehaviour
             fadingVolume = false;
             //music[(currentSource + 1) % 2].Stop();
         }
-        //I don't really know how to handle global properties like this... may improve impl later
-        maxVolume = playerRef.volume;
         if(!fadingVolume  && music[currentSource].volume != maxVolume)
         {
             music[currentSource].volume = maxVolume;
