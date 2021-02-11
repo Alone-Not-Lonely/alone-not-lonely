@@ -10,6 +10,7 @@ public class MoodModuleController : MonoBehaviour
 
     private float maxVolume;
     private bool fadingVolume;
+    public float fadeSpeed = .01f;
     void Start()
     {
         music = GetComponents<AudioSource>();
@@ -51,8 +52,8 @@ public class MoodModuleController : MonoBehaviour
         while(music[currentSource].volume < maxVolume && music[(currentSource + 1) % 2].volume > 0f)
         {
             fadingVolume = true;
-            music[currentSource].volume += .01f;
-            music[(currentSource + 1) % 2].volume -= .01f;
+            music[currentSource].volume += fadeSpeed;
+            music[(currentSource + 1) % 2].volume -= fadeSpeed;
             yield return null;
         }
     }

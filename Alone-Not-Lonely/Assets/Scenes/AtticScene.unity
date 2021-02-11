@@ -6849,7 +6849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53cff34b6c683c746b7fe6fc6c98fd18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisClip: {fileID: 8300000, guid: bc38b067f89e7124ca0281ab62eb4ab7, type: 3}
+  thisClip: {fileID: 8300000, guid: cd9d7ea321c7477469bf019f773e3898, type: 3}
 --- !u!65 &343175359
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20288,6 +20288,7 @@ GameObject:
   - component: {fileID: 1021721022}
   - component: {fileID: 1021721024}
   - component: {fileID: 1021721023}
+  - component: {fileID: 1021721025}
   m_Layer: 0
   m_Name: BowlingBall
   m_TagString: Untagged
@@ -25216,6 +25217,102 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!82 &1021721025
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021721014}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 69639e37bef0ad549b5b29f4ed6ff6de, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1021997372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74280,7 +74377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53cff34b6c683c746b7fe6fc6c98fd18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisClip: {fileID: 8300000, guid: cd9d7ea321c7477469bf019f773e3898, type: 3}
+  thisClip: {fileID: 8300000, guid: 6354ef800df20654eab9c08484537e19, type: 3}
 --- !u!1001 &2057860601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75426,7 +75523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53cff34b6c683c746b7fe6fc6c98fd18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisClip: {fileID: 8300000, guid: 6354ef800df20654eab9c08484537e19, type: 3}
+  thisClip: {fileID: 8300000, guid: bc38b067f89e7124ca0281ab62eb4ab7, type: 3}
 --- !u!65 &2124548502
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -92782,6 +92879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db77ff68ab386948a1719fc51b90eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeSpeed: 0.001
 --- !u!114 &8093287707522271129
 MonoBehaviour:
   m_ObjectHideFlags: 0
