@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 public class PanicMeterController : MonoBehaviour
 {
     public Image anxietyMeter;
@@ -13,13 +14,20 @@ public class PanicMeterController : MonoBehaviour
     //private Animator playerAnimator;
 
     bool monsterInRadius;
-    
+
+    public Volume postProcess;
+    private Vignette vignette;
     void Start()
     {
         currentAnxietyPoints = 0;
         anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         monsterInRadius = false;
         thisPlayer = (Player)FindObjectOfType<Player>();
+        postProcess.profile.TryGet(out vignette);
+        if(vignette)
+        {
+            vignette.intensity.value = 0f;
+        }
         //playerAnimator = GetComponent<Animator>();
     }
 
@@ -36,7 +44,7 @@ public class PanicMeterController : MonoBehaviour
             currentAnxietyPoints -= Time.deltaTime * anxietySpeed;
             anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         }
-
+        vignette.intensity.value = anxietyMeter.fillAmount;
         if (currentAnxietyPoints > totalAnxietyPoints)
         {
 
