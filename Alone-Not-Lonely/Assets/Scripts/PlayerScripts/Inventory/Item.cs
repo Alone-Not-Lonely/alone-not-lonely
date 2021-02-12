@@ -21,7 +21,6 @@ public class Item : MonoBehaviour
     {
         if (!playerNearby)
         {
-            Debug.Log("Player not nearby");
             return;
             
         }

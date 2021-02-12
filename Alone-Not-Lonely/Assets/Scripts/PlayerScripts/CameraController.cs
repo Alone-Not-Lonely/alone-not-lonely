@@ -76,7 +76,9 @@ public class CameraController : MonoBehaviour
             transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0);
             //transform.localEulerAngles = Vector3.SmoothDamp(transform.localEulerAngles, new Vector3(-rotationX, rotationY, 0), ref refRot, Time.deltaTime * sensitivityX);
             //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(-rotationX, rotationY, 0), sensitivityX * Time.deltaTime);
-            transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 2f, player.transform.position.z);
+            //MOVED FUNCTIONALIT TO HEAD BOB:
+            //transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 2f, player.transform.position.z);
+
         }
         //else
         //{
