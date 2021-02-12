@@ -17,6 +17,8 @@ public class AtticLevelEndController : MonoBehaviour
     public Player playerRef;
 
     private MeshRenderer meshRenderer;
+
+    private AudioSource sfx;
     private void Awake() {
     }
     void Start()
@@ -29,6 +31,7 @@ public class AtticLevelEndController : MonoBehaviour
         ableToInteract = false;
         interactionCollider = GetComponent<SphereCollider>();
         meshRenderer = GetComponent<MeshRenderer>();
+        sfx = GetComponent<AudioSource>();
         //ladderController = (AtticLadderController)FindObjectOfType(typeof(AtticLadderController));
     }
 
@@ -96,6 +99,7 @@ public class AtticLevelEndController : MonoBehaviour
 
     void TriggerLadderFall()
     {
+        sfx.Play();
         ladderController.AnimateOpenLadder();
         meshRenderer.enabled = false;
     }
