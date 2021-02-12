@@ -5,7 +5,7 @@ using UnityEngine;
 public class LockedObject : MonoBehaviour
 {
     private PlayerInventory inventory;
-    public List<string> keys;
+    public List<Item> keys;
     bool playerNearby = false;
 
     void Start()
