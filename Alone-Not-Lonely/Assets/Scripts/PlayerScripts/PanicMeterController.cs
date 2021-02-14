@@ -17,6 +17,7 @@ public class PanicMeterController : MonoBehaviour
 
     public Volume postProcess;
     private Vignette vignette;
+    private ColorAdjustments desaturate;
     void Start()
     {
         currentAnxietyPoints = 0;
@@ -24,10 +25,17 @@ public class PanicMeterController : MonoBehaviour
         monsterInRadius = false;
         thisPlayer = (Player)FindObjectOfType<Player>();
         postProcess.profile.TryGet(out vignette);
+        postProcess.profile.TryGet(out desaturate);
         if(vignette)
         {
             vignette.intensity.value = 0f;
         }
+        if(desaturate)
+        {
+            desaturate.saturation.value = 0f;
+            desaturate.postExposure.value = 0f;
+        }
+
         //playerAnimator = GetComponent<Animator>();
     }
 
@@ -44,10 +52,14 @@ public class PanicMeterController : MonoBehaviour
             currentAnxietyPoints -= Time.deltaTime * anxietySpeed;
             anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         }
-        vignette.intensity.value = anxietyMeter.fillAmount;
+        vignette.intensity.value = anxietyMeter.fillAmount * 1.25f;
+        if(anxietyMeter.fillAmount > .5f)
+        {
+            desaturate.saturation.value = (anxietyMeter.fillAmount - .5f) * -50f;
+            desaturate.postExposure.value = (anxietyMeter.fillAmount - .5f) * -5f;
+        }
         if (currentAnxietyPoints > totalAnxietyPoints)
         {
-
             StartCoroutine("faint");
         }
     }
@@ -60,6 +72,8 @@ public class PanicMeterController : MonoBehaviour
         //playerAnimator.SetBool("up", true);
         anxietyMeter.fillAmount = 0;
         currentAnxietyPoints = 0;
+        desaturate.saturation.value = 0f;
+        desaturate.postExposure.value = 0f;
         thisPlayer.backToSpawn();
     }
     
