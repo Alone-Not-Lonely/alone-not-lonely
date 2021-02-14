@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 public class PanicMeterController : MonoBehaviour
 {
     public Image anxietyMeter;
-    public float totalAnxietyPoints = 50f;
+    public float totalAnxietyPoints = 50f, rayDepth = 1f;
     private float currentAnxietyPoints;
     private Player thisPlayer;
     public float anxietySpeed = 10f;
@@ -64,7 +64,12 @@ public class PanicMeterController : MonoBehaviour
         }
     }
 
-    
+    private void FixedUpdate()
+    {
+        checkFloor();
+    }
+
+
     private IEnumerator faint()
     {
         //playerAnimator.SetBool("up", false);
@@ -99,6 +104,22 @@ public class PanicMeterController : MonoBehaviour
         if(other.CompareTag("Monster"))
         {
             monsterInRadius = false;
+        }
+    }
+
+    //fires a beam just long enough to hit the floor just below the player
+    //returns a tag if found
+    private void checkFloor()
+    {
+        RaycastHit hit;
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * rayDepth, Color.yellow);
+
+        //could adjust starting position to align with player perception
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down)*rayDepth, out hit))
+        {
+            //can but other floor based traits here
+            if (hit.collider.tag == "Deadly") { StartCoroutine("faint"); };
+            //There may be a problem w/ calling faint twice, but we'll see
         }
     }
 }

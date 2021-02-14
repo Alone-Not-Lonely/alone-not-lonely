@@ -5,7 +5,7 @@ using UnityEngine;
 public class LockedObject : MonoBehaviour
 {
     private PlayerInventory inventory;
-    public List<string> keys;
+    public List<Item> keys;
     bool playerNearby = false;
 
     void Start()
@@ -23,7 +23,7 @@ public class LockedObject : MonoBehaviour
         }
         if (inventory.checkContents(keys))
         {
-            Debug.Log("Open");
+            openAction();
             //put opening actions here
             //remove key from inventory
         }
@@ -32,6 +32,11 @@ public class LockedObject : MonoBehaviour
             Debug.Log("Closed");
             //some form of feedback perhaps
         }
+    }
+
+    private void openAction()
+    {
+        Debug.Log("Open");
     }
 
     private void OnTriggerEnter(Collider other)

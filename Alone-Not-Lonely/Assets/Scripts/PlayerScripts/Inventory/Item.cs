@@ -22,10 +22,11 @@ public class Item : MonoBehaviour
         if (!playerNearby)
         {
             return;
+            
         }
 
         inventory.addItem(this);
-        this.gameObject.SetActive(false);//lame slight of hand...
+        this.gameObject.SetActive(false);//cannot destroy, causes scripting complications
     }
 
 
@@ -37,11 +38,16 @@ public class Item : MonoBehaviour
         }
     }
 
-    private void OnTriggeExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
             playerNearby = false;
         }
+    }
+
+    private void OnDisable()
+    {
+        playerNearby = false;
     }
 }
