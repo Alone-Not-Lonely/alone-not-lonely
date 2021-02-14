@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 public class PanicMeterController : MonoBehaviour
 {
     public Image anxietyMeter;
-    public float totalAnxietyPoints = 50f, rayDepth = 1f,rayWidth = 0.5f;
+    public float totalAnxietyPoints = 50f, rayDepth = 1f;
     private float currentAnxietyPoints;
     private Player thisPlayer;
     public float anxietySpeed = 10f;
@@ -100,6 +100,7 @@ public class PanicMeterController : MonoBehaviour
         RaycastHit hit;
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * rayDepth, Color.yellow);
 
+        //could adjust starting position to align with player perception
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down)*rayDepth, out hit))
         {
             //can but other floor based traits here
