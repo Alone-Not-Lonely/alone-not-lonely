@@ -805,7 +805,6 @@ GameObject:
   - component: {fileID: 7490232933003495600}
   - component: {fileID: 7490232933003495605}
   - component: {fileID: 7490232933003495604}
-  - component: {fileID: 1479475832}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -928,20 +927,9 @@ MonoBehaviour:
   sensitivityX: 25
   sensitivityY: 25
   cam: {fileID: 0}
---- !u!114 &1479475832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7490232933003495601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba1b61f75d23e1b48800c6fef65c28d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   headAmplitude: 0.2
   headSpeed: 0.3
+  headbob: 1
 --- !u!1001 &1835278602371594857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -955,23 +943,23 @@ PrefabInstance:
       objectReference: {fileID: 7490232931720403810}
     - target: {fileID: 1070657464900760003, guid: 399feb57e82ce8e40bdab0cfc1518e18, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1070657464900760003, guid: 399feb57e82ce8e40bdab0cfc1518e18, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1070657464939650753, guid: 399feb57e82ce8e40bdab0cfc1518e18, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1070657464939650753, guid: 399feb57e82ce8e40bdab0cfc1518e18, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1070657464939650753, guid: 399feb57e82ce8e40bdab0cfc1518e18, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2352536721697540595, guid: 399feb57e82ce8e40bdab0cfc1518e18, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1098,7 +1086,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4530988563024309656, guid: 9ce3c501757b88e498df08eaa4cc2433, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4530988563024309658, guid: 9ce3c501757b88e498df08eaa4cc2433, type: 3}
       propertyPath: m_Name
@@ -1166,7 +1154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5670151081615078890, guid: 9ce3c501757b88e498df08eaa4cc2433, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5670151081615078892, guid: 9ce3c501757b88e498df08eaa4cc2433, type: 3}
       propertyPath: anxietyMeter
