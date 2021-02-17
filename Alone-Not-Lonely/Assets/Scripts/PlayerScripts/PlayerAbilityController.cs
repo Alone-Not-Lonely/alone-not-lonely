@@ -37,6 +37,19 @@ public class PlayerAbilityController : MonoBehaviour
             if (currentGrab != null && !holdingObj)//(waitingForInput && currentGrab != null)
             {
                 //Debug.Log("grabbed");
+                if(currentGrab.GetComponent<BoxContactBehavior>().beingHeld) //this is some atrocious coding right here... restructure w inheritence later
+                {
+                        try
+                        {
+                            currentGrab.GetComponent<BoxContactBehavior>().boxHolder.GetComponent<ElevatorMonsterController>().ReleaseObject();
+                            Debug.Log("elemonster release");
+                        }
+                        catch
+                        {
+                            //do nothing
+                            Debug.Log("catch internal");
+                        }
+                }
                 grabText.gameObject.SetActive(false);
                 releaseText.gameObject.SetActive(true);
                 //currentGrab.gameObject.transform.parent = this.transform;
@@ -57,8 +70,22 @@ public class PlayerAbilityController : MonoBehaviour
                 //currentGrab.GetComponent<Collider>().enabled = true;
                 holdingObj = false;
                 //waitingForInput = true;
+                currentGrab.GetComponent<BoxContactBehavior>().beingHeld = false;
+                currentGrab.GetComponent<BoxContactBehavior>().boxHolder = null;
             }
         }
+    }
+
+    public void ReleaseObject()
+    {
+        grabText.gameObject.SetActive(true);
+        Debug.Log("dropped");
+        currentGrab.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        currentGrab.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        currentGrab.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        holdingObj = false;
+        currentGrab.GetComponent<BoxContactBehavior>().beingHeld = false;
+        currentGrab.GetComponent<BoxContactBehavior>().boxHolder = null;
     }
 
     private void FixedUpdate() {
@@ -73,13 +100,17 @@ public class PlayerAbilityController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Grabable"))// && currentGrab == null)
         {
-
             if (!holdingObj)
             {
                 grabText.gameObject.SetActive(true);
                 releaseText.gameObject.SetActive(false);
             }
-            currentGrab = collision.gameObject;
+            if(!collision.gameObject.GetComponent<BoxContactBehavior>().beingHeld)
+            {
+                currentGrab = collision.gameObject;
+                currentGrab.GetComponent<BoxContactBehavior>().beingHeld = true;
+                currentGrab.GetComponent<BoxContactBehavior>().boxHolder = this.gameObject;
+            }
         }
     }
 
