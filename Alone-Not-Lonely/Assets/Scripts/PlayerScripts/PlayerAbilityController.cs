@@ -36,19 +36,11 @@ public class PlayerAbilityController : MonoBehaviour
         {
             if (currentGrab != null && !holdingObj)//(waitingForInput && currentGrab != null)
             {
-                //Debug.Log("grabbed");
+                Debug.Log("grabbed");
                 if(currentGrab.GetComponent<BoxContactBehavior>().beingHeld) //this is some atrocious coding right here... restructure w inheritence later
                 {
-                        try
-                        {
-                            currentGrab.GetComponent<BoxContactBehavior>().boxHolder.GetComponent<ElevatorMonsterController>().ReleaseObject();
-                            Debug.Log("elemonster release");
-                        }
-                        catch
-                        {
-                            //do nothing
-                            Debug.Log("catch internal");
-                        }
+                    currentGrab.GetComponent<BoxContactBehavior>().boxHolder.GetComponent<ElevatorMonsterController>().ReleaseObject();
+                    Debug.Log("elemonster release");
                 }
                 grabText.gameObject.SetActive(false);
                 releaseText.gameObject.SetActive(true);
@@ -57,6 +49,8 @@ public class PlayerAbilityController : MonoBehaviour
                 currentGrab.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 //currentGrab.GetComponent<Collider>().enabled = false;//changed sphere collider to more general collider
                 holdingObj = true;
+                currentGrab.GetComponent<BoxContactBehavior>().beingHeld = true;
+                currentGrab.GetComponent<BoxContactBehavior>().boxHolder = this.gameObject;
             }
             else if (currentGrab != null && holdingObj)//current grab redundant but colliders are wierd...
             {
@@ -105,12 +99,7 @@ public class PlayerAbilityController : MonoBehaviour
                 grabText.gameObject.SetActive(true);
                 releaseText.gameObject.SetActive(false);
             }
-            if(!collision.gameObject.GetComponent<BoxContactBehavior>().beingHeld)
-            {
-                currentGrab = collision.gameObject;
-                currentGrab.GetComponent<BoxContactBehavior>().beingHeld = true;
-                currentGrab.GetComponent<BoxContactBehavior>().boxHolder = this.gameObject;
-            }
+            currentGrab = collision.gameObject;
         }
     }
 
@@ -123,6 +112,7 @@ public class PlayerAbilityController : MonoBehaviour
                 currentGrab = null;
             }
             grabText.gameObject.SetActive(false);
+            releaseText.gameObject.SetActive(false);
         }
     }
 }

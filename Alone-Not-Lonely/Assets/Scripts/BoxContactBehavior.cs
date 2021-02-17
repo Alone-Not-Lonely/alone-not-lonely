@@ -9,7 +9,6 @@ public class BoxContactBehavior : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Collided");
         if(other.gameObject.layer == 12)//elevator monster
         {
 

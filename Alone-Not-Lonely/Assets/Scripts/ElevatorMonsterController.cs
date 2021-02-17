@@ -42,7 +42,7 @@ public class ElevatorMonsterController : MonoBehaviour
 
     void OnCollisionEnter(Collision other) 
     {
-        if(other.gameObject.CompareTag("Grabable"))
+        if(other.gameObject.CompareTag("Grabable") && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld)
         {
             other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             heldObject = other.gameObject;
@@ -55,11 +55,12 @@ public class ElevatorMonsterController : MonoBehaviour
 
     public void ReleaseObject()
     {
+        Debug.Log("Let go");
         heldObject.GetComponent<Rigidbody>().isKinematic = false;
-        heldObject = null;
-        holdingObject = false;
         heldObject.GetComponent<BoxContactBehavior>().beingHeld = false;
         heldObject.GetComponent<BoxContactBehavior>().boxHolder = null;
+        heldObject = null;
+        holdingObject = false;
     }
     /*void OnCollisionExit(Collision other)
     {
