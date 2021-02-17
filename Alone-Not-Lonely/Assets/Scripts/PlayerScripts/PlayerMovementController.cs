@@ -18,11 +18,13 @@ public class PlayerMovementController : MonoBehaviour
     private Quaternion rotation = Quaternion.identity;
     private CameraController camController;
     private Player thisPlayer;
+    private PlayerAbilityController playerAb;
 
     private void Awake()
     {
         playerController = this.GetComponent<CharacterController>();
         camController = (CameraController)FindObjectOfType(typeof(CameraController));
+        playerAb = (PlayerAbilityController)FindObjectOfType(typeof(PlayerAbilityController));
     }
 
     private void Start() 
@@ -60,7 +62,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Jump()
     {
-        if (playerController.isGrounded)
+        if (playerController.isGrounded && !playerAb.holdingObj)
         {
             moveDirY = jumpHeight;
         }

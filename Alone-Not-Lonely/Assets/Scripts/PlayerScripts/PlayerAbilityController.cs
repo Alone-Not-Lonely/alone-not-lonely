@@ -7,7 +7,8 @@ public class PlayerAbilityController : MonoBehaviour
 {
     //bool waitingForInput = false;
     GameObject currentGrab = null;
-    bool holdingObj = false;
+    [HideInInspector]
+    public bool holdingObj = false;
     public Text grabText;
     public Text releaseText;
 
