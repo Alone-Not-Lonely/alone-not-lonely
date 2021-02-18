@@ -5,7 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public string key;
-    public Sprite representation;
+    //public Sprite representation;
     private PlayerInventory inventory;
     bool playerNearby = false;
     Player playerRef;

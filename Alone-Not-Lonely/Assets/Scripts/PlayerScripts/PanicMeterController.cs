@@ -7,34 +7,46 @@ using UnityEngine.Rendering.Universal;
 public class PanicMeterController : MonoBehaviour
 {
     public Image anxietyMeter;
-    public float totalAnxietyPoints = 50f, rayDepth = 1f;
-    private float currentAnxietyPoints;
+    public float totalAnxietyPoints = 50f, rayDepth = 1f, anxConst = 1;
+    private float currentAnxietyPoints, monstDist;
     private Player thisPlayer;
     public float anxietySpeed = 10f;
+    private List<GameObject> monsters;
     //private Animator playerAnimator;
 
-    bool monsterInRadius;
+    //bool monsterInRadius;
 
     public Volume postProcess;
     private Vignette vignette;
     private ColorAdjustments desaturate;
     void Start()
     {
+        monsters = new List<GameObject>();
+
         currentAnxietyPoints = 0;
         anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
-        monsterInRadius = false;
+        //monsterInRadius = false;
         thisPlayer = (Player)FindObjectOfType<Player>();
         postProcess.profile.TryGet(out vignette);
         postProcess.profile.TryGet(out desaturate);
         if(vignette)
         {
+            Debug.Log("vignette here");
             vignette.intensity.value = 0f;
         }
+        //else//TEST TEST TEST
+        //{
+        //    Debug.Log("vignette missing");
+        //}
+
         if(desaturate)
         {
             desaturate.saturation.value = 0f;
             desaturate.postExposure.value = 0f;
         }
+
+        
+    
 
         //playerAnimator = GetComponent<Animator>();
     }
@@ -42,9 +54,17 @@ public class PanicMeterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(monsterInRadius)
+        if(monsters.Count != 0)
         {
-            currentAnxietyPoints += Time.deltaTime * anxietySpeed;
+            
+            //add points per monster
+            foreach(GameObject monster in monsters)
+            {
+                //anxiety points based on monster distance
+                monstDist = Vector3.Distance(monster.transform.position, thisPlayer.transform.position);
+                currentAnxietyPoints += (1/monstDist*anxConst);
+                Debug.Log("monst contribution: " + (1 / monstDist * anxConst));
+            }
             anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         }
         else if (currentAnxietyPoints > 0)
@@ -52,7 +72,6 @@ public class PanicMeterController : MonoBehaviour
             currentAnxietyPoints -= Time.deltaTime * anxietySpeed;
             anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         }
-        vignette.intensity.value = anxietyMeter.fillAmount * 1.25f;
         if(anxietyMeter.fillAmount > .5f)
         {
             desaturate.saturation.value = (anxietyMeter.fillAmount - .5f) * -50f;
@@ -87,10 +106,14 @@ public class PanicMeterController : MonoBehaviour
     {
         if(other.CompareTag("Monster"))
         {
-            monsterInRadius = true;
+            //monsterInRadius = true;
+            monsters.Add(other.gameObject);
+            Debug.Log("Monster accounted");
+            Debug.Log(monsters.Count);
         }
     }
 
+    /*
     private void OnTriggerStay(Collider other) 
     {
         if(other.CompareTag("Monster"))
@@ -98,12 +121,14 @@ public class PanicMeterController : MonoBehaviour
             monsterInRadius = true;
         }
     }
-
+    */
     private void OnTriggerExit(Collider other) 
     {
         if(other.CompareTag("Monster"))
         {
-            monsterInRadius = false;
+            monsters.Remove(other.gameObject);
+            Debug.Log("Monster discounted");
+            Debug.Log(monsters.Count);
         }
     }
 
