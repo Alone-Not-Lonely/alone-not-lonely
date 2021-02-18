@@ -7,10 +7,11 @@ using UnityEngine.Rendering.Universal;
 public class PanicMeterController : MonoBehaviour
 {
     public Image anxietyMeter;
-    public float totalAnxietyPoints = 50f, rayDepth = 1f;
-    private float currentAnxietyPoints;
+    public float totalAnxietyPoints = 50f, rayDepth = 1f, anxConst = 1;
+    private float currentAnxietyPoints, monstDist;
     private Player thisPlayer;
     public float anxietySpeed = 10f;
+    private List<GameObject> monsters;
     //private Animator playerAnimator;
 
     bool monsterInRadius;
@@ -36,15 +37,25 @@ public class PanicMeterController : MonoBehaviour
             desaturate.postExposure.value = 0f;
         }
 
+        monsters = new List<GameObject>();
+
         //playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(monsterInRadius)
+        if(monsters.Count != 0)
         {
-            currentAnxietyPoints += Time.deltaTime * anxietySpeed;
+            
+            //add points per monster
+            foreach(GameObject monster in monsters)
+            {
+                //anxiety points based on monster distance
+                monstDist = Vector3.Distance(monster.transform.position, thisPlayer.transform.position);
+                currentAnxietyPoints += (1/monstDist*anxConst);
+                Debug.Log("monst contribution: " + (1 / monstDist * anxConst));
+            }
             anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         }
         else if (currentAnxietyPoints > 0)
@@ -87,10 +98,14 @@ public class PanicMeterController : MonoBehaviour
     {
         if(other.CompareTag("Monster"))
         {
-            monsterInRadius = true;
+            //monsterInRadius = true;
+            monsters.Add(other.gameObject);
+            Debug.Log("Monster accounted");
+            Debug.Log(monsters.Count);
         }
     }
 
+    /*
     private void OnTriggerStay(Collider other) 
     {
         if(other.CompareTag("Monster"))
@@ -98,12 +113,14 @@ public class PanicMeterController : MonoBehaviour
             monsterInRadius = true;
         }
     }
-
+    */
     private void OnTriggerExit(Collider other) 
     {
         if(other.CompareTag("Monster"))
         {
-            monsterInRadius = false;
+            monsters.Remove(other.gameObject);
+            Debug.Log("Monster discounted");
+            Debug.Log(monsters.Count);
         }
     }
 
