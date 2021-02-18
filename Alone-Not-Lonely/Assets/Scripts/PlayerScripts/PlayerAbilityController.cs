@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerAbilityController : MonoBehaviour
 {
     //bool waitingForInput = false;
-    GameObject currentGrab = null;
+    public GameObject currentGrab = null;
     [HideInInspector]
     public bool holdingObj = false;
     public Text grabText;

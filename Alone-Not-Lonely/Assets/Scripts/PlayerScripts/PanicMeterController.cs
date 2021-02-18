@@ -14,30 +14,39 @@ public class PanicMeterController : MonoBehaviour
     private List<GameObject> monsters;
     //private Animator playerAnimator;
 
-    bool monsterInRadius;
+    //bool monsterInRadius;
 
     public Volume postProcess;
     private Vignette vignette;
     private ColorAdjustments desaturate;
     void Start()
     {
+        monsters = new List<GameObject>();
+
         currentAnxietyPoints = 0;
         anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
-        monsterInRadius = false;
+        //monsterInRadius = false;
         thisPlayer = (Player)FindObjectOfType<Player>();
         postProcess.profile.TryGet(out vignette);
         postProcess.profile.TryGet(out desaturate);
         if(vignette)
         {
+            Debug.Log("vignette here");
             vignette.intensity.value = 0f;
         }
+        //else//TEST TEST TEST
+        //{
+        //    Debug.Log("vignette missing");
+        //}
+
         if(desaturate)
         {
             desaturate.saturation.value = 0f;
             desaturate.postExposure.value = 0f;
         }
 
-        monsters = new List<GameObject>();
+        
+    
 
         //playerAnimator = GetComponent<Animator>();
     }
@@ -63,7 +72,6 @@ public class PanicMeterController : MonoBehaviour
             currentAnxietyPoints -= Time.deltaTime * anxietySpeed;
             anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         }
-        vignette.intensity.value = anxietyMeter.fillAmount * 1.25f;
         if(anxietyMeter.fillAmount > .5f)
         {
             desaturate.saturation.value = (anxietyMeter.fillAmount - .5f) * -50f;
