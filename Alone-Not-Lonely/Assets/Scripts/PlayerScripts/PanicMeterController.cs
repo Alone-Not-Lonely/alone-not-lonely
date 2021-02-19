@@ -31,7 +31,6 @@ public class PanicMeterController : MonoBehaviour
         postProcess.profile.TryGet(out desaturate);
         if(vignette)
         {
-            Debug.Log("vignette here");
             vignette.intensity.value = 0f;
         }
         //else//TEST TEST TEST

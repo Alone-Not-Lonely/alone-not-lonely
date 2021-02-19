@@ -37,6 +37,7 @@ public class LockedObject : MonoBehaviour
     private void openAction()
     {
         Debug.Log("Open");
+        Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
