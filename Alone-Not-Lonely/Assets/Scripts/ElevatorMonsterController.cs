@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElevatorMonsterController : MonoBehaviour
+public class ElevatorMonsterController : Grabber
 {
-    public GameObject heldObject;
+    //public GameObject heldObject;
     public Vector3 targetPoint;
     public float height = 2f;
     public float speed = 1f;
 
-    public bool holdingObject;
+    //public bool holdingObject;
     private bool goingUp;
     void Start()
     {
@@ -18,7 +18,6 @@ public class ElevatorMonsterController : MonoBehaviour
         goingUp = true;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if(holdingObject && Vector3.Distance(heldObject.transform.position, targetPoint) > .1f)
@@ -44,16 +43,11 @@ public class ElevatorMonsterController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Grabable") && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld)
         {
-            other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-            heldObject = other.gameObject;
-            holdingObject = true;
-            heldObject.GetComponent<BoxContactBehavior>().beingHeld = true;
-            heldObject.GetComponent<BoxContactBehavior>().boxHolder = this.gameObject;
-            //other.gameObject.transform.parent = this.transform;
+            GrabAttempt(other.gameObject, this.gameObject);
         }
     }
 
-    public void ReleaseObject()
+    /*public void ReleaseObject()
     {
         Debug.Log("Let go");
         heldObject.GetComponent<Rigidbody>().isKinematic = false;
@@ -61,7 +55,7 @@ public class ElevatorMonsterController : MonoBehaviour
         heldObject.GetComponent<BoxContactBehavior>().boxHolder = null;
         heldObject = null;
         holdingObject = false;
-    }
+    }*/
     /*void OnCollisionExit(Collision other)
     {
         if(other.gameObject.CompareTag("Grabable"))

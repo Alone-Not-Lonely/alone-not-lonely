@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolPointsController : MonoBehaviour
+public class PatrolPointsController : Grabber
 {
     public List<Transform> patrolPoints;
     public float speed = 5f;
@@ -27,6 +27,8 @@ public class PatrolPointsController : MonoBehaviour
     public float portalSpawnOffset = .3f;
 
     private Rigidbody thisRB;
+
+    public float launchForce = .00001f;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +40,9 @@ public class PatrolPointsController : MonoBehaviour
     }
 
     private float directionDot; //updated in fixedUpdate
+    private Vector3 movementLastFrame;
     void FixedUpdate() {
-        Vector3 movementLastFrame = this.transform.position - lastTransform;//Total movement after one frame
+        movementLastFrame = this.transform.position - lastTransform;//Total movement after one frame
         directionDot = Vector3.Dot(Vector3.Normalize(movementLastFrame), Vector3.Normalize(patrolPoints[currentGoal].position - transform.position));//dot product of last frame movement and movement to goal
 
         //unsticks if monster's way has been cleared
@@ -56,14 +59,7 @@ public class PatrolPointsController : MonoBehaviour
         }
         else if(stuck && stuckTimer >= stuckTimeToMove) // turn around to get unstuck
         {
-            currentGoal++;
-            currentState = State.Moving;
-            thisRB.velocity = Vector3.zero;
-            thisRB.angularVelocity = Vector3.zero;
-            if(currentGoal >= patrolPoints.Count)
-            {
-                currentGoal = currentGoal % patrolPoints.Count;
-            }
+            TurnAround();
         }
 
         if(currentState == State.Waiting && currentWaitTime < waitTime)
@@ -104,35 +100,71 @@ public class PatrolPointsController : MonoBehaviour
             currentState = State.Waiting;
             currentWaitTime += Time.deltaTime;
         }
+        FixedUpdate(this.transform, movementLastFrame.normalized);
+    }
+
+    public void TurnAround()
+    {
+        currentGoal++;
+        currentState = State.Moving;
+        thisRB.velocity = Vector3.zero;
+        thisRB.angularVelocity = Vector3.zero;
+        if(currentGoal >= patrolPoints.Count)
+        {
+            currentGoal = currentGoal % patrolPoints.Count;
+        }
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Portal"))
+        if(!holdingObject)
         {
-            GameObject partnerPortal = other.GetComponent<PortalController>().partnerPortal;
-            this.transform.position = partnerPortal.transform.position + (partnerPortal.transform.forward * portalSpawnOffset);
-            inColliderCooldown = true;
-            lastPortalCollider = partnerPortal.gameObject.GetComponent<Collider>();
-            lastPortalCollider.enabled = false;
-            thisRB.velocity = Vector3.zero;
-            thisRB.angularVelocity = Vector3.zero;
-        }
-        else if(other.CompareTag("BackPortal"))
-        {
-            GameObject partnerPortal = other.GetComponent<PortalController>().partnerPortal;
-            this.transform.position = partnerPortal.transform.position + (partnerPortal.transform.forward * portalSpawnOffset);
-            inColliderCooldown = true;
-            lastPortalCollider = partnerPortal.gameObject.GetComponent<Collider>();
-            lastPortalCollider.enabled = false;
-            thisRB.velocity = Vector3.zero;
-            thisRB.angularVelocity = Vector3.zero;
-            //advance current patrolpoint
-            currentGoal ++;
-            if(currentGoal >= patrolPoints.Count)
+            if(other.CompareTag("Portal"))
             {
-                currentGoal = 6;
+                this.gameObject.SetActive(false);
+                GameObject partnerPortal = other.GetComponent<PortalController>().partnerPortal;
+                this.transform.position = partnerPortal.transform.position + (partnerPortal.transform.forward * portalSpawnOffset);
+                inColliderCooldown = true;
+                lastPortalCollider = partnerPortal.gameObject.GetComponent<Collider>();
+                lastPortalCollider.enabled = false;
+                thisRB.velocity = Vector3.zero;
+                thisRB.angularVelocity = Vector3.zero;
+                this.gameObject.SetActive(true);
             }
+            else if(other.CompareTag("BackPortal"))
+            {
+                this.gameObject.SetActive(false);
+                GameObject partnerPortal = other.GetComponent<PortalController>().partnerPortal;
+                this.transform.position = partnerPortal.transform.position + (partnerPortal.transform.forward * portalSpawnOffset);
+                inColliderCooldown = true;
+                lastPortalCollider = partnerPortal.gameObject.GetComponent<Collider>();
+                lastPortalCollider.enabled = false;
+                thisRB.velocity = Vector3.zero;
+                thisRB.angularVelocity = Vector3.zero;
+                //advance current patrolpoint
+                currentGoal ++;
+                if(currentGoal >= patrolPoints.Count)
+                {
+                    currentGoal = 6;
+                }
+                this.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            if(other.CompareTag("Portal") || other.CompareTag("BackPortal"))
+            {
+                //TurnAround();
+                //heldObject.transform.Translate
+                //ReleaseObject();
+            }
+            
+            //stuck inherently cause you will not be moving
+            /*float movementLastFrame = Vector3.Distance(this.transform.position, lastTransform);
+            if(!stuck && currentState == State.Moving && directionDot < allowableMoveMargin)
+            {
+                stuck = true;
+            }*/
         }
     }
 
@@ -142,6 +174,30 @@ public class PatrolPointsController : MonoBehaviour
         if(!stuck && currentState == State.Moving && directionDot < allowableMoveMargin)
         {
             stuck = true;
+        }
+    }
+    private void OnCollisionEnter(Collision other) 
+    {
+        if(other.gameObject.CompareTag("Grabable")) //trying to get something going here wrt knocking the box out of the lift monster's grasp
+        {
+            GrabAttempt(other.gameObject, this.gameObject);
+            /*var collidedObject = other.gameObject.GetComponent<BoxContactBehavior>();
+            if(collidedObject.beingHeld)
+            {
+                try{
+                    if(collidedObject.boxHolder.GetComponent<ElevatorMonsterController>())
+                    {
+                        collidedObject.boxHolder.GetComponent<Collider>().enabled = false;
+                        collidedObject.boxHolder.GetComponent<ElevatorMonsterController>().ReleaseObject();
+                        collidedObject.gameObject.GetComponent<Rigidbody>().AddForce(other.GetContact(0).normal.normalized * -launchForce);
+                        collidedObject.boxHolder.GetComponent<Collider>().enabled = true;
+                    }
+                }
+                catch{
+                    //if its not the elevator monster do nothing
+                }
+                
+            }*/
         }
     }
 }

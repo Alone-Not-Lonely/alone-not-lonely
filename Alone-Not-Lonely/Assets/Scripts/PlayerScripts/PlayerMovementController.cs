@@ -62,7 +62,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Jump()
     {
-        if (playerController.isGrounded && !playerAb.holdingObj)
+        if (playerController.isGrounded && !playerAb.holdingObject)
         {
             moveDirY = jumpHeight;
         }
