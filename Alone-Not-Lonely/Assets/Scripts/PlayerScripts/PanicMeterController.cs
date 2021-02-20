@@ -78,6 +78,10 @@ public class PanicMeterController : MonoBehaviour
         }
         if (currentAnxietyPoints > totalAnxietyPoints)
         {
+            foreach(GameObject monster in monsters)
+            {
+                monsters.Remove(monster);
+            }
             StartCoroutine("faint");
         }
     }
