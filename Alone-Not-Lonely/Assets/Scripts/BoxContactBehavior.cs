@@ -7,27 +7,33 @@ public class BoxContactBehavior : MonoBehaviour
     public bool beingHeld;
     public GameObject boxHolder;
 
+    private void Start() {
+        beingHeld = false;
+        boxHolder = null;
+    }
+
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 12)//elevator monster
-        {
-
-        }
-        else if (other.gameObject.layer == 10)//portal monster
-        {
-        
-        }
         if(boxHolder != null && (other.gameObject.CompareTag("Portal")|| other.gameObject.CompareTag("BackPortal")))
         {
-            boxHolder.GetComponent<Grabber>().ReleaseObject();
-            try
-            {
+            try{
                 boxHolder.GetComponent<PatrolPointsController>().TurnAround();
+                boxHolder.GetComponent<Grabber>().ReleaseObject();
             }
-            catch
-            {
+            catch{}
+            
+        }
+    }
 
+    private void OnCollisionEnter(Collision other) {
+        if(boxHolder != null && (other.gameObject.CompareTag("Portal")|| other.gameObject.CompareTag("BackPortal")))
+        {
+            try{
+                boxHolder.GetComponent<PatrolPointsController>().TurnAround();
+                boxHolder.GetComponent<Grabber>().ReleaseObject();
             }
+            catch{}
+            
         }
     }
 }

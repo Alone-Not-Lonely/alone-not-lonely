@@ -25,12 +25,6 @@ public class PlayerAbilityController : Grabber
         {
             if (currentGrab != null && !base.holdingObject)//(waitingForInput && currentGrab != null)
             {
-                Debug.Log("grabbed");
-                /*if(currentGrab.GetComponent<BoxContactBehavior>().beingHeld) //this is some atrocious coding right here... restructure w inheritence later
-                {
-                    currentGrab.GetComponent<BoxContactBehavior>().boxHolder.GetComponent<ElevatorMonsterController>().ReleaseObject();
-                    Debug.Log("elemonster release");
-                }*/
                 grabText.gameObject.SetActive(false);
                 releaseText.gameObject.SetActive(true);
                 base.GrabAttempt(currentGrab, this.gameObject);
@@ -38,7 +32,6 @@ public class PlayerAbilityController : Grabber
             else if (currentGrab != null && base.holdingObject)//current grab redundant but colliders are wierd...
             {
                 grabText.gameObject.SetActive(true);
-                Debug.Log("dropped");
                 base.ReleaseObject();
             }
         }

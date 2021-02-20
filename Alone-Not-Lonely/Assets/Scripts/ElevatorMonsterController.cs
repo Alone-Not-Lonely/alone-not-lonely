@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ElevatorMonsterController : Grabber
 {
+    [Header("Elevator Monster")]
     //public GameObject heldObject;
     public Vector3 targetPoint;
     public float height = 2f;
@@ -41,29 +42,17 @@ public class ElevatorMonsterController : Grabber
 
     void OnCollisionEnter(Collision other) 
     {
-        if(other.gameObject.CompareTag("Grabable") && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld)
+        if(other.gameObject.CompareTag("Grabable"))// && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld)
         {
             GrabAttempt(other.gameObject, this.gameObject);
         }
     }
 
-    /*public void ReleaseObject()
+    void OnCollisionStay(Collision other) 
     {
-        Debug.Log("Let go");
-        heldObject.GetComponent<Rigidbody>().isKinematic = false;
-        heldObject.GetComponent<BoxContactBehavior>().beingHeld = false;
-        heldObject.GetComponent<BoxContactBehavior>().boxHolder = null;
-        heldObject = null;
-        holdingObject = false;
-    }*/
-    /*void OnCollisionExit(Collision other)
-    {
-        if(other.gameObject.CompareTag("Grabable"))
+        if(other.gameObject.CompareTag("Grabable"))// && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld)
         {
-            other.gameObject.GetComponent<Rigidbody>().WakeUp();
-            heldObject = null;
-            holdingObject = false;
-            //other.gameObject.transform.parent = null;
+            GrabAttempt(other.gameObject, this.gameObject);
         }
-    }*/
+    }
 }

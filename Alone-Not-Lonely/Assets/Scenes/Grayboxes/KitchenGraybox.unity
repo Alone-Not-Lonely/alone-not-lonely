@@ -169,8 +169,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 0.74, z: 5}
-  m_Center: {x: 0, y: -0.61, z: 0}
+  m_Size: {x: 4.7413216, y: 0.73999995, z: 3.356146}
+  m_Center: {x: 0.033655312, y: -0.61, z: -0.016169019}
 --- !u!114 &47082026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,6 +817,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &190187440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4357418969263519176, guid: 2179e8fc3a938c24bb5dd9efcb6964f0, type: 3}
+  m_PrefabInstance: {fileID: 1938780023}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &264520804
 GameObject:
   m_ObjectHideFlags: 0
@@ -2621,6 +2626,10 @@ PrefabInstance:
       value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 2993892983411446302, guid: 8ccf9f235353b414c8b383ebf5b7a385, type: 3}
+      propertyPath: grabCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993892983411446302, guid: 8ccf9f235353b414c8b383ebf5b7a385, type: 3}
       propertyPath: holdDistance
       value: 3.5
       objectReference: {fileID: 0}
@@ -2753,7 +2762,7 @@ GameObject:
   - component: {fileID: 646014829}
   - component: {fileID: 646014828}
   - component: {fileID: 646014827}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: ElevatorShadow (2)
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -2789,6 +2798,9 @@ MonoBehaviour:
   heldObject: {fileID: 0}
   holdingObject: 0
   holdDistance: 0
+  grabCooldown: 2
+  currentGrabCooldown: 0
+  inGrabCooldown: 0
   targetPoint: {x: 0, y: 0, z: 0}
   height: 5
   speed: 3
@@ -2819,8 +2831,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.099999, y: 12.490652, z: 2.2790322}
-  m_Center: {x: -7.5992387e-16, y: -0.17889318, z: 0.11542197}
+  m_Size: {x: 10.099999, y: 12.490608, z: 5.8785186}
+  m_Center: {x: 5.4235677e-10, y: -0.17889328, z: 0.111732}
 --- !u!95 &646014830
 Animator:
   serializedVersion: 3
@@ -5348,7 +5360,7 @@ PrefabInstance:
     - target: {fileID: 4357418969263519180, guid: 2179e8fc3a938c24bb5dd9efcb6964f0, type: 3}
       propertyPath: partnerPortal
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 190187440}
     - target: {fileID: 4357418969263519182, guid: 2179e8fc3a938c24bb5dd9efcb6964f0, type: 3}
       propertyPath: m_Size.z
       value: 0.9344176
@@ -6916,7 +6928,7 @@ GameObject:
   - component: {fileID: 1942336185}
   - component: {fileID: 1942336184}
   - component: {fileID: 1942336183}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: ElevatorShadow (1)
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -6952,6 +6964,9 @@ MonoBehaviour:
   heldObject: {fileID: 0}
   holdingObject: 0
   holdDistance: 0
+  grabCooldown: 2
+  currentGrabCooldown: 0
+  inGrabCooldown: 0
   targetPoint: {x: 0, y: 0, z: 0}
   height: 5
   speed: 3
@@ -7256,6 +7271,10 @@ PrefabInstance:
     - target: {fileID: 1703351735369450259, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703351735369450259, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1703351735369450261, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
       propertyPath: postProcess
@@ -7798,7 +7817,7 @@ GameObject:
   - component: {fileID: 8742704040842225048}
   - component: {fileID: 8742704040842225055}
   - component: {fileID: 8742704040842225046}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: ElevatorShadow
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -7820,6 +7839,9 @@ MonoBehaviour:
   heldObject: {fileID: 0}
   holdingObject: 0
   holdDistance: 0
+  grabCooldown: 5
+  currentGrabCooldown: 0
+  inGrabCooldown: 0
   targetPoint: {x: 0, y: 0, z: 0}
   height: 5
   speed: 3
