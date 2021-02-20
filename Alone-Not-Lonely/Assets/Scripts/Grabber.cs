@@ -20,9 +20,10 @@ public abstract class Grabber : MonoBehaviour
     {
         if(!inGrabCooldown)
         {
+            Debug.Log("Can't Grab Yet");
             if(!objectInRange.GetComponent<BoxContactBehavior>().beingHeld)
             {
-                //Debug.Log("Grabbed");
+                Debug.Log("Grabbed");
                 heldObject = objectInRange;
                 heldObject.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
                 heldObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -32,7 +33,7 @@ public abstract class Grabber : MonoBehaviour
             }
             else
             {
-                //Debug.Log("Grabbed");
+                Debug.Log("Grabbed");
                 objectInRange.GetComponent<BoxContactBehavior>().boxHolder.GetComponent<Grabber>().ReleaseObject();
                 objectInRange.GetComponent<BoxContactBehavior>().beingHeld = false;
                 heldObject = objectInRange;
@@ -50,7 +51,7 @@ public abstract class Grabber : MonoBehaviour
     {
         if(heldObject && holdingObject)
         {
-            //Debug.Log("Released");
+            Debug.Log("Released");
             heldObject.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             heldObject.gameObject.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
             heldObject.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;

@@ -42,7 +42,7 @@ public class ElevatorMonsterController : Grabber
 
     void OnCollisionEnter(Collision other) 
     {
-        if(other.gameObject.CompareTag("Grabable"))// && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld)
+        if(other.gameObject.CompareTag("Grabable") && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld)
         {
             GrabAttempt(other.gameObject, this.gameObject);
         }
@@ -50,7 +50,7 @@ public class ElevatorMonsterController : Grabber
 
     void OnCollisionStay(Collision other) 
     {
-        if(other.gameObject.CompareTag("Grabable"))// && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld)
+        if(other.gameObject.CompareTag("Grabable") && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld)
         {
             GrabAttempt(other.gameObject, this.gameObject);
         }

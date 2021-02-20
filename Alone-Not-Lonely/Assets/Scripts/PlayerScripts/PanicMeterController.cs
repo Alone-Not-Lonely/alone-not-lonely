@@ -79,6 +79,10 @@ public class PanicMeterController : MonoBehaviour
         }
         if (currentAnxietyPoints > totalAnxietyPoints)
         {
+            foreach(GameObject monster in monsters)
+            {
+                monsters.Remove(monster);
+            }
             StartCoroutine("faint");
         }
     }
@@ -113,15 +117,17 @@ public class PanicMeterController : MonoBehaviour
         }
     }
 
-    /*
-    private void OnTriggerStay(Collider other) 
+    
+    /*private void OnTriggerStay(Collider other) 
     {
         if(other.CompareTag("Monster"))
         {
-            monsterInRadius = true;
+            foreach(GameObject monster in monsters)
+            {
+                if()
+            }
         }
-    }
-    */
+    }*/
     private void OnTriggerExit(Collider other) 
     {
         if(other.CompareTag("Monster"))
