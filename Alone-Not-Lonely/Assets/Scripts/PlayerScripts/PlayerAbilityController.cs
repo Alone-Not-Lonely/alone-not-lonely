@@ -27,18 +27,18 @@ public class PlayerAbilityController : Grabber
             {
                 grabText.gameObject.SetActive(false);
                 releaseText.gameObject.SetActive(true);
-                base.GrabAttempt(currentGrab, this.gameObject);
+                GrabAttempt(currentGrab, this.gameObject);
             }
-            else if (currentGrab != null && base.holdingObject)//current grab redundant but colliders are wierd...
+            else if (base.holdingObject)//current grab redundant but colliders are wierd...
             {
                 grabText.gameObject.SetActive(true);
-                base.ReleaseObject();
+                ReleaseObject();
             }
         }
     }
 
     private void FixedUpdate() {
-        base.FixedUpdate(this.transform, this.transform.forward);
+        FixedUpdate(this.transform, this.transform.forward);
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -56,7 +56,7 @@ public class PlayerAbilityController : Grabber
 
     private void OnTriggerExit(Collider collision)
     {
-        if(collision.gameObject.CompareTag("Grabable"))
+        if(!base.holdingObject && collision.gameObject.CompareTag("Grabable"))
         {
             if (currentGrab == collision.gameObject)
             {
