@@ -4,26 +4,29 @@ using UnityEngine;
 
 public abstract class Grabber : MonoBehaviour
 {
+    
     public GameObject heldObject;
     public bool holdingObject;
     public float holdDistance;
     public float grabCooldown = 2f;
     public float currentGrabCooldown;
     public bool inGrabCooldown;
+    
 
     private void Start() 
     {
         heldObject = null;
         holdingObject = false;    
     }
-    public void GrabAttempt(GameObject objectInRange, GameObject holder)
+
+    protected void GrabAttempt(GameObject objectInRange, GameObject holder)
     {
-        if(!inGrabCooldown)
+        Debug.Log(gameObject.name + "is Calling");
+        if(!inGrabCooldown)// && holder == this.gameObject)
         {
             Debug.Log("Can't Grab Yet");
             if(!objectInRange.GetComponent<BoxContactBehavior>().beingHeld)
             {
-                Debug.Log("Grabbed");
                 heldObject = objectInRange;
                 heldObject.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
                 heldObject.GetComponent<Rigidbody>().isKinematic = true;

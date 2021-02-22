@@ -16,10 +16,10 @@ public class PlayerAbilityController : Grabber
         grabText.gameObject.SetActive(false);
         releaseText.gameObject.SetActive(false);
         playerRef = (Player)FindObjectOfType(typeof(Player));
-        playerRef._actionMap.Platforming.Use.performed += grab => GrabAttempt();
+        playerRef._actionMap.Platforming.Use.performed += grab => PlayerGrab();
     }
 
-    void GrabAttempt()
+    void PlayerGrab()
     {
         if (!playerRef.paused)
         {

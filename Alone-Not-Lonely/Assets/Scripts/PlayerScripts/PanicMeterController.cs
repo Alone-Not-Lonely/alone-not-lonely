@@ -62,7 +62,7 @@ public class PanicMeterController : MonoBehaviour
                 //anxiety points based on monster distance
                 monstDist = Vector3.Distance(monster.transform.position, thisPlayer.transform.position);
                 currentAnxietyPoints += (1/monstDist*anxConst);
-                Debug.Log("monst contribution: " + (1 / monstDist * anxConst));
+                //Debug.Log("monst contribution: " + (1 / monstDist * anxConst));
             }
             anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         }

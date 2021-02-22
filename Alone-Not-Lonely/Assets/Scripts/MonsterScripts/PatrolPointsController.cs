@@ -176,10 +176,13 @@ public class PatrolPointsController : Grabber
             stuck = true;
         }
     }
+
     private void OnCollisionEnter(Collision other) 
     {
+        Debug.Log("Monster entered a collision");
         if(other.gameObject.CompareTag("Grabable")) //trying to get something going here wrt knocking the box out of the lift monster's grasp
         {
+
             GrabAttempt(other.gameObject, this.gameObject);
             /*var collidedObject = other.gameObject.GetComponent<BoxContactBehavior>();
             if(collidedObject.beingHeld)
