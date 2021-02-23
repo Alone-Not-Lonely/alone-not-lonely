@@ -70,7 +70,7 @@ public abstract class Grabber : MonoBehaviour
     {
         if(heldObject != null && holdingObject)
         {
-            heldObject.GetComponent<Rigidbody>().MovePosition(holderObject.position + (- holderObject.up * .65f) + holdOffsetDir * holdDistance);
+            heldObject.GetComponent<Rigidbody>().MovePosition(holderObject.position + (- holderObject.up * .25f) + holdOffsetDir * holdDistance);
             heldObject.GetComponent<Rigidbody>().MoveRotation(holderObject.rotation);
         }
     }
