@@ -89,6 +89,11 @@ public class PanicMeterController : MonoBehaviour
         if (currentAnxietyPoints > totalAnxietyPoints)
         {
             monsters.Clear();
+            Grabber playerAbility = thisPlayer.GetComponent<Grabber>(); //drop object when fainting
+            if(playerAbility.holdingObject)
+            {
+                playerAbility.ReleaseObject();
+            }
             StartCoroutine("faint");
         }
     }
