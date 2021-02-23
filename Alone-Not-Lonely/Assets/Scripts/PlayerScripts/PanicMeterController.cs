@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Audio;
 public class PanicMeterController : MonoBehaviour
 {
     public Image anxietyMeter;
@@ -19,6 +20,8 @@ public class PanicMeterController : MonoBehaviour
     public Volume postProcess;
     private Vignette vignette;
     private ColorAdjustments desaturate;
+    private AudioSource breathing;
+    
     void Start()
     {
         monsters = new List<GameObject>();
@@ -43,10 +46,8 @@ public class PanicMeterController : MonoBehaviour
             desaturate.saturation.value = 0f;
             desaturate.postExposure.value = 0f;
         }
-
-        
-    
-
+        breathing = GetComponent<AudioSource>();
+        breathing.enabled = false;
         //playerAnimator = GetComponent<Animator>();
     }
 
@@ -55,26 +56,35 @@ public class PanicMeterController : MonoBehaviour
     {
         if(monsters.Count != 0)
         {
-            
             //add points per monster
             foreach(GameObject monster in monsters)
             {
                 //anxiety points based on monster distance
                 monstDist = Vector3.Distance(monster.transform.position, thisPlayer.transform.position);
                 currentAnxietyPoints += (1/monstDist*anxConst);
-                Debug.Log("monst contribution: " + (1 / monstDist * anxConst));
+                //Debug.Log("monst contribution: " + (1 / monstDist * anxConst));
             }
-            anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         }
-        else if (currentAnxietyPoints > 0)
+        anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
+        if (anxietyMeter.fillAmount > 0)
         {
             currentAnxietyPoints -= Time.deltaTime * anxietySpeed;
             anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
+            if(!breathing.enabled)
+            {
+                breathing.enabled = true;
+                breathing.Play();
+            }
         }
         if(anxietyMeter.fillAmount > .5f)
         {
             desaturate.saturation.value = (anxietyMeter.fillAmount - .5f) * -50f;
             desaturate.postExposure.value = (anxietyMeter.fillAmount - .5f) * -5f;
+        }
+        if(anxietyMeter.fillAmount <= 0)
+        {
+            breathing.Stop();
+            breathing.enabled = false;
         }
         if (currentAnxietyPoints > totalAnxietyPoints)
         {
