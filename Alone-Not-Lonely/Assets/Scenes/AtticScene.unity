@@ -10093,6 +10093,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1703351733755826121, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703351734418807819, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1703351735369450261, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
       propertyPath: anxConst
       value: 1
@@ -18396,6 +18404,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8827577941783781256, guid: 8bf705939489d5840b5fae4880360dd5, type: 3}
   m_PrefabInstance: {fileID: 901378257}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &906622941 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1703351734418807820, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+  m_PrefabInstance: {fileID: 534300189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &910447695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24973,6 +24992,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1238978842}
   m_Mesh: {fileID: -7870861582546819789, guid: 436b9148f7f18eb4f9a2dac995b31bd2, type: 3}
+--- !u!114 &1240054772 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1703351733755826122, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+  m_PrefabInstance: {fileID: 534300189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1241309400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52765,8 +52795,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballFallingAnim: {fileID: 1588522329}
-  interactionUI: {fileID: 0}
-  cantInteractUI: {fileID: 0}
+  interactionUI: {fileID: 906622941}
+  cantInteractUI: {fileID: 1240054772}
   ladderController: {fileID: 1577357590}
   playerRef: {fileID: 0}
 --- !u!135 &1588522331
