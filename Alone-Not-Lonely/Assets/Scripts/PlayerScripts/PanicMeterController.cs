@@ -10,11 +10,9 @@ public class PanicMeterController : MonoBehaviour
     public float totalAnxietyPoints = 50f, rayDepth = 1f, anxConst = 1;
     private float currentAnxietyPoints, monstDist;
     private Player thisPlayer;
+    private PlayerAbilityController pAbility;
     public float anxietySpeed = 10f;
     private List<GameObject> monsters;
-    //private Animator playerAnimator;
-
-    //bool monsterInRadius;
 
     public Volume postProcess;
     private Vignette vignette;
@@ -25,18 +23,14 @@ public class PanicMeterController : MonoBehaviour
 
         currentAnxietyPoints = 0;
         anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
-        //monsterInRadius = false;
         thisPlayer = (Player)FindObjectOfType<Player>();
+        pAbility = thisPlayer.gameObject.GetComponent<PlayerAbilityController>();
         postProcess.profile.TryGet(out vignette);
         postProcess.profile.TryGet(out desaturate);
         if(vignette)
         {
             vignette.intensity.value = 0f;
         }
-        //else//TEST TEST TEST
-        //{
-        //    Debug.Log("vignette missing");
-        //}
 
         if(desaturate)
         {
@@ -44,15 +38,12 @@ public class PanicMeterController : MonoBehaviour
             desaturate.postExposure.value = 0f;
         }
 
-        
-    
-
-        //playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Fill amount " + anxietyMeter.fillAmount);
         if(monsters.Count != 0)
         {
             
@@ -62,7 +53,6 @@ public class PanicMeterController : MonoBehaviour
                 //anxiety points based on monster distance
                 monstDist = Vector3.Distance(monster.transform.position, thisPlayer.transform.position);
                 currentAnxietyPoints += (1/monstDist*anxConst);
-                //Debug.Log("monst contribution: " + (1 / monstDist * anxConst));
             }
             anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         }
@@ -94,6 +84,7 @@ public class PanicMeterController : MonoBehaviour
         //playerAnimator.SetBool("up", false);
         yield return new WaitForSeconds(.001f);//should be length of animation
         //playerAnimator.SetBool("up", true);
+        pAbility.ReleaseObject();
         anxietyMeter.fillAmount = 0;
         currentAnxietyPoints = 0;
         desaturate.saturation.value = 0f;

@@ -182,8 +182,13 @@ public class PatrolPointsController : Grabber
         Debug.Log("Monster entered a collision");
         if(other.gameObject.CompareTag("Grabable")) //trying to get something going here wrt knocking the box out of the lift monster's grasp
         {
-
-            GrabAttempt(other.gameObject, this.gameObject);
+            //checks to see if the grabbable thing is a box and it isn't being held
+            //This was added to stop monsters from snatching the box from a while away
+            BoxContactBehavior box = other.gameObject.GetComponent<BoxContactBehavior>();
+            if (box != null && box.boxHolder == null)
+            {
+                GrabAttempt(other.gameObject, this.gameObject);
+            }
             /*var collidedObject = other.gameObject.GetComponent<BoxContactBehavior>();
             if(collidedObject.beingHeld)
             {

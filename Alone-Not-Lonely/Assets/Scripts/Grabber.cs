@@ -21,7 +21,7 @@ public abstract class Grabber : MonoBehaviour
 
     protected void GrabAttempt(GameObject objectInRange, GameObject holder)
     {
-        Debug.Log(gameObject.name + "is Calling");
+        Debug.Log(gameObject.name + " is Calling");
         if(!inGrabCooldown)// && holder == this.gameObject)
         {
             Debug.Log("Can't Grab Yet");
