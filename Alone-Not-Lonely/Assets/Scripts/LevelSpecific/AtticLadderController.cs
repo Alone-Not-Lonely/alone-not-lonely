@@ -9,15 +9,18 @@ public class AtticLadderController : MonoBehaviour
     public Animator closedLadderAnimator;
     public GameObject openLadder;
     public bool canUseLadder;
+    private void Start() {
+        canUseLadder = false;
+    }
 
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("PhysicalGrabable"))
         {
             boxBlockingExit = true;
         }
-        else if(canUseLadder && other.CompareTag("Player"))
+        if(canUseLadder && other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("EndPlaytest");
+            SceneManager.LoadScene("Kitchen");
         }
     }
 

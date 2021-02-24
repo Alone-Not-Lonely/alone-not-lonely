@@ -62,7 +62,7 @@ public class PanicMeterController : MonoBehaviour
                 //Debug.Log("monst contribution: " + (1 / monstDist * anxConst));
             }
             anxietySpeed = anxConst;
-            currentAnxietyPoints += anxietySpeed * Time.deltaTime;
+            currentAnxietyPoints += anxietySpeed * 1/monstCount * Time.deltaTime;
         }
         else{
             anxietySpeed = anxConst;
@@ -163,7 +163,7 @@ public class PanicMeterController : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down)*rayDepth, out hit))
         {
             //can but other floor based traits here
-            if (hit.collider.tag == "Deadly") { StartCoroutine("faint"); };
+            if (hit.collider.tag == "Deadly") {currentAnxietyPoints += anxietySpeed * Time.deltaTime;};
             //There may be a problem w/ calling faint twice, but we'll see
         }
     }
