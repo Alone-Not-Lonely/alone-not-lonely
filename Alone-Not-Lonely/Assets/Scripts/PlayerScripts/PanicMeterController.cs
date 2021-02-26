@@ -49,7 +49,6 @@ public class PanicMeterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Fill amount " + anxietyMeter.fillAmount);
         if(monsters.Count != 0)
         {
             float monstCount = 0;

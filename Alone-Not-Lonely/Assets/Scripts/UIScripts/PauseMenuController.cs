@@ -76,7 +76,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void Pause()
     {
-        Debug.Log("pausing");
+        //Debug.Log("pausing");
         Time.timeScale = 0;
         gamePaused = true;
         pausePrefab.SetActive(true);
@@ -88,7 +88,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void Unpause()
     {
-        Debug.Log("Unpausing");
+        //Debug.Log("Unpausing");
         Time.timeScale = 1;
         gamePaused = false;
         pausePrefab.SetActive(false);

@@ -19,12 +19,14 @@ public class PlayerMovementController : MonoBehaviour
     private CameraController camController;
     private Player thisPlayer;
     private PlayerAbilityController playerAb;
+    private ClimbChecker cCheck;
 
     private void Awake()
     {
         playerController = this.GetComponent<CharacterController>();
         camController = (CameraController)FindObjectOfType(typeof(CameraController));
         playerAb = (PlayerAbilityController)FindObjectOfType(typeof(PlayerAbilityController));
+        cCheck = (ClimbChecker)FindObjectOfType(typeof(ClimbChecker));
     }
 
     private void Start() 
@@ -62,9 +64,23 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Jump()
     {
-        if (playerController.isGrounded && !playerAb.holdingObject)
+        if (playerAb.holdingObject || !playerController.isGrounded)
         {
-            moveDirY = jumpHeight;
+            //we don't ever want to perform jump based acation in these circumstances 
+            return;
+        }
+
+        if (playerController.isGrounded)
+        {
+            //float checkedHeight = cCheck.checkHeight();
+            Debug.Log(checkedHeight);
+            if (checkedHeight > 0)
+            {
+                Debug.Log("would be climbing");
+            }
+            else {
+                moveDirY = jumpHeight;
+            }
         }
     }
 
