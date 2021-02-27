@@ -49,25 +49,25 @@ public class PanicMeterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Fill amount " + anxietyMeter.fillAmount);
         if(monsters.Count != 0)
         {
-            float monstCount = 0;
+            float monstPoints = 0;
+            Debug.Log(monsters.Count);
             //add points per monster
+            List<GameObject> monstersOutOfRange = new List<GameObject>();
             foreach(GameObject monster in monsters)
             {
                 //anxiety points based on monster distance
                 monstDist = Vector3.Distance(monster.transform.position, thisPlayer.transform.position);
-                monstCount +=  monstDist;
+                monstPoints +=  monstDist;
                 //Debug.Log("monst contribution: " + (1 / monstDist * anxConst));
             }
             anxietySpeed = anxConst;
-            currentAnxietyPoints += anxietySpeed * 1/monstCount * Time.deltaTime;
+            currentAnxietyPoints += anxietySpeed * Time.deltaTime;
         }
         else{
             anxietySpeed = anxConst;
         }
-        anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         if (monsters.Count == 0 && anxietyMeter.fillAmount > 0)
         {
             currentAnxietyPoints -= Time.deltaTime * anxietySpeed;
@@ -93,6 +93,7 @@ public class PanicMeterController : MonoBehaviour
             }
             StartCoroutine("faint");
         }
+        anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
     }
 
     private void FixedUpdate()
@@ -120,28 +121,48 @@ public class PanicMeterController : MonoBehaviour
         if(other.CompareTag("Monster"))
         {
             //monsterInRadius = true;
-            monsters.Add(other.gameObject);
-            Debug.Log("Monster accounted");
-            Debug.Log(monsters.Count);
-            if(!breathing.enabled)
+            bool found = false;
+            foreach(GameObject monster in monsters)
             {
-                breathing.enabled = true;
-                breathing.Play();
+                if(other.gameObject == monster)
+                {
+                    found = true;
+                }
             }
+            if(!found)
+            {
+                monsters.Add(other.gameObject);
+                Debug.Log("Monster accounted");
+                Debug.Log(monsters.Count);
+                if(!breathing.enabled)
+                {
+                    breathing.enabled = true;
+                    breathing.Play();
+                }
+            }
+
         }
     }
 
 
-    /*private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Monster"))
         {
+            bool found = false;
             foreach(GameObject monster in monsters)
             {
-                if()
+                if(other.gameObject == monster)
+                {
+                    found = true;
+                }
+            }
+            if(!found)
+            {
+                monsters.Add(other.gameObject);
             }
         }
-    }*/
+    }
     private void OnTriggerExit(Collider other)
     {
         if(other.CompareTag("Monster"))
