@@ -239,7 +239,7 @@ This game is taking place in real time; and the game’s world can only truly be
 *   **Fall Quarter:**
     *   Mondays: 5:00 - 6:30 pm (Big Meeting)
     *   Fridays: 4:30 - 5:30 pm (Check -In/ Scrum Meeting)
-*   **Winter Quarter: **
+*   **Winter Quarter:**
     *   <span style="text-decoration:underline;">Team Meeting</span> - Monday: 5:30 - 6:30pm
     *   <span style="text-decoration:underline;">TA Meeting</span> - Wednesday: 1:30 - 2:00 pm (Dayna Diamond)
     *   <span style="text-decoration:underline;">Individual Role Meetings</span>:
