@@ -12,8 +12,6 @@ public class RangedAudioController : MonoBehaviour
     {
         sourceToPlay = GetComponent<AudioSource>();
         target = ((Player)FindObjectOfType(typeof(Player))).gameObject.transform;
-        sourceToPlay.Play();
-        sourceToPlay.Pause();
         sourceToPlay.loop = true;
         audioPlaying = false;
     }
@@ -22,7 +20,7 @@ public class RangedAudioController : MonoBehaviour
         float dist = Vector3.Distance(this.transform.position, target.position);
         if(!audioPlaying && dist < range){
             Debug.Log("Play Growl");
-            sourceToPlay.UnPause();
+            sourceToPlay.Play();
             audioPlaying = true;
         }
         else if(audioPlaying && dist >=range){

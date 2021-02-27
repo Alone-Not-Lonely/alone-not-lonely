@@ -52,7 +52,7 @@ public class PanicMeterController : MonoBehaviour
         if(monsters.Count != 0)
         {
             float monstPoints = 0;
-            Debug.Log(monsters.Count);
+            //Debug.Log(monsters.Count);
             //add points per monster
             List<GameObject> monstersOutOfRange = new List<GameObject>();
             foreach(GameObject monster in monsters)
