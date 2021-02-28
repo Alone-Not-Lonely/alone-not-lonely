@@ -72,18 +72,24 @@ public class PlayerMovementController : MonoBehaviour
 
         if (playerController.isGrounded)
         {
-            //float checkedHeight = cCheck.checkHeight();
-           // Debug.Log(checkedHeight);
-            //if (checkedHeight > 0)
-            //{
-            //    Debug.Log("would be climbing");
-           // }
-           // else {
-                moveDirY = jumpHeight;
-            //}
+           if(cCheck.climbablePoint != Vector3.zero)
+           {
+                StartCoroutine("climb");
+           }
+           else
+           {
+             moveDirY = jumpHeight;
+           }
+
+            
         }
     }
 
+    IEnumerator climb()
+    {
+        thisPlayer.transform.position = cCheck.climbablePoint;
+        yield return new WaitForSeconds(0);
+    }
     //private void MoveCamera(InputAction.CallbackContext context)
     //{
     //    Vector2 value = context.ReadValue<Vector2>();
