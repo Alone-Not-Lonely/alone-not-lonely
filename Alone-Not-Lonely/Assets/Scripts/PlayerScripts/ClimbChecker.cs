@@ -4,44 +4,74 @@ using UnityEngine;
 
 public class ClimbChecker : MonoBehaviour
 {
-    public bool inObject = false;
     [SerializeField]
-    private float checkStep = .001f;
+    public float checkStep = .1f, reachHeight = 0;
+    public float reachLength = .5f, climbCheckLength = 1;
     private Transform pTransform;
+    public bool canClimb = false;
+    public Vector3 climbablePoint = Vector3.zero;
+    //Scripts using this will check if Vector3.zero
+    //So lets just be sure not to have any climbable places at origin
+   
     // Start is called before the first frame update
     void Start()
     {
         pTransform = GetComponentInParent<Transform>();
     }
 
-    private void OnTriggerStay(Collider other)
+    private void FixedUpdate()
     {
-        inObject = true;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        inObject = false; 
+        
+        adjustHeight();
     }
 
     //should be a coroutine for performance, but testing the idea first. 
-    public float checkHeight()
+    public void adjustHeight()
     {
-        Debug.Log("Checking Height");
-        //move to 1 height, stopping if at any point we leave the object
-        while (((transform.position.y - pTransform.position.y) <= 1) && inObject)
+        RaycastHit proxHit;
+        Ray proxRay = new Ray(transform.position, transform.forward);
+       
+        
+
+        //Debug.Log(transform.forward * reachLength);
+        Debug.DrawRay(transform.position, (transform.forward*reachLength), Color.blue);
+        if (Physics.Raycast(proxRay, out proxHit, reachLength))
         {
-            transform.position = transform.position + Vector3.up * checkStep;
+            RaycastHit canLandHit;
+            Vector3 hcPos = transform.position + (transform.up * reachHeight);
+          
+            Ray canLandRay = new Ray(hcPos, transform.forward);
+            Debug.DrawRay(canLandRay.origin, canLandRay.direction, Color.yellow);
+            if (Physics.Raycast(canLandRay, out canLandHit, climbCheckLength))
+            {//We are close to an object and have NOT yet found its top
+
+                if (reachHeight < 1) { reachHeight += checkStep; }//raises the reach ever so slightly
+            }
+            else
+            {//We are close enough and HAVE found the objects top
+                climbablePoint = new Vector3(transform.position.x, transform.position.y + reachHeight, transform.position.z + climbCheckLength);
+            }
+        }
+        else
+        {
+            //Reset reach height
+            reachHeight = 0;
+            //if (canClimb)
+            //{
+            //    canClimb = false;
+            //}
         }
 
-        if((transform.position.y - pTransform.position.y) > 1)
-        {
-            //reset transform offset
-            transform.position = pTransform.position + Vector3.forward;
-            return 0;
-        }
-        //reset transform offset
-        transform.position = pTransform.position + Vector3.forward;
+
+        //move to 1 height, stopping if at any point we leave the object
+        //if (posDiff() <= 1 && inObject)
+        //{
+        //    transform.position = transform.position + Vector3.up * checkStep;
+        //}
+    }
+
+    private float posDiff()
+    {
         return (transform.position.y - pTransform.position.y);
     }
 }

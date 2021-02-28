@@ -73,14 +73,14 @@ public class PlayerMovementController : MonoBehaviour
         if (playerController.isGrounded)
         {
             //float checkedHeight = cCheck.checkHeight();
-            Debug.Log(checkedHeight);
-            if (checkedHeight > 0)
-            {
-                Debug.Log("would be climbing");
-            }
-            else {
+           // Debug.Log(checkedHeight);
+            //if (checkedHeight > 0)
+            //{
+            //    Debug.Log("would be climbing");
+           // }
+           // else {
                 moveDirY = jumpHeight;
-            }
+            //}
         }
     }
 
