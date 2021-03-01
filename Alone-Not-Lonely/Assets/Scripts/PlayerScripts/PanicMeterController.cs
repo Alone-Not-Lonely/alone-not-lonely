@@ -20,6 +20,7 @@ public class PanicMeterController : MonoBehaviour
     private Vignette vignette;
     private ColorAdjustments desaturate;
     private AudioSource breathing;
+    private SphereCollider anxietyRadius;
 
     void Start()
     {
@@ -44,6 +45,7 @@ public class PanicMeterController : MonoBehaviour
         breathing = GetComponent<AudioSource>();
         breathing.enabled = false;
         //playerAnimator = GetComponent<Animator>();
+        anxietyRadius = GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame
@@ -54,13 +56,19 @@ public class PanicMeterController : MonoBehaviour
             float monstPoints = 0;
             //Debug.Log(monsters.Count);
             //add points per monster
-            List<GameObject> monstersOutOfRange = new List<GameObject>();
-            foreach(GameObject monster in monsters)
+            for(int i = 0; i< monsters.Count; i++)
             {
                 //anxiety points based on monster distance
-                monstDist = Vector3.Distance(monster.transform.position, thisPlayer.transform.position);
-                monstPoints +=  monstDist;
-                //Debug.Log("monst contribution: " + (1 / monstDist * anxConst));
+                monstDist = Vector3.Distance(monsters[i].transform.position, thisPlayer.transform.position);
+                if(monstDist > anxietyRadius.radius * this.transform.lossyScale.y)
+                {
+                    monsters.RemoveAt(i);
+                    Debug.Log("Monster Discounted Manually : " + monstDist + " greater than " + anxietyRadius.radius * this.transform.parent.lossyScale.y);
+                }
+                else
+                {
+                    monstPoints +=  monstDist;
+                }
             }
             anxietySpeed = anxConst;
             currentAnxietyPoints += anxietySpeed * Time.deltaTime;
