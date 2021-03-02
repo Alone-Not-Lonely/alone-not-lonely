@@ -19,7 +19,7 @@ public class PanicMeterController : MonoBehaviour
     public Volume postProcess;
     private Vignette vignette;
     private ColorAdjustments desaturate;
-    private AudioSource breathing;
+    public AudioSource breathing;
     private SphereCollider anxietyRadius;
     public RectTransform anxietyMeterHolder;
     private Vector3 origPosMeter;
@@ -100,7 +100,10 @@ public class PanicMeterController : MonoBehaviour
         }
         if(anxietyMeter.fillAmount <= 0)
         {
-            breathing.Stop();
+            if(breathing.enabled)
+            {
+                breathing.Stop();
+            }
             breathing.enabled = false;
         }
         if (currentAnxietyPoints > totalAnxietyPoints)
