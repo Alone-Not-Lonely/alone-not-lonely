@@ -43,15 +43,17 @@ public class ClimbChecker : MonoBehaviour
             RaycastHit canLandHit;
             Vector3 hcPos = transform.position + (transform.up * reachHeight);
           
-            Ray canLandRay = new Ray(hcPos, transform.forward*climbLengthDepth);
-            Debug.DrawRay(canLandRay.origin, canLandRay.direction, Color.yellow);
-            if (Physics.Raycast(canLandRay, out canLandHit, climbLengthDepth))
+            Ray landingRay = new Ray(hcPos, transform.forward*climbLengthDepth);
+            Debug.DrawRay(landingRay.origin, landingRay.direction, Color.yellow);
+            if (Physics.Raycast(landingRay, out canLandHit, climbLengthDepth))
             {//We are close to an object and have NOT yet found its top
                 if (reachHeight < maxClimbHeight) { reachHeight += checkStep; }//raises the reach ever so slightly
             }
             else
             {//We are close enough and HAVE found the objects top
-                climbablePoint = new Vector3(transform.position.x + climbLengthDepth, transform.position.y + reachHeight + (playerHeight) , transform.position.z);
+                climbablePoint = new Vector3(transform.position.x + landingRay.direction.x,
+                                             transform.position.y + (playerHeight * 1.3f) , 
+                                             transform.position.z+landingRay.direction.z);
             }
         }
         else
