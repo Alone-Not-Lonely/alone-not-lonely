@@ -6,10 +6,14 @@ public class BoxContactBehavior : MonoBehaviour
 {
     public bool beingHeld;
     public GameObject boxHolder;
+    public AudioSource boxSFX;
+    public AudioClip boxPickup;
+    public AudioClip boxDrop;
 
     private void Start() {
         beingHeld = false;
         boxHolder = null;
+        boxSFX = this.GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -21,7 +25,6 @@ public class BoxContactBehavior : MonoBehaviour
                 boxHolder.GetComponent<Grabber>().ReleaseObject();
             }
             catch{}
-            
         }
     }
 
@@ -33,7 +36,6 @@ public class BoxContactBehavior : MonoBehaviour
                 boxHolder.GetComponent<Grabber>().ReleaseObject();
             }
             catch{}
-            
         }
     }
 }
