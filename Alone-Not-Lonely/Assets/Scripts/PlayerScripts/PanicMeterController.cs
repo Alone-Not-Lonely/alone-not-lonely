@@ -20,9 +20,14 @@ public class PanicMeterController : MonoBehaviour
     private Vignette vignette;
     private ColorAdjustments desaturate;
     private AudioSource breathing;
+    private SphereCollider anxietyRadius;
+    public RectTransform anxietyMeterHolder;
+    private Vector3 origPosMeter;
+    public float shakeMagnitude = 3f;
 
     void Start()
     {
+        origPosMeter = anxietyMeterHolder.position;
         monsters = new List<GameObject>();
         anxConst = anxietySpeed;
         currentAnxietyPoints = 0;
@@ -44,6 +49,7 @@ public class PanicMeterController : MonoBehaviour
         breathing = GetComponent<AudioSource>();
         breathing.enabled = false;
         //playerAnimator = GetComponent<Animator>();
+        anxietyRadius = GetComponent<SphereCollider>();
     }
 
     // Update is called once per frame
@@ -51,26 +57,41 @@ public class PanicMeterController : MonoBehaviour
     {
         if(monsters.Count != 0)
         {
-            float monstCount = 0;
+            float monstPoints = 0;
+            //Debug.Log(monsters.Count);
             //add points per monster
-            foreach(GameObject monster in monsters)
+            for(int i = 0; i< monsters.Count; i++)
             {
                 //anxiety points based on monster distance
-                monstDist = Vector3.Distance(monster.transform.position, thisPlayer.transform.position);
-                monstCount +=  monstDist;
-                //Debug.Log("monst contribution: " + (1 / monstDist * anxConst));
+                monstDist = Vector3.Distance(monsters[i].transform.position, thisPlayer.transform.position);
+                if(monstDist > ((anxietyRadius.radius * this.transform.lossyScale.y) + 2f)) // this is just to catch teleporting monsters who are significantly outside of bounds
+                {
+                    monsters.RemoveAt(i);
+                    Debug.Log("Monster Discounted Manually : " + monstDist + " greater than " + anxietyRadius.radius * this.transform.parent.lossyScale.y);
+                }
+                else
+                {
+                    monstPoints +=  monstDist;
+                }
             }
             anxietySpeed = anxConst;
-            currentAnxietyPoints += anxietySpeed * 1/monstCount * Time.deltaTime;
+            currentAnxietyPoints += anxietySpeed * Time.deltaTime;
         }
         else{
             anxietySpeed = anxConst;
         }
-        anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
-        if (monsters.Count == 0 && anxietyMeter.fillAmount > 0)
+        if (anxietyMeter.fillAmount > 0)
         {
-            currentAnxietyPoints -= Time.deltaTime * anxietySpeed;
-            //anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
+            StartCoroutine("Shake");
+            if(monsters.Count == 0)
+            {
+                currentAnxietyPoints -= Time.deltaTime * anxietySpeed;
+            }
+            vignette.intensity.value = Mathf.Pow(anxietyMeter.fillAmount, 4f);
+        }
+        else{
+            StopCoroutine("Shake");
+            anxietyMeterHolder.position = origPosMeter;
         }
         if(anxietyMeter.fillAmount > .5f)
         {
@@ -92,6 +113,7 @@ public class PanicMeterController : MonoBehaviour
             }
             StartCoroutine("faint");
         }
+        anxietyMeter.fillAmount = (currentAnxietyPoints/totalAnxietyPoints);
     }
 
     private void FixedUpdate()
@@ -106,11 +128,41 @@ public class PanicMeterController : MonoBehaviour
         yield return new WaitForSeconds(.001f);//should be length of animation
         //playerAnimator.SetBool("up", true);
         pAbility.ReleaseObject();
-        anxietyMeter.fillAmount = 0;
+        /*anxietyMeter.fillAmount = 0;
         currentAnxietyPoints = 0;
         desaturate.saturation.value = 0f;
-        desaturate.postExposure.value = 0f;
+        desaturate.postExposure.value = 0f;*/
         thisPlayer.backToSpawn();
+        StartCoroutine("wakeUp");
+    }
+
+    private IEnumerator wakeUp()
+    {
+        while(anxietyMeter.fillAmount > 0f)
+        {
+            currentAnxietyPoints -= Time.deltaTime * anxietySpeed * 10f;
+            if(anxietyMeter.fillAmount > .5f)
+            {
+                desaturate.saturation.value = (anxietyMeter.fillAmount - .5f) * -50f;
+                desaturate.postExposure.value = (anxietyMeter.fillAmount - .5f) * -5f;
+            }
+            vignette.intensity.value = Mathf.Pow(anxietyMeter.fillAmount, 2f);
+            yield return new WaitForSeconds(.001f);
+        }
+        yield break;
+    }
+
+    private IEnumerator Shake()
+    {
+        while(anxietyMeter.fillAmount > 0f)
+        {
+            anxietyMeterHolder.position = new Vector3(origPosMeter.x + (Mathf.Sin((Time.time % 10) * 50f) * anxietyMeter.fillAmount * shakeMagnitude), 
+                                                    origPosMeter.y  + (Mathf.Cos((Time.time % 8)* 50f) * anxietyMeter.fillAmount * shakeMagnitude),
+                                                    origPosMeter.z);
+            yield return new WaitForSeconds(.001f);
+        }
+        anxietyMeterHolder.position = origPosMeter;
+        yield break;
     }
 
 
@@ -119,28 +171,48 @@ public class PanicMeterController : MonoBehaviour
         if(other.CompareTag("Monster"))
         {
             //monsterInRadius = true;
-            monsters.Add(other.gameObject);
-            Debug.Log("Monster accounted");
-            Debug.Log(monsters.Count);
-            if(!breathing.enabled)
+            bool found = false;
+            foreach(GameObject monster in monsters)
             {
-                breathing.enabled = true;
-                breathing.Play();
+                if(other.gameObject == monster)
+                {
+                    found = true;
+                }
             }
+            if(!found)
+            {
+                monsters.Add(other.gameObject);
+                Debug.Log("Monster accounted");
+                Debug.Log(monsters.Count);
+                if(!breathing.enabled)
+                {
+                    breathing.enabled = true;
+                    breathing.Play();
+                }
+            }
+
         }
     }
 
 
-    /*private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Monster"))
         {
+            bool found = false;
             foreach(GameObject monster in monsters)
             {
-                if()
+                if(other.gameObject == monster)
+                {
+                    found = true;
+                }
+            }
+            if(!found)
+            {
+                monsters.Add(other.gameObject);
             }
         }
-    }*/
+    }
     private void OnTriggerExit(Collider other)
     {
         if(other.CompareTag("Monster"))

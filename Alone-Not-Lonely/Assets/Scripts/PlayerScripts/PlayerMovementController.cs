@@ -20,8 +20,10 @@ public class PlayerMovementController : MonoBehaviour
     private CameraController camController;
     private Player thisPlayer;
     private PlayerAbilityController playerAb;
-    private ClimbChecker cCheck;
 
+    //Climb stuff
+    private ClimbChecker cCheck;
+    public float lerpEpsilon = 0.01f, climbSpeed = 10f, crawlHeight = 1f;
 
 
 
@@ -98,16 +100,15 @@ public class PlayerMovementController : MonoBehaviour
         playerController.detectCollisions = false;
 
         //setting climbing parameters
-        float lerpEpsilon = .01f;
-        float climbSpeed = 10f;
-        float crawlHeight = 1f;
+       
         Vector3 finalPosition = cCheck.climbablePoint;
 
         Debug.Log(finalPosition);
 
         //A point just below the necessary height to represent climbing part of the way up.
         Vector3 climbHeight = new Vector3(transform.position.x, (finalPosition.y - crawlHeight), transform.position.z);
-        
+ 
+        //climb to slide height
         while(Vector3.Distance(transform.position, climbHeight) > lerpEpsilon)
         {
             transform.position = Vector3.Lerp(transform.position, climbHeight, climbSpeed * Time.deltaTime);
@@ -124,6 +125,7 @@ public class PlayerMovementController : MonoBehaviour
             yield return null;
         }
 
+        //Standing Up
         while (Vector3.Distance(transform.position, finalPosition) > lerpEpsilon)
         {
             transform.position = Vector3.MoveTowards(transform.position, finalPosition, climbSpeed * Time.deltaTime);
