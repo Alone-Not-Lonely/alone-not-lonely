@@ -5,16 +5,16 @@ using UnityEngine;
 public class ClosedLadder : MonoBehaviour
 {
     private AtticLadderController ladderController;
-    AudioSource doorBreak;
+    public AudioSource doorBreak;
     void Start() 
     {
         ladderController = transform.parent.GetComponent<AtticLadderController>();
-        doorBreak = GetComponent<AudioSource>();
+        //doorBreak = GetComponent<AudioSource>();
     }
     
     void OnAnimationEnded()
     {
-        doorBreak.Play();
+        //doorBreak.Play();
         ladderController.EnableDisableLadders();
     }
 }

@@ -12591,6 +12591,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 642266135}
+  - component: {fileID: 642266136}
   m_Layer: 0
   m_Name: ClosedLadder
   m_TagString: Untagged
@@ -12613,6 +12614,102 @@ Transform:
   m_Father: {fileID: 1577357588}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 58.116, y: 87.233, z: 0}
+--- !u!82 &642266136
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642266134}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d8ab29f2b14dd4746ac4f143ab378fc4, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &642649216
 GameObject:
   m_ObjectHideFlags: 0
@@ -29095,6 +29192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a22e3bfde711a4aba7da2b0e5f8ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorBreak: {fileID: 642266136}
 --- !u!95 &1164547888
 Animator:
   serializedVersion: 3
@@ -39161,7 +39259,7 @@ PrefabInstance:
     - target: {fileID: 4357418969263519180, guid: 2179e8fc3a938c24bb5dd9efcb6964f0, type: 3}
       propertyPath: partnerPortal
       value: 
-      objectReference: {fileID: 2005879381}
+      objectReference: {fileID: 1674745399}
     - target: {fileID: 6429300418251318679, guid: 2179e8fc3a938c24bb5dd9efcb6964f0, type: 3}
       propertyPath: m_Name
       value: Portal3Collider
@@ -73553,11 +73651,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8827577941783781256, guid: 8bf705939489d5840b5fae4880360dd5, type: 3}
   m_PrefabInstance: {fileID: 2004603564}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2005879381 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4357418969263519176, guid: 2179e8fc3a938c24bb5dd9efcb6964f0, type: 3}
-  m_PrefabInstance: {fileID: 685244364}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2005932738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79728,6 +79821,10 @@ PrefabInstance:
       propertyPath: postProcess
       value: 
       objectReference: {fileID: 1596437503}
+    - target: {fileID: 577248614647589247, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: grabCooldown
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 2358667961025462974, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
       propertyPath: m_Volume
       value: 0.1
