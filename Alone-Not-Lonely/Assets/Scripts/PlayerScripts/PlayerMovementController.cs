@@ -86,8 +86,7 @@ public class PlayerMovementController : MonoBehaviour
            {
              moveDirY = jumpHeight;
            }
-
-            
+ 
         }
     }
 

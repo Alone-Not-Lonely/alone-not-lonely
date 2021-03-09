@@ -10900,7 +10900,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 187670503, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 187670504, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10937,7 +10937,7 @@ PrefabInstance:
     - target: {fileID: 1703351735369450261, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
       propertyPath: postProcess
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 434685146}
     - target: {fileID: 1703351735369450261, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
       propertyPath: anxietyMeterHolder
       value: 
@@ -11227,6 +11227,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c8686d1e25c9c4984a3fac93bfacae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkStep: 0.1
+  reachHeight: 0
+  climbLengthDepth: 1.5
+  maxClimbHeight: 2
+  climbablePoint: {x: 0, y: 0, z: 0}
 --- !u!136 &1141910284
 CapsuleCollider:
   m_ObjectHideFlags: 0
