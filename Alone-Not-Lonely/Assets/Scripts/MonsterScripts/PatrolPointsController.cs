@@ -145,7 +145,7 @@ public class PatrolPointsController : Grabber
                 currentGoal ++;
                 if(currentGoal >= patrolPoints.Count)
                 {
-                    currentGoal = 6;
+                    currentGoal = 1;
                 }
                 this.gameObject.SetActive(true);
             }
