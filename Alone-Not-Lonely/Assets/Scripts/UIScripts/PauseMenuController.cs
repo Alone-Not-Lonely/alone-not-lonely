@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class PauseMenuController : MonoBehaviour
 {
@@ -16,10 +17,11 @@ public class PauseMenuController : MonoBehaviour
     public AudioMixerSnapshot[] passFilters;
     public AudioMixerSnapshot[] defaultSnap;
     public float volume = 0;
+    public Slider volumeSlider;
     void Start()
     {
         pausePrefab.SetActive(false);
-        mixer.SetFloat("Volume", Mathf.Log10(1) * 20);
+        mixer.SetFloat("Volume", Mathf.Log10(volumeSlider.value) * 20);
 
         playerRef = (Player)FindObjectOfType<Player>();
         playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();

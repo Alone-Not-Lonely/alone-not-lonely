@@ -20,6 +20,8 @@ public class PlayerMovementController : MonoBehaviour
     private CameraController camController;
     private Player thisPlayer;
     private PlayerAbilityController playerAb;
+    public AudioSource footsteps;
+    private bool wasMovingLastFrame = false;
 
     //Climb stuff
     private ClimbChecker cCheck;
@@ -32,6 +34,8 @@ public class PlayerMovementController : MonoBehaviour
         playerController = this.GetComponent<CharacterController>();
         camController = (CameraController)FindObjectOfType(typeof(CameraController));
         playerAb = (PlayerAbilityController)FindObjectOfType(typeof(PlayerAbilityController));
+        footsteps.Play();
+        footsteps.Pause();
         cCheck = (ClimbChecker)FindObjectOfType(typeof(ClimbChecker));
     }
 
@@ -57,14 +61,35 @@ public class PlayerMovementController : MonoBehaviour
         _actionMap.Disable();
     }
    */
-    
+    bool stopFootstepsH;
+    bool stopFootstepsV;
     public void MoveHoriz(float horizMvmt)
     {
+        if(horizDirection == 0 && vertDirection == 0 && playerController.isGrounded)
+        {
+            footsteps.UnPause();
+            Debug.Log("Play steps");
+        }
+        else if(horizMvmt == 0 && (horizDirection != 0 || vertDirection != 0))
+        {
+            //footsteps.Stop();
+            stopFootstepsH = true;
+        }
         horizDirection = horizMvmt;
     }
 
     public void MoveVert(float vertMvmt)
     {
+        if(vertDirection == 0 && horizDirection == 0 && playerController.isGrounded)
+        {
+            footsteps.UnPause();
+            Debug.Log("Play steps");
+        }
+        else if(vertMvmt == 0 && (horizDirection != 0 || vertDirection != 0))
+        {
+            //footsteps.Stop();
+            stopFootstepsV = true;
+        }
         vertDirection = vertMvmt;
     }
 
@@ -143,8 +168,19 @@ public class PlayerMovementController : MonoBehaviour
  
     void FixedUpdate()
     {
+        if(horizDirection == 0 && vertDirection == 0)
+        {
+            footsteps.Pause();
+            Debug.Log("Pause steps");
+        }
+        /*{
+            footsteps.Pause();
+            stopFootstepsH = false;
+            stopFootstepsV = false;
+        }*/
         if(!thisPlayer.paused && !climbing)
         {
+            
             //float horizDirection = Input.GetAxis("Horizontal");
             //float vertDirection = Input.GetAxis("Vertical");
             //if(playerController.isGrounded && Input.GetKeyDown(KeyCode.Space))
@@ -163,6 +199,9 @@ public class PlayerMovementController : MonoBehaviour
             playerController.Move(moveDirection * walkSpeed * Time.deltaTime);
             Vector3 camRotation = camController.GetCameraRotation(); 
             playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0)); 
+        }
+        else{
+            footsteps.Stop();
         }
     }
 }

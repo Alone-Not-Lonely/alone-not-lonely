@@ -11,7 +11,6 @@ public abstract class Grabber : MonoBehaviour
     public float grabCooldown = 2f;
     public float currentGrabCooldown;
     public bool inGrabCooldown;
-    
 
     private void Start() 
     {
@@ -24,7 +23,6 @@ public abstract class Grabber : MonoBehaviour
         Debug.Log(gameObject.name + " is Calling");
         if(!inGrabCooldown)// && holder == this.gameObject)
         {
-            Debug.Log("Can't Grab Yet");
             if(!objectInRange.GetComponent<BoxContactBehavior>().beingHeld)
             {
                 heldObject = objectInRange;
@@ -33,6 +31,7 @@ public abstract class Grabber : MonoBehaviour
                 holdingObject = true;
                 heldObject.GetComponent<BoxContactBehavior>().beingHeld = true;
                 heldObject.GetComponent<BoxContactBehavior>().boxHolder = holder;
+                heldObject.GetComponent<BoxContactBehavior>().boxSFX.PlayOneShot(heldObject.GetComponent<BoxContactBehavior>().boxPickup);
             }
             else
             {
@@ -45,9 +44,9 @@ public abstract class Grabber : MonoBehaviour
                 holdingObject = true;
                 heldObject.GetComponent<BoxContactBehavior>().beingHeld = true;
                 heldObject.GetComponent<BoxContactBehavior>().boxHolder = holder;
+                heldObject.GetComponent<BoxContactBehavior>().boxSFX.PlayOneShot(heldObject.GetComponent<BoxContactBehavior>().boxPickup);
             }
         }
-
     }
 
     public void ReleaseObject()
@@ -59,6 +58,7 @@ public abstract class Grabber : MonoBehaviour
             heldObject.gameObject.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
             heldObject.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             heldObject.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            heldObject.GetComponent<BoxContactBehavior>().boxSFX.PlayOneShot(heldObject.GetComponent<BoxContactBehavior>().boxDrop);
             holdingObject = false;
             heldObject.GetComponent<BoxContactBehavior>().beingHeld = false;
             heldObject.GetComponent<BoxContactBehavior>().boxHolder = null;

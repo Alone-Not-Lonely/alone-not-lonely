@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PatrolPointsController : Grabber
 {
-    public List<Transform> patrolPoints;
+    public List<Transform> patrolPoints; // stores portal coordinates now
     public float speed = 5f;
-    public int currentGoal;
+    private int currentGoal;
 
-    public enum State {Waiting, Moving, Collided};
-    public State currentState;
+    private enum State {Waiting, Moving, Collided};
+    private State currentState;
 
     private float waitTime = 3f;
     private float currentWaitTime = 0;
@@ -20,7 +20,7 @@ public class PatrolPointsController : Grabber
     private Collider lastPortalCollider;
 
     private Vector3 lastTransform;
-    public bool stuck = false;
+    private bool stuck = false;
     private float stuckTimer;
     public float stuckTimeToMove = 1f;
     public float allowableMoveMargin = .1f;
@@ -28,8 +28,11 @@ public class PatrolPointsController : Grabber
 
     private Rigidbody thisRB;
 
-    public float launchForce = .00001f;
-    // Start is called before the first frame update
+    private float directionDot; //updated in fixedUpdate
+    private Vector3 movementLastFrame;
+    public GameObject activePortal1;
+    public GameObject activePortal2;
+
     void Start()
     {
         currentGoal = 0;
@@ -37,10 +40,11 @@ public class PatrolPointsController : Grabber
         lastTransform = this.transform.position;
         lastPortalCollider = null;
         thisRB = GetComponent<Rigidbody>();
+        activePortal1 = patrolPoints[0].gameObject;
+        activePortal2 = patrolPoints[1].gameObject;
+        UpdatePortalSizes();
     }
 
-    private float directionDot; //updated in fixedUpdate
-    private Vector3 movementLastFrame;
     void FixedUpdate() {
         movementLastFrame = this.transform.position - lastTransform;//Total movement after one frame
         directionDot = Vector3.Dot(Vector3.Normalize(movementLastFrame), Vector3.Normalize(patrolPoints[currentGoal].position - transform.position));//dot product of last frame movement and movement to goal
@@ -62,7 +66,7 @@ public class PatrolPointsController : Grabber
             TurnAround();
         }
 
-        if(currentState == State.Waiting && currentWaitTime < waitTime)
+        if(currentState == State.Waiting && currentWaitTime < waitTime)// we're not doing waiting anymore but I'm leaving this here in case removing it breaks the game
         {
             currentWaitTime += Time.deltaTime;
         }
@@ -77,7 +81,7 @@ public class PatrolPointsController : Grabber
             }
         }
 
-        if(inColliderCooldown && currentColliderCooldown < colliderCooldown)
+        if(inColliderCooldown && currentColliderCooldown < colliderCooldown) //can't collide back into the portal it just exited
         {
             currentColliderCooldown += Time.deltaTime;
         }
@@ -90,17 +94,16 @@ public class PatrolPointsController : Grabber
         }
         lastTransform = this.transform.position;
 
-        if(currentState == State.Moving && Vector3.Distance(transform.position, patrolPoints[currentGoal].position) > .1f)
+        if(currentState == State.Moving && Vector3.Distance(transform.position, patrolPoints[currentGoal].position) > .1f) //move monster towards goal
         {
-            //transform.position = Vector3.MoveTowards(transform.position, patrolPoints[currentGoal].position, .01f * speed);
             thisRB.MovePosition(Vector3.MoveTowards(transform.position, patrolPoints[currentGoal].position, .01f * speed));
         }
-        else if(currentState == State.Moving && Vector3.Distance(transform.position, patrolPoints[currentGoal].position) <= .1f)
+        else if(currentState == State.Moving && Vector3.Distance(transform.position, patrolPoints[currentGoal].position) <= .1f) //more waiting code that im afraid to delete ;_;
         {
             currentState = State.Waiting;
             currentWaitTime += Time.deltaTime;
         }
-        FixedUpdate(this.transform, movementLastFrame.normalized);
+        FixedUpdate(this.transform, movementLastFrame.normalized); //update abstract parent
     }
 
     public void TurnAround()
@@ -148,6 +151,9 @@ public class PatrolPointsController : Grabber
                     currentGoal = 1;
                 }
                 this.gameObject.SetActive(true);
+                activePortal1 = patrolPoints[currentGoal].gameObject;
+                activePortal2 = patrolPoints[currentGoal + 1].gameObject;
+                UpdatePortalSizes();
             }
         }
         else
@@ -158,13 +164,6 @@ public class PatrolPointsController : Grabber
                 //heldObject.transform.Translate
                 //ReleaseObject();
             }
-            
-            //stuck inherently cause you will not be moving
-            /*float movementLastFrame = Vector3.Distance(this.transform.position, lastTransform);
-            if(!stuck && currentState == State.Moving && directionDot < allowableMoveMargin)
-            {
-                stuck = true;
-            }*/
         }
     }
 
@@ -189,23 +188,40 @@ public class PatrolPointsController : Grabber
             {
                 GrabAttempt(other.gameObject, this.gameObject);
             }
-            /*var collidedObject = other.gameObject.GetComponent<BoxContactBehavior>();
-            if(collidedObject.beingHeld)
-            {
-                try{
-                    if(collidedObject.boxHolder.GetComponent<ElevatorMonsterController>())
-                    {
-                        collidedObject.boxHolder.GetComponent<Collider>().enabled = false;
-                        collidedObject.boxHolder.GetComponent<ElevatorMonsterController>().ReleaseObject();
-                        collidedObject.gameObject.GetComponent<Rigidbody>().AddForce(other.GetContact(0).normal.normalized * -launchForce);
-                        collidedObject.boxHolder.GetComponent<Collider>().enabled = true;
-                    }
-                }
-                catch{
-                    //if its not the elevator monster do nothing
-                }
-                
-            }*/
         }
+    }
+
+    void UpdatePortalSizes()
+    {
+        foreach(Transform portal in patrolPoints)
+        {
+            if(portal.gameObject == activePortal1 || portal.gameObject == activePortal2)
+            {
+                StartCoroutine("GrowPortal", portal);
+            }
+            else
+            {
+                StartCoroutine("ShrinkPortal", portal);
+            }
+        }
+    }
+
+    IEnumerator ShrinkPortal(Transform portal)
+    {
+        while(portal.localScale.x > .3f)
+        {
+            portal.localScale -= new Vector3(.01f, .01f, .01f);
+            yield return new WaitForSeconds(.001f);
+        }
+        yield break;
+    }
+    IEnumerator GrowPortal(Transform portal)
+    {
+        while(portal.localScale.x < .5f)
+        {
+            portal.localScale += new Vector3(.01f, .01f, .01f);
+            yield return new WaitForSeconds(.001f);
+        }
+        yield break;
     }
 }
