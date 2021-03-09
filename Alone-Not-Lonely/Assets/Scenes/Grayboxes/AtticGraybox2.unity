@@ -8876,7 +8876,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh65758
+  m_Name: pb_Mesh18750
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10563,6 +10563,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1099756450 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1721422308372995269, guid: 02fe9c085bccccf4898974299ff33d58, type: 3}
+  m_PrefabInstance: {fileID: 1234904425}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1099756454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099756450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b591252a6b55cf744a5c0b9acb7c12f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weightTimer: 0
+  openTime: 300
 --- !u!43 &1122024573
 Mesh:
   m_ObjectHideFlags: 0
@@ -10996,7 +11015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7490232931308232754, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.45
+      value: 6.43
       objectReference: {fileID: 0}
     - target: {fileID: 7490232931308232754, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11004,7 +11023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7490232931308232754, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -98.11
+      value: -7.99
       objectReference: {fileID: 0}
     - target: {fileID: 7490232931308232754, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12568,9 +12587,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 776039787}
     m_Modifications:
+    - target: {fileID: 1721422308372995268, guid: 02fe9c085bccccf4898974299ff33d58, type: 3}
+      propertyPath: m_Center.y
+      value: -0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 1721422308372995269, guid: 02fe9c085bccccf4898974299ff33d58, type: 3}
       propertyPath: m_Name
-      value: AtticChestGrabable2 (5)
+      value: AtticFinalChest
       objectReference: {fileID: 0}
     - target: {fileID: 2065015691403134591, guid: 02fe9c085bccccf4898974299ff33d58, type: 3}
       propertyPath: m_RootOrder
@@ -12590,15 +12613,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2065015691403134591, guid: 02fe9c085bccccf4898974299ff33d58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.06
+      value: -1.23
       objectReference: {fileID: 0}
     - target: {fileID: 2065015691403134591, guid: 02fe9c085bccccf4898974299ff33d58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.42372882
+      value: 1.22
       objectReference: {fileID: 0}
     - target: {fileID: 2065015691403134591, guid: 02fe9c085bccccf4898974299ff33d58, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -58.37
+      value: -58.82
       objectReference: {fileID: 0}
     - target: {fileID: 2065015691403134591, guid: 02fe9c085bccccf4898974299ff33d58, type: 3}
       propertyPath: m_LocalRotation.w
@@ -44694,7 +44717,7 @@ GameObject:
   - component: {fileID: 1806522419}
   m_Layer: 0
   m_Name: LadderExit
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47064,6 +47087,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5852532dc22cddb40afeeed004430eaa, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5852532dc22cddb40afeeed004430eaa, type: 3}
+      propertyPath: m_TagString
+      value: Finish
       objectReference: {fileID: 0}
     - target: {fileID: 1620098882267029497, guid: 5852532dc22cddb40afeeed004430eaa, type: 3}
       propertyPath: m_IsActive
