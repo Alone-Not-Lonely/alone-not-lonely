@@ -24,7 +24,6 @@ public class AtticLevelEndController : MonoBehaviour
     void Start()
     {
         playerRef = (Player)FindObjectOfType<Player>();
-        Debug.Log("Player: " + playerRef);
         playerRef._actionMap.Platforming.Use.performed += grab => InteractAttempt();
         interactionUI.gameObject.SetActive(false);
         cantInteractUI.gameObject.SetActive(false);
