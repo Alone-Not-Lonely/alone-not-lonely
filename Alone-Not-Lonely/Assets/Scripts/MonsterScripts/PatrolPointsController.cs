@@ -208,7 +208,7 @@ public class PatrolPointsController : Grabber
 
     IEnumerator ShrinkPortal(Transform portal)
     {
-        while(portal.localScale.x > .3f)
+        while(portal.localScale.x > .25f)
         {
             portal.localScale -= new Vector3(.01f, .01f, .01f);
             yield return new WaitForSeconds(.001f);
@@ -217,7 +217,7 @@ public class PatrolPointsController : Grabber
     }
     IEnumerator GrowPortal(Transform portal)
     {
-        while(portal.localScale.x < .5f)
+        while(portal.localScale.x < .37f)
         {
             portal.localScale += new Vector3(.01f, .01f, .01f);
             yield return new WaitForSeconds(.001f);
