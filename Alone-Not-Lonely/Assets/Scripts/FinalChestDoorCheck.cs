@@ -50,7 +50,6 @@ public class FinalChestDoorCheck : MonoBehaviour
 
         if(!Physics.Raycast(leftRay, out leftOut, rayLength))
         {
-            Debug.Log("Left Not touching anything!");
             return false;
         }
         
@@ -66,13 +65,11 @@ public class FinalChestDoorCheck : MonoBehaviour
 
         if (!Physics.Raycast(rightRay, out rightOut, rayLength))
         {
-            Debug.Log("Right Not touching anything!");
             return false;
         }
 
         if (rightOut.collider.tag != "Finish")
         {
-            Debug.Log("Object aint finish!");
             return false;
         }
 

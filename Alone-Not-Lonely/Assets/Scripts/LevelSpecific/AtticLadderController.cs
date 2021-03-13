@@ -9,8 +9,11 @@ public class AtticLadderController : MonoBehaviour
     public Animator closedLadderAnimator;
     public GameObject openLadder;
     public bool canUseLadder;
+    private WinCondition win;
+
     private void Start() {
         canUseLadder = false;
+        win = GetComponent<WinCondition>();
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -38,6 +41,7 @@ public class AtticLadderController : MonoBehaviour
 
     public void EnableDisableLadders()
     {
+        win.onWin();
         closedLadderAnimator.gameObject.SetActive(false);
         openLadder.SetActive(true);
         canUseLadder = true;
