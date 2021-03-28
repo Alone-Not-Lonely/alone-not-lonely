@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1721422308372995267}
   - component: {fileID: 1721422308372995266}
   - component: {fileID: 1721422308372995268}
+  - component: {fileID: -3283141221407824809}
   m_Layer: 8
   m_Name: AtticChestGrabable2
   m_TagString: Grabable
@@ -65,6 +66,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beingHeld: 0
   boxHolder: {fileID: 0}
+  boxSFX: {fileID: 0}
+  boxPickup: {fileID: 0}
+  boxDrop: {fileID: 0}
 --- !u!65 &1721422308372995268
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78,6 +82,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.7801266, y: 0.73999995, z: 3.7521775}
   m_Center: {x: 0.041715585, y: -0.61, z: -0.11994196}
+--- !u!114 &-3283141221407824809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721422308372995269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53e12d5128961745b76b987513a3875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  squashed: 0
+  squashedVariant: {fileID: 6978556801791263734, guid: 9a4c69401eb470a458b3db9975a74ae7, type: 3}
+  regularVariant: {fileID: 1721422308372995269}
 --- !u!1 &2998265063577972628
 GameObject:
   m_ObjectHideFlags: 0
