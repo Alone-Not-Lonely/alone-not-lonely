@@ -9,6 +9,7 @@ public class ClimbChecker : MonoBehaviour
     private float playerHeight;
     public Vector3 climbablePoint = Vector3.zero;
 
+    public Transform lhand, rhand;
     private Transform pTransform;
     private CharacterController pControl;
     private PlayerAbilityController pAbil;
@@ -28,6 +29,7 @@ public class ClimbChecker : MonoBehaviour
     private void FixedUpdate()
     {
         if (pControl.isGrounded && !pAbil.holdingObject) { adjustHeight(); }
+        updateHands();
     }
 
     //should be a coroutine for performance, but testing the idea first. 
@@ -42,12 +44,9 @@ public class ClimbChecker : MonoBehaviour
             RaycastHit canLandHit;
             Vector3 hcPos = transform.position + (transform.up * reachHeight);
 
-
-
             Ray landingRay = new Ray(hcPos, transform.forward * climbLengthDepth);
             //Test:
             Debug.DrawRay(landingRay.origin, landingRay.direction, Color.yellow);
-
 
 
             if (Physics.Raycast(landingRay, out canLandHit, climbLengthDepth) && (canLandHit.collider.isTrigger == false))
@@ -72,6 +71,14 @@ public class ClimbChecker : MonoBehaviour
             climbablePoint = Vector3.zero;
         }
     }
+
+    
+    private void updateHands()
+    {
+        rhand.position = Vector3.Lerp(pTransform.position, (climbablePoint -  pTransform.position)+pTransform.position, .1f);
+       
+    }
+    
 
     private float posDiff()
     {
