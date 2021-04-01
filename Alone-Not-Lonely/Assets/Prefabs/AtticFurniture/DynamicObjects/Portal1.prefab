@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4357418969263519183}
   - component: {fileID: 4357418969263519182}
   - component: {fileID: 4357418969263519180}
+  - component: {fileID: 221823689}
   m_Layer: 0
   m_Name: Portal1
   m_TagString: Portal
@@ -26,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4357418969263519176}
-  m_LocalRotation: {x: 0.0000016490776, y: 0.00042478187, z: 0.9999924, w: 0.0038826088}
+  m_LocalRotation: {x: -0.0000016609373, y: 0.00042768382, z: 0.9999924, w: 0.003883534}
   m_LocalPosition: {x: -0.61, y: 1.39, z: -5.06}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 6429300418251318676}
   m_Father: {fileID: 0}
@@ -74,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c0522f102b494a14c87d767ae6cafb13, type: 3}
+  m_Sprite: {fileID: -1549664220105409824, guid: e61e8fe459cd16a4db4ab207364b2a33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.45, y: 9.33}
+  m_Size: {x: 11.96, y: 14.973359}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -96,8 +97,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.45, y: 9.33, z: 0.2}
-  m_Center: {x: 0, y: 0, z: -0.25}
+  m_Size: {x: 7.5033355, y: 11.929274, z: 0.20000008}
+  m_Center: {x: -0.5042482, y: 1.2996387, z: -0.2500004}
 --- !u!114 &4357418969263519180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +112,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partnerPortal: {fileID: 0}
+--- !u!95 &221823689
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4357418969263519176}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 171ab953ef930b04b82658ce8dfb64bc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6429300418251318679
 GameObject:
   m_ObjectHideFlags: 0
