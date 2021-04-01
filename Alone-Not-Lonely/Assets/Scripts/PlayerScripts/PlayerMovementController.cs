@@ -10,6 +10,7 @@ public class PlayerMovementController : MonoBehaviour
     public float jumpHeight;
     public float gravity = 2f;
     public bool climbing = false;
+    public bool jumping;
     //Character will move along this vector 
     private float moveDirY = 0, horizDirection = 0, vertDirection = 0;
     private Vector3 moveDirection = Vector3.zero;
@@ -107,11 +108,10 @@ public class PlayerMovementController : MonoBehaviour
            {
                 StartCoroutine(climb());
            }
-           else
+           else if(jumping)
            {
              moveDirY = jumpHeight;
            }
- 
         }
     }
 
