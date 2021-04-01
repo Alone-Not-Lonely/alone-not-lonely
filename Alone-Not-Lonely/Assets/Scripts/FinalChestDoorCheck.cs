@@ -36,7 +36,6 @@ public class FinalChestDoorCheck : MonoBehaviour
 
     }
 
-
     bool onDoor()
     {
         if (_behavior.beingHeld)
