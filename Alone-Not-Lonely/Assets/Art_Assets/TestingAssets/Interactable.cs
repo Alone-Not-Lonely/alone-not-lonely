@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -63,11 +63,6 @@ public abstract class Interactable : MonoBehaviour
     void Rotate(Vector2 inVec)
     {
         hiddenObjInstance.transform.Rotate(inVec.x/10, 0, inVec.y/10);
-    }
-
-    void Pause()
-    {
-
     }
 
     void PutDownObject()
