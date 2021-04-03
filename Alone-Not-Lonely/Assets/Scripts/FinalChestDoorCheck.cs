@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FinalChestDoorCheck : MonoBehaviour
 {
-    public int weightTimer = 0, openTime = 100;
+    //public int weightCounter = 0, openTime = 100;
     private float rayLength =1f, offsetLength = 1.75f, offsetHeight = .6f;
     private Ray leftRay, rightRay;
     private BoxContactBehavior _behavior;
@@ -21,18 +21,18 @@ public class FinalChestDoorCheck : MonoBehaviour
 
         if (onDoor())
         {
-            weightTimer++;
+            _ladder.open();
         }
         else
         {
-            if (weightTimer > 0) { weightTimer--; }
+            _ladder.close();
         }
 
-        if (weightTimer > openTime)
-        {
-            _ladder.AnimateOpenLadder();
-            _ladder.EnableDisableLadders();
-        }
+        //if (weightCounter > openTime)
+        //{
+            //_ladder.AnimateOpenLadder();
+            //_ladder.EnableDisableLadders();
+        //}
 
     }
 
