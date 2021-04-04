@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PatrolPointsController : Grabber
 {
+    public int loopPoint;
     public List<Transform> patrolPoints; // stores portal coordinates now
     public float speed = 5f;
     private int currentGoal;
@@ -148,7 +149,7 @@ public class PatrolPointsController : Grabber
                 currentGoal ++;
                 if(currentGoal >= patrolPoints.Count)
                 {
-                    currentGoal = 1;
+                    currentGoal = loopPoint;
                 }
                 this.gameObject.SetActive(true);
                 activePortal1 = patrolPoints[currentGoal].gameObject;
