@@ -7,6 +7,11 @@ public class PlayerInventory : MonoBehaviour
 {
     List<Item> items;
     public Canvas _canvas;
+    [SerializeField]
+    private Animator puzzAnim;
+    [SerializeField]
+    private Text puzzText;
+    private int numPuzz = 0;
 
     void Awake()
     {
@@ -22,7 +27,24 @@ public class PlayerInventory : MonoBehaviour
         Debug.Log("Item added, starting coroutine");
         //feedback here
         StartCoroutine("feedback", "picked up: " + item.key);
+        if (item.key.Contains("Piece"))//puzzle pieces must be named "Something Piece
+        {
+            StartCoroutine("puzzleGet");
+        }
+    }
 
+    //Makes visible and audible effects for key collection
+    IEnumerator puzzleGet()
+    {
+        puzzAnim.SetBool("Gotten Key", true);
+        //sound effect here
+        yield return new WaitForSeconds(.3f);
+        //puzzAnim.speed = 0;
+        numPuzz++;
+        puzzText.text = numPuzz.ToString();
+        //yield return new WaitForSeconds(.2f);
+        //puzzAnim.speed = 1;
+        puzzAnim.SetBool("Gotten Key", false);
     }
 
     //and performs any feedback for pickup
@@ -44,7 +66,6 @@ public class PlayerInventory : MonoBehaviour
                 return false;
             }
         }
-
         return true;
     }
 
