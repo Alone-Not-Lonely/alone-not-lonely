@@ -76,15 +76,13 @@ public class PauseMenuControllerCutscene : MonoBehaviour
         {
             child.SetActive(true);
         }
-        float[] weights = {1f};
-        mixer.TransitionToSnapshots(passFilters, weights, .01f);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
     public void Unpause()
     {
-        //playerRef._actionMap.Platforming.Pause.performed -= pause => PauseControl();
+        playerRef._actionMap.Platforming.Pause.performed -= pause => PauseControl();
         //Debug.Log("Unpausing");
         Time.timeScale = 1;
         gamePaused = false;
@@ -93,8 +91,6 @@ public class PauseMenuControllerCutscene : MonoBehaviour
         {
             child.SetActive(false);
         }
-        float[] weights = {1f};
-        mixer.TransitionToSnapshots(defaultSnap, weights, .01f);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
