@@ -32,6 +32,7 @@ public class PauseMenuController : MonoBehaviour
             pauseComponents.Add(child.gameObject);
             child.gameObject.SetActive(startActive);
         }
+        GetComponent<AudioSource>().enabled = false;
     }
  
     void Awake()
@@ -78,6 +79,7 @@ public class PauseMenuController : MonoBehaviour
         }
         float[] weights = {1f};
         mixer.TransitionToSnapshots(passFilters, weights, .01f);
+        GetComponent<AudioSource>().enabled = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -94,6 +96,7 @@ public class PauseMenuController : MonoBehaviour
         }
         float[] weights = {1f};
         mixer.TransitionToSnapshots(defaultSnap, weights, .01f);
+        GetComponent<AudioSource>().enabled = false;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

@@ -15,7 +15,7 @@ public abstract class Interactable : MonoBehaviour
     public Animator objectAnimator;
     public GameObject hiddenObj;
 
-    public GameObject hiddenObjInstance;
+    private GameObject hiddenObjInstance;
 
     void Awake() 
     {
@@ -36,7 +36,10 @@ public abstract class Interactable : MonoBehaviour
                 openText.gameObject.SetActive(false);
                 closeText.gameObject.SetActive(true);
                 //GrabAttempt(currentGrab, this.gameObject);
-                objectAnimator.SetBool("OpenObj", true);
+                if(objectAnimator != null)
+                {
+                    objectAnimator.SetBool("OpenObj", true);
+                }
                 open = true;
                 LookAtObject();
             }
@@ -44,7 +47,10 @@ public abstract class Interactable : MonoBehaviour
             {
                 openText.gameObject.SetActive(true);
                 closeText.gameObject.SetActive(false);
-                objectAnimator.SetBool("OpenObj", false);
+                if(objectAnimator != null)
+                {
+                    objectAnimator.SetBool("OpenObj", false);
+                }
                 open = false;
                 PutDownObject();
             }
