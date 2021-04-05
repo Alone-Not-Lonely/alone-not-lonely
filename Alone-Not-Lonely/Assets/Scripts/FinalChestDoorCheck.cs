@@ -5,7 +5,7 @@ using UnityEngine;
 public class FinalChestDoorCheck : MonoBehaviour
 {
     //public int weightCounter = 0, openTime = 100;
-    private float rayLength =1f, offsetLength = 1.75f, offsetHeight = .6f;
+    public float rayLength =1f, offsetLength = 1.75f, offsetHeight = .6f;
     private Ray leftRay, rightRay;
     private BoxContactBehavior _behavior;
     private AtticLadderController _ladder;
@@ -16,7 +16,7 @@ public class FinalChestDoorCheck : MonoBehaviour
         _ladder = FindObjectOfType<AtticLadderController>();
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         
         if (onDoor())

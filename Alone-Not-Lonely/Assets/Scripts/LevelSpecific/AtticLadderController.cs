@@ -23,7 +23,7 @@ public class AtticLadderController : MonoBehaviour
     private void Update()
     {
 
-        Debug.Log("playback speed: " + closedLadderAnimator.speed);
+        //Debug.Log("playback speed: " + closedLadderAnimator.speed);
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -53,7 +53,7 @@ public class AtticLadderController : MonoBehaviour
     public void EnableDisableLadders()
     {
         //win.onWin();
-        //closedLadderAnimator.gameObject.SetActive(false);
+        closedLadderAnimator.gameObject.SetActive(false);
         openLadder.SetActive(true);
         canUseLadder = true;
     }
