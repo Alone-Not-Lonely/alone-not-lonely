@@ -18,7 +18,7 @@ public class FinalChestDoorCheck : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        
         if (onDoor())
         {
             _ladder.open();

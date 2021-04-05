@@ -9,11 +9,13 @@ public class AtticLadderController : MonoBehaviour
     public Animator closedLadderAnimator;
     public GameObject openLadder;
     public bool canUseLadder;
-    private WinCondition win;
+    public float lOspeed = .1f, lCspeed = 1f;
+    //private WinCondition win;
     private Player _player;
+
     private void Start() {
         canUseLadder = false;
-        win = GetComponent<WinCondition>();
+        //win = GetComponent<WinCondition>();
         _player = FindObjectOfType<Player>();
     }
 
@@ -43,8 +45,8 @@ public class AtticLadderController : MonoBehaviour
 
     public void EnableDisableLadders()
     {
-        win.onWin();
-        closedLadderAnimator.gameObject.SetActive(false);
+        //win.onWin();
+        //closedLadderAnimator.gameObject.SetActive(false);
         openLadder.SetActive(true);
         canUseLadder = true;
     }
@@ -54,11 +56,13 @@ public class AtticLadderController : MonoBehaviour
     public void open()
     {
         Debug.Log("opening");
-        closedLadderAnimator.speed = .2f;
+       // closedLadderAnimator.SetBool("opening", true);
+        closedLadderAnimator.SetFloat("anim_speed", lOspeed);
     }
 
     public void close() {
         Debug.Log("closing");
-        //closedLadderAnimator.speed = -1f;
+        //closedLadderAnimator.SetBool("opening", false);
+        closedLadderAnimator.SetFloat("anim_speed", -lCspeed);
     }
 }
