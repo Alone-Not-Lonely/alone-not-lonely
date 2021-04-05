@@ -15,8 +15,15 @@ public class AtticLadderController : MonoBehaviour
 
     private void Start() {
         canUseLadder = false;
+
         //win = GetComponent<WinCondition>();
         _player = FindObjectOfType<Player>();
+    }
+
+    private void Update()
+    {
+
+        Debug.Log("playback speed: " + closedLadderAnimator.speed);
     }
 
     private void OnTriggerEnter(Collider other) {
