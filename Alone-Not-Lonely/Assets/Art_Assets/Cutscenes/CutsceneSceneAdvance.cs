@@ -21,6 +21,12 @@ public class CutsceneSceneAdvance : MonoBehaviour
     {
         video = GetComponent<VideoPlayer>();
         video.loopPointReached += EndReached;
+        video.Pause();
+    }
+
+    public void PlayVideo()
+    {
+        video.Play();
     }
 
     void EndReached(InputAction.CallbackContext context)

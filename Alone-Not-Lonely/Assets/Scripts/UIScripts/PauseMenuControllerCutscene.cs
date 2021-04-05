@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class PauseMenuController : MonoBehaviour
+public class PauseMenuControllerCutscene : MonoBehaviour
 {
     private bool gamePaused;
 
@@ -13,7 +13,7 @@ public class PauseMenuController : MonoBehaviour
 
     private List<GameObject> pauseComponents = new List<GameObject>();
 
-    private Player playerRef;
+    private CutsceneSceneAdvance playerRef;
     public AudioMixer mixer;
     public AudioMixerSnapshot[] passFilters;
     public AudioMixerSnapshot[] defaultSnap;
@@ -26,7 +26,7 @@ public class PauseMenuController : MonoBehaviour
         pausePrefab = this.gameObject;
         mixer.SetFloat("Volume", Mathf.Log10(volumeSlider.value) * 20);
 
-        playerRef = (Player)FindObjectOfType<Player>();
+        playerRef = (CutsceneSceneAdvance)FindObjectOfType<CutsceneSceneAdvance>();
         playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
         foreach (Transform child in pausePrefab.transform) {
             pauseComponents.Add(child.gameObject);
@@ -84,6 +84,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void Unpause()
     {
+        //playerRef._actionMap.Platforming.Pause.performed -= pause => PauseControl();
         //Debug.Log("Unpausing");
         Time.timeScale = 1;
         gamePaused = false;
@@ -97,6 +98,7 @@ public class PauseMenuController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        playerRef.PlayVideo();
     }
 
     public void GoToMainMenu()
