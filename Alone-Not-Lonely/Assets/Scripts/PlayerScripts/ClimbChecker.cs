@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ClimbChecker : MonoBehaviour
 {
-    public float checkStep = .1f, reachHeight = 0, climbLengthDepth = 1.5f, maxClimbHeight = 2, handOffset = .3f, handMoveSpeed = .3f;
+    public float checkStep = .1f, reachHeight = 0,
+                 climbLengthDepth = 1.5f, maxClimbHeight = 2, 
+                 handOffset = .3f, handMoveSpeed = .3f,
+                 detectRadius = 1f;
     private float reachDepth = 1f;
     private float playerHeight;
     public Vector3 climbablePoint = Vector3.zero;
@@ -43,7 +46,7 @@ public class ClimbChecker : MonoBehaviour
         Ray proxRay = new Ray(transform.position, transform.forward);
        
         Debug.DrawRay(transform.position, (transform.forward*reachDepth), Color.blue);
-        if (Physics.SphereCast(proxRay,.5f, out proxHit, reachDepth))//Raycast(proxRay, out proxHit, reachDepth))
+        if (Physics.SphereCast(proxRay,detectRadius, out proxHit, reachDepth))//Raycast(proxRay, out proxHit, reachDepth))
         {
             RaycastHit canLandHit;
             Vector3 hcPos = transform.position + (transform.up * reachHeight);
