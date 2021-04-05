@@ -42,6 +42,9 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Start() 
     {
+        Vector3 camRotation = camController.GetCameraRotation(); 
+        playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0)); 
+
         thisPlayer = (Player)FindObjectOfType<Player>();
 
         thisPlayer._actionMap.Platforming.MoveVert.performed += cont => MoveVert(cont.ReadValue<float>());
@@ -158,7 +161,7 @@ public class PlayerMovementController : MonoBehaviour
 
         camController.headbob = true;
         playerController.detectCollisions = true;
-       climbing = false;
+        climbing = false;
 
     }
     //private void MoveCamera(InputAction.CallbackContext context)
@@ -171,7 +174,6 @@ public class PlayerMovementController : MonoBehaviour
         if(horizDirection == 0 && vertDirection == 0)
         {
             footsteps.Pause();
-            Debug.Log("Pause steps");
         }
         /*{
             footsteps.Pause();
