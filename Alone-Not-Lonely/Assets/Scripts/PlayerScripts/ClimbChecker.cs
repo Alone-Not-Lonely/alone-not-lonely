@@ -43,7 +43,7 @@ public class ClimbChecker : MonoBehaviour
         Ray proxRay = new Ray(transform.position, transform.forward);
        
         Debug.DrawRay(transform.position, (transform.forward*reachDepth), Color.blue);
-        if (Physics.Raycast(proxRay, out proxHit, reachDepth))
+        if (Physics.SphereCast(proxRay,.5f, out proxHit, reachDepth))//Raycast(proxRay, out proxHit, reachDepth))
         {
             RaycastHit canLandHit;
             Vector3 hcPos = transform.position + (transform.up * reachHeight);
