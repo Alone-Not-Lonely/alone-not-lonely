@@ -35,7 +35,7 @@ public class ClimbChecker : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (pControl.isGrounded && !pAbil.holdingObject) { adjustHeight(); }
+        if (pControl.isGrounded) { adjustHeight(); }
         updateHands();
     }
 

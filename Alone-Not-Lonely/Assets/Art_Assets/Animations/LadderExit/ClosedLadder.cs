@@ -16,7 +16,7 @@ public class ClosedLadder : MonoBehaviour
     void OnAnimationEnded()
     {
         //doorBreak.Play();
-        ladderController.EnableDisableLadders();
+        //ladderController.EnableDisableLadders(); KEEP THIS
     }
 
 }

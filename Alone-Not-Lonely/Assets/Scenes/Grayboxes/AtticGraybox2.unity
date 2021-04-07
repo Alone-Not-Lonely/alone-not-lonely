@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028426, g: 0.22571485, b: 0.30692297, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9671,6 +9671,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2465575874773374733, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2465575874773374733, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2465575874773374733, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861812640220971849, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861812640220971849, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4378794251502881635, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
       propertyPath: footsteps
       value: 
@@ -10974,7 +10994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2065015691403134591, guid: 02fe9c085bccccf4898974299ff33d58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.37
+      value: -6.52
       objectReference: {fileID: 0}
     - target: {fileID: 2065015691403134591, guid: 02fe9c085bccccf4898974299ff33d58, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10982,7 +11002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2065015691403134591, guid: 02fe9c085bccccf4898974299ff33d58, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -65.14
+      value: -64.06
       objectReference: {fileID: 0}
     - target: {fileID: 2065015691403134591, guid: 02fe9c085bccccf4898974299ff33d58, type: 3}
       propertyPath: m_LocalRotation.w
@@ -43994,8 +44014,6 @@ MonoBehaviour:
   closedLadderAnimator: {fileID: 2089428169}
   openLadder: {fileID: 659760336}
   canUseLadder: 0
-  lOspeed: 0.1
-  lCspeed: 0.5
 --- !u!65 &1806522421
 BoxCollider:
   m_ObjectHideFlags: 0

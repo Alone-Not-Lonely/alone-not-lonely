@@ -9,7 +9,7 @@ public class AtticLadderController : MonoBehaviour
     public Animator closedLadderAnimator;
     public GameObject openLadder;
     public bool canUseLadder;
-    public float lOspeed = .1f, lCspeed = 1f;
+    private float state = 1;
     //private WinCondition win;
     private Player _player;
 
@@ -22,7 +22,7 @@ public class AtticLadderController : MonoBehaviour
 
     private void Update()
     {
-
+        
         //Debug.Log("playback speed: " + closedLadderAnimator.speed);
     }
 
@@ -62,14 +62,16 @@ public class AtticLadderController : MonoBehaviour
 
     public void open()
     {
-        Debug.Log("opening");
-       // closedLadderAnimator.SetBool("opening", true);
-        closedLadderAnimator.SetFloat("anim_speed", lOspeed);
+        //Debug.Log("opening");
+        state -= .001f;
+        state = Mathf.Clamp(state,0f,1f);
+        closedLadderAnimator.SetFloat("anim_speed", state);
     }
 
     public void close() {
-        Debug.Log("closing");
-        //closedLadderAnimator.SetBool("opening", false);
-        closedLadderAnimator.SetFloat("anim_speed", -lCspeed);
+        //Debug.Log("closing");
+        state += .001f;
+        state = Mathf.Clamp(state, 0f, 1f);
+        closedLadderAnimator.SetFloat("anim_speed", state);
     }
 }
