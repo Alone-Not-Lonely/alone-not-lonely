@@ -20,7 +20,7 @@ public class MainMenuController : MonoBehaviour
     }
 
     public void LoadGame(string scenenamepass)
-    {   if(scenenamepass == "AtticScene")
+    {   if(scenenamepass == "Attic2")
         {
             Destroy(MenuMusic);
         }
@@ -29,7 +29,7 @@ public class MainMenuController : MonoBehaviour
 
     public void LoadGame()
     {
-        if(SceneName == "AtticScene")
+        if(SceneName == "Attic2")
         {
             Destroy(MenuMusic);
         }

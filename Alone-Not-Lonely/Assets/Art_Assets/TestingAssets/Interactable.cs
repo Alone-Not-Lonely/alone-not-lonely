@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +15,7 @@ public abstract class Interactable : MonoBehaviour
     public Animator objectAnimator;
     public GameObject hiddenObj;
 
-    public GameObject hiddenObjInstance;
+    private GameObject hiddenObjInstance;
 
     void Awake() 
     {
@@ -35,8 +35,10 @@ public abstract class Interactable : MonoBehaviour
             {
                 openText.gameObject.SetActive(false);
                 closeText.gameObject.SetActive(true);
-                //GrabAttempt(currentGrab, this.gameObject);
-                objectAnimator.SetBool("OpenObj", true);
+                if(objectAnimator != null)
+                {
+                    objectAnimator.SetBool("OpenObj", true);
+                }
                 open = true;
                 LookAtObject();
             }
@@ -44,7 +46,10 @@ public abstract class Interactable : MonoBehaviour
             {
                 openText.gameObject.SetActive(true);
                 closeText.gameObject.SetActive(false);
-                objectAnimator.SetBool("OpenObj", false);
+                if(objectAnimator != null)
+                {
+                    objectAnimator.SetBool("OpenObj", false);
+                }
                 open = false;
                 PutDownObject();
             }
@@ -62,12 +67,10 @@ public abstract class Interactable : MonoBehaviour
 
     void Rotate(Vector2 inVec)
     {
-        hiddenObjInstance.transform.Rotate(inVec.x/10, 0, inVec.y/10);
-    }
-
-    void Pause()
-    {
-
+        if(hiddenObjInstance != null)
+        {
+            hiddenObjInstance.transform.Rotate(inVec.x/10, 0, inVec.y/10);
+        }
     }
 
     void PutDownObject()
@@ -75,6 +78,7 @@ public abstract class Interactable : MonoBehaviour
         playerRef._actionMap.Platforming.Enable();
         playerRef._actionMap.ViewingObject.Disable();
         playerRef._actionMap.Platforming.InteractionTest.performed += interact => PlayerInteract();
+        playerRef._actionMap.ViewingObject.RotateObj.performed -= rot => Rotate(rot.ReadValue<Vector2>());
         Destroy(hiddenObjInstance);
     }
 

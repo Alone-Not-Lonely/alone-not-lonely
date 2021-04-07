@@ -7,10 +7,11 @@ using UnityEngine.UI;
 
 public class PauseMenuController : MonoBehaviour
 {
-    // Start is called before the first frame update
     private bool gamePaused;
 
     public GameObject pausePrefab;
+
+    private List<GameObject> pauseComponents = new List<GameObject>();
 
     private Player playerRef;
     public AudioMixer mixer;
@@ -18,19 +19,32 @@ public class PauseMenuController : MonoBehaviour
     public AudioMixerSnapshot[] defaultSnap;
     public float volume = 0;
     public Slider volumeSlider;
+    public bool startActive = false;
     void Start()
     {
-        pausePrefab.SetActive(false);
+        //pausePrefab.SetActive(false);
+        pausePrefab = this.gameObject;
         mixer.SetFloat("Volume", Mathf.Log10(volumeSlider.value) * 20);
 
         playerRef = (Player)FindObjectOfType<Player>();
         playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
+        foreach (Transform child in pausePrefab.transform) {
+            pauseComponents.Add(child.gameObject);
+            child.gameObject.SetActive(startActive);
+        }
+        GetComponent<AudioSource>().enabled = false;
     }
  
     void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-
+        if(startActive)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     public void PauseControl()
@@ -47,30 +61,7 @@ public class PauseMenuController : MonoBehaviour
             Unpause();
         }
     }
-    // Update is called once per frame
-    /*  
-      void Update()
-      {
-          if(Input.GetKeyDown(KeyCode.Escape) && gamePaused == false)
-          {
-              Pause();
-          }
-          else if (Input.GetKeyDown(KeyCode.Escape) && gamePaused == true)
-          {
-              Unpause();
-          }
 
-          if(gamePaused)
-          {
-              UpdatePauseUI();
-          }
-      }
-
-      void UpdatePauseUI()
-      {
-
-      }
-   */
     public bool isPaused()
     {
         return gamePaused;
@@ -81,9 +72,14 @@ public class PauseMenuController : MonoBehaviour
         //Debug.Log("pausing");
         Time.timeScale = 0;
         gamePaused = true;
-        pausePrefab.SetActive(true);
+        //pausePrefab.SetActive(true);
+        foreach(GameObject child in pauseComponents)
+        {
+            child.SetActive(true);
+        }
         float[] weights = {1f};
         mixer.TransitionToSnapshots(passFilters, weights, .01f);
+        GetComponent<AudioSource>().enabled = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -93,9 +89,14 @@ public class PauseMenuController : MonoBehaviour
         //Debug.Log("Unpausing");
         Time.timeScale = 1;
         gamePaused = false;
-        pausePrefab.SetActive(false);
+        //pausePrefab.SetActive(false);
+        foreach(GameObject child in pauseComponents)
+        {
+            child.SetActive(false);
+        }
         float[] weights = {1f};
         mixer.TransitionToSnapshots(defaultSnap, weights, .01f);
+        GetComponent<AudioSource>().enabled = false;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PatrolPointsController : Grabber
 {
+    public int loopPoint;
     public List<Transform> patrolPoints; // stores portal coordinates now
     public float speed = 5f;
     private int currentGoal;
@@ -148,7 +149,7 @@ public class PatrolPointsController : Grabber
                 currentGoal ++;
                 if(currentGoal >= patrolPoints.Count)
                 {
-                    currentGoal = 1;
+                    currentGoal = loopPoint;
                 }
                 this.gameObject.SetActive(true);
                 activePortal1 = patrolPoints[currentGoal].gameObject;
@@ -178,7 +179,6 @@ public class PatrolPointsController : Grabber
 
     private void OnCollisionEnter(Collision other) 
     {
-        Debug.Log("Monster entered a collision");
         if(other.gameObject.CompareTag("Grabable")) //trying to get something going here wrt knocking the box out of the lift monster's grasp
         {
             //checks to see if the grabbable thing is a box and it isn't being held
