@@ -15,15 +15,16 @@ public class AtticLadderController : MonoBehaviour
 
     private void Start() {
         canUseLadder = false;
-
+        
         //win = GetComponent<WinCondition>();
         _player = FindObjectOfType<Player>();
+        closedLadderAnimator.SetFloat("anim_speed", state);
     }
 
     private void Update()
     {
         
-        //Debug.Log("playback speed: " + closedLadderAnimator.speed);
+        Debug.Log("state value: " + state);
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -62,14 +63,14 @@ public class AtticLadderController : MonoBehaviour
 
     public void open()
     {
-        //Debug.Log("opening");
+        Debug.Log("opening");
         state -= .001f;
         state = Mathf.Clamp(state,0f,1f);
         closedLadderAnimator.SetFloat("anim_speed", state);
     }
 
     public void close() {
-        //Debug.Log("closing");
+        Debug.Log("closing");
         state += .001f;
         state = Mathf.Clamp(state, 0f, 1f);
         closedLadderAnimator.SetFloat("anim_speed", state);
