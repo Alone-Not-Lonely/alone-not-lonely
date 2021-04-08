@@ -10,6 +10,8 @@ public class BoxContactBehavior : MonoBehaviour
     public AudioClip boxPickup;
     public AudioClip boxDrop;
 
+    public float holdOffset = .25f;
+
     private void Start() {
         beingHeld = false;
         boxHolder = null;
