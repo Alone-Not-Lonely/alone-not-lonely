@@ -231,14 +231,20 @@ public class PanicMeterController : MonoBehaviour
     //returns a tag if found
     private void checkFloor()
     {
+        Debug.Log("Checking Floor");
         RaycastHit hit;
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * rayDepth, Color.yellow);
 
         //could adjust starting position to align with player perception
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down)*rayDepth, out hit))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, rayDepth))
         {
+            
             //can but other floor based traits here
-            if (hit.collider.tag == "Deadly") {currentAnxietyPoints += anxietySpeed * Time.deltaTime;};
+            if (hit.collider.tag == "Deadly") {
+                //100 as an arbitrarily high number
+                currentAnxietyPoints += (100 * Time.deltaTime);
+                Debug.Log(currentAnxietyPoints);
+            };
             //There may be a problem w/ calling faint twice, but we'll see
         }
     }
