@@ -21,4 +21,9 @@ public class TriggerInitObject : MonoBehaviour
             }
         }
     }
+
+    public void Deactivate()
+    {
+        this.gameObject.SetActive(false);
+    }
 }
