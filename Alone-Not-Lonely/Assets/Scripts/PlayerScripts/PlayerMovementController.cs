@@ -32,20 +32,21 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Awake()
     {
+        /*
         playerController = this.GetComponent<CharacterController>();
         camController = (CameraController)FindObjectOfType(typeof(CameraController));
         playerAb = (PlayerAbilityController)FindObjectOfType(typeof(PlayerAbilityController));
         footsteps.Play();
         footsteps.Pause();
         cCheck = (ClimbChecker)FindObjectOfType(typeof(ClimbChecker));
+        */
     }
 
     private void Start() 
     {
-        Vector3 camRotation = camController.GetCameraRotation(); 
-        playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0)); 
-
+        Debug.Log("player movement start");
         thisPlayer = (Player)FindObjectOfType<Player>();
+        playerController = GetComponent<CharacterController>();
 
         thisPlayer._actionMap.Platforming.MoveVert.performed += cont => MoveVert(cont.ReadValue<float>());
         thisPlayer._actionMap.Platforming.MoveVert.canceled += cont => MoveVert(0f);
@@ -54,6 +55,18 @@ public class PlayerMovementController : MonoBehaviour
         thisPlayer._actionMap.Platforming.MoveHoriz.canceled += cont => MoveHoriz(0f);
 
         thisPlayer._actionMap.Platforming.Jump.performed += jump => Jump();
+
+        
+        camController = (CameraController)FindObjectOfType(typeof(CameraController));
+        playerAb = (PlayerAbilityController)FindObjectOfType(typeof(PlayerAbilityController));
+        footsteps.Play();
+        footsteps.Pause();
+        cCheck = (ClimbChecker)FindObjectOfType(typeof(ClimbChecker));
+
+        Vector3 camRotation = camController.GetCameraRotation(); 
+        playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0)); 
+
+       
     }
 
     /*
@@ -69,7 +82,8 @@ public class PlayerMovementController : MonoBehaviour
     bool stopFootstepsV;
     public void MoveHoriz(float horizMvmt)
     {
-        if(horizDirection == 0 && vertDirection == 0 && playerController.isGrounded)
+        playerController = GetComponent<CharacterController>();//TEST TEST TEST BAD FORM
+        if (horizDirection == 0 && vertDirection == 0 && playerController.isGrounded)
         {
             footsteps.UnPause();
             Debug.Log("Play steps");
@@ -84,7 +98,8 @@ public class PlayerMovementController : MonoBehaviour
 
     public void MoveVert(float vertMvmt)
     {
-        if(vertDirection == 0 && horizDirection == 0 && playerController.isGrounded)
+        playerController = GetComponent<CharacterController>();//TEST TEST TEST BAD FORM
+        if (vertDirection == 0 && horizDirection == 0 && playerController.isGrounded)
         {
             footsteps.UnPause();
             Debug.Log("Play steps");

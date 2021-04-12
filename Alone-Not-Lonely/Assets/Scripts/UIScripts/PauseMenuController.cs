@@ -11,7 +11,7 @@ public class PauseMenuController : MonoBehaviour
 
     public GameObject pausePrefab;
 
-    private List<GameObject> pauseComponents = new List<GameObject>();
+    private List<GameObject> pauseComponents;
 
     private Player playerRef;
     public AudioMixer mixer;
@@ -23,6 +23,7 @@ public class PauseMenuController : MonoBehaviour
     void Start()
     {
         //pausePrefab.SetActive(false);
+        pauseComponents = new List<GameObject>();
         pausePrefab = this.gameObject;
         mixer.SetFloat("Volume", Mathf.Log10(volumeSlider.value) * 20);
 
@@ -33,8 +34,13 @@ public class PauseMenuController : MonoBehaviour
             child.gameObject.SetActive(startActive);
         }
         GetComponent<AudioSource>().enabled = false;
+        
     }
- 
+
+    private void OnDestroy()
+    {
+        playerRef._actionMap.Platforming.Pause.performed -= pause => PauseControl();
+    }
     void Awake()
     {
         if(startActive)
