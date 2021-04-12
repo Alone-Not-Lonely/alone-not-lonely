@@ -33,9 +33,9 @@ public class AtticLadderController : MonoBehaviour
            // boxBlockingExit = true;
         //}
 
-        if(canUseLadder && other.CompareTag("Player"))
+        if(other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Kitchen");
+            SceneManager.LoadScene("KitchenGraybox");
         }
     }
 

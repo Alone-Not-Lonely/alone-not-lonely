@@ -15,12 +15,16 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        
         _actionMap = new DefaultControls();
         _actionMap.Enable();
+        
     }
 
     void Start()
     {
+        _actionMap = new DefaultControls();
+        _actionMap.Enable();
         pmController = (PauseMenuController)FindObjectOfType(typeof(PauseMenuController));
         paused = pmController.isPaused();
         spawnPosition = transform.position;
