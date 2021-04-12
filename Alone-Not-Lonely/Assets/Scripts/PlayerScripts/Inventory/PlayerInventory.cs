@@ -23,6 +23,7 @@ public class PlayerInventory : MonoBehaviour
     //and performs any feedback for pickup
     public void addItem(Item item)
     {
+        Debug.Log("adding item");
         items.Add(item);
         Debug.Log("Item added, starting coroutine");
         //feedback here

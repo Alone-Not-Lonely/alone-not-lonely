@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public abstract class Interactable : MonoBehaviour
 {
-    private bool inRange = false;
-    private bool open = false;
+    protected bool inRange = false;
+    protected bool open = false;
     public Text openText;
     public Text closeText;
 
@@ -15,7 +15,7 @@ public abstract class Interactable : MonoBehaviour
     public Animator objectAnimator;
     public GameObject hiddenObj;
 
-    private GameObject hiddenObjInstance;
+    protected GameObject hiddenObjInstance;
 
     void Awake() 
     {
@@ -56,7 +56,7 @@ public abstract class Interactable : MonoBehaviour
         }
     }
 
-    void LookAtObject()
+    protected void LookAtObject()
     {
         playerRef._actionMap.Platforming.Disable();
         playerRef._actionMap.ViewingObject.Enable();
@@ -65,7 +65,7 @@ public abstract class Interactable : MonoBehaviour
         hiddenObjInstance = Instantiate(hiddenObj, Camera.main.gameObject.transform.position + Camera.main.gameObject.transform.forward, Quaternion.identity);
     }
 
-    void Rotate(Vector2 inVec)
+    protected void Rotate(Vector2 inVec)
     {
         if(hiddenObjInstance != null)
         {
@@ -73,7 +73,7 @@ public abstract class Interactable : MonoBehaviour
         }
     }
 
-    void PutDownObject()
+    protected void PutDownObject()
     {
         playerRef._actionMap.Platforming.Enable();
         playerRef._actionMap.ViewingObject.Disable();
