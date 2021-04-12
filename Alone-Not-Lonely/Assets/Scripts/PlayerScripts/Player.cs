@@ -33,6 +33,10 @@ public class Player : MonoBehaviour
         camSpawnPosition = Camera.main.gameObject.transform.position;
         camSpawnRotation = Camera.main.gameObject.transform.rotation;
     }
+    private void OnDestroy()
+    {
+        _actionMap.Disable();
+    }
 
     //Resets player to beginning state
     public void backToSpawn()

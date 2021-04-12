@@ -82,7 +82,8 @@ public class PlayerMovementController : MonoBehaviour
     bool stopFootstepsV;
     public void MoveHoriz(float horizMvmt)
     {
-        if(horizDirection == 0 && vertDirection == 0 && playerController.isGrounded)
+        playerController = GetComponent<CharacterController>();//TEST TEST TEST BAD FORM
+        if (horizDirection == 0 && vertDirection == 0 && playerController.isGrounded)
         {
             footsteps.UnPause();
             Debug.Log("Play steps");
@@ -97,7 +98,8 @@ public class PlayerMovementController : MonoBehaviour
 
     public void MoveVert(float vertMvmt)
     {
-        if(vertDirection == 0 && horizDirection == 0 && playerController.isGrounded)
+        playerController = GetComponent<CharacterController>();//TEST TEST TEST BAD FORM
+        if (vertDirection == 0 && horizDirection == 0 && playerController.isGrounded)
         {
             footsteps.UnPause();
             Debug.Log("Play steps");

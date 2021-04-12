@@ -36,7 +36,11 @@ public class PauseMenuController : MonoBehaviour
         GetComponent<AudioSource>().enabled = false;
         
     }
- 
+
+    private void OnDestroy()
+    {
+        playerRef._actionMap.Platforming.Pause.performed -= pause => PauseControl();
+    }
     void Awake()
     {
         if(startActive)
