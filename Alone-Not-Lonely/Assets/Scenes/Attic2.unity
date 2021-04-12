@@ -6337,7 +6337,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 25b1dc95874e11c4f81597dbc75766c1, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 3527543d73a55a94cb247c2dc427d1aa, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3d1d401566af7ce4bb2976aa76effb9a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -6594,6 +6594,39 @@ Transform:
   m_Father: {fileID: 89808756}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -33.673, z: 0}
+--- !u!1 &437932529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 437932530}
+  m_Layer: 0
+  m_Name: Mood Modules
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &437932530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437932529}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 42.402637, y: 11.30284, z: -70.770584}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 922478426}
+  - {fileID: 1716340447}
+  - {fileID: 1686329105}
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &440899371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36933,6 +36966,64 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3866964178879158618, guid: 1c30965dd33729343a48c391d0d49030, type: 3}
   m_PrefabInstance: {fileID: 922264341}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &922478421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 922478426}
+  - component: {fileID: 922478423}
+  - component: {fileID: 922478422}
+  m_Layer: 0
+  m_Name: Mood Module 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &922478422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922478421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53cff34b6c683c746b7fe6fc6c98fd18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisClip: {fileID: 8300000, guid: 6354ef800df20654eab9c08484537e19, type: 3}
+--- !u!65 &922478423
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922478421}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &922478426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922478421}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.0973625, y: -6.27284, z: 51.340584}
+  m_LocalScale: {x: 7.490246, y: 7.9920754, z: 3.1936}
+  m_Children: []
+  m_Father: {fileID: 437932530}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &932094383
 GameObject:
   m_ObjectHideFlags: 0
@@ -46995,6 +47086,64 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 816016023120446896, guid: fb3275aa269a1c64f9a7bbb98e4b640e, type: 3}
   m_PrefabInstance: {fileID: 1683802384}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1686329100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1686329105}
+  - component: {fileID: 1686329102}
+  - component: {fileID: 1686329101}
+  m_Layer: 0
+  m_Name: Mood Module 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1686329101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686329100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53cff34b6c683c746b7fe6fc6c98fd18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisClip: {fileID: 8300000, guid: bc38b067f89e7124ca0281ab62eb4ab7, type: 3}
+--- !u!65 &1686329102
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686329100}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1686329105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686329100}
+  m_LocalRotation: {x: -0, y: -0.15059647, z: -0, w: 0.98859537}
+  m_LocalPosition: {x: -0.6926384, y: 0.70716, z: 2.760582}
+  m_LocalScale: {x: 11.44959, y: 7.9920754, z: 3.1936004}
+  m_Children: []
+  m_Father: {fileID: 437932530}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: -17.323, z: 0}
 --- !u!1001 &1703113494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47670,6 +47819,64 @@ MonoBehaviour:
   rayLength: 2.5
   offsetLength: 1.75
   offsetHeight: 0.6
+--- !u!1 &1716340442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1716340447}
+  - component: {fileID: 1716340444}
+  - component: {fileID: 1716340443}
+  m_Layer: 0
+  m_Name: Mood Module 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1716340443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716340442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53cff34b6c683c746b7fe6fc6c98fd18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisClip: {fileID: 8300000, guid: cd9d7ea321c7477469bf019f773e3898, type: 3}
+--- !u!65 &1716340444
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716340442}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1716340447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716340442}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -41.73264, y: -6.27284, z: 9.650585}
+  m_LocalScale: {x: 11.44959, y: 7.9920754, z: 3.1936}
+  m_Children: []
+  m_Father: {fileID: 437932530}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1721168607
 BoxCollider:
   m_ObjectHideFlags: 0
