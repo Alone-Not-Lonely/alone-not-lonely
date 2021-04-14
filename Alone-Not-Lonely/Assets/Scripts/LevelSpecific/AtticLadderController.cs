@@ -35,6 +35,10 @@ public class AtticLadderController : MonoBehaviour
 
         if(other.CompareTag("Player"))
         {
+            //_player.gameObject.transform.Translate(new Vector3(32.7400017f,4.98999977f,-62.7200012f) - _player.gameObject.transform.position);
+            _player.gameObject.SetActive(false);
+            _player.gameObject.transform.position =  new Vector3(32.7400017f,4.98999977f,-62.7200012f);
+            _player.gameObject.SetActive(true);
             SceneManager.LoadScene("KitchenGraybox");
         }
     }
