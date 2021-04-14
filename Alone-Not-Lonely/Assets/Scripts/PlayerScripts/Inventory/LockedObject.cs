@@ -40,7 +40,10 @@ public class LockedObject : MonoBehaviour
     {
         Debug.Log("Open");
         _animator.SetBool("open", true);
-        //Destroy(this.gameObject);
+        foreach(Item key in keys)
+        {
+            inventory.removeItem(key);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

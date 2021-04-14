@@ -12,6 +12,10 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     private Text puzzText;
     private int numPuzz = 0;
+    public GameObject keyUI;
+    public GameObject keyTemplate;
+    
+
 
     void Awake()
     {
@@ -27,10 +31,15 @@ public class PlayerInventory : MonoBehaviour
         items.Add(item);
         Debug.Log("Item added, starting coroutine");
         //feedback here
-        StartCoroutine("feedback", "picked up: " + item.key);
+        //StartCoroutine("feedback", "picked up: " + item.key);
         if (item.key.Contains("Piece"))//puzzle pieces must be named "Something Piece
         {
             StartCoroutine("puzzleGet");
+        }
+
+        if (item.key.Contains("Key"))//puzzle pieces must be named "Something Piece
+        {
+            StartCoroutine("keyGet", item.key);
         }
     }
 
@@ -48,13 +57,34 @@ public class PlayerInventory : MonoBehaviour
         puzzAnim.SetBool("Gotten Key", false);
     }
 
+    IEnumerator keyGet(string name)
+    {
+        GameObject key = Instantiate(keyTemplate);
+        key.transform.parent = keyUI.transform;
+        key.name = name;
+        key.transform.GetChild(1).GetComponent<Text>().text = name;
+        yield return new WaitForSeconds(0);
+    }
+
     //and performs any feedback for pickup
     public void removeItem(Item item)
     {
         items.Remove(item);
 
         //feedback here
-        StartCoroutine("feedback", "used up: " + item.key);
+        //StartCoroutine("feedback", "used up: " + item.key);
+        if (item.key.Contains("Key"))//puzzle pieces must be named "Something Piece
+        {
+            StartCoroutine("keyUsed", item.key);
+        }
+    }
+
+    IEnumerator keyUsed(string name)
+    {
+
+        GameObject usedKey = keyUI.transform.Find(name).gameObject;
+        Destroy(usedKey);
+        yield return new WaitForSeconds(0);
     }
 
     //Checks to see if every required item's key exists in the player's items

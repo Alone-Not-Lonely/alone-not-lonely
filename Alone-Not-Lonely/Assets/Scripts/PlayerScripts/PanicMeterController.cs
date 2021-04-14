@@ -242,6 +242,7 @@ public class PanicMeterController : MonoBehaviour
             //can but other floor based traits here
             if (hit.collider.tag == "Deadly") {
                 //100 as an arbitrarily high number
+                Debug.Log("should be dead again");
                 currentAnxietyPoints += (100 * Time.deltaTime);
                 Debug.Log(currentAnxietyPoints);
             };
