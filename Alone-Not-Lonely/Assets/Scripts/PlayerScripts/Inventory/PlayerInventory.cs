@@ -16,7 +16,7 @@ public class PlayerInventory : MonoBehaviour
     void Awake()
     {
         items = new List<Item>();
-        DontDestroyOnLoad(this.gameObject);//Keep persistant
+        //DontDestroyOnLoad(this.gameObject);//Keep persistant
     }
 
     //adds an item's key to the list
