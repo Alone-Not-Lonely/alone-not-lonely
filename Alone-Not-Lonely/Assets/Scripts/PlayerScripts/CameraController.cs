@@ -90,7 +90,7 @@ public class CameraController : MonoBehaviour
         if (!player.paused && headbob)
         {
             //will need to handle case of jumping
-            if (player.transform.position != lastLocation)
+            if (player.transform.position.x != lastLocation.x || player.transform.position.z != lastLocation.z)
             {
                 //player is moving
                 lastLocation = player.transform.position;

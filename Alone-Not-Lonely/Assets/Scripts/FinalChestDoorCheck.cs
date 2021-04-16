@@ -9,7 +9,7 @@ public class FinalChestDoorCheck : MonoBehaviour
     private Ray leftRay, rightRay;
     private BoxContactBehavior _behavior;
     private AtticLadderController _ladder;
-    // Start is called before the first frame update
+
     void Awake()
     {
         _behavior = GetComponent<BoxContactBehavior>();
@@ -27,12 +27,6 @@ public class FinalChestDoorCheck : MonoBehaviour
         {
             _ladder.close();
         }
-
-        //if (weightCounter > openTime)
-        //{
-            //_ladder.AnimateOpenLadder();
-            //_ladder.EnableDisableLadders();
-        //}
 
     }
 
