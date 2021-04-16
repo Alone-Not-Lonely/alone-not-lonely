@@ -15,12 +15,16 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        
         _actionMap = new DefaultControls();
         _actionMap.Enable();
+        
     }
 
     void Start()
     {
+        _actionMap = new DefaultControls();
+        _actionMap.Enable();
         pmController = (PauseMenuController)FindObjectOfType(typeof(PauseMenuController));
         paused = pmController.isPaused();
         spawnPosition = transform.position;
@@ -28,6 +32,10 @@ public class Player : MonoBehaviour
 
         camSpawnPosition = Camera.main.gameObject.transform.position;
         camSpawnRotation = Camera.main.gameObject.transform.rotation;
+    }
+    private void OnDestroy()
+    {
+        _actionMap.Disable();
     }
 
     //Resets player to beginning state

@@ -24,11 +24,18 @@ public class CameraController : MonoBehaviour
 
     // current roation
     float rotationX = 0f;
-    float rotationY = 0f;
+    float rotationY = 90f;
 
     //controller input values:
     float inX = 0f;
     float iny = 0f;
+
+    //headbob values
+    public float headAmplitude = 1f, headSpeed = 0.3f;
+    private float startingY, headProgress = 0;
+    private Player _player;
+    private Vector3 lastLocation;
+    public bool headbob = true;
 
     private Player player;
 
@@ -39,7 +46,7 @@ public class CameraController : MonoBehaviour
     {
         //Moved mouse logic to Pause Menu Controller
         player = (Player)FindObjectOfType(typeof(Player));
-
+        
         player._actionMap.Platforming.Camera.performed += look =>
         {
             inX = look.ReadValue<Vector2>().x;
@@ -53,15 +60,9 @@ public class CameraController : MonoBehaviour
         };
     }
 
-    private void Awake()
-    {
-       
-    }
-
-    private Vector3 refRot;
     void Update()
     {
-        if(!player.paused)
+        if (!player.paused)
         {
             //Cursor.lockState = CursorLockMode.Locked;
             //Cursor.visible = false;
@@ -74,17 +75,47 @@ public class CameraController : MonoBehaviour
 
             // rotate game objects accordingly
             transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0);
-            //transform.localEulerAngles = Vector3.SmoothDamp(transform.localEulerAngles, new Vector3(-rotationX, rotationY, 0), ref refRot, Time.deltaTime * sensitivityX);
-            //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(-rotationX, rotationY, 0), sensitivityX * Time.deltaTime);
-            //MOVED FUNCTIONALIT TO HEAD BOB:
-            //transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 2f, player.transform.position.z);
-
+            transform.position = new Vector3(player.transform.position.x, (player.transform.position.y + 2f + getBobHeight()), player.transform.position.z);
         }
         //else
         //{
             //Cursor.lockState = CursorLockMode.None;
             //Cursor.visible = true;
         //}
+    }
+
+    void FixedUpdate()
+    {
+        //progresses head bob height by monitoring player motion
+        if (!player.paused && headbob)
+        {
+            //will need to handle case of jumping
+            if (player.transform.position != lastLocation)
+            {
+                //player is moving
+                lastLocation = player.transform.position;
+                headProgress += headSpeed;
+            }
+            else
+            {//Player is not moving
+                headProgress = 0;
+            }
+        }
+    }
+
+    //Determines addition to Y placement by amount of time player has been walking
+    float getBobHeight()
+    {
+        if (headbob)
+        {
+            return (Mathf.Sin(headProgress) * headAmplitude);
+            //fun future idea: tie in with player move speed        
+        }
+        else
+        {
+            return 0;
+        }
+     
     }
 
     public Vector3 GetCameraRotation()

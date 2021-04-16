@@ -42,7 +42,7 @@ public class MoodModuleController : MonoBehaviour
         var currTime = music[currentSource].time;
         music[(currentSource + 1) % 2].clip = newClip;
         music[(currentSource + 1) % 2].Play();
-        music[(currentSource + 1) % 2].time = currTime;
+        music[(currentSource + 1) % 2].time = currTime % music[(currentSource + 1) % 2].clip.length;
         currentSource = (currentSource + 1) % 2;
         StartCoroutine(SwapVolumes());
     }

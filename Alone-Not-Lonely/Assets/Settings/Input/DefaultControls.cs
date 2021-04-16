@@ -73,6 +73,22 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""InteractionTest"",
+                    ""type"": ""Button"",
+                    ""id"": ""fde69769-008a-4e34-86e1-761ebb8cd747"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SkipLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""8629a0c1-44ad-4c01-9c8b-d1d20276ddc1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -220,6 +236,17 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""283219c0-95ac-4d3c-a8fe-9225d20f0092"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""LeftStick [Gamepad]"",
                     ""id"": ""c7ea81e8-a227-42bc-b6e2-9e5244ec20ba"",
                     ""path"": ""1DAxis"",
@@ -350,6 +377,118 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                     ""action"": ""MoveVert"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1415f803-9e0a-4b29-8cea-a26ab7ac6eef"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractionTest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eef8e2e7-3907-48cb-96d2-cccf7c567031"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractionTest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""858a5208-c7be-4fd3-83aa-7207e7d9b41f"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""ViewingObject"",
+            ""id"": ""61f28e81-ae3f-4b8a-9067-f7c114fb1520"",
+            ""actions"": [
+                {
+                    ""name"": ""InteractionTest"",
+                    ""type"": ""Button"",
+                    ""id"": ""673cd040-18c7-4a21-834d-0dc20b104702"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""RotateObj"",
+                    ""type"": ""Value"",
+                    ""id"": ""76756476-36cb-41d5-975f-9edd1d989cda"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""74abc05b-4fbc-4c88-8b20-af16cabc0564"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractionTest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""834850f9-7c1b-4ff2-848f-e6f09282af46"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractionTest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""375eca1d-09e6-4ca3-b7a6-e1e8311c8f53"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractionTest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""523be86c-b9fb-4ba3-94c2-800cad783b81"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultControlScheme"",
+                    ""action"": ""RotateObj"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0be083ed-0b5d-43d3-a310-7bc3188b5298"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultControlScheme"",
+                    ""action"": ""RotateObj"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -371,6 +510,12 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         m_Platforming_Use = m_Platforming.FindAction("Use", throwIfNotFound: true);
         m_Platforming_MoveHoriz = m_Platforming.FindAction("MoveHoriz", throwIfNotFound: true);
         m_Platforming_MoveVert = m_Platforming.FindAction("MoveVert", throwIfNotFound: true);
+        m_Platforming_InteractionTest = m_Platforming.FindAction("InteractionTest", throwIfNotFound: true);
+        m_Platforming_SkipLevel = m_Platforming.FindAction("SkipLevel", throwIfNotFound: true);
+        // ViewingObject
+        m_ViewingObject = asset.FindActionMap("ViewingObject", throwIfNotFound: true);
+        m_ViewingObject_InteractionTest = m_ViewingObject.FindAction("InteractionTest", throwIfNotFound: true);
+        m_ViewingObject_RotateObj = m_ViewingObject.FindAction("RotateObj", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -427,6 +572,8 @@ public class @DefaultControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Platforming_Use;
     private readonly InputAction m_Platforming_MoveHoriz;
     private readonly InputAction m_Platforming_MoveVert;
+    private readonly InputAction m_Platforming_InteractionTest;
+    private readonly InputAction m_Platforming_SkipLevel;
     public struct PlatformingActions
     {
         private @DefaultControls m_Wrapper;
@@ -438,6 +585,8 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         public InputAction @Use => m_Wrapper.m_Platforming_Use;
         public InputAction @MoveHoriz => m_Wrapper.m_Platforming_MoveHoriz;
         public InputAction @MoveVert => m_Wrapper.m_Platforming_MoveVert;
+        public InputAction @InteractionTest => m_Wrapper.m_Platforming_InteractionTest;
+        public InputAction @SkipLevel => m_Wrapper.m_Platforming_SkipLevel;
         public InputActionMap Get() { return m_Wrapper.m_Platforming; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -468,6 +617,12 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                 @MoveVert.started -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnMoveVert;
                 @MoveVert.performed -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnMoveVert;
                 @MoveVert.canceled -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnMoveVert;
+                @InteractionTest.started -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnInteractionTest;
+                @InteractionTest.performed -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnInteractionTest;
+                @InteractionTest.canceled -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnInteractionTest;
+                @SkipLevel.started -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnSkipLevel;
+                @SkipLevel.performed -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnSkipLevel;
+                @SkipLevel.canceled -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnSkipLevel;
             }
             m_Wrapper.m_PlatformingActionsCallbackInterface = instance;
             if (instance != null)
@@ -493,10 +648,57 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                 @MoveVert.started += instance.OnMoveVert;
                 @MoveVert.performed += instance.OnMoveVert;
                 @MoveVert.canceled += instance.OnMoveVert;
+                @InteractionTest.started += instance.OnInteractionTest;
+                @InteractionTest.performed += instance.OnInteractionTest;
+                @InteractionTest.canceled += instance.OnInteractionTest;
+                @SkipLevel.started += instance.OnSkipLevel;
+                @SkipLevel.performed += instance.OnSkipLevel;
+                @SkipLevel.canceled += instance.OnSkipLevel;
             }
         }
     }
     public PlatformingActions @Platforming => new PlatformingActions(this);
+
+    // ViewingObject
+    private readonly InputActionMap m_ViewingObject;
+    private IViewingObjectActions m_ViewingObjectActionsCallbackInterface;
+    private readonly InputAction m_ViewingObject_InteractionTest;
+    private readonly InputAction m_ViewingObject_RotateObj;
+    public struct ViewingObjectActions
+    {
+        private @DefaultControls m_Wrapper;
+        public ViewingObjectActions(@DefaultControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @InteractionTest => m_Wrapper.m_ViewingObject_InteractionTest;
+        public InputAction @RotateObj => m_Wrapper.m_ViewingObject_RotateObj;
+        public InputActionMap Get() { return m_Wrapper.m_ViewingObject; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ViewingObjectActions set) { return set.Get(); }
+        public void SetCallbacks(IViewingObjectActions instance)
+        {
+            if (m_Wrapper.m_ViewingObjectActionsCallbackInterface != null)
+            {
+                @InteractionTest.started -= m_Wrapper.m_ViewingObjectActionsCallbackInterface.OnInteractionTest;
+                @InteractionTest.performed -= m_Wrapper.m_ViewingObjectActionsCallbackInterface.OnInteractionTest;
+                @InteractionTest.canceled -= m_Wrapper.m_ViewingObjectActionsCallbackInterface.OnInteractionTest;
+                @RotateObj.started -= m_Wrapper.m_ViewingObjectActionsCallbackInterface.OnRotateObj;
+                @RotateObj.performed -= m_Wrapper.m_ViewingObjectActionsCallbackInterface.OnRotateObj;
+                @RotateObj.canceled -= m_Wrapper.m_ViewingObjectActionsCallbackInterface.OnRotateObj;
+            }
+            m_Wrapper.m_ViewingObjectActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @InteractionTest.started += instance.OnInteractionTest;
+                @InteractionTest.performed += instance.OnInteractionTest;
+                @InteractionTest.canceled += instance.OnInteractionTest;
+                @RotateObj.started += instance.OnRotateObj;
+                @RotateObj.performed += instance.OnRotateObj;
+                @RotateObj.canceled += instance.OnRotateObj;
+            }
+        }
+    }
+    public ViewingObjectActions @ViewingObject => new ViewingObjectActions(this);
     private int m_DefaultControlSchemeSchemeIndex = -1;
     public InputControlScheme DefaultControlSchemeScheme
     {
@@ -515,5 +717,12 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         void OnUse(InputAction.CallbackContext context);
         void OnMoveHoriz(InputAction.CallbackContext context);
         void OnMoveVert(InputAction.CallbackContext context);
+        void OnInteractionTest(InputAction.CallbackContext context);
+        void OnSkipLevel(InputAction.CallbackContext context);
+    }
+    public interface IViewingObjectActions
+    {
+        void OnInteractionTest(InputAction.CallbackContext context);
+        void OnRotateObj(InputAction.CallbackContext context);
     }
 }

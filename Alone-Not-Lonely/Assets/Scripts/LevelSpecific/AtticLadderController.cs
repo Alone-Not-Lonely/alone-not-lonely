@@ -5,38 +5,84 @@ using UnityEngine.SceneManagement;
 
 public class AtticLadderController : MonoBehaviour
 {
-    public bool boxBlockingExit = false;
+    //public bool boxBlockingExit = false;
     public Animator closedLadderAnimator;
     public GameObject openLadder;
     public bool canUseLadder;
+    private float state = 1;
+    //private WinCondition win;
+    private Player _player;
+
+    private void Start() {
+        canUseLadder = false;
+        
+        //win = GetComponent<WinCondition>();
+        _player = FindObjectOfType<Player>();
+        closedLadderAnimator.SetFloat("anim_speed", state);
+        _player._actionMap.Platforming.SkipLevel.performed += skip => SkipLevel();
+    }
+
+    private void Update()
+    {
+        
+    }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("PhysicalGrabable"))
+        //if(other.CompareTag("PhysicalGrabable"))
+        //{
+           // boxBlockingExit = true;
+        //}
+
+        if(other.CompareTag("Player"))
         {
-            boxBlockingExit = true;
+            //_player.gameObject.transform.Translate(new Vector3(32.7400017f,4.98999977f,-62.7200012f) - _player.gameObject.transform.position);
+            _player.gameObject.SetActive(false);
+            _player.gameObject.transform.position =  new Vector3(32.7400017f,4.98999977f,-62.7200012f);
+            _player.gameObject.SetActive(true);
+            SceneManager.LoadScene("KitchenGraybox");
         }
-        else if(canUseLadder && other.CompareTag("Player"))
-        {
-            SceneManager.LoadScene("EndPlaytest");
-        }
+    }
+
+    void SkipLevel()
+    {
+        _player.gameObject.SetActive(false);
+        _player.gameObject.transform.position =  new Vector3(32.7400017f,4.98999977f,-62.7200012f);
+        _player.gameObject.SetActive(true);
+        SceneManager.LoadScene("KitchenGraybox");
     }
 
     private void OnTriggerExit(Collider other) {
-        if(other.CompareTag("PhysicalGrabable"))
-        {
-            boxBlockingExit = false;
-        }
+        //if(other.CompareTag("PhysicalGrabable"))
+        //{
+           //boxBlockingExit = false;
+        //}
     }
 
-    public void AnimateOpenLadder()
-    {
-        closedLadderAnimator.SetBool("OpenLadder", true);
-    }
+    //public void AnimateOpenLadder()
+    //{
+    //    closedLadderAnimator.SetBool("OpenLadder", true);
+    //}
 
     public void EnableDisableLadders()
     {
+        //win.onWin();
         closedLadderAnimator.gameObject.SetActive(false);
         openLadder.SetActive(true);
         canUseLadder = true;
+    }
+
+    //Ladder Pho-Animations
+
+    public void open()
+    {
+        state -= .001f;
+        state = Mathf.Clamp(state,0f,1f);
+        closedLadderAnimator.SetFloat("anim_speed", state);
+    }
+
+    public void close() {
+        state += .001f;
+        state = Mathf.Clamp(state, 0f, 1f);
+        closedLadderAnimator.SetFloat("anim_speed", state);
     }
 }

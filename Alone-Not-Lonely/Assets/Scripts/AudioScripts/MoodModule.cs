@@ -16,6 +16,7 @@ public class MoodModule : MonoBehaviour
         {
             MoodModuleController mController = other.GetComponent<MoodModuleController>();
             mController.ChangeSong(thisClip);
+            this.gameObject.SetActive(false);
         }
     }
 }

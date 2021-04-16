@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class AtticLevelEndController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Animator ballFallingAnim;
+
+    //public Animator ballFallingAnim;
     public Text interactionUI;
     public Text cantInteractUI;
 
@@ -19,13 +19,11 @@ public class AtticLevelEndController : MonoBehaviour
     private MeshRenderer meshRenderer;
 
     private AudioSource sfx;
-    private void Awake() {
-    }
+
     void Start()
     {
         playerRef = (Player)FindObjectOfType<Player>();
-        Debug.Log("Player: " + playerRef);
-        playerRef._actionMap.Platforming.Use.performed += grab => InteractAttempt();
+        //playerRef._actionMap.Platforming.Use.performed += grab => InteractAttempt();
         interactionUI.gameObject.SetActive(false);
         cantInteractUI.gameObject.SetActive(false);
         ableToInteract = false;
@@ -35,7 +33,7 @@ public class AtticLevelEndController : MonoBehaviour
         //ladderController = (AtticLadderController)FindObjectOfType(typeof(AtticLadderController));
     }
 
-    // Update is called once per frame
+    /*
     void InteractAttempt()
     {
         if(ableToInteract && !ladderController.boxBlockingExit)
@@ -47,11 +45,16 @@ public class AtticLevelEndController : MonoBehaviour
             interactionUI.gameObject.SetActive(false);
         }
     }
-
+    */
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
+            if (!other.GetComponent<PlayerMovementController>().jumping)
+            {
+                
+            }
+            /*
             ableToInteract = true;
             if(!ladderController.boxBlockingExit)
             {
@@ -61,9 +64,11 @@ public class AtticLevelEndController : MonoBehaviour
             {
                 cantInteractUI.gameObject.SetActive(true);
             }
+            */
         }
     }
 
+    /*
     void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Player"))
@@ -80,11 +85,12 @@ public class AtticLevelEndController : MonoBehaviour
             }
         }
     }
-
+    */
     void OnTriggerExit(Collider other)
     {
         if(other.CompareTag("Player"))
         {
+            /*
             ableToInteract = false;
             if(interactionUI.gameObject.activeInHierarchy)
             {
@@ -94,13 +100,16 @@ public class AtticLevelEndController : MonoBehaviour
             {
                 cantInteractUI.gameObject.SetActive(false);
             }
+            */
         }
     }
 
+    /*
     void TriggerLadderFall()
     {
         sfx.Play();
         ladderController.AnimateOpenLadder();
         meshRenderer.enabled = false;
     }
+    */
 }

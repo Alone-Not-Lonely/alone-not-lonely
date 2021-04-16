@@ -60,6 +60,22 @@
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "InteractionTest",
+                    "type": "Button",
+                    "id": "fde69769-008a-4e34-86e1-761ebb8cd747",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SkipLevel",
+                    "type": "Button",
+                    "id": "8629a0c1-44ad-4c01-9c8b-d1d20276ddc1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -207,6 +223,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "283219c0-95ac-4d3c-a8fe-9225d20f0092",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "LeftStick [Gamepad]",
                     "id": "c7ea81e8-a227-42bc-b6e2-9e5244ec20ba",
                     "path": "1DAxis",
@@ -337,6 +364,118 @@
                     "action": "MoveVert",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "1415f803-9e0a-4b29-8cea-a26ab7ac6eef",
+                    "path": "<Keyboard>/f",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InteractionTest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eef8e2e7-3907-48cb-96d2-cccf7c567031",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InteractionTest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "858a5208-c7be-4fd3-83aa-7207e7d9b41f",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "ViewingObject",
+            "id": "61f28e81-ae3f-4b8a-9067-f7c114fb1520",
+            "actions": [
+                {
+                    "name": "InteractionTest",
+                    "type": "Button",
+                    "id": "673cd040-18c7-4a21-834d-0dc20b104702",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RotateObj",
+                    "type": "Value",
+                    "id": "76756476-36cb-41d5-975f-9edd1d989cda",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "74abc05b-4fbc-4c88-8b20-af16cabc0564",
+                    "path": "<Keyboard>/f",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InteractionTest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "834850f9-7c1b-4ff2-848f-e6f09282af46",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InteractionTest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "375eca1d-09e6-4ca3-b7a6-e1e8311c8f53",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InteractionTest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "523be86c-b9fb-4ba3-94c2-800cad783b81",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DefaultControlScheme",
+                    "action": "RotateObj",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0be083ed-0b5d-43d3-a310-7bc3188b5298",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DefaultControlScheme",
+                    "action": "RotateObj",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
