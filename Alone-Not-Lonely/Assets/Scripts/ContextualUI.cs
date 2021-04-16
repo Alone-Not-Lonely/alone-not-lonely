@@ -15,6 +15,18 @@ public class ContextualUI : MonoBehaviour
     private bool inRange = false;
 
     private void Start() {
+        Text[] allText = (Text[])FindObjectsOfType(typeof(Text));
+        foreach(Text t in allText)
+        {
+            if(t.gameObject.CompareTag("UIInit"))
+            {
+                contextInitial = t;
+            }
+            else if(t.gameObject.CompareTag("UISec"))
+            {
+                contextSecondary = t;
+            }
+        }
         contextInitial.text = "";
         contextSecondary.text = "";
     }
