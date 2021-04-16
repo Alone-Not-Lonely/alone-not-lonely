@@ -8,7 +8,7 @@ using UnityEngine.Audio;
 public class PanicMeterController : MonoBehaviour
 {
     public Image anxietyMeter;
-    public float totalAnxietyPoints = 50f, rayDepth = .75f;
+    public float totalAnxietyPoints = 50f, rayDepth = 1f;
     private float currentAnxietyPoints, monstDist;
     private Player thisPlayer;
     private PlayerAbilityController pAbility;
@@ -231,7 +231,6 @@ public class PanicMeterController : MonoBehaviour
     //returns a tag if found
     private void checkFloor()
     {
-        Debug.Log("Checking Floor");
         RaycastHit hit;
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * rayDepth, Color.yellow);
 

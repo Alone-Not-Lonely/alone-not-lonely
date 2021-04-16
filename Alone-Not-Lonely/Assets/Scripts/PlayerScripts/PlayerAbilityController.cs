@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class PlayerAbilityController : Grabber
 {
     public GameObject currentGrab = null;
-    [HideInInspector]
     public Text grabText;
     public Text releaseText;
 
@@ -44,7 +43,7 @@ public class PlayerAbilityController : Grabber
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Grabable"))
+        if(collision.gameObject.CompareTag("Grabable"))
         {
             if (!base.holdingObject)
             {
