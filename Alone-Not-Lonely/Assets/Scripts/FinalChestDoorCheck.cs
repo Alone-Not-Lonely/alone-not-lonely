@@ -54,7 +54,6 @@ public class FinalChestDoorCheck : MonoBehaviour
         
         if(leftOut.collider.tag != "Finish")
         {
-            Debug.Log(leftOut.collider.tag);
             return false;
         }
 

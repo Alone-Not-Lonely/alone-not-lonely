@@ -44,7 +44,6 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Start() 
     {
-        Debug.Log("player movement start");
         thisPlayer = (Player)FindObjectOfType<Player>();
         playerController = GetComponent<CharacterController>();
 

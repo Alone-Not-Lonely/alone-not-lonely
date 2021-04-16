@@ -25,7 +25,6 @@ public class AtticLadderController : MonoBehaviour
     private void Update()
     {
         
-        Debug.Log("state value: " + state);
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -76,14 +75,12 @@ public class AtticLadderController : MonoBehaviour
 
     public void open()
     {
-        Debug.Log("opening");
         state -= .001f;
         state = Mathf.Clamp(state,0f,1f);
         closedLadderAnimator.SetFloat("anim_speed", state);
     }
 
     public void close() {
-        Debug.Log("closing");
         state += .001f;
         state = Mathf.Clamp(state, 0f, 1f);
         closedLadderAnimator.SetFloat("anim_speed", state);
