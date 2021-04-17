@@ -46,7 +46,7 @@ public class ClimbChecker : MonoBehaviour
         Ray proxRay = new Ray(transform.position, transform.forward);
        
         Debug.DrawRay(transform.position, (transform.forward*reachDepth), Color.blue);
-        if (Physics.SphereCast(proxRay,detectRadius, out proxHit, reachDepth))//Raycast(proxRay, out proxHit, reachDepth))
+        if (Physics.SphereCast(proxRay,detectRadius, out proxHit, reachDepth) && (proxHit.collider.isTrigger == false))//Raycast(proxRay, out proxHit, reachDepth))
         {
             RaycastHit canLandHit;
             Vector3 hcPos = transform.position + (transform.up * reachHeight);
@@ -55,9 +55,9 @@ public class ClimbChecker : MonoBehaviour
             //Test:
             Debug.DrawRay(landingRay.origin, landingRay.direction, Color.yellow);
 
-
             if (Physics.Raycast(landingRay, out canLandHit, climbLengthDepth) && (canLandHit.collider.isTrigger == false))
             {
+                
                 if (reachHeight < maxClimbHeight)
                 {
                     reachHeight += checkStep;//raises the reach ever so slightly

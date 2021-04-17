@@ -27,7 +27,6 @@ public class FinalChestDoorCheck : MonoBehaviour
         {
             _ladder.close();
         }
-
     }
 
     bool onDoor()

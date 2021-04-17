@@ -97,7 +97,6 @@ public class PlayerMovementController : MonoBehaviour
 
     public void MoveVert(float vertMvmt)
     {
-        playerController = GetComponent<CharacterController>();//TEST TEST TEST BAD FORM
         if (vertDirection == 0 && horizDirection == 0 && playerController.isGrounded)
         {
             footsteps.UnPause();
@@ -134,7 +133,6 @@ public class PlayerMovementController : MonoBehaviour
 
     IEnumerator climb()
     {
-        Debug.Log("Climb Started");
         climbing = true;
         //getting normal stuff out of the way
         camController.headbob = false;

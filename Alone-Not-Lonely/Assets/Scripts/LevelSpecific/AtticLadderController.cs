@@ -9,6 +9,8 @@ public class AtticLadderController : MonoBehaviour
     public Animator closedLadderAnimator;
     public GameObject openLadder;
     public bool canUseLadder;
+    public float upspeed = .001f, downspeed = .001f, finallyOpen = .01f;
+    [SerializeField]
     private float state = 1;
     //private WinCondition win;
     private Player _player;
@@ -18,7 +20,7 @@ public class AtticLadderController : MonoBehaviour
         
         //win = GetComponent<WinCondition>();
         _player = FindObjectOfType<Player>();
-        closedLadderAnimator.SetFloat("anim_speed", state);
+        //closedLadderAnimator.SetFloat("anim_speed", state);
         _player._actionMap.Platforming.SkipLevel.performed += skip => SkipLevel();
     }
 
@@ -75,13 +77,19 @@ public class AtticLadderController : MonoBehaviour
 
     public void open()
     {
-        state -= .001f;
+        state -= downspeed;
         state = Mathf.Clamp(state,0f,1f);
         closedLadderAnimator.SetFloat("anim_speed", state);
+
+        if (state < finallyOpen)
+        {
+            Debug.Log("past threshold");
+            upspeed = 0;
+        }
     }
 
     public void close() {
-        state += .001f;
+        state += upspeed;
         state = Mathf.Clamp(state, 0f, 1f);
         closedLadderAnimator.SetFloat("anim_speed", state);
     }
