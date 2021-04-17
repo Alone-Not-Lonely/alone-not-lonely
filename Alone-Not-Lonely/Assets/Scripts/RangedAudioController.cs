@@ -15,7 +15,10 @@ public class RangedAudioController : MonoBehaviour
     void Start()
     {
         sourceToPlay = GetComponent<AudioSource>();
-        target = ((Player)FindObjectOfType(typeof(Player))).gameObject.transform;
+        if(target == null)
+        {
+            target = ((Player)FindObjectOfType(typeof(Player))).gameObject.transform;
+        }
         sourceToPlay.loop = true;
         audioPlaying = false;
     }
