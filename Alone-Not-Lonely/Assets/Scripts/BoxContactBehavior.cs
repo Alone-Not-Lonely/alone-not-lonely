@@ -23,8 +23,11 @@ public class BoxContactBehavior : MonoBehaviour
         if(boxHolder != null && (other.gameObject.CompareTag("Portal")|| other.gameObject.CompareTag("BackPortal")))
         {
             try{
-                boxHolder.GetComponent<PatrolPointsController>().TurnAround();
-                boxHolder.GetComponent<Grabber>().ReleaseObject();
+                if(!boxHolder.GetComponent<PatrolPointsController>().inColliderCooldown)
+                {
+                    boxHolder.GetComponent<PatrolPointsController>().TurnAround();
+                    boxHolder.GetComponent<Grabber>().ReleaseObject();
+                }
             }
             catch{}
         }

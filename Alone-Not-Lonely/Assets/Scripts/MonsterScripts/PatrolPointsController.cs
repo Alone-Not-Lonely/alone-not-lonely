@@ -17,7 +17,7 @@ public class PatrolPointsController : Grabber
 
     private float colliderCooldown = 2f;
     private float currentColliderCooldown = 0f;
-    private bool inColliderCooldown = false;
+    public bool inColliderCooldown = false;
     private Collider lastPortalCollider;
 
     private Vector3 lastTransform;
@@ -30,7 +30,7 @@ public class PatrolPointsController : Grabber
     private Rigidbody thisRB;
 
     private float directionDot; //updated in fixedUpdate
-    private Vector3 movementLastFrame;
+    public Vector3 movementLastFrame;
     public GameObject activePortal1;
     public GameObject activePortal2;
 
