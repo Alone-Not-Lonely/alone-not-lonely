@@ -15,7 +15,7 @@ public class ContextualUI : MonoBehaviour
     private bool inRange = false;
 
     private void Start() {
-        Text[] allText = (Text[])FindObjectsOfType(typeof(Text));
+        Text[] allText = (Text[])Resources.FindObjectsOfTypeAll(typeof(Text));
         foreach(Text t in allText)
         {
             if(t.gameObject.CompareTag("UIInit"))
@@ -27,6 +27,13 @@ public class ContextualUI : MonoBehaviour
                 contextSecondary = t;
             }
         }
+        contextInitial.text = "";
+        contextSecondary.text = "";
+    }
+
+    private void OnDisable() {
+        contextInitial.gameObject.SetActive(false);
+        contextSecondary.gameObject.SetActive(false);
         contextInitial.text = "";
         contextSecondary.text = "";
     }
