@@ -122,4 +122,10 @@ public class CameraController : MonoBehaviour
     {
         return new Vector3(-rotationX, rotationY, 0);
     }
+
+     public void OnSliderValueChanged(float value)
+    {
+        sensitivityX = 5 + (value * 30);
+        sensitivityY = 5 + (value * 30);
+    }
 }
