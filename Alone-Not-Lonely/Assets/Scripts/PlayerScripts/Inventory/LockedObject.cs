@@ -54,7 +54,7 @@ public class LockedObject : MonoBehaviour
         }
     }
 
-    private void OnTriggeExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
