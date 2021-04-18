@@ -31,7 +31,8 @@ public class PlayerAbilityController : Grabber
             }
             else if (base.holdingObject)//current grab redundant but colliders are wierd...
             {
-                grabText.gameObject.SetActive(true);
+                grabText.gameObject.SetActive(false);
+                releaseText.gameObject.SetActive(false);
                 ReleaseObject();
             }
         }
