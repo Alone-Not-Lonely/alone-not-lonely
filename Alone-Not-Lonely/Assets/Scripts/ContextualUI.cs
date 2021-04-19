@@ -32,10 +32,16 @@ public class ContextualUI : MonoBehaviour
     }
 
     private void OnDisable() {
-        contextInitial.gameObject.SetActive(false);
-        contextSecondary.gameObject.SetActive(false);
-        contextInitial.text = "";
-        contextSecondary.text = "";
+        if(contextInitial != null)
+        {
+            contextInitial.gameObject.SetActive(false);
+            contextInitial.text = "";
+        }
+        if(contextSecondary != null)
+        {
+            contextSecondary.gameObject.SetActive(false);
+            contextSecondary.text = "";
+        }
     }
 
     /// <summary>
