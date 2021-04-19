@@ -68,7 +68,6 @@ public class PanicMeterController : MonoBehaviour
                 if(monstDist > ((anxietyRadius.radius * this.transform.lossyScale.y) + 2f)) // this is just to catch teleporting monsters who are significantly outside of bounds
                 {
                     monsters.RemoveAt(i);
-                    Debug.Log("Monster Discounted Manually : " + monstDist + " greater than " + anxietyRadius.radius * this.transform.parent.lossyScale.y);
                 }
                 else
                 {
@@ -186,8 +185,6 @@ public class PanicMeterController : MonoBehaviour
             if(!found)
             {
                 monsters.Add(other.gameObject);
-                Debug.Log("Monster accounted");
-                Debug.Log(monsters.Count);
                 if(!breathing.enabled)
                 {
                     breathing.enabled = true;

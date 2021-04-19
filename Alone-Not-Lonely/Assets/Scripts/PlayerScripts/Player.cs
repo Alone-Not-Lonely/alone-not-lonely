@@ -58,6 +58,14 @@ public class Player : MonoBehaviour
             Camera.main.gameObject.transform.rotation = camSpawnRotation;
             this.gameObject.SetActive(true);
         }
+        else if(other.CompareTag("SetSpawn"))
+        {
+            spawnPosition = transform.position;
+            spawnRotation = transform.rotation;
+
+            camSpawnPosition = Camera.main.gameObject.transform.position;
+            camSpawnRotation = Camera.main.gameObject.transform.rotation;
+        }
     }
 
 }
