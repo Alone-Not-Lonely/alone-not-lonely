@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61690
+  m_Name: pb_Mesh50864
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -293,7 +293,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh97282
+  m_Name: pb_Mesh50402
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1206,6 +1206,7 @@ GameObject:
   - component: {fileID: 228436905}
   - component: {fileID: 228436904}
   - component: {fileID: 228436903}
+  - component: {fileID: 228436906}
   m_Layer: 0
   m_Name: kitchen_chair (4)
   m_TagString: Grabable
@@ -1276,13 +1277,28 @@ Transform:
   m_Father: {fileID: 58089380}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &228436906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228436902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53e12d5128961745b76b987513a3875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  squashed: 0
+  squashedVariant: {fileID: 6978556801791263734, guid: 9a4c69401eb470a458b3db9975a74ae7, type: 3}
+  regularVariant: {fileID: 228436902}
 --- !u!43 &258519373
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61742
+  m_Name: pb_Mesh50922
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1594,7 +1610,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-142336
+  m_Name: pb_Mesh51040
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1758,7 +1774,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61454
+  m_Name: pb_Mesh50546
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2838,7 +2854,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61812
+  m_Name: pb_Mesh51016
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4248,7 +4264,7 @@ PrefabInstance:
       objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 919132149155446097, guid: dbd7cb3a609da6d41b21165cf0c17aa0, type: 3}
       propertyPath: m_Name
-      value: Laundry Key
+      value: Squishroom Key
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dbd7cb3a609da6d41b21165cf0c17aa0, type: 3}
       propertyPath: m_TagString
@@ -4273,7 +4289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b948877ea04953a47bb14cf868674c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: laundry Key
+  key: Squishroom Key
 --- !u!135 &825198042
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4298,7 +4314,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-133288
+  m_Name: pb_Mesh50568
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5434,7 +5450,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-134058
+  m_Name: pb_Mesh50494
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5751,8 +5767,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.6399307, y: 3.4234645, z: 1.2859638}
-  m_Center: {x: -0.0023507606, y: -0.22806557, z: -0.01120947}
+  m_Size: {x: 2.6399307, y: 0.01, z: 1.2859638}
+  m_Center: {x: -0.0023507606, y: -1.76, z: -0.01120947}
 --- !u!4 &1199090308
 Transform:
   m_ObjectHideFlags: 0
@@ -6831,7 +6847,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61418
+  m_Name: pb_Mesh50472
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8355,6 +8371,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: anxietyMeterBorder
       objectReference: {fileID: 0}
+    - target: {fileID: 5761298891827790079, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761298891827790079, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761298892104887323, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761298892104887323, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761298892104887323, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6026959954529579121, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -8587,6 +8623,18 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: d315434b1c423a14a9a7ad643247e3a2, type: 3}
+    - target: {fileID: 8557345930839805452, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557345930839805452, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557345930839805452, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f7862f2d746d3540911b4667e663bb3, type: 3}
 --- !u!1 &1499716963
@@ -9084,7 +9132,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61608
+  m_Name: pb_Mesh50758
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9259,7 +9307,7 @@ GameObject:
   - component: {fileID: 1506598132}
   - component: {fileID: 1506598131}
   m_Layer: 0
-  m_Name: closet door
+  m_Name: Squishroom Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9415,7 +9463,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61594
+  m_Name: pb_Mesh50744
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11033,7 +11081,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61522
+  m_Name: pb_Mesh50656
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

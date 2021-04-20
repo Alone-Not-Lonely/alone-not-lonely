@@ -28,20 +28,6 @@ public class PlayerMovementController : MonoBehaviour
     private ClimbChecker cCheck;
     public float lerpEpsilon = 0.01f, climbSpeed = 10f, crawlHeight = 1f;
 
-
-
-    private void Awake()
-    {
-        /*
-        playerController = this.GetComponent<CharacterController>();
-        camController = (CameraController)FindObjectOfType(typeof(CameraController));
-        playerAb = (PlayerAbilityController)FindObjectOfType(typeof(PlayerAbilityController));
-        footsteps.Play();
-        footsteps.Pause();
-        cCheck = (ClimbChecker)FindObjectOfType(typeof(ClimbChecker));
-        */
-    }
-
     private void Start() 
     {
         thisPlayer = (Player)FindObjectOfType<Player>();
