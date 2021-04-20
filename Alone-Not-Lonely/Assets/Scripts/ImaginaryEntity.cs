@@ -19,7 +19,7 @@ public class ImaginaryEntity : MonoBehaviour
 
         float dist = Vector3.Distance(transform.position, pT.position);
         float closeness = ((visDist / (dist)));
-        _render.color = new Color(closeness,closeness,closeness,closeness); ;
+        _render.color = new Color(closeness,closeness,closeness,closeness);
 
     }
 
