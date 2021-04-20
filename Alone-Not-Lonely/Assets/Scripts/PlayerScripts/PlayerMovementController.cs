@@ -67,7 +67,6 @@ public class PlayerMovementController : MonoBehaviour
     bool stopFootstepsV;
     public void MoveHoriz(float horizMvmt)
     {
-        playerController = GetComponent<CharacterController>();//TEST TEST TEST BAD FORM
         if (horizDirection == 0 && vertDirection == 0 && playerController.isGrounded)
         {
             footsteps.UnPause();
