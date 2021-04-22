@@ -5,9 +5,10 @@ using UnityEngine;
 public class ClimbChecker : MonoBehaviour
 {
     public float checkStep = .1f, reachHeight = 0,
-                 climbLengthDepth = 1.5f, maxClimbHeight = 2, 
+                 climbLengthDepth = 1.5f, maxClimbHeight = 2,
                  handOffset = .3f, handMoveSpeed = .3f,
-                 detectRadius = 1f;
+                 detectRadius = 1f, landingDepth = .5f,
+                 maxReachDist = 4f;
     private float reachDepth = 1f;
     private float playerHeight;
     public Vector3 climbablePoint = Vector3.zero;
@@ -17,7 +18,7 @@ public class ClimbChecker : MonoBehaviour
     private CharacterController pControl;
     private PlayerAbilityController pAbil;
     private PlayerMovementController pMC;
-    
+    public GameObject climbableObject;
 
     //Scripts using this will check if Vector3.zero
     //So lets just be sure not to have any climbable places at origin
@@ -48,6 +49,9 @@ public class ClimbChecker : MonoBehaviour
         Debug.DrawRay(transform.position, (transform.forward*reachDepth), Color.blue);
         if (Physics.SphereCast(proxRay,detectRadius, out proxHit, reachDepth) && (proxHit.collider.isTrigger == false))//Raycast(proxRay, out proxHit, reachDepth))
         {
+            //Object Gabe could concievably climb
+            climbableObject = proxHit.transform.gameObject;
+
             RaycastHit canLandHit;
             Vector3 hcPos = transform.position + (transform.up * reachHeight);
 
@@ -70,15 +74,15 @@ public class ClimbChecker : MonoBehaviour
                                    transform.position.y + reachHeight,
                                    transform.position.z + landingRay.direction.z);
 
-                climbablePoint = new Vector3(edge.x , edge.y + (playerHeight * 1.3f), edge.z )+transform.forward*climbLengthDepth;                           
+                climbablePoint = new Vector3(edge.x , edge.y + (playerHeight * 1.3f), edge.z )+transform.forward*landingDepth;
             }
-
         }
         else
         {//We are not close to an object
             //Reset reach height and climbable point
             reachHeight = 0;
             climbablePoint = Vector3.zero;
+            climbableObject = null;
             if (!pMC.climbing)
             {
                 edge = transform.position;
@@ -103,5 +107,11 @@ public class ClimbChecker : MonoBehaviour
     private float posDiff()
     {
         return (transform.position.y - pTransform.position.y);
+    }
+
+    public bool climbableDistance(Vector3 dist1, Vector3 dist2)
+    {
+        Debug.Log("Distance: "+Vector3.Distance(dist1, dist2) +", Max Reach: "+maxReachDist);
+        return (maxReachDist>Vector3.Distance(dist1, dist2));
     }
 }
