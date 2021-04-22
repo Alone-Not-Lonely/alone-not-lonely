@@ -14,7 +14,7 @@ public class PlayerMovementController : MonoBehaviour
     //Character will move along this vector 
     private float moveDirY = 0, horizDirection = 0, vertDirection = 0;
     private Vector3 moveDirection = Vector3.zero;
-
+    private PanicMeterController pPanic;
     protected CharacterController playerController;
 
     private Quaternion rotation = Quaternion.identity;
@@ -41,17 +41,16 @@ public class PlayerMovementController : MonoBehaviour
 
         thisPlayer._actionMap.Platforming.Jump.performed += jump => Jump();
 
-        
         camController = (CameraController)FindObjectOfType(typeof(CameraController));
         playerAb = (PlayerAbilityController)FindObjectOfType(typeof(PlayerAbilityController));
         footsteps.Play();
         footsteps.Pause();
         cCheck = (ClimbChecker)FindObjectOfType(typeof(ClimbChecker));
+        pPanic = FindObjectOfType<PanicMeterController>();
 
         Vector3 camRotation = camController.GetCameraRotation(); 
         playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0)); 
 
-       
     }
 
     /*
@@ -126,13 +125,11 @@ public class PlayerMovementController : MonoBehaviour
        
         Vector3 finalPosition = cCheck.climbablePoint;
 
-        Debug.Log(finalPosition);
-
         //A point just below the necessary height to represent climbing part of the way up.
         Vector3 climbHeight = new Vector3(transform.position.x, (finalPosition.y - crawlHeight), transform.position.z);
- 
+        
         //climb to slide height
-        while(Vector3.Distance(transform.position, climbHeight) > lerpEpsilon)
+        while(!pPanic.dead && Vector3.Distance(transform.position, climbHeight) > lerpEpsilon)
         {
             transform.position = Vector3.Lerp(transform.position, climbHeight, climbSpeed * Time.deltaTime);
             yield return null;
@@ -141,7 +138,7 @@ public class PlayerMovementController : MonoBehaviour
         //The length the charcter "slides" along the object
         Vector3 slidePoint = new Vector3(finalPosition.x, finalPosition.y - .5f, finalPosition.z);
 
-        while (Vector3.Distance(transform.position, slidePoint) > lerpEpsilon)
+        while (!pPanic.dead && Vector3.Distance(transform.position, slidePoint) > lerpEpsilon)
         {
             
             transform.position = Vector3.Lerp(transform.position, slidePoint, climbSpeed * Time.deltaTime);
@@ -149,7 +146,7 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         //Standing Up
-        while (Vector3.Distance(transform.position, finalPosition) > lerpEpsilon)
+        while (!pPanic.dead && Vector3.Distance(transform.position, finalPosition) > lerpEpsilon)
         {
             transform.position = Vector3.MoveTowards(transform.position, finalPosition, climbSpeed * Time.deltaTime);
             yield return null;

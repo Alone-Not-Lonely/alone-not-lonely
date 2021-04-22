@@ -10,6 +10,7 @@ public class PanicMeterController : MonoBehaviour
     public Image anxietyMeter;
     public float totalAnxietyPoints = 50f, rayDepth = 1f;
     private float currentAnxietyPoints, monstDist;
+    public bool dead = false;
     private Player thisPlayer;
     private PlayerAbilityController pAbility;
     public float anxietySpeed = 10f;
@@ -127,14 +128,14 @@ public class PanicMeterController : MonoBehaviour
 
     private IEnumerator faint()
     {
-        //playerAnimator.SetBool("up", false);
+        dead = true;
         yield return new WaitForSeconds(.001f);//should be length of animation
-        //playerAnimator.SetBool("up", true);
         pAbility.ReleaseObject();
         /*anxietyMeter.fillAmount = 0;
         currentAnxietyPoints = 0;
         desaturate.saturation.value = 0f;
         desaturate.postExposure.value = 0f;*/
+        
         thisPlayer.backToSpawn();
         StartCoroutine("wakeUp");
     }
@@ -152,6 +153,7 @@ public class PanicMeterController : MonoBehaviour
             vignette.intensity.value = Mathf.Pow(anxietyMeter.fillAmount, 2f);
             yield return new WaitForSeconds(.001f);
         }
+        dead = false;
         yield break;
     }
 

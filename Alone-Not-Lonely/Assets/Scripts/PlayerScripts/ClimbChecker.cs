@@ -70,7 +70,7 @@ public class ClimbChecker : MonoBehaviour
                                    transform.position.y + reachHeight,
                                    transform.position.z + landingRay.direction.z);
 
-                climbablePoint = new Vector3(edge.x,edge.y + (playerHeight * 1.3f), edge.z);                           
+                climbablePoint = new Vector3(edge.x , edge.y + (playerHeight * 1.3f), edge.z )+transform.forward*climbLengthDepth;                           
             }
 
         }
