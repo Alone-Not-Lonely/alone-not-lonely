@@ -519,7 +519,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55167474921207740}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -12.53, y: 7.72, z: 81.6}
+  m_LocalPosition: {x: 41.34, y: 7.72, z: -68.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 681082917}
@@ -923,7 +923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anxietyMeter: {fileID: 6899887761210883083}
   totalAnxietyPoints: 50
-  rayDepth: 3
+  rayDepth: 2.25
   dead: 0
   anxietySpeed: 10
   postProcess: {fileID: 0}
@@ -1641,15 +1641,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkStep: 0.1
   reachHeight: 0
-  climbLengthDepth: 2
+  climbLengthDepth: 1
   maxClimbHeight: 2
   handOffset: 0.3
   handMoveSpeed: 0.3
   detectRadius: 0.5
-  landingDepth: 0.5
+  landingDepth: 1
+  maxReachDist: 4.75
+  reachDepth: 1
   climbablePoint: {x: 0, y: 0, z: 0}
   lhand: {fileID: 1169718699}
   rhand: {fileID: 1007872844}
+  climbableObject: {fileID: 0}
 --- !u!1 &2584515865004476886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,7 +1686,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2584515865004476886}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.9400015, y: 4.99, z: 81.889984}
+  m_LocalPosition: {x: 41.34, y: 4.99, z: -68.44}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 646581854670223344}
@@ -1756,7 +1759,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.68
   m_SlopeLimit: 45
-  m_StepOffset: 0.5
+  m_StepOffset: 0.7
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -2639,6 +2642,7 @@ GameObject:
   - component: {fileID: 8557345930839805452}
   - component: {fileID: 2648815326843425480}
   - component: {fileID: 5761298891702075051}
+  - component: {fileID: 2117357345}
   m_Layer: 0
   m_Name: PlayerCameraRig
   m_TagString: Untagged
@@ -2653,7 +2657,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4687621562906304510}
-  m_LocalRotation: {x: -0, y: -0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20.5, y: 0, z: -85.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2676,6 +2680,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5761298891702075051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4687621562906304510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c029aaf1a05244c969e0ccfaa82e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2117357345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3480,7 +3496,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 116.6, y: -81.5}
+  m_AnchoredPosition: {x: 116.6001, y: -81.5}
   m_SizeDelta: {x: 40, y: 27.100006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8174515870108431307

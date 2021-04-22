@@ -117,7 +117,39 @@ public class PlayerMovementController : MonoBehaviour
         GameObject pointToClimb = new GameObject();
         pointToClimb.transform.position = cCheck.climbablePoint;
         pointToClimb.transform.parent = cCheck.climbableObject.transform;
-        StartCoroutine("climb", pointToClimb);
+        Debug.Log("object height: " + (pointToClimb.transform.position.y - 1.3));
+        Debug.Log("my height: " + transform.position.y);
+        //check to see if the height of the original object is low enough such that 
+        //The player can just hop onto it
+        if (pointToClimb.transform.position.y - 1.3 > transform.position.y)
+        {
+            StartCoroutine("climb", pointToClimb);
+        }
+        else
+        {
+            StartCoroutine("hop", pointToClimb);
+        }
+        
+    }
+
+
+    IEnumerator hop(GameObject pointToClimb)
+    {
+        Debug.Log("Hopping");
+        climbing = true;
+        //getting normal stuff out of the way
+        camController.headbob = false;
+        playerController.detectCollisions = false;
+
+        //setting climbing parameters
+        Vector3 finalPosition = pointToClimb.transform.position;
+
+        //hop right to the point
+        while (cCheck.climbableDistance(transform.position, finalPosition) && Vector3.Distance(transform.position, finalPosition) > lerpEpsilon)
+        {
+            transform.position = Vector3.Lerp(transform.position, finalPosition, climbSpeed * Time.deltaTime);
+            yield return null;
+        }
     }
 
     IEnumerator climb(GameObject pointToClimb)
@@ -133,7 +165,8 @@ public class PlayerMovementController : MonoBehaviour
         
         //A point just below the necessary height to represent climbing part of the way up.
         Vector3 climbHeight = new Vector3(transform.position.x, (finalPosition.y - crawlHeight), transform.position.z);
-
+        //Debug.Log("climb distance: "+ Vector3.Distance(transform.position, finalPosition));
+        
         //climb to slide height
         while (cCheck.climbableDistance(transform.position, finalPosition) && Vector3.Distance(transform.position, climbHeight) > lerpEpsilon)
         {
@@ -161,7 +194,7 @@ public class PlayerMovementController : MonoBehaviour
         camController.headbob = true;
         playerController.detectCollisions = true;
         climbing = false;
-
+        Debug.Log("Finished Climbing");
         Destroy(pointToClimb);
     }
     //private void MoveCamera(InputAction.CallbackContext context)
