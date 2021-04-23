@@ -73,7 +73,8 @@ public class ClimbChecker : MonoBehaviour
                                   transform.position.y + reachHeight,
                                   transform.position.z + landingRay.direction.z);
 
-                Ray canStandRay = new Ray((possEdge + transform.forward*landingDepth), -transform.up);
+                //Can stand ray slightly upward to deal with the awkward shape of boxes
+                Ray canStandRay = new Ray((possEdge+Vector3.up + transform.forward*landingDepth), -transform.up);
                 Debug.DrawRay(canStandRay.origin, canStandRay.direction, Color.green);
 
                 RaycastHit canStandHit;
