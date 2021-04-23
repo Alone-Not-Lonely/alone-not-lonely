@@ -12,19 +12,12 @@ public class PatrolPointsController : Grabber
     private enum State {Waiting, Moving, Collided};
     private State currentState;
 
-    private float waitTime = 3f;
-    private float currentWaitTime = 0;
-
     private float colliderCooldown = 2f;
     private float currentColliderCooldown = 0f;
     public bool inColliderCooldown = false;
     private Collider lastPortalCollider;
 
     private Vector3 lastTransform;
-    private bool stuck = false;
-    private float stuckTimer;
-    public float stuckTimeToMove = 1f;
-    public float allowableMoveMargin = .1f;
     public float portalSpawnOffset = .3f;
 
     private Rigidbody thisRB;
@@ -33,6 +26,8 @@ public class PatrolPointsController : Grabber
     public Vector3 movementLastFrame;
     public GameObject activePortal1;
     public GameObject activePortal2;
+
+    private bool collidingWithGrabable = false;
 
     void Start()
     {
@@ -67,11 +62,6 @@ public class PatrolPointsController : Grabber
         if(currentState == State.Moving && Vector3.Distance(transform.position, patrolPoints[currentGoal].position) > .1f) //move monster towards goal
         {
             thisRB.MovePosition(Vector3.MoveTowards(transform.position, patrolPoints[currentGoal].position, .01f * speed));
-        }
-        else if(currentState == State.Moving && Vector3.Distance(transform.position, patrolPoints[currentGoal].position) <= .1f) //more waiting code that im afraid to delete ;_;
-        {
-            currentState = State.Waiting;
-            currentWaitTime += Time.deltaTime;
         }
         FixedUpdate(this.transform, movementLastFrame.normalized); //update abstract parent
     }
@@ -126,24 +116,11 @@ public class PatrolPointsController : Grabber
                 UpdatePortalSizes();
             }
         }
-        else
-        {
-            if(other.CompareTag("Portal") || other.CompareTag("BackPortal"))
-            {
-                //TurnAround();
-                //heldObject.transform.Translate
-                //ReleaseObject();
-            }
-        }
     }
 
     private void OnCollisionStay(Collision other) 
     {
-        float movementLastFrame = Vector3.Distance(this.transform.position, lastTransform);
-        if(!stuck && currentState == State.Moving && directionDot < allowableMoveMargin)
-        {
-            stuck = true;
-        }
+
     }
 
     private void OnCollisionEnter(Collision other) 
@@ -153,12 +130,16 @@ public class PatrolPointsController : Grabber
             //checks to see if the grabbable thing is a box and it isn't being held
             //This was added to stop monsters from snatching the box from a while away
             BoxContactBehavior box = other.gameObject.GetComponent<BoxContactBehavior>();
-            if (box != null && box.boxHolder == null)
+            if (!this.holdingObject && box != null && box.boxHolder == null)
             {
                 Debug.Log("GRABBING MINE");
                 GrabAttempt(other.gameObject, this.gameObject);
             }
         }
+    }
+
+    private void OnCollisionExit(Collision other) 
+    {
     }
 
     void UpdatePortalSizes()
