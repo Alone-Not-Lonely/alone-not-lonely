@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class Grabber : MonoBehaviour
 {
-    
     public GameObject heldObject;
     public bool holdingObject;
     public float holdDistance;
@@ -21,7 +20,7 @@ public abstract class Grabber : MonoBehaviour
     protected void GrabAttempt(GameObject objectInRange, GameObject holder)
     {
         Debug.Log(gameObject.name + " is Calling");
-        if(!inGrabCooldown)// && holder == this.gameObject)
+        if(!inGrabCooldown)
         {
             if(!objectInRange.GetComponent<BoxContactBehavior>().beingHeld)
             {
@@ -35,7 +34,6 @@ public abstract class Grabber : MonoBehaviour
             }
             else
             {
-                Debug.Log("Grabbed");
                 objectInRange.GetComponent<BoxContactBehavior>().boxHolder.GetComponent<Grabber>().ReleaseObject();
                 objectInRange.GetComponent<BoxContactBehavior>().beingHeld = false;
                 heldObject = objectInRange;

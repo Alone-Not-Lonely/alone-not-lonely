@@ -50,37 +50,6 @@ public class PatrolPointsController : Grabber
         movementLastFrame = this.transform.position - lastTransform;//Total movement after one frame
         directionDot = Vector3.Dot(Vector3.Normalize(movementLastFrame), Vector3.Normalize(patrolPoints[currentGoal].position - transform.position));//dot product of last frame movement and movement to goal
 
-        //unsticks if monster's way has been cleared
-        if (stuck && currentState == State.Moving && directionDot >= allowableMoveMargin)//old evaluation: movementLastFrame >= (.01f * speed) - allowableMoveMargin
-        {
-            stuck = false;
-            stuckTimer = 0f;
-        }
-
-        //constinue being stuck
-        if(stuck && stuckTimer < stuckTimeToMove)
-        {
-            stuckTimer += Time.deltaTime;
-        }
-        else if(stuck && stuckTimer >= stuckTimeToMove) // turn around to get unstuck
-        {
-            TurnAround();
-        }
-
-        if(currentState == State.Waiting && currentWaitTime < waitTime)// we're not doing waiting anymore but I'm leaving this here in case removing it breaks the game
-        {
-            currentWaitTime += Time.deltaTime;
-        }
-        else if(currentState == State.Waiting && currentWaitTime >= waitTime)
-        {
-            currentState = State.Moving;
-            currentWaitTime = 0f;
-            currentGoal++;
-            if(currentGoal >= patrolPoints.Count)
-            {
-                currentGoal = currentGoal % patrolPoints.Count;
-            }
-        }
 
         if(inColliderCooldown && currentColliderCooldown < colliderCooldown) //can't collide back into the portal it just exited
         {
@@ -186,6 +155,7 @@ public class PatrolPointsController : Grabber
             BoxContactBehavior box = other.gameObject.GetComponent<BoxContactBehavior>();
             if (box != null && box.boxHolder == null)
             {
+                Debug.Log("GRABBING MINE");
                 GrabAttempt(other.gameObject, this.gameObject);
             }
         }
