@@ -12,9 +12,9 @@
 *   **Joann Long** - Lead 2D Artist and Animator
 *   **Lezette De Paz** - 3D Artist
 *   **Aurelia Swift** - 3D Artist
-*   **Gregory Kauffman **- Sound Designer
+*   **Gregory Kauffman**- Sound Designer
 *   **Ethan Grossbach** - Level Designer
-*   **Adrian Miller **- Assistant Programmer
+*   **Adrian Miller**- Assistant Programmer
 *   **Jennifer Honeywell** - Assistant 2D Artist and Animator
 
 
