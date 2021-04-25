@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 6978556801791263728}
   - component: {fileID: 6978556801791263729}
   - component: {fileID: -2304848230839767914}
+  - component: {fileID: 1142586898177575554}
   m_Layer: 0
   m_Name: SquashedBox
   m_TagString: Grabable
@@ -148,6 +149,7 @@ MonoBehaviour:
   boxSFX: {fileID: 0}
   boxPickup: {fileID: 0}
   boxDrop: {fileID: 0}
+  holdOffset: 0.25
 --- !u!54 &6978556801791263728
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -192,3 +194,15 @@ MonoBehaviour:
   squashed: 0
   squashedVariant: {fileID: 6978556801791263734}
   regularVariant: {fileID: 1721422308372995269, guid: 02fe9c085bccccf4898974299ff33d58, type: 3}
+--- !u!114 &1142586898177575554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6978556801791263734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84161534a9d4b164ba3d40dd98416b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

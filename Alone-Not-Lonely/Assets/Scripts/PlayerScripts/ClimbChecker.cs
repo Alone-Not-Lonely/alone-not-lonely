@@ -74,7 +74,8 @@ public class ClimbChecker : MonoBehaviour
                                   transform.position.z + landingRay.direction.z);
 
                 //Can stand ray slightly upward to deal with the awkward shape of boxes
-                Ray canStandRay = new Ray((possEdge+Vector3.up + transform.forward*landingDepth), -transform.up);
+                //This ray checks to see if player were to stand on the final spot, that there would actually be ground there
+                Ray canStandRay = new Ray((possEdge + (Vector3.up*.5f) + transform.forward*landingDepth), -transform.up);
                 Debug.DrawRay(canStandRay.origin, canStandRay.direction, Color.green);
 
                 RaycastHit canStandHit;
@@ -86,7 +87,7 @@ public class ClimbChecker : MonoBehaviour
                 }
                 else
                 {
-                    //Debug.Log("Doesn't seem like I can stand on this");
+                    Debug.Log("Doesn't seem like I can stand on this");
                     edge = transform.position;
                     climbablePoint = Vector3.zero;
                 }

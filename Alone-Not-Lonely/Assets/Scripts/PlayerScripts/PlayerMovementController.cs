@@ -93,8 +93,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Jump()
     {
-        if (playerAb.holdingObject || !playerController.isGrounded)
+        //allows climbing if no object in hand or the object is a squashed object
+        
+        if (playerAb.holdingObject && playerAb.heldObject.gameObject.GetComponent<SquashedObject>()==null)
         {
+            Debug.Log("Squashed object component not detected");
             //we don't ever want to perform jump based acation in these circumstances 
             return;
         }
@@ -105,10 +108,10 @@ public class PlayerMovementController : MonoBehaviour
            {
                 climbTypeCheck();
            }
-           else if(jumping)
-           {
-             moveDirY = jumpHeight;
-           }
+           //else if(jumping)
+           //{
+           //  moveDirY = jumpHeight;
+           //}
         }
     }
 
