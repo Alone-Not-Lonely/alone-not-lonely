@@ -10,11 +10,12 @@ public class AtticLadderController : MonoBehaviour
     public Animator closedLadderAnimator;
     public GameObject openLadder;
     public bool canUseLadder;
-    public float upspeed = .001f, downspeed = .001f, finallyOpen = .01f;
+    public float upspeed = .001f, downspeed = .001f, finallyOpen = .9f;
     [SerializeField]
-    private float state = 1;
+    private float state = 0;
     //private WinCondition win;
     private Player _player;
+    private float doorProgress = 0;
 
     private void Start() {
         canUseLadder = false;
@@ -78,20 +79,32 @@ public class AtticLadderController : MonoBehaviour
 
     public void open()
     {
-        state -= downspeed;
-        state = Mathf.Clamp(state,0f,1f);
+        doorProgress += downspeed;
+        doorProgress = Mathf.Clamp(doorProgress, 0f, 1f);
+        //Debug.Log("DoorProgress: " + doorProgress);
+        state = easeInOutQuint(doorProgress);
+        
+        //Debug.Log("State: " + state);
         closedLadderAnimator.SetFloat("anim_speed", state);
 
-        if (state < finallyOpen)
+        if (state > finallyOpen)
         {
-            Debug.Log("past threshold");
+            //Debug.Log("past threshold");
             upspeed = 0;
         }
     }
 
     public void close() {
-        state += upspeed;
+
+        doorProgress -= upspeed;
+        doorProgress = Mathf.Clamp(doorProgress, 0f, 1f);
+        state = easeInOutQuint(doorProgress);
         state = Mathf.Clamp(state, 0f, 1f);
         closedLadderAnimator.SetFloat("anim_speed", state);
+    }
+
+    //taken from easings.net
+    private float easeInOutQuint(float x){
+        return x < 0.5 ? (16 * Mathf.Pow(x,5)) : (1 - Mathf.Pow((-2 * x + 2), 5) / 2);
     }
 }
