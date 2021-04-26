@@ -197,8 +197,8 @@ public class PlayerMovementController : MonoBehaviour
         camController.headbob = true;
         playerController.detectCollisions = true;
         climbing = false;
-        Debug.Log("Finished Climbing");
         Destroy(pointToClimb);
+        
     }
     //private void MoveCamera(InputAction.CallbackContext context)
     //{
