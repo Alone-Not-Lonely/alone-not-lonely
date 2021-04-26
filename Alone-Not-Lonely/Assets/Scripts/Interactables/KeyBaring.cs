@@ -27,12 +27,12 @@ public class KeyBaring : Interactable
                     objectAnimator.SetBool("OpenObj", true);
                 }
                 open = true;
+                //base.LookAtObject();
                 viewPuzzlePiece();
-                //LookAtObject();
             }
             else if (inRange && open)
             {
-                openText.gameObject.SetActive(true);
+                openText.gameObject.SetActive(false);
                 closeText.gameObject.SetActive(false);
                 if (objectAnimator != null)
                 {
@@ -46,7 +46,8 @@ public class KeyBaring : Interactable
                 hiddenObj = new GameObject();
                 hiddenObj.AddComponent<Transform>();
                 containsKey = false;
-                PutDownObject();
+                base.PutDownObject();
+                this.GetComponent<SphereCollider>().enabled = false;
             }
         }
     }
@@ -56,7 +57,7 @@ public class KeyBaring : Interactable
         playerRef._actionMap.Platforming.Disable();
         playerRef._actionMap.ViewingObject.Enable();
         playerRef._actionMap.ViewingObject.InteractionTest.performed += interact => keyGrab();
-        //playerRef._actionMap.ViewingObject.RotateObj.performed += rot => Rotate(rot.ReadValue<Vector2>());
+        playerRef._actionMap.ViewingObject.RotateObj.performed += rot => base.Rotate(rot.ReadValue<Vector2>());
         hiddenObjInstance = Instantiate(hiddenObj, Camera.main.gameObject.transform.position + Camera.main.gameObject.transform.forward, Quaternion.identity);
     }
 
