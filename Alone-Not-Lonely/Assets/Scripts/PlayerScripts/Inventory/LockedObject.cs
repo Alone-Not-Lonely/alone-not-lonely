@@ -36,6 +36,10 @@ public class LockedObject : MonoBehaviour
         }
     }
 
+    public bool CheckHasKey()
+    {
+        return inventory.checkContents(keys);
+    }
     private void openAction()
     {
         Debug.Log("Open");

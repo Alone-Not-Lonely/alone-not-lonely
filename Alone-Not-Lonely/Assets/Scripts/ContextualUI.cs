@@ -14,7 +14,7 @@ public class ContextualUI : MonoBehaviour
 
     private bool inRange = false;
 
-    private void Start() {
+    protected void Start() {
         Text[] allText = (Text[])Resources.FindObjectsOfTypeAll(typeof(Text));
         foreach(Text t in allText)
         {
@@ -31,7 +31,7 @@ public class ContextualUI : MonoBehaviour
         contextSecondary.text = "";
     }
 
-    private void OnDisable() {
+    protected void OnDisable() {
         if(contextInitial != null)
         {
             contextInitial.gameObject.SetActive(false);
@@ -48,7 +48,7 @@ public class ContextualUI : MonoBehaviour
     /// OnTriggerEnter is called when the Collider other enters the trigger.
     /// </summary>
     /// <param name="other">The other Collider involved in this collision.</param>
-    void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
@@ -66,7 +66,7 @@ public class ContextualUI : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other) 
+    protected void OnTriggerExit(Collider other) 
     {
         if(other.CompareTag("Player"))
         {
