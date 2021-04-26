@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class AtticLadderController : MonoBehaviour
 {
     //public bool boxBlockingExit = false;
+    public string nextScene = "Kitchen";
     public Animator closedLadderAnimator;
     public GameObject openLadder;
     public bool canUseLadder;
@@ -41,7 +42,7 @@ public class AtticLadderController : MonoBehaviour
             _player.gameObject.SetActive(false);
             _player.gameObject.transform.position =  new Vector3(32.7400017f,4.98999977f,-62.7200012f);
             _player.gameObject.SetActive(true);
-            SceneManager.LoadScene("KitchenGraybox");
+            SceneManager.LoadScene(nextScene);
         }
     }
 
@@ -50,7 +51,7 @@ public class AtticLadderController : MonoBehaviour
         _player.gameObject.SetActive(false);
         _player.gameObject.transform.position =  new Vector3(32.7400017f,4.98999977f,-62.7200012f);
         _player.gameObject.SetActive(true);
-        SceneManager.LoadScene("KitchenGraybox");
+        SceneManager.LoadScene(nextScene);
     }
 
     private void OnTriggerExit(Collider other) {

@@ -241,7 +241,7 @@ public class PanicMeterController : MonoBehaviour
             if (hit.collider.tag == "Deadly") {
                 //100 as an arbitrarily high number
                 currentAnxietyPoints += (100 * Time.deltaTime);
-                Debug.Log(currentAnxietyPoints);
+                //Debug.Log(currentAnxietyPoints);
             };
             //There may be a problem w/ calling faint twice, but we'll see
         }

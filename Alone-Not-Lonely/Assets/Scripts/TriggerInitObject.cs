@@ -5,7 +5,11 @@ using UnityEngine;
 public class TriggerInitObject : MonoBehaviour
 {
     public GameObject objectToInit;
-    
+    private AudioSource aS;
+    private void Start()
+    {
+        aS = objectToInit.GetComponent<AudioSource>();
+    }
     /// <summary>
     /// OnTriggerEnter is called when the Collider other enters the trigger.
     /// </summary>
@@ -14,6 +18,7 @@ public class TriggerInitObject : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            aS.Play(0);
             objectToInit.GetComponent<Animator>().SetBool("StartAnim", true);
             foreach(Transform child in objectToInit.transform)
             {
