@@ -59,6 +59,7 @@ public class ClimbChecker : MonoBehaviour
         Ray proxRay = new Ray(transform.position, transform.forward);
        
         Debug.DrawRay(transform.position, (transform.forward*reachDepth), Color.blue);
+        Debug.Log("Detecting object: " + Physics.SphereCast(proxRay, detectRadius, out proxHit, reachDepth));
         if (Physics.SphereCast(proxRay,detectRadius, out proxHit, reachDepth)&&(proxHit.collider.isTrigger == false))
         {
             //Object Gabe could concievably climb
@@ -70,10 +71,10 @@ public class ClimbChecker : MonoBehaviour
 
             Ray landingRay = new Ray(hcPos, transform.forward * climbLengthDepth);
             Debug.DrawRay(landingRay.origin, landingRay.direction, Color.yellow);
-            Debug.Log(Physics.Raycast(landingRay, out canLandHit, climbLengthDepth));
+            //Debug.Log(Physics.Raycast(landingRay, out canLandHit, climbLengthDepth));
             if (Physics.Raycast(landingRay, out canLandHit, climbLengthDepth)&& (canLandHit.collider.isTrigger == false))
             {
-                Debug.Log("here tho");
+                
                 if (reachHeight <= maxClimbHeight)
                 {
                     //Debug.Log("Should be incrementing");
