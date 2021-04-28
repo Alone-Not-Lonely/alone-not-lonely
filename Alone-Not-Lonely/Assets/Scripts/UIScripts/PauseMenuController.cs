@@ -25,7 +25,10 @@ public class PauseMenuController : MonoBehaviour
         //pausePrefab.SetActive(false);
         pauseComponents = new List<GameObject>();
         pausePrefab = this.gameObject;
-        mixer.SetFloat("Volume", Mathf.Log10(volumeSlider.value) * 20);
+        //mixer.SetFloat("Volume", Mathf.Log10(volumeSlider.value) * 20);
+        float volumeOut = .5f;
+        mixer.GetFloat("Volume", out volumeOut);
+        volumeSlider.value = Mathf.Pow(10, volumeOut/20);
 
         playerRef = (Player)FindObjectOfType<Player>();
         playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
@@ -51,6 +54,10 @@ public class PauseMenuController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
+        float volumeOut = .5f;
+        mixer.GetFloat("Volume", out volumeOut);
+        volumeSlider.value = Mathf.Pow(10, volumeOut/20);
+        Debug.Log(Mathf.Pow(10, volumeOut/20));
     }
 
     public void PauseControl()
@@ -121,7 +128,9 @@ public class PauseMenuController : MonoBehaviour
 
     public void OnSliderValueChanged(float value)
     {
+        Debug.Log("SliderValueChanged");
         volume = value;
         mixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
+        Debug.Log(volumeSlider.value);
     }
 }
