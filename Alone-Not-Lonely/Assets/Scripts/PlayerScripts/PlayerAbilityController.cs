@@ -10,6 +10,7 @@ public class PlayerAbilityController : Grabber
     public Text releaseText;
 
     private Player playerRef;
+    private BoxCollider collideWithWalls;
     void Start()
     {
         grabText.gameObject.SetActive(false);

@@ -6,6 +6,7 @@ public class KeyBaring : Interactable
 {
     private bool containsKey = true;
     private PlayerInventory pIn;
+    public int ID;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +42,8 @@ public class KeyBaring : Interactable
                 
                 open = false;
                 if (containsKey) { 
+                    //set ID to that of this obj
+                    hiddenObj.gameObject.GetComponent<Item>().ID = this.ID;
                     pIn.addItem(hiddenObj.gameObject.GetComponent<Item>());
                 }
                 hiddenObj = new GameObject();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -20,7 +21,30 @@ public class PlayerInventory : MonoBehaviour
     void Awake()
     {
         items = new List<Item>();
-        //DontDestroyOnLoad(this.gameObject);//Keep persistant
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        KeyBaring[] puzzlePieceHolders = (KeyBaring[])Resources.FindObjectsOfTypeAll(typeof(KeyBaring));
+        foreach(KeyBaring p in puzzlePieceHolders)
+        {
+            foreach(Item i  in items)
+            {
+                if(i.ID != -1 && i.ID == p.ID)
+                {
+                    Destroy(p);
+                }
+            }
+        }
+    }
+
+    private void OnDisable(){
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     //adds an item's key to the list

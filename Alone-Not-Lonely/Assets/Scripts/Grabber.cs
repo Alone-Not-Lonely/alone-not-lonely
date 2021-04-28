@@ -17,7 +17,7 @@ public abstract class Grabber : MonoBehaviour
         holdingObject = false;    
     }
 
-    protected void GrabAttempt(GameObject objectInRange, GameObject holder)
+    protected bool GrabAttempt(GameObject objectInRange, GameObject holder)
     {
         Debug.Log(gameObject.name + " is Calling");
         if(!inGrabCooldown)
@@ -31,6 +31,7 @@ public abstract class Grabber : MonoBehaviour
                 heldObject.GetComponent<BoxContactBehavior>().beingHeld = true;
                 heldObject.GetComponent<BoxContactBehavior>().boxHolder = holder;
                 heldObject.GetComponent<BoxContactBehavior>().boxSFX.PlayOneShot(heldObject.GetComponent<BoxContactBehavior>().boxPickup);
+                return true;
             }
             else
             {
@@ -43,8 +44,10 @@ public abstract class Grabber : MonoBehaviour
                 heldObject.GetComponent<BoxContactBehavior>().beingHeld = true;
                 heldObject.GetComponent<BoxContactBehavior>().boxHolder = holder;
                 heldObject.GetComponent<BoxContactBehavior>().boxSFX.PlayOneShot(heldObject.GetComponent<BoxContactBehavior>().boxPickup);
+                return true;
             }
         }
+        return false;
     }
 
     public void ReleaseObject()

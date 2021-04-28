@@ -211,11 +211,6 @@ public class PlayerMovementController : MonoBehaviour
         {
             footsteps.Pause();
         }
-        /*{
-            footsteps.Pause();
-            stopFootstepsH = false;
-            stopFootstepsV = false;
-        }*/
         if(!thisPlayer.paused && !climbing)
         {
             
