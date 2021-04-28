@@ -57,7 +57,6 @@ public class PauseMenuController : MonoBehaviour
         float volumeOut = .5f;
         mixer.GetFloat("Volume", out volumeOut);
         volumeSlider.value = Mathf.Pow(10, volumeOut/20);
-        Debug.Log(Mathf.Pow(10, volumeOut/20));
     }
 
     public void PauseControl()
@@ -131,6 +130,5 @@ public class PauseMenuController : MonoBehaviour
         Debug.Log("SliderValueChanged");
         volume = value;
         mixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
-        Debug.Log(volumeSlider.value);
     }
 }
