@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EndPlaytestScript : MonoBehaviour
+public class ReturnToAttic : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Vector3 positionToReturnTo;
+    private Player _player;
+
     void Start()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        _player = FindObjectOfType<Player>();
+        positionToReturnTo = new Vector3(27.4599991f,4.95430565f,-88.1100006f);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     /// <summary>
     /// OnTriggerEnter is called when the Collider other enters the trigger.
     /// </summary>
@@ -26,7 +22,9 @@ public class EndPlaytestScript : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Camera.main.gameObject.SetActive(false);
+            _player.gameObject.SetActive(false);
+            _player.gameObject.transform.position =  positionToReturnTo;
+            _player.gameObject.SetActive(true);
             SceneManager.LoadScene("Attic2");
         }
     }
