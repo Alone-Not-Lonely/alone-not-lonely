@@ -13,6 +13,9 @@ public class ElevatorMonsterController : Grabber
 
     //public bool holdingObject;
     private bool goingUp;
+    private bool waiting;
+    public float waitTime = 2f;
+    private float currentWaitTime;
     void Start()
     {
         targetPoint = this.transform.position + (this.transform.up * height);
@@ -22,6 +25,8 @@ public class ElevatorMonsterController : Grabber
         Debug.Log(targetPoint);
         holdingObject = false;
         goingUp = true;
+        waiting = false;
+        currentWaitTime = 0;
     }
 
     void FixedUpdate()
@@ -32,15 +37,26 @@ public class ElevatorMonsterController : Grabber
             heldObject.GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(heldObject.transform.position, targetPoint, Time.fixedDeltaTime * speed));
         }
         
-        if (goingUp && holdingObject && Vector3.Distance(heldObject.transform.position, targetPoint) <= .1f)
+        if (!waiting && goingUp && holdingObject && Vector3.Distance(heldObject.transform.position, targetPoint) <= .1f)
         {
             targetPoint = startPoint;
             goingUp = !goingUp;
+            waiting = true;
         }
-        else if(!goingUp && holdingObject && Vector3.Distance(heldObject.transform.position, targetPoint) <= .1f)
+        else if(!waiting && !goingUp && holdingObject && Vector3.Distance(heldObject.transform.position, targetPoint) <= .1f)
         {
             targetPoint = this.transform.position + (this.transform.up * height);
             goingUp = !goingUp;
+            waiting = true;
+        }
+        else if(waiting && currentWaitTime < waitTime)
+        {
+            currentWaitTime += Time.deltaTime;
+        }
+        else if(waiting && currentWaitTime >= waitTime)
+        {
+            waiting = false;
+            currentWaitTime = 0;
         }
 
     }
