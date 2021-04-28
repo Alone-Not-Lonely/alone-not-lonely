@@ -30,14 +30,19 @@ public class PauseMenuController : MonoBehaviour
         mixer.GetFloat("Volume", out volumeOut);
         volumeSlider.value = Mathf.Pow(10, volumeOut/20);
 
-        playerRef = (Player)FindObjectOfType<Player>();
-        playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
-        foreach (Transform child in pausePrefab.transform) {
-            pauseComponents.Add(child.gameObject);
+        foreach (Transform child in this.transform) {
             child.gameObject.SetActive(startActive);
         }
         GetComponent<AudioSource>().enabled = false;
-        
+    }
+
+    private void OnEnable() {
+        playerRef = (Player)FindObjectOfType<Player>();
+        playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
+    }
+
+    private void OnDisable() {
+        playerRef._actionMap.Platforming.Pause.performed -= pause => PauseControl();
     }
 
     private void OnDestroy()
@@ -85,9 +90,9 @@ public class PauseMenuController : MonoBehaviour
         Time.timeScale = 0;
         gamePaused = true;
         //pausePrefab.SetActive(true);
-        foreach(GameObject child in pauseComponents)
+        foreach (Transform child in this.transform)
         {
-            child.SetActive(true);
+            child.gameObject.SetActive(true);
         }
         float[] weights = {1f};
         mixer.TransitionToSnapshots(passFilters, weights, .01f);
@@ -102,9 +107,9 @@ public class PauseMenuController : MonoBehaviour
         Time.timeScale = 1;
         gamePaused = false;
         //pausePrefab.SetActive(false);
-        foreach(GameObject child in pauseComponents)
+        foreach (Transform child in this.transform)
         {
-            child.SetActive(false);
+            child.gameObject.SetActive(false);
         }
         float[] weights = {1f};
         mixer.TransitionToSnapshots(defaultSnap, weights, .01f);
