@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public string key;
+    public int ID;
     //public Sprite representation;
     private PlayerInventory inventory;
     bool playerNearby = false;
@@ -15,6 +16,9 @@ public class Item : MonoBehaviour
         playerRef = (Player)FindObjectOfType(typeof(Player));
         inventory = playerRef.GetComponentInChildren<PlayerInventory>();
         playerRef._actionMap.Platforming.Use.performed += grab => pickUp();
+        if(key != "Puzzle Piece"){
+            ID = -1;
+        }
     }
 
     void pickUp()

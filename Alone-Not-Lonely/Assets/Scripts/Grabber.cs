@@ -17,7 +17,7 @@ public abstract class Grabber : MonoBehaviour
         holdingObject = false;    
     }
 
-    protected void GrabAttempt(GameObject objectInRange, GameObject holder)
+    protected bool GrabAttempt(GameObject objectInRange, GameObject holder)
     {
         Debug.Log(gameObject.name + " is Calling");
         if(!inGrabCooldown)
@@ -31,6 +31,7 @@ public abstract class Grabber : MonoBehaviour
                 heldObject.GetComponent<BoxContactBehavior>().beingHeld = true;
                 heldObject.GetComponent<BoxContactBehavior>().boxHolder = holder;
                 heldObject.GetComponent<BoxContactBehavior>().boxSFX.PlayOneShot(heldObject.GetComponent<BoxContactBehavior>().boxPickup);
+                return true;
             }
             else
             {
@@ -43,8 +44,10 @@ public abstract class Grabber : MonoBehaviour
                 heldObject.GetComponent<BoxContactBehavior>().beingHeld = true;
                 heldObject.GetComponent<BoxContactBehavior>().boxHolder = holder;
                 heldObject.GetComponent<BoxContactBehavior>().boxSFX.PlayOneShot(heldObject.GetComponent<BoxContactBehavior>().boxPickup);
+                return true;
             }
         }
+        return false;
     }
 
     public void ReleaseObject()
@@ -68,8 +71,16 @@ public abstract class Grabber : MonoBehaviour
     {
         if(heldObject != null && holdingObject)
         {
-            heldObject.GetComponent<Rigidbody>().MovePosition(holderObject.position + (- holderObject.up * .25f) + (holdOffsetDir * (holdDistance + heldObject.GetComponent<BoxContactBehavior>().holdOffset)));
-            heldObject.GetComponent<Rigidbody>().MoveRotation(holderObject.rotation);
+            if(heldObject.GetComponent<SquashedObject>() != null && holderObject.gameObject.CompareTag("Player"))
+            {
+                heldObject.GetComponent<Rigidbody>().MovePosition(holderObject.position + (- holderObject.up * .25f) + (holdOffsetDir * (holdDistance + heldObject.GetComponent<BoxContactBehavior>().holdOffset)) + (holderObject.right * (holdDistance/2)));
+                heldObject.GetComponent<Rigidbody>().MoveRotation(holderObject.rotation);
+            }
+            else
+            {
+                heldObject.GetComponent<Rigidbody>().MovePosition(holderObject.position + (- holderObject.up * .25f) + (holdOffsetDir * (holdDistance + heldObject.GetComponent<BoxContactBehavior>().holdOffset)));
+                heldObject.GetComponent<Rigidbody>().MoveRotation(holderObject.rotation);
+            }
         }
     }
 

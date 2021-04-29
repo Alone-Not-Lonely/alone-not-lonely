@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class ScenePersistence : MonoBehaviour
 {
-
     private void Awake() {
-        DontDestroyOnLoad(this.gameObject);//Keep persistent
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        ScenePersistence[] objs = (ScenePersistence[])Resources.FindObjectsOfTypeAll(typeof(ScenePersistence));
+        Debug.Log(this.name);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (objs.Length > 2)
+        {
+            Destroy(this.gameObject);
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);//Keep persistent
     }
 }

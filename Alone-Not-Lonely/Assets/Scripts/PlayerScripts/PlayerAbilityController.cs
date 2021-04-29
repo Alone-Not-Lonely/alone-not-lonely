@@ -10,13 +10,23 @@ public class PlayerAbilityController : Grabber
     public Text releaseText;
 
     private Player playerRef;
+    private BoxCollider collideWithWalls;
     void Start()
     {
         grabText.gameObject.SetActive(false);
         releaseText.gameObject.SetActive(false);
         playerRef = (Player)FindObjectOfType(typeof(Player));
+    }
+    private void OnEnable() {
+        playerRef = (Player)FindObjectOfType(typeof(Player));
         playerRef._actionMap.ViewingObject.Disable();
         playerRef._actionMap.Platforming.Use.performed += grab => PlayerGrab();
+    }
+
+    private void OnDisable()
+    {
+        playerRef._actionMap.ViewingObject.Disable();
+        playerRef._actionMap.Platforming.Use.performed -= grab => PlayerGrab();
     }
 
     void PlayerGrab()

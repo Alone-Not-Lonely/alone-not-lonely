@@ -13,10 +13,10 @@ public class WinCondition : MonoBehaviour
 
     public void onWin()
     {
-        entities = FindObjectsOfType<ImaginaryEntity>();
+        /*entities = FindObjectsOfType<ImaginaryEntity>();
         foreach(ImaginaryEntity entity in entities)
         {
             entity.gannonVoiceDie();
-        }
+        }*/
     }
 }

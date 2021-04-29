@@ -14,7 +14,7 @@ public class SquashedObject : MonoBehaviour
 
     private void Update()
     {
-        if (boxBehavior.beingHeld)
+        if (boxBehavior.beingHeld && boxBehavior.boxHolder.CompareTag("Player"))
         {
             transform.eulerAngles = new Vector3(0, 0, 90) + player.transform.eulerAngles;
         }
