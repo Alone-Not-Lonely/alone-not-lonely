@@ -33,7 +33,7 @@ public class PlayerAbilityController : Grabber
     {
         if (!playerRef.paused)
         {
-            if (currentGrab != null && !base.holdingObject)//(waitingForInput && currentGrab != null)
+            if (currentGrab != null && !base.holdingObject)
             {
                 grabText.gameObject.SetActive(false);
                 releaseText.gameObject.SetActive(true);

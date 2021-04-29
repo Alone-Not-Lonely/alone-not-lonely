@@ -8,8 +8,7 @@ public class ClimbChecker : MonoBehaviour
                  climbLengthDepth = 1.5f, maxClimbHeight = 2,
                  handOffset = .3f, handMoveSpeed = .3f,
                  detectRadius = 1f, landingDepth = .5f,
-                 maxReachDist = 4f;
-    public float reachDepth = 1f;
+                 maxReachDist = 4f, reachDepth = 1f;
     private float playerHeight;
     public Vector3 climbablePoint = Vector3.zero;
     private Vector3 edge;
@@ -117,7 +116,9 @@ public class ClimbChecker : MonoBehaviour
     {
         {
             rhand.position = Vector3.Lerp(rhand.position, edge + (transform.right * handOffset), handMoveSpeed);
-            lhand.position = Vector3.Lerp(lhand.position, edge - (transform.right * handOffset), handMoveSpeed);
+            if (!(pAbil.currentGrab != null && pAbil.heldObject.gameObject.GetComponent<SquashedObject>() != null)){
+                lhand.position = Vector3.Lerp(lhand.position, edge - (transform.right * handOffset), handMoveSpeed);
+            }
         }
         if (Vector3.Distance(rhand.position, edge) < .1)
         {

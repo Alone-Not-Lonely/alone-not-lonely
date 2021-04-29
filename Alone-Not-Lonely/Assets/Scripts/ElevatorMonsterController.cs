@@ -19,10 +19,10 @@ public class ElevatorMonsterController : Grabber
     void Start()
     {
         targetPoint = this.transform.position + (this.transform.up * height);
-        Debug.Log(this.gameObject.name);
-        Debug.Log(this.transform.up * height);
-        Debug.Log(this.transform.position);
-        Debug.Log(targetPoint);
+        //Debug.Log(this.gameObject.name);
+       //Debug.Log(this.transform.up * height);
+        //Debug.Log(this.transform.position);
+        //Debug.Log(targetPoint);
         holdingObject = false;
         goingUp = true;
         waiting = false;
