@@ -5,17 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class EndPlaytestScript : MonoBehaviour
 {
+    public Vector3 positionToReturnTo;
+    private Player _player;
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _player = FindObjectOfType<Player>();
+        positionToReturnTo = new Vector3(23.9400024f,2.0599997f,-14.5100021f);
     }
 
     /// <summary>
@@ -26,8 +22,10 @@ public class EndPlaytestScript : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Camera.main.gameObject.SetActive(false);
-            SceneManager.LoadScene("Attic2");
+            _player.gameObject.SetActive(false);
+            _player.gameObject.transform.position =  positionToReturnTo;
+            _player.gameObject.SetActive(true);
+            SceneManager.LoadScene("Bedroom1Graybox");
         }
     }
 }

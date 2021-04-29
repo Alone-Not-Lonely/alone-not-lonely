@@ -116,7 +116,7 @@ public class ClimbChecker : MonoBehaviour
     {
         {
             rhand.position = Vector3.Lerp(rhand.position, edge + (transform.right * handOffset), handMoveSpeed);
-            if (!(pAbil.currentGrab != null && pAbil.heldObject.gameObject.GetComponent<SquashedObject>() != null)){
+            if (!(pAbil.currentGrab != null && pAbil.heldObject && pAbil.heldObject.gameObject.GetComponent<SquashedObject>() != null)){
                 lhand.position = Vector3.Lerp(lhand.position, edge - (transform.right * handOffset), handMoveSpeed);
             }
         }

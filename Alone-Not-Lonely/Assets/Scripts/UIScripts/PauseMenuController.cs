@@ -13,7 +13,7 @@ public class PauseMenuController : MonoBehaviour
 
     private List<GameObject> pauseComponents;
 
-    private Player playerRef;
+    public Player playerRef;
     public AudioMixer mixer;
     public AudioMixerSnapshot[] passFilters;
     public AudioMixerSnapshot[] defaultSnap;
@@ -34,10 +34,11 @@ public class PauseMenuController : MonoBehaviour
             child.gameObject.SetActive(startActive);
         }
         GetComponent<AudioSource>().enabled = false;
+        playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
     }
 
     private void OnEnable() {
-        playerRef = (Player)FindObjectOfType<Player>();
+        //playerRef = (Player)FindObjectOfType<Player>();
         playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
     }
 

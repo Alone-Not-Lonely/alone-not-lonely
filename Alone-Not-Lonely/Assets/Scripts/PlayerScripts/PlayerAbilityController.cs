@@ -16,6 +16,8 @@ public class PlayerAbilityController : Grabber
         grabText.gameObject.SetActive(false);
         releaseText.gameObject.SetActive(false);
         playerRef = (Player)FindObjectOfType(typeof(Player));
+        playerRef._actionMap.ViewingObject.Disable();
+        playerRef._actionMap.Platforming.Use.performed += grab => PlayerGrab();
     }
     private void OnEnable() {
         playerRef = (Player)FindObjectOfType(typeof(Player));
