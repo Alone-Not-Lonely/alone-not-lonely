@@ -98,7 +98,7 @@ public class PlayerMovementController : MonoBehaviour
         if (playerAb.holdingObject && playerAb.heldObject.gameObject.GetComponent<SquashedObject>()==null)
         {
             Debug.Log("Squashed object component not detected");
-            //we don't ever want to perform jump based acation in these circumstances 
+            //we don't ever want to perform jump based action in these circumstances 
             return;
         }
 
