@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ClimbChecker : MonoBehaviour
 {
+    public LayerMask ignoreLayer;
     public float checkStep = .1f, reachHeight = 0,
                  climbLengthDepth = 1.5f, maxClimbHeight = 2,
                  handOffset = .3f, handMoveSpeed = .3f,
@@ -25,6 +26,7 @@ public class ClimbChecker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ignoreLayer = LayerMask.GetMask("ElevatorMonster");
         edge = transform.position;
         pAbil = GetComponentInParent<PlayerAbilityController>();
         pControl = GetComponentInParent<CharacterController>();
@@ -59,7 +61,7 @@ public class ClimbChecker : MonoBehaviour
        
         Debug.DrawRay(transform.position, (transform.forward*reachDepth), Color.blue);
         //Debug.Log("Detecting object: " + Physics.SphereCast(proxRay, detectRadius, out proxHit, reachDepth));
-        if (Physics.SphereCast(proxRay,detectRadius, out proxHit, reachDepth)&&(proxHit.collider.isTrigger == false))
+        if (Physics.SphereCast(proxRay,detectRadius, out proxHit, reachDepth, ~ignoreLayer)&&(proxHit.collider.isTrigger == false))
         {
             //Object Gabe could concievably climb
             climbableObject = proxHit.transform.gameObject;
@@ -71,7 +73,7 @@ public class ClimbChecker : MonoBehaviour
             Ray landingRay = new Ray(hcPos, transform.forward * climbLengthDepth);
             Debug.DrawRay(landingRay.origin, landingRay.direction, Color.yellow);
             //Debug.Log(Physics.Raycast(landingRay, out canLandHit, climbLengthDepth));
-            if (Physics.Raycast(landingRay, out canLandHit, climbLengthDepth)&& (canLandHit.collider.isTrigger == false))
+            if (Physics.Raycast(landingRay, out canLandHit, climbLengthDepth, ~ignoreLayer)&& (canLandHit.collider.isTrigger == false))
             {
                 
                 if (reachHeight <= maxClimbHeight)
@@ -82,7 +84,7 @@ public class ClimbChecker : MonoBehaviour
             }
             //if our landing ray isn't hitting anything
             //Debug.Log((!Physics.Raycast(landingRay, out canLandHit, climbLengthDepth)) +" and "+ (reachHeight != 0));
-            if ((!Physics.Raycast(landingRay, out canLandHit, climbLengthDepth)|| (canLandHit.collider.isTrigger == true)) && (reachHeight != 0))
+            if ((!Physics.Raycast(landingRay, out canLandHit, climbLengthDepth, ~ignoreLayer)|| (canLandHit.collider.isTrigger == true)) && (reachHeight != 0))
             {//We are close enough and HAVE found the objects top 
             
                 Vector3 possEdge = new Vector3(transform.position.x + landingRay.direction.x,
@@ -96,7 +98,7 @@ public class ClimbChecker : MonoBehaviour
 
                 RaycastHit canStandHit;
                 //Debug.Log((!Physics.Raycast(landingRay, out canLandHit, climbLengthDepth)) + " and " + (reachHeight != 0));
-                if (Physics.Raycast(canStandRay, out canStandHit, 2f) && (canStandHit.collider.isTrigger == false))
+                if (Physics.Raycast(canStandRay, out canStandHit, 2f, ~ignoreLayer) && (canStandHit.collider.isTrigger == false))
                 {
                     //Debug.Log("Can stand on: " + canStandHit.collider.name);
                     edge = possEdge;
