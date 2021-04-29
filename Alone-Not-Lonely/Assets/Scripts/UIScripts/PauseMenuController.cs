@@ -38,17 +38,21 @@ public class PauseMenuController : MonoBehaviour
     }
 
     private void OnEnable() {
-        //playerRef = (Player)FindObjectOfType<Player>();
-        playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
+        playerRef = (Player)FindObjectOfType<Player>();
+        if(playerRef != null)
+        {
+            //playerRef.InstantiateControls();
+            //playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
+        }
     }
 
     private void OnDisable() {
-        playerRef._actionMap.Platforming.Pause.performed -= pause => PauseControl();
+        //playerRef._actionMap.Platforming.Pause.performed -= pause => PauseControl();
     }
 
     private void OnDestroy()
     {
-        playerRef._actionMap.Platforming.Pause.performed -= pause => PauseControl();
+        //playerRef._actionMap.Platforming.Pause.performed -= pause => PauseControl();
     }
     void Awake()
     {

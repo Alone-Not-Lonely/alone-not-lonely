@@ -21,14 +21,18 @@ public class PlayerAbilityController : Grabber
     }
     private void OnEnable() {
         playerRef = (Player)FindObjectOfType(typeof(Player));
-        playerRef._actionMap.ViewingObject.Disable();
-        playerRef._actionMap.Platforming.Use.performed += grab => PlayerGrab();
+        if(playerRef != null)
+        {
+            //playerRef.InstantiateControls();
+            //playerRef._actionMap.ViewingObject.Disable();
+            //playerRef._actionMap.Platforming.Use.performed += grab => PlayerGrab();
+        }
     }
 
     private void OnDisable()
     {
-        playerRef._actionMap.ViewingObject.Disable();
-        playerRef._actionMap.Platforming.Use.performed -= grab => PlayerGrab();
+        //playerRef._actionMap.ViewingObject.Disable();
+        //playerRef._actionMap.Platforming.Use.performed -= grab => PlayerGrab();
     }
 
     void PlayerGrab()

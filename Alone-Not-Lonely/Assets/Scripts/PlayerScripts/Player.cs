@@ -15,14 +15,24 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        _actionMap = new DefaultControls();
-        _actionMap.Enable();
+        if(_actionMap == null)
+        {
+            _actionMap = new DefaultControls();
+            _actionMap.Enable();
+        }
+    }
+
+    public void InstantiateControls()
+    {
+        if(_actionMap == null)
+        {
+            _actionMap = new DefaultControls();
+            _actionMap.Enable();
+        }
     }
 
     void Start()
     {
-        //_actionMap = new DefaultControls();
-        //_actionMap.Enable();
         pmController = (PauseMenuController)FindObjectOfType(typeof(PauseMenuController));
         paused = pmController.isPaused();
         spawnPosition = transform.position;
