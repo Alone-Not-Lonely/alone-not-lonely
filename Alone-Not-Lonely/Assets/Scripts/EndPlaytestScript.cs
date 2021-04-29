@@ -11,7 +11,8 @@ public class EndPlaytestScript : MonoBehaviour
     void Start()
     {
         _player = FindObjectOfType<Player>();
-        positionToReturnTo = new Vector3(23.9400024f,2.0599997f,-14.5100021f);
+        positionToReturnTo = new Vector3(30,4,-49);
+        _player._actionMap.Platforming.SkipLevel.performed += skip => LoadNextLevel();
     }
 
     /// <summary>
@@ -27,5 +28,13 @@ public class EndPlaytestScript : MonoBehaviour
             _player.gameObject.SetActive(true);
             SceneManager.LoadScene("Bedroom1Graybox");
         }
+    }
+
+    void LoadNextLevel()
+    {
+        _player.gameObject.SetActive(false);
+        _player.gameObject.transform.position = positionToReturnTo;
+        _player.gameObject.SetActive(true);
+        SceneManager.LoadScene("Bedroom1Graybox");
     }
 }
