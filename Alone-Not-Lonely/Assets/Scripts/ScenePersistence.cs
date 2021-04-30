@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScenePersistence : MonoBehaviour
 {
@@ -15,5 +16,21 @@ public class ScenePersistence : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
         DontDestroyOnLoad(this.gameObject);//Keep persistent
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "MainMenu" || scene.name == "IntroCutscene" || scene.name == "Credits" || scene.name == "Controls")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnDisable(){
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

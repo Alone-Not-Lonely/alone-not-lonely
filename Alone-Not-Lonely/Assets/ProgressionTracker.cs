@@ -22,19 +22,19 @@ public class ProgressionTracker : MonoBehaviour
             ElevatorMonsterController[] elem = (ElevatorMonsterController[])Resources.FindObjectsOfTypeAll(typeof(ElevatorMonsterController));
             foreach(ImaginaryEntity i in imen)
             {
-                Destroy(i.transform.parent.gameObject);
+                i.transform.parent.gameObject.SetActive(false);
             }
             foreach(PatrolPointsController j in patrolPoints)
             {
-                Destroy(j.gameObject);
+                j.gameObject.SetActive(false);
             }
             foreach(PortalController k in portals)
             {
-                Destroy(k.gameObject);
+                k.gameObject.SetActive(false);
             }
             foreach(ElevatorMonsterController l in elem)
             {
-                Destroy(l.transform.parent.gameObject);
+                l.transform.parent.gameObject.SetActive(false);
             }
         }
         else

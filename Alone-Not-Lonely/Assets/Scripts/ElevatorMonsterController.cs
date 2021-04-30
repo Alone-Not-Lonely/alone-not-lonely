@@ -86,7 +86,7 @@ public class ElevatorMonsterController : Grabber
             GrabAttempt(other.gameObject, this.gameObject);
             if(this.holdingObject)
             {
-                startPoint = this.transform.position - (transform.localScale.y * transform.up) + new Vector3(0, other.gameObject.transform.position.y/2, 0);
+                startPoint = this.transform.position - (transform.localScale.y * transform.up) + new Vector3(0, other.gameObject.transform.localScale.y/2, 0);
             }
         }
     }
