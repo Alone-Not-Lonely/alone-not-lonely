@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public abstract class Interactable : MonoBehaviour
 {
     protected bool inRange = false;
-    protected bool open = false;
-    public Text openText;
-    public Text closeText;
+    public bool open = false;
+    //public Text openText;
+    //public Text closeText;
 
     protected Player playerRef;
 
@@ -23,8 +23,8 @@ public abstract class Interactable : MonoBehaviour
     }
     void Start()
     {
-        openText.gameObject.SetActive(false);
-        closeText.gameObject.SetActive(false);
+        //openText.gameObject.SetActive(false);
+        //closeText.gameObject.SetActive(false);
     }
 
     protected void PlayerInteract()
@@ -33,8 +33,8 @@ public abstract class Interactable : MonoBehaviour
         {
             if (inRange && !open)
             {
-                openText.gameObject.SetActive(false);
-                closeText.gameObject.SetActive(true);
+                //openText.gameObject.SetActive(false);
+                //closeText.gameObject.SetActive(true);
                 if(objectAnimator != null)
                 {
                     objectAnimator.SetBool("OpenObj", true);
@@ -44,8 +44,8 @@ public abstract class Interactable : MonoBehaviour
             }
             else if(inRange && open)
             {
-                openText.gameObject.SetActive(true);
-                closeText.gameObject.SetActive(false);
+                //openText.gameObject.SetActive(true);
+                //closeText.gameObject.SetActive(false);
                 if(objectAnimator != null)
                 {
                     objectAnimator.SetBool("OpenObj", false);
@@ -91,8 +91,8 @@ public abstract class Interactable : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             inRange = true;
-            openText.gameObject.SetActive(true);
-            closeText.gameObject.SetActive(false);
+            //openText.gameObject.SetActive(true);
+            //closeText.gameObject.SetActive(false);
         }
     }
 
@@ -101,8 +101,8 @@ public abstract class Interactable : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             inRange = false;
-            openText.gameObject.SetActive(false);
-            closeText.gameObject.SetActive(false);
+            //openText.gameObject.SetActive(false);
+            //closeText.gameObject.SetActive(false);
         }
     }
 }

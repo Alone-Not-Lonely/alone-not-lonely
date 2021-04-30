@@ -21,8 +21,8 @@ public class KeyBaring : Interactable
         {
             if (inRange && !open)
             {
-                openText.gameObject.SetActive(false);
-                closeText.gameObject.SetActive(true);
+                //openText.gameObject.SetActive(false);
+                //closeText.gameObject.SetActive(true);
                 if (objectAnimator != null)
                 {
                     objectAnimator.SetBool("OpenObj", true);
@@ -33,8 +33,8 @@ public class KeyBaring : Interactable
             }
             else if (inRange && open)
             {
-                openText.gameObject.SetActive(false);
-                closeText.gameObject.SetActive(false);
+                //openText.gameObject.SetActive(false);
+                //closeText.gameObject.SetActive(false);
                 if (objectAnimator != null)
                 {
                     objectAnimator.SetBool("OpenObj", false);
@@ -50,7 +50,10 @@ public class KeyBaring : Interactable
                 hiddenObj.AddComponent<Transform>();
                 containsKey = false;
                 base.PutDownObject();
-                this.GetComponent<SphereCollider>().enabled = false;
+                //this.GetComponent<SphereCollider>().enabled = false;
+                this.gameObject.SetActive(false);
+                this.GetComponent<OpenableUI>().contextInitial.text = "";
+                this.GetComponent<OpenableUI>().contextSecondary.text = "";
             }
         }
     }

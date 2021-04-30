@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 public class PanicMeterController : MonoBehaviour
 {
     public Image anxietyMeter;
@@ -245,5 +246,31 @@ public class PanicMeterController : MonoBehaviour
             };
             //There may be a problem w/ calling faint twice, but we'll see
         }
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        postProcess = (Volume)FindObjectOfType<Volume>();
+        postProcess.profile.TryGet(out vignette);
+        postProcess.profile.TryGet(out desaturate);
+        if(vignette)
+        {
+            vignette.intensity.value = 0f;
+        }
+
+        if(desaturate)
+        {
+            desaturate.saturation.value = 0f;
+            desaturate.postExposure.value = 0f;
+        }
+        monsters = new List<GameObject>();
+    }
+
+    private void OnDisable(){
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
