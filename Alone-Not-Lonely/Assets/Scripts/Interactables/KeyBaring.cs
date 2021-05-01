@@ -11,13 +11,12 @@ public class KeyBaring : Interactable
     void Start()
     {
         base.playerRef = (Player)FindObjectOfType(typeof(Player));
-        base.playerRef._actionMap.Platforming.InteractionTest.performed += interact => keyGrab();
         pIn = FindObjectOfType<PlayerInventory>();
     }
 
     protected void keyGrab()
     {
-        if (!playerRef.paused)
+        if (!playerRef.paused && containsKey)
         {
             if (inRange && !open)
             {
@@ -49,8 +48,7 @@ public class KeyBaring : Interactable
                 hiddenObj = new GameObject();
                 hiddenObj.AddComponent<Transform>();
                 containsKey = false;
-                base.PutDownObject();
-                //this.GetComponent<SphereCollider>().enabled = false;
+                PutDownKey();
                 this.gameObject.SetActive(false);
                 this.GetComponent<OpenableUI>().contextInitial.text = "";
                 this.GetComponent<OpenableUI>().contextSecondary.text = "";
@@ -65,6 +63,37 @@ public class KeyBaring : Interactable
         playerRef._actionMap.ViewingObject.InteractionTest.performed += interact => keyGrab();
         playerRef._actionMap.ViewingObject.RotateObj.performed += rot => base.Rotate(rot.ReadValue<Vector2>());
         hiddenObjInstance = Instantiate(hiddenObj, Camera.main.gameObject.transform.position + Camera.main.gameObject.transform.forward, Quaternion.identity);
+    }
+
+    void PutDownKey()
+    {
+        playerRef._actionMap.Platforming.Enable();
+        playerRef._actionMap.ViewingObject.Disable();
+        base.playerRef._actionMap.Platforming.InteractionTest.performed -= interact => keyGrab();
+        playerRef._actionMap.ViewingObject.RotateObj.performed -= rot => Rotate(rot.ReadValue<Vector2>());
+        Destroy(hiddenObjInstance);
+    }
+
+    /// <summary>
+    /// OnTriggerEnter is called when the Collider other enters the trigger.
+    /// </summary>
+    /// <param name="other">The other Collider involved in this collision.</param>
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            base.OnTriggerEnter(other);
+            base.playerRef._actionMap.Platforming.InteractionTest.performed += interact => keyGrab();
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            base.OnTriggerEnter(other);
+            base.playerRef._actionMap.Platforming.InteractionTest.performed -= interact => keyGrab();
+        }
     }
 
 }
