@@ -28,6 +28,8 @@ public class ScenePersistence : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        SceneManager.SetActiveScene(scene);
+        Debug.Log("Active Scene : " + SceneManager.GetActiveScene().name);
     }
 
     private void OnDisable(){

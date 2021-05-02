@@ -14,7 +14,20 @@ public class ContextualUI : MonoBehaviour
 
     private bool inRange = false;
 
-    protected void Start() {
+    protected void OnDisable() {
+        if(contextInitial != null)
+        {
+            contextInitial.gameObject.SetActive(false);
+            contextInitial.text = "";
+        }
+        if(contextSecondary != null)
+        {
+            contextSecondary.gameObject.SetActive(false);
+            contextSecondary.text = "";
+        }
+    }
+
+    protected void OnEnable() {
         Text[] allText = (Text[])Resources.FindObjectsOfTypeAll(typeof(Text));
         foreach(Text t in allText)
         {
@@ -31,19 +44,6 @@ public class ContextualUI : MonoBehaviour
         contextSecondary.text = "";
     }
 
-    protected void OnDisable() {
-        if(contextInitial != null)
-        {
-            contextInitial.gameObject.SetActive(false);
-            contextInitial.text = "";
-        }
-        if(contextSecondary != null)
-        {
-            contextSecondary.gameObject.SetActive(false);
-            contextSecondary.text = "";
-        }
-    }
-
     /// <summary>
     /// OnTriggerEnter is called when the Collider other enters the trigger.
     /// </summary>
@@ -56,11 +56,13 @@ public class ContextualUI : MonoBehaviour
             {
                 contextInitial.text = messageInitial;
                 contextInitial.gameObject.SetActive(true);
+                        Debug.Log("in parent");
             }
             else
             {
                 contextSecondary.text = messageSecondary;
                 contextSecondary.gameObject.SetActive(true);
+                        Debug.Log("in parent");
             }
             inRange = true;
         }

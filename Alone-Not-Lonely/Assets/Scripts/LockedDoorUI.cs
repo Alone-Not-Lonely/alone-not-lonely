@@ -8,7 +8,7 @@ public class LockedDoorUI : ContextualUI
 
     void Start() {
         doorScript = GetComponent<LockedObject>();
-        base.Start();
+        //base.Start();
     }
     void OnTriggerEnter(Collider other)
     {
@@ -16,6 +16,7 @@ public class LockedDoorUI : ContextualUI
         {
             conditionMet = doorScript.CheckHasKey();
         }
+        Debug.Log("In child");
         base.OnTriggerEnter(other);
     }
 
@@ -25,5 +26,9 @@ public class LockedDoorUI : ContextualUI
 
     void OnDisable() {
         base.OnDisable();
+    }
+
+    void OnEnable() {
+        base.OnEnable();
     }
 }

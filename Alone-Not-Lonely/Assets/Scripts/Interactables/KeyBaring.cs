@@ -45,8 +45,6 @@ public class KeyBaring : Interactable
                     hiddenObj.gameObject.GetComponent<Item>().ID = this.ID;
                     pIn.addItem(hiddenObj.gameObject.GetComponent<Item>());
                 }
-                hiddenObj = new GameObject();
-                hiddenObj.AddComponent<Transform>();
                 containsKey = false;
                 PutDownKey();
                 this.gameObject.SetActive(false);

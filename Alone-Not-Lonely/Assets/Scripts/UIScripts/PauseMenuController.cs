@@ -137,7 +137,6 @@ public class PauseMenuController : MonoBehaviour
 
     public void OnSliderValueChanged(float value)
     {
-        Debug.Log("SliderValueChanged");
         volume = value;
         mixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
     }
