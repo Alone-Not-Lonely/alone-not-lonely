@@ -73,11 +73,25 @@ public class PanicMeterController : MonoBehaviour
                 }
                 else
                 {
-                    monstPoints +=  monstDist;
+                    if(monsters[i].layer == 12) // elevator monster
+                    {
+                        monstPoints +=  monstDist * 6;
+                    }
+                    else
+                    {
+                        monstPoints +=  monstDist;
+                    }
                 }
             }
-            anxietySpeed = anxConst;
-            currentAnxietyPoints += anxietySpeed * Time.deltaTime;
+            Debug.Log("Monster points: " + monstPoints);
+            Debug.Log("Monster count: " + monsters.Count);
+            if(monstPoints > 0)
+            {
+                anxietySpeed = (anxConst) / (monstPoints/monsters.Count);
+                Debug.Log(anxietySpeed + " speed to a total of " + currentAnxietyPoints);
+                currentAnxietyPoints += anxietySpeed * Time.deltaTime;
+            }
+
         }
         else{
             anxietySpeed = anxConst;

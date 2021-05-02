@@ -33,7 +33,6 @@ public class ElevatorMonsterController : Grabber
     {
         if(holdingObject && Vector3.Distance(heldObject.transform.position, targetPoint) > .1f)
         {
-            Debug.Log(Vector3.MoveTowards(heldObject.transform.position, targetPoint, 1));
             heldObject.GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(heldObject.transform.position, targetPoint, Time.fixedDeltaTime * speed));
         }
         
