@@ -15,10 +15,20 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        if(_actionMap == null)
+        ScenePersistence[] objs = (ScenePersistence[])Resources.FindObjectsOfTypeAll(typeof(ScenePersistence));
+        Debug.Log(this.name + " " + objs.Length);
+
+        if (objs.Length <= 2)
         {
-            _actionMap = new DefaultControls();
-            _actionMap.Enable();
+            if(_actionMap == null)
+            {
+                _actionMap = new DefaultControls();
+                _actionMap.Enable();
+            }
+        }
+        else
+        {
+            Destroy(this);
         }
     }
 
@@ -73,6 +83,16 @@ public class Player : MonoBehaviour
 
             camSpawnPosition = Camera.main.gameObject.transform.position;
             camSpawnRotation = Camera.main.gameObject.transform.rotation;
+        }
+    }
+
+    private void OnDisable() {
+        
+    }
+    public void OnDestroy() {
+        if(_actionMap != null)
+        {
+            _actionMap.Disable();
         }
     }
 

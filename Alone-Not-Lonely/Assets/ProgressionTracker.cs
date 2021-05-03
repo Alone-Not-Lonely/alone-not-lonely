@@ -36,6 +36,12 @@ public class ProgressionTracker : MonoBehaviour
             {
                 l.transform.parent.gameObject.SetActive(false);
             }
+
+            GameObject[] other = GameObject.FindGameObjectsWithTag("RemoveOnStart");
+            foreach(GameObject g in other)
+            {
+                g.SetActive(false);
+            }
         }
         else
         {

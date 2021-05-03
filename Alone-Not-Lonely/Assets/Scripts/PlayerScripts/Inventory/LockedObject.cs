@@ -48,6 +48,12 @@ public class LockedObject : MonoBehaviour
         {
             inventory.removeItem(key);
         }
+        Collider[] col = GetComponents<Collider>();
+        foreach(Collider c in col)
+        {
+            c.enabled = false;
+        }
+        GetComponent<LockedDoorUI>().contextSecondary.text = "";
     }
 
     private void OnTriggerEnter(Collider other)

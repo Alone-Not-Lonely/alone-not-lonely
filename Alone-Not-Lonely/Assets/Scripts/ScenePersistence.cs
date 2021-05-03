@@ -15,7 +15,6 @@ public class ScenePersistence : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
-        DontDestroyOnLoad(this.gameObject);//Keep persistent
     }
 
     void OnEnable()
@@ -24,7 +23,7 @@ public class ScenePersistence : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "MainMenu" || scene.name == "IntroCutscene" || scene.name == "Credits" || scene.name == "Controls")
+        if(scene.name == "MainMenu" || scene.name == "IntroCutscene" || scene.name == "Credits" || scene.name == "Controls" || scene.name == "EndPlaytest")
         {
             Destroy(this.gameObject);
         }

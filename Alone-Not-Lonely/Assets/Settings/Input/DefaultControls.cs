@@ -89,6 +89,14 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""ReturnToLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""d2dac3a7-d0ac-47bb-84c7-4b429322fa2d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -410,6 +418,17 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                     ""action"": ""SkipLevel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b834f6f7-48c9-41f5-a7d3-df485d904282"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReturnToLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -512,6 +531,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         m_Platforming_MoveVert = m_Platforming.FindAction("MoveVert", throwIfNotFound: true);
         m_Platforming_InteractionTest = m_Platforming.FindAction("InteractionTest", throwIfNotFound: true);
         m_Platforming_SkipLevel = m_Platforming.FindAction("SkipLevel", throwIfNotFound: true);
+        m_Platforming_ReturnToLevel = m_Platforming.FindAction("ReturnToLevel", throwIfNotFound: true);
         // ViewingObject
         m_ViewingObject = asset.FindActionMap("ViewingObject", throwIfNotFound: true);
         m_ViewingObject_InteractionTest = m_ViewingObject.FindAction("InteractionTest", throwIfNotFound: true);
@@ -574,6 +594,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Platforming_MoveVert;
     private readonly InputAction m_Platforming_InteractionTest;
     private readonly InputAction m_Platforming_SkipLevel;
+    private readonly InputAction m_Platforming_ReturnToLevel;
     public struct PlatformingActions
     {
         private @DefaultControls m_Wrapper;
@@ -587,6 +608,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         public InputAction @MoveVert => m_Wrapper.m_Platforming_MoveVert;
         public InputAction @InteractionTest => m_Wrapper.m_Platforming_InteractionTest;
         public InputAction @SkipLevel => m_Wrapper.m_Platforming_SkipLevel;
+        public InputAction @ReturnToLevel => m_Wrapper.m_Platforming_ReturnToLevel;
         public InputActionMap Get() { return m_Wrapper.m_Platforming; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -623,6 +645,9 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                 @SkipLevel.started -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnSkipLevel;
                 @SkipLevel.performed -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnSkipLevel;
                 @SkipLevel.canceled -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnSkipLevel;
+                @ReturnToLevel.started -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnReturnToLevel;
+                @ReturnToLevel.performed -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnReturnToLevel;
+                @ReturnToLevel.canceled -= m_Wrapper.m_PlatformingActionsCallbackInterface.OnReturnToLevel;
             }
             m_Wrapper.m_PlatformingActionsCallbackInterface = instance;
             if (instance != null)
@@ -654,6 +679,9 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                 @SkipLevel.started += instance.OnSkipLevel;
                 @SkipLevel.performed += instance.OnSkipLevel;
                 @SkipLevel.canceled += instance.OnSkipLevel;
+                @ReturnToLevel.started += instance.OnReturnToLevel;
+                @ReturnToLevel.performed += instance.OnReturnToLevel;
+                @ReturnToLevel.canceled += instance.OnReturnToLevel;
             }
         }
     }
@@ -719,6 +747,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         void OnMoveVert(InputAction.CallbackContext context);
         void OnInteractionTest(InputAction.CallbackContext context);
         void OnSkipLevel(InputAction.CallbackContext context);
+        void OnReturnToLevel(InputAction.CallbackContext context);
     }
     public interface IViewingObjectActions
     {

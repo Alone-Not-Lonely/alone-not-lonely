@@ -26,7 +26,6 @@ public class Item : MonoBehaviour
         if (!playerNearby)
         {
             return;
-            
         }
 
         inventory.addItem(this);

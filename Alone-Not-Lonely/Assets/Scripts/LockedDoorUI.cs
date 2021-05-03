@@ -16,7 +16,6 @@ public class LockedDoorUI : ContextualUI
         {
             conditionMet = doorScript.CheckHasKey();
         }
-        Debug.Log("In child");
         base.OnTriggerEnter(other);
     }
 
