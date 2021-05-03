@@ -20,7 +20,6 @@ public class ProgressionTracker : MonoBehaviour
             PatrolPointsController[] patrolPoints = (PatrolPointsController[])Resources.FindObjectsOfTypeAll(typeof(PatrolPointsController));
             PortalController[] portals = (PortalController[])Resources.FindObjectsOfTypeAll(typeof(PortalController));
             ElevatorMonsterController[] elem = (ElevatorMonsterController[])Resources.FindObjectsOfTypeAll(typeof(ElevatorMonsterController));
-            Item[] items = (Item[])Resources.FindObjectsOfTypeAll(typeof(Item));
             foreach(ImaginaryEntity i in imen)
             {
                 i.transform.parent.gameObject.SetActive(false);
@@ -37,13 +36,6 @@ public class ProgressionTracker : MonoBehaviour
             {
                 l.transform.parent.gameObject.SetActive(false);
             }
-            foreach(Item x in items)
-            {
-                if(x.key.Contains("Key"))
-                {
-                    x.gameObject.SetActive(false);
-                }
-            }
 
             GameObject[] other = GameObject.FindGameObjectsWithTag("RemoveOnStart");
             foreach(GameObject g in other)
@@ -54,16 +46,11 @@ public class ProgressionTracker : MonoBehaviour
         else
         {
             //visiting now
-            //alreadyVisited.Add(scene.name);
+            alreadyVisited.Add(scene.name);
         }
     }
 
     private void OnDisable(){
         SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    public void MarkSceneCompleted(string name)
-    {
-        alreadyVisited.Add(name);
     }
 }

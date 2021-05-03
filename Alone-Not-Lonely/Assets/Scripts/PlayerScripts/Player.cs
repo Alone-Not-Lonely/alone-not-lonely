@@ -15,10 +15,10 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        Player[] objs = (Player[])FindObjectsOfType<Player>();
+        ScenePersistence[] objs = (ScenePersistence[])Resources.FindObjectsOfTypeAll(typeof(ScenePersistence));
         Debug.Log(this.name + " " + objs.Length);
 
-        if (objs.Length <= 1)
+        if (objs.Length <= 2)
         {
             if(_actionMap == null)
             {
