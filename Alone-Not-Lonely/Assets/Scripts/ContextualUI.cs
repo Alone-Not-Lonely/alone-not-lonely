@@ -27,7 +27,7 @@ public class ContextualUI : MonoBehaviour
         }
     }
 
-    protected void OnEnable() {
+    protected void Start() {
         Text[] allText = (Text[])Resources.FindObjectsOfTypeAll(typeof(Text));
         foreach(Text t in allText)
         {
@@ -42,6 +42,10 @@ public class ContextualUI : MonoBehaviour
         }
         contextInitial.text = "";
         contextSecondary.text = "";
+    }
+
+    protected void OnEnable() {
+        
     }
 
     /// <summary>

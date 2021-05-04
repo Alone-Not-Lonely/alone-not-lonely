@@ -8,7 +8,7 @@ public class LockedDoorUI : ContextualUI
 
     void Start() {
         doorScript = GetComponent<LockedObject>();
-        //base.Start();
+        base.Start();
     }
     void OnTriggerEnter(Collider other)
     {

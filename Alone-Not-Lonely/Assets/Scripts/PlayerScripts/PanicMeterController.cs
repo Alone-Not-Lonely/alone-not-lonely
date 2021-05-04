@@ -36,10 +36,10 @@ public class PanicMeterController : MonoBehaviour
         anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         thisPlayer = (Player)FindObjectOfType<Player>();
         pAbility = thisPlayer.gameObject.GetComponent<PlayerAbilityController>();
-        postProcess = (Volume)FindObjectOfType<Volume>();
-        postProcess.profile.TryGet(out vignette);
-        postProcess.profile.TryGet(out desaturate);
-        if(vignette)
+        //postProcess = (Volume)FindObjectOfType<Volume>();
+        //postProcess.profile.TryGet(out vignette);
+        //postProcess.profile.TryGet(out desaturate);
+        /*if(vignette)
         {
             vignette.intensity.value = 0f;
         }
@@ -48,7 +48,7 @@ public class PanicMeterController : MonoBehaviour
         {
             desaturate.saturation.value = 0f;
             desaturate.postExposure.value = 0f;
-        }
+        }*/
         breathing = GetComponent<AudioSource>();
         breathing.enabled = false;
         //playerAnimator = GetComponent<Animator>();

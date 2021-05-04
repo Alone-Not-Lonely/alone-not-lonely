@@ -46,11 +46,16 @@ public class ProgressionTracker : MonoBehaviour
         else
         {
             //visiting now
-            alreadyVisited.Add(scene.name);
+            //alreadyVisited.Add(scene.name);
         }
     }
 
     private void OnDisable(){
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public void MarkSceneCompleted(string name)
+    {
+        alreadyVisited.Add(name);
     }
 }

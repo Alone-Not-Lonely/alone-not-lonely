@@ -9,7 +9,7 @@ public class ScenePersistence : MonoBehaviour
         ScenePersistence[] objs = (ScenePersistence[])Resources.FindObjectsOfTypeAll(typeof(ScenePersistence));
         Debug.Log(this.name);
 
-        if (objs.Length > 2)
+        if (objs.Length > 1)
         {
             Destroy(this.gameObject);
         }

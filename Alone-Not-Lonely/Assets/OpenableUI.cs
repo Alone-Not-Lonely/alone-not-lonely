@@ -8,6 +8,7 @@ public class OpenableUI : ContextualUI
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
         openable = GetComponent<KeyBaring>();
         contextInitial.text = "";
         contextSecondary.text = "";

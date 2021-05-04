@@ -12,6 +12,7 @@ public class ReturnToAttic : ContextualUI
 
     void Start()
     {
+        base.Start();
         _player = FindObjectOfType<Player>();
         positionToReturnTo = new Vector3(27.4599991f,4.95430565f,-88.1100006f);
     }
