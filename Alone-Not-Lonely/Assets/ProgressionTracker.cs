@@ -20,6 +20,7 @@ public class ProgressionTracker : MonoBehaviour
             PatrolPointsController[] patrolPoints = (PatrolPointsController[])Resources.FindObjectsOfTypeAll(typeof(PatrolPointsController));
             PortalController[] portals = (PortalController[])Resources.FindObjectsOfTypeAll(typeof(PortalController));
             ElevatorMonsterController[] elem = (ElevatorMonsterController[])Resources.FindObjectsOfTypeAll(typeof(ElevatorMonsterController));
+            Item[] items = (Item[])Resources.FindObjectsOfTypeAll(typeof(Item));
             foreach(ImaginaryEntity i in imen)
             {
                 i.transform.parent.gameObject.SetActive(false);
@@ -35,6 +36,13 @@ public class ProgressionTracker : MonoBehaviour
             foreach(ElevatorMonsterController l in elem)
             {
                 l.transform.parent.gameObject.SetActive(false);
+            }
+            foreach(Item x in items)
+            {
+                if(x.key.Contains("Key"))
+                {
+                    x.gameObject.SetActive(false);
+                }
             }
 
             GameObject[] other = GameObject.FindGameObjectsWithTag("RemoveOnStart");

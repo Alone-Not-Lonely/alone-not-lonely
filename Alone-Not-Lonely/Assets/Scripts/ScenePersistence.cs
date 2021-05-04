@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ScenePersistence : MonoBehaviour
 {
     private void Awake() {
-        ScenePersistence[] objs = (ScenePersistence[])Resources.FindObjectsOfTypeAll(typeof(ScenePersistence));
+        ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
         Debug.Log(this.name);
 
         if (objs.Length > 1)
