@@ -34,19 +34,19 @@ public class PauseMenuController : MonoBehaviour
             child.gameObject.SetActive(startActive);
         }
         GetComponent<AudioSource>().enabled = false;
-        if(playerRef != null && playerRef._actionMap != null)
-        {
-            playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
-        }
+        playerRef = transform.parent.parent.Find("Player").GetComponent<Player>();
+        Debug.Log("Playerref: " + playerRef);
+        playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
     }
 
     private void OnEnable() {
         playerRef = transform.parent.parent.Find("Player").GetComponent<Player>();
+        
         //playerRef = (Player)FindObjectOfType<Player>();
         if(playerRef != null && playerRef._actionMap != null)
         {
             //playerRef.InstantiateControls();
-            playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
+            //playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
         }
     }
 
@@ -59,7 +59,7 @@ public class PauseMenuController : MonoBehaviour
 
     private void OnDestroy()
     {
-        //playerRef._actionMap.Platforming.Pause.performed -= pause => PauseControl();
+        playerRef._actionMap.Platforming.Pause.performed -= pause => PauseControl();
     }
     void Awake()
     {
@@ -84,7 +84,6 @@ public class PauseMenuController : MonoBehaviour
         {
             Pause();
         }
-
         else
         {
             Unpause();
