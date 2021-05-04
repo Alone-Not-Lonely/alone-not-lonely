@@ -28,7 +28,7 @@ public class ContextualUI : MonoBehaviour
     }
 
     protected void Start() {
-        Text[] allText = (Text[])Resources.FindObjectsOfTypeAll(typeof(Text));
+        Text[] allText = (Text[])FindObjectsOfType(typeof(Text), true);
         foreach(Text t in allText)
         {
             if(t.gameObject.CompareTag("UIInit"))
