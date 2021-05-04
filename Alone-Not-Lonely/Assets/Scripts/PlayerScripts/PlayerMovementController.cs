@@ -67,7 +67,6 @@ public class PlayerMovementController : MonoBehaviour
         if (horizDirection == 0 && vertDirection == 0 && playerController.isGrounded)
         {
             footsteps.UnPause();
-            Debug.Log("Play steps");
         }
         else if(horizMvmt == 0 && (horizDirection != 0 || vertDirection != 0))
         {

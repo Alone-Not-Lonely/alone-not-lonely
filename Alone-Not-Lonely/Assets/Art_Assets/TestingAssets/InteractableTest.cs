@@ -8,7 +8,7 @@ public class InteractableTest : Interactable
     void Start()
     {
         base.playerRef = (Player)FindObjectOfType(typeof(Player));
-        base.playerRef._actionMap.Platforming.InteractionTest.performed += interact => PlayerInteract();
+        //base.playerRef._actionMap.Platforming.InteractionTest.performed += interact => PlayerInteract();
     }
 
     // Update is called once per frame

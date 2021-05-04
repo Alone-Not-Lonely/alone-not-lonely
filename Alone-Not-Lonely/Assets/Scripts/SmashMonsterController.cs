@@ -6,7 +6,7 @@ public class SmashMonsterController : MonoBehaviour
 {
     public float timeToSmash = 5f;
     public float smashCountdown = 0;
-    private bool smashing = false;
+    private bool smashing = true;
     private Vector3 groundLocation;
     private Vector3 raisedLocation;
     private Rigidbody rb;
@@ -19,8 +19,9 @@ public class SmashMonsterController : MonoBehaviour
 
     private void Start() {
         groundLocation = this.transform.position;
+        groundLocation -= new Vector3(0, liftHeight, 0);
         raisedLocation = this.transform.position;
-        raisedLocation += new Vector3(0, liftHeight, 0);
+        //raisedLocation += new Vector3(0, liftHeight, 0);
         rb = this.GetComponent<Rigidbody>();
     }
 
@@ -34,6 +35,7 @@ public class SmashMonsterController : MonoBehaviour
             smashing = true;
             smashCountdown = 0f;
         }
+        //manage squash
         if(mostRecentSquash != null && currentSquashTime < timeToUnSquash)
         {
             currentSquashTime += Time.deltaTime;

@@ -76,6 +76,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "ReturnToLevel",
+                    "type": "Button",
+                    "id": "d2dac3a7-d0ac-47bb-84c7-4b429322fa2d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -395,6 +403,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SkipLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b834f6f7-48c9-41f5-a7d3-df485d904282",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReturnToLevel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

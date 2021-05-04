@@ -6,16 +6,15 @@ using UnityEngine.SceneManagement;
 public class ScenePersistence : MonoBehaviour
 {
     private void Awake() {
-        ScenePersistence[] objs = (ScenePersistence[])Resources.FindObjectsOfTypeAll(typeof(ScenePersistence));
+        ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
         Debug.Log(this.name);
 
-        if (objs.Length > 2)
+        if (objs.Length > 1)
         {
             Destroy(this.gameObject);
         }
 
         DontDestroyOnLoad(this.gameObject);
-        DontDestroyOnLoad(this.gameObject);//Keep persistent
     }
 
     void OnEnable()
@@ -24,10 +23,12 @@ public class ScenePersistence : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "MainMenu" || scene.name == "IntroCutscene" || scene.name == "Credits" || scene.name == "Controls")
+        if(scene.name == "MainMenu" || scene.name == "IntroCutscene" || scene.name == "Credits" || scene.name == "Controls" || scene.name == "EndPlaytest")
         {
             Destroy(this.gameObject);
         }
+        SceneManager.SetActiveScene(scene);
+        Debug.Log("Active Scene : " + SceneManager.GetActiveScene().name);
     }
 
     private void OnDisable(){

@@ -14,7 +14,14 @@ public class OpenableUI : ContextualUI
         contextSecondary.text = "";
     }
 
-    // Update is called once per frame
+    void OnEnable() {
+        base.OnEnable();
+    }
+
+    void OnDisable()
+    {
+        base.OnDisable();
+    }    // Update is called once per frame
     void Update()
     {
         if(openable.open == true)

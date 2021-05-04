@@ -14,8 +14,21 @@ public class ContextualUI : MonoBehaviour
 
     private bool inRange = false;
 
+    protected void OnDisable() {
+        if(contextInitial != null)
+        {
+            contextInitial.gameObject.SetActive(false);
+            contextInitial.text = "";
+        }
+        if(contextSecondary != null)
+        {
+            contextSecondary.gameObject.SetActive(false);
+            contextSecondary.text = "";
+        }
+    }
+
     protected void Start() {
-        Text[] allText = (Text[])Resources.FindObjectsOfTypeAll(typeof(Text));
+        Text[] allText = (Text[])FindObjectsOfType(typeof(Text), true);
         foreach(Text t in allText)
         {
             if(t.gameObject.CompareTag("UIInit"))
@@ -31,17 +44,8 @@ public class ContextualUI : MonoBehaviour
         contextSecondary.text = "";
     }
 
-    protected void OnDisable() {
-        if(contextInitial != null)
-        {
-            contextInitial.gameObject.SetActive(false);
-            contextInitial.text = "";
-        }
-        if(contextSecondary != null)
-        {
-            contextSecondary.gameObject.SetActive(false);
-            contextSecondary.text = "";
-        }
+    protected void OnEnable() {
+        
     }
 
     /// <summary>
@@ -56,11 +60,13 @@ public class ContextualUI : MonoBehaviour
             {
                 contextInitial.text = messageInitial;
                 contextInitial.gameObject.SetActive(true);
+                        Debug.Log("in parent");
             }
             else
             {
                 contextSecondary.text = messageSecondary;
                 contextSecondary.gameObject.SetActive(true);
+                        Debug.Log("in parent");
             }
             inRange = true;
         }

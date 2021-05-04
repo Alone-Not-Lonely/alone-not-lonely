@@ -32,9 +32,13 @@ public class EndPlaytestScript : MonoBehaviour
 
     void LoadNextLevel()
     {
+        ProgressionTracker[] p = (ProgressionTracker[])FindObjectsOfType<ProgressionTracker>();
+        p[0].MarkSceneCompleted("Kitchen");
         _player.gameObject.SetActive(false);
         _player.gameObject.transform.position = positionToReturnTo;
         _player.gameObject.SetActive(true);
         SceneManager.LoadScene("Bedroom1Graybox");
     }
+
+    
 }

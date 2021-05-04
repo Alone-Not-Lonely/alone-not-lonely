@@ -26,4 +26,8 @@ public class LockedDoorUI : ContextualUI
     void OnDisable() {
         base.OnDisable();
     }
+
+    void OnEnable() {
+        base.OnEnable();
+    }
 }

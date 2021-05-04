@@ -13,10 +13,7 @@ public class WinCondition : MonoBehaviour
 
     public void onWin()
     {
-        /*entities = FindObjectsOfType<ImaginaryEntity>();
-        foreach(ImaginaryEntity entity in entities)
-        {
-            entity.gannonVoiceDie();
-        }*/
+        ProgressionTracker[] p = FindObjectsOfType<ProgressionTracker>();
+        p[0].MarkSceneCompleted("Attic2");
     }
 }

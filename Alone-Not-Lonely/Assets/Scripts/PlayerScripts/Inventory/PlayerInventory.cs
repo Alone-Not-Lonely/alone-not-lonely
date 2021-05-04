@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerInventory : MonoBehaviour
 {
     List<Item> items;
+    List<int> puzzlePieces;
     public Canvas _canvas;
     [SerializeField]
     private Animator puzzAnim;
@@ -21,6 +22,7 @@ public class PlayerInventory : MonoBehaviour
     void Awake()
     {
         items = new List<Item>();
+        puzzlePieces = new List<int>();
     }
 
     void OnEnable()
@@ -33,12 +35,9 @@ public class PlayerInventory : MonoBehaviour
         KeyBaring[] puzzlePieceHolders = (KeyBaring[])Resources.FindObjectsOfTypeAll(typeof(KeyBaring));
         foreach(KeyBaring p in puzzlePieceHolders)
         {
-            foreach(Item i  in items)
+            if(puzzlePieces.Contains(p.ID))
             {
-                if(i.ID != -1 && i.ID == p.ID)
-                {
-                    Destroy(p);
-                }
+                p.gameObject.SetActive(false);
             }
         }
     }
@@ -65,6 +64,11 @@ public class PlayerInventory : MonoBehaviour
         {
             StartCoroutine("keyGet", item.key);
         }
+    }
+
+    public void addPuzzlePiece(int puzzID)
+    {
+        puzzlePieces.Add(puzzID);
     }
 
     //Makes visible and audible effects for key collection
