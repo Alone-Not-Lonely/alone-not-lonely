@@ -11,6 +11,7 @@ public class PlayerMovementController : MonoBehaviour
     public float gravity = 2f;
     public bool climbing = false;
     public bool jumping;
+
     //Character will move along this vector 
     private float moveDirY = 0, horizDirection = 0, vertDirection = 0;
     private Vector3 moveDirection = Vector3.zero;
@@ -212,13 +213,6 @@ public class PlayerMovementController : MonoBehaviour
         }
         if(!thisPlayer.paused && !climbing)
         {
-            
-            //float horizDirection = Input.GetAxis("Horizontal");
-            //float vertDirection = Input.GetAxis("Vertical");
-            //if(playerController.isGrounded && Input.GetKeyDown(KeyCode.Space))
-            //{
-            //    moveDirY = jumpHeight;
-            //}
 
             if (!playerController.isGrounded)
             {
@@ -228,9 +222,26 @@ public class PlayerMovementController : MonoBehaviour
             moveDirection = new Vector3(horizDirection, moveDirY, vertDirection);
             moveDirection = transform.TransformDirection(moveDirection);
             //Debug.Log("moveDirection: " + moveDirection);
-            playerController.Move(moveDirection * walkSpeed * Time.deltaTime);
-            Vector3 camRotation = camController.GetCameraRotation(); 
-            playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0)); 
+            RaycastHit holdingObjectCheck;
+            if(playerAb.holdingObject && Physics.Raycast(transform.position, transform.forward, playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance + .25f, ~(1<<13)))
+            {
+                Debug.Log(Vector3.Dot(moveDirection, transform.forward));
+                if(Vector3.Dot(moveDirection, transform.forward) > .8)
+                {
+                    //cant move
+                }
+                else
+                {
+                    playerController.Move(moveDirection * walkSpeed * Time.deltaTime);
+                    Vector3 camRotation = camController.GetCameraRotation(); 
+                    playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
+                }
+            }
+            else{
+                playerController.Move(moveDirection * walkSpeed * Time.deltaTime);
+                Vector3 camRotation = camController.GetCameraRotation(); 
+                playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0)); 
+            }
         }
         else{
             footsteps.Stop();
