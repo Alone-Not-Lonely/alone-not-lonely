@@ -88,7 +88,7 @@ public class PanicMeterController : MonoBehaviour
             if(monstPoints > 0)
             {
                 anxietySpeed = (anxConst) / (monstPoints/monsters.Count);
-                Debug.Log(anxietySpeed + " speed to a total of " + currentAnxietyPoints);
+                //Debug.Log(anxietySpeed + " speed to a total of " + currentAnxietyPoints);
                 currentAnxietyPoints += anxietySpeed * Time.deltaTime;
             }
 
