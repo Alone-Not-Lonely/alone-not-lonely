@@ -5,7 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class ScenePersistence : MonoBehaviour
 {
+    public static ScenePersistence instance;
     private void Awake() {
+        ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
+        Debug.Log(this.name + " " + objs.Length);
+
+        if (objs.Length > 1)
+        {
+            DestroyImmediate(this.gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+        }
+    }
+
+    void OnEnable()
+    {
         ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
         Debug.Log(this.name);
 
@@ -15,10 +32,6 @@ public class ScenePersistence : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
-    }
-
-    void OnEnable()
-    {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)

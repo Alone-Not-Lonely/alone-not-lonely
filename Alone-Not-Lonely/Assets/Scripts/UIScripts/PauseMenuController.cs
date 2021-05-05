@@ -59,7 +59,7 @@ public class PauseMenuController : MonoBehaviour
 
     private void OnDestroy()
     {
-        playerRef._actionMap.Platforming.Pause.performed -= pause => PauseControl();
+        //playerRef._actionMap.Platforming.Pause.performed -= pause => PauseControl();
     }
     void Awake()
     {

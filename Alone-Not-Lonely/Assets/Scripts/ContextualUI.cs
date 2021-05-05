@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Collider))]
 public class ContextualUI : MonoBehaviour
@@ -40,6 +41,8 @@ public class ContextualUI : MonoBehaviour
                 contextSecondary = t;
             }
         }
+        ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
+        Debug.Log(this.name + " at Start() player count is " + objs.Length);
         contextInitial.text = "";
         contextSecondary.text = "";
     }
@@ -60,13 +63,11 @@ public class ContextualUI : MonoBehaviour
             {
                 contextInitial.text = messageInitial;
                 contextInitial.gameObject.SetActive(true);
-                        Debug.Log("in parent");
             }
             else
             {
                 contextSecondary.text = messageSecondary;
                 contextSecondary.gameObject.SetActive(true);
-                        Debug.Log("in parent");
             }
             inRange = true;
         }
@@ -93,8 +94,8 @@ public class ContextualUI : MonoBehaviour
     {
         if(inRange)
         {
-            contextInitial.gameObject.SetActive(true);
-            contextSecondary.gameObject.SetActive(false);
+            //contextInitial.gameObject.SetActive(true);
+            //contextSecondary.gameObject.SetActive(false);
             contextInitial.text = messageInitial;
             contextSecondary.text = "";
         }
@@ -108,8 +109,8 @@ public class ContextualUI : MonoBehaviour
     {
         if(inRange)
         {
-            contextInitial.gameObject.SetActive(false);
-            contextSecondary.gameObject.SetActive(true);
+            //contextInitial.gameObject.SetActive(false);
+            //contextSecondary.gameObject.SetActive(true);
             contextInitial.text = "";
             contextSecondary.text = messageSecondary;
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     //Will contain all player status effects
     private Vector3 spawnPosition;
     private Quaternion spawnRotation;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
 
         if (objs.Length <= 1)
         {
+            instance = this;
             if(_actionMap == null)
             {
                 _actionMap = new DefaultControls();
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            Debug.Log("Destroying player2");
             Destroy(this);
         }
     }
@@ -43,6 +46,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Start in player is being run");
         pmController = (PauseMenuController)FindObjectOfType(typeof(PauseMenuController));
         paused = pmController.isPaused();
         spawnPosition = transform.position;
