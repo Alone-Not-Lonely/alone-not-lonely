@@ -17,7 +17,7 @@ public abstract class Grabber : MonoBehaviour
         holdingObject = false;    
     }
 
-    protected bool GrabAttempt(GameObject objectInRange, GameObject holder)
+    public bool GrabAttempt(GameObject objectInRange, GameObject holder)
     {
         Debug.Log(gameObject.name + " is Calling");
         if(!inGrabCooldown)
