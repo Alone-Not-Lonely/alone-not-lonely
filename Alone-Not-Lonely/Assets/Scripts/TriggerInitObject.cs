@@ -24,6 +24,7 @@ public class TriggerInitObject : MonoBehaviour
             {
                 child.gameObject.GetComponent<Animator>().SetBool("StartAnim", true);
             }
+            Deactivate();
         }
     }
 
