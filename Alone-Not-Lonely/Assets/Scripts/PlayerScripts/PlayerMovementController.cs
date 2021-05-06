@@ -228,7 +228,9 @@ public class PlayerMovementController : MonoBehaviour
                 Debug.Log(Vector3.Dot(moveDirection, transform.forward));
                 if(Vector3.Dot(moveDirection, transform.forward) > .5)
                 {
-                    //cant move
+                    //cant move but CAN rotate
+                    Vector3 camRotation = camController.GetCameraRotation(); 
+                    playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
                 }
                 else
                 {
