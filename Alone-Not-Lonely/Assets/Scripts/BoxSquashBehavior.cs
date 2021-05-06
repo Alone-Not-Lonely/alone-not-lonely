@@ -7,7 +7,7 @@ public class BoxSquashBehavior : MonoBehaviour
     public bool squashed = false;
     public GameObject squashedVariant;
     public GameObject regularVariant;
-    BoxContactBehavior bh;
+    public BoxContactBehavior bh;
 
     private void Start() 
     {
@@ -23,12 +23,14 @@ public class BoxSquashBehavior : MonoBehaviour
         }
     }
 
-    public void UnSquash()
+    public GameObject UnSquash()
     {
         squashed = false;
+        GameObject holder = bh.boxHolder;
         if(bh.boxHolder != null)
         {
             bh.boxHolder.GetComponent<Grabber>().ReleaseObject();
         }
+        return bh.boxHolder;
     }
 }

@@ -226,7 +226,7 @@ public class PlayerMovementController : MonoBehaviour
             if(playerAb.holdingObject && Physics.Raycast(transform.position, transform.forward, playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance + .25f, ~(1<<13)))
             {
                 Debug.Log(Vector3.Dot(moveDirection, transform.forward));
-                if(Vector3.Dot(moveDirection, transform.forward) > .8)
+                if(Vector3.Dot(moveDirection, transform.forward) > .5)
                 {
                     //cant move
                 }
