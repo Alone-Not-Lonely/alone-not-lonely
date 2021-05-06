@@ -24,14 +24,17 @@ public class ScenePersistence : MonoBehaviour
     void OnEnable()
     {
         ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
-        Debug.Log(this.name);
+        Debug.Log(this.name + " " + objs.Length);
 
         if (objs.Length > 1)
         {
-            Destroy(this.gameObject);
+            DestroyImmediate(this.gameObject);
         }
-
-        DontDestroyOnLoad(this.gameObject);
+        else
+        {
+            DontDestroyOnLoad(this.gameObject);
+            instance = this;
+        }
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)

@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         //Moved mouse logic to Pause Menu Controller
-        player = (Player)FindObjectOfType(typeof(Player));
+        player = Player.instance;
         
         player._actionMap.Platforming.Camera.performed += look =>
         {

@@ -34,7 +34,7 @@ public class PanicMeterController : MonoBehaviour
         anxConst = anxietySpeed;
         currentAnxietyPoints = 0;
         anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
-        thisPlayer = (Player)FindObjectOfType<Player>();
+        thisPlayer = Player.instance;
         pAbility = thisPlayer.gameObject.GetComponent<PlayerAbilityController>();
         //postProcess = (Volume)FindObjectOfType<Volume>();
         //postProcess.profile.TryGet(out vignette);

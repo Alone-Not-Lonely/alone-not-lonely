@@ -30,7 +30,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Start() 
     {
-        thisPlayer = (Player)FindObjectOfType<Player>();
+        //thisPlayer = (Player)FindObjectOfType<Player>();
+        thisPlayer = Player.instance;
         playerController = GetComponent<CharacterController>();
 
         thisPlayer._actionMap.Platforming.MoveVert.performed += cont => MoveVert(cont.ReadValue<float>());
@@ -42,7 +43,7 @@ public class PlayerMovementController : MonoBehaviour
         thisPlayer._actionMap.Platforming.Jump.performed += jump => Jump();
 
         camController = (CameraController)FindObjectOfType(typeof(CameraController));
-        playerAb = (PlayerAbilityController)FindObjectOfType(typeof(PlayerAbilityController));
+        playerAb = GetComponent<PlayerAbilityController>();
         footsteps.Play();
         footsteps.Pause();
         cCheck = (ClimbChecker)FindObjectOfType(typeof(ClimbChecker));
@@ -223,10 +224,9 @@ public class PlayerMovementController : MonoBehaviour
             moveDirection = transform.TransformDirection(moveDirection);
             //Debug.Log("moveDirection: " + moveDirection);
             RaycastHit holdingObjectCheck;
-            if(playerAb.holdingObject && Physics.Raycast(transform.position, transform.forward, playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance + .25f, ~(1<<13)))
+            if(playerAb.holdingObject && Physics.Raycast(transform.position, transform.forward, out holdingObjectCheck, playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance + .25f, ~(1<<13)))
             {
-                Debug.Log(Vector3.Dot(moveDirection, transform.forward));
-                if(Vector3.Dot(moveDirection, transform.forward) > .5)
+                if(!holdingObjectCheck.collider.isTrigger && Vector3.Dot(moveDirection, transform.forward) > .5)
                 {
                     //cant move but CAN rotate
                     Vector3 camRotation = camController.GetCameraRotation(); 
