@@ -510,6 +510,63 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PuzzleAssembly"",
+            ""id"": ""627148a7-55c8-421b-b90e-5c1a7fa70865"",
+            ""actions"": [
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""2981208a-dabe-4da0-8537-9ff725955a8e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""c0d24ed7-e752-46c7-8735-d65a389651d6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b8664305-bc9a-4050-833a-0d90d1369ed1"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8fcfc0fd-1fe6-4b76-b564-e1b857d798e2"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""85ecf132-7c95-4154-b63c-218f47900b41"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -536,6 +593,10 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         m_ViewingObject = asset.FindActionMap("ViewingObject", throwIfNotFound: true);
         m_ViewingObject_InteractionTest = m_ViewingObject.FindAction("InteractionTest", throwIfNotFound: true);
         m_ViewingObject_RotateObj = m_ViewingObject.FindAction("RotateObj", throwIfNotFound: true);
+        // PuzzleAssembly
+        m_PuzzleAssembly = asset.FindActionMap("PuzzleAssembly", throwIfNotFound: true);
+        m_PuzzleAssembly_Exit = m_PuzzleAssembly.FindAction("Exit", throwIfNotFound: true);
+        m_PuzzleAssembly_Select = m_PuzzleAssembly.FindAction("Select", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -727,6 +788,47 @@ public class @DefaultControls : IInputActionCollection, IDisposable
         }
     }
     public ViewingObjectActions @ViewingObject => new ViewingObjectActions(this);
+
+    // PuzzleAssembly
+    private readonly InputActionMap m_PuzzleAssembly;
+    private IPuzzleAssemblyActions m_PuzzleAssemblyActionsCallbackInterface;
+    private readonly InputAction m_PuzzleAssembly_Exit;
+    private readonly InputAction m_PuzzleAssembly_Select;
+    public struct PuzzleAssemblyActions
+    {
+        private @DefaultControls m_Wrapper;
+        public PuzzleAssemblyActions(@DefaultControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Exit => m_Wrapper.m_PuzzleAssembly_Exit;
+        public InputAction @Select => m_Wrapper.m_PuzzleAssembly_Select;
+        public InputActionMap Get() { return m_Wrapper.m_PuzzleAssembly; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PuzzleAssemblyActions set) { return set.Get(); }
+        public void SetCallbacks(IPuzzleAssemblyActions instance)
+        {
+            if (m_Wrapper.m_PuzzleAssemblyActionsCallbackInterface != null)
+            {
+                @Exit.started -= m_Wrapper.m_PuzzleAssemblyActionsCallbackInterface.OnExit;
+                @Exit.performed -= m_Wrapper.m_PuzzleAssemblyActionsCallbackInterface.OnExit;
+                @Exit.canceled -= m_Wrapper.m_PuzzleAssemblyActionsCallbackInterface.OnExit;
+                @Select.started -= m_Wrapper.m_PuzzleAssemblyActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_PuzzleAssemblyActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_PuzzleAssemblyActionsCallbackInterface.OnSelect;
+            }
+            m_Wrapper.m_PuzzleAssemblyActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Exit.started += instance.OnExit;
+                @Exit.performed += instance.OnExit;
+                @Exit.canceled += instance.OnExit;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+            }
+        }
+    }
+    public PuzzleAssemblyActions @PuzzleAssembly => new PuzzleAssemblyActions(this);
     private int m_DefaultControlSchemeSchemeIndex = -1;
     public InputControlScheme DefaultControlSchemeScheme
     {
@@ -753,5 +855,10 @@ public class @DefaultControls : IInputActionCollection, IDisposable
     {
         void OnInteractionTest(InputAction.CallbackContext context);
         void OnRotateObj(InputAction.CallbackContext context);
+    }
+    public interface IPuzzleAssemblyActions
+    {
+        void OnExit(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

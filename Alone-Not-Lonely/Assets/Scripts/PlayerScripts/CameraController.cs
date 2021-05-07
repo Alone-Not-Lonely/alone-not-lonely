@@ -40,6 +40,7 @@ public class CameraController : MonoBehaviour
     private Player player;
 
     private Vector3 velocity = Vector3.zero;
+    public bool cameraFree = true;
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +63,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if (!player.paused)
+        if (!player.paused && cameraFree)
         {
             //Cursor.lockState = CursorLockMode.Locked;
             //Cursor.visible = false;
@@ -127,5 +128,13 @@ public class CameraController : MonoBehaviour
     {
         sensitivityX = 5 + (value * 30);
         sensitivityY = 5 + (value * 30);
+    }
+
+    public void MoveToFixedPosition(Vector3 position, GameObject targetLookAt)
+    {
+        this.transform.position = position;
+        this.transform.rotation = Quaternion.Euler(90, 90, 0);
+        //this.transform.LookAt(targetLookAt.transform);
+        cameraFree = false;
     }
 }
