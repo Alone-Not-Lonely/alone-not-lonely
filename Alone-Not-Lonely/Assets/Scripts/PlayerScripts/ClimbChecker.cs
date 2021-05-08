@@ -5,12 +5,12 @@ using UnityEngine;
 public class ClimbChecker : MonoBehaviour
 {
     public LayerMask ignoreLayer;
-    public float checkStep = .1f, reachHeight = 0,
+    public float reachHeight = 0,
                  maxDepth = 1.5f, maxClimbHeight = 2,
                  handOffset = .3f, handMoveSpeed = .3f,
                  detectRadius = 1f, landingDepth = .5f,
                  maxReachDist = 4f, reachDepth = 1f;
-    private float playerHeight;
+    private float playerHeight, playerRadius = 1f;
     public Vector3 climbablePoint = Vector3.zero;
     private Vector3 edge;
     public Transform lhand, rhand;
@@ -32,7 +32,9 @@ public class ClimbChecker : MonoBehaviour
         pControl = GetComponentInParent<CharacterController>();
         pTransform = GetComponentInParent<Transform>();
         playerHeight = GetComponentInParent<CharacterController>().height;
+        playerRadius = GetComponentInParent<CharacterController>().radius;
         pMC = GetComponentInParent<PlayerMovementController>();
+        Debug.Log("Player Radius: " + playerRadius);
     }
 
     private void FixedUpdate()
@@ -58,10 +60,11 @@ public class ClimbChecker : MonoBehaviour
         //Checks if player is close to object
         RaycastHit obNearHit;
         Ray obNearRay = new Ray(transform.position, transform.forward);
-        
-        Debug.DrawRay(transform.position, (transform.forward*reachDepth), Color.blue);
+
+        Debug.DrawRay(transform.position, (transform.forward * reachDepth), Color.blue);
         //If an object is close enough to gabe to climb:
-        if (Physics.SphereCast(obNearRay,detectRadius, out obNearHit, reachDepth, ~ignoreLayer)&&(obNearHit.collider.isTrigger == false))
+        //if (Physics.SphereCast(obNearRay,detectRadius, out obNearHit, reachDepth, ~ignoreLayer)&&(obNearHit.collider.isTrigger == false))
+        if (Physics.Raycast(obNearRay, out obNearHit, reachDepth, ~ignoreLayer) && (obNearHit.collider.isTrigger == false))
         {
             //Object Gabe could concievably climb
 
@@ -81,10 +84,22 @@ public class ClimbChecker : MonoBehaviour
                 //Debug.Log((!Physics.Raycast(landingRay, out canLandHit, maxDepth)) + " and " + (reachHeight != 0));
                 if (Physics.Raycast(canStandRay, out canStandHit, Mathf.Infinity, ~ignoreLayer) && (canStandHit.collider.isTrigger == false))
                 {
-                    climbableObject = canStandHit.transform.gameObject;
-                    Debug.Log("Can stand on: " + canStandHit.collider.name);
-                    edge = new Vector3(obNearHit.point.x, canStandHit.point.y, obNearHit.point.z);
-                    climbablePoint = new Vector3(edge.x, edge.y + (playerHeight * 1.3f), edge.z) + transform.forward * landingDepth;
+                    
+                    Vector3 possEdge = new Vector3(obNearHit.point.x, canStandHit.point.y, obNearHit.point.z);
+                    //1.1 used to be 1.3
+                    Vector3 probClimbPoint = new Vector3(canStandHit.point.x, edge.y + (playerHeight * 1.1f), canStandHit.point.z);
+                    //Checks to see if the intended landing point is higher than the origin of the object that gabe first ran up against
+                    //Possible flaws: If origin is somehow above the object (unlikely but possible)
+                    if (possEdge.y > obNearHit.collider.transform.position.y)
+                    {
+                        climbableObject = canStandHit.transform.gameObject;
+                        edge = possEdge;
+                        climbablePoint = probClimbPoint;
+                    }
+                    else
+                    {
+                        clear();
+                    }
                 }
             }
         }
@@ -100,7 +115,8 @@ public class ClimbChecker : MonoBehaviour
     {
         {
             rhand.position = Vector3.Lerp(rhand.position, edge + (transform.right * handOffset), handMoveSpeed);
-            if (!(pAbil.currentGrab != null && pAbil.heldObject && pAbil.heldObject.gameObject.GetComponent<SquashedObject>() != null)){
+            if (!(pAbil.currentGrab != null && pAbil.heldObject && pAbil.heldObject.gameObject.GetComponent<SquashedObject>() != null))
+            {
                 lhand.position = Vector3.Lerp(lhand.position, edge - (transform.right * handOffset), handMoveSpeed);
             }
         }
@@ -118,7 +134,7 @@ public class ClimbChecker : MonoBehaviour
     public bool climbableDistance(Vector3 dist1, Vector3 dist2)
     {
         //Debug.Log("Distance: "+Vector3.Distance(dist1, dist2) +", Max Reach: "+maxReachDist);
-        return (maxReachDist>Vector3.Distance(dist1, dist2));
+        return (maxReachDist > Vector3.Distance(dist1, dist2));
     }
 }
 
