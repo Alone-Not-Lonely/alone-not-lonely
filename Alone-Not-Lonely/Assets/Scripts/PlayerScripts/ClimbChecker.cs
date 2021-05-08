@@ -32,9 +32,7 @@ public class ClimbChecker : MonoBehaviour
         pControl = GetComponentInParent<CharacterController>();
         pTransform = GetComponentInParent<Transform>();
         playerHeight = GetComponentInParent<CharacterController>().height;
-        playerRadius = GetComponentInParent<CharacterController>().radius;
         pMC = GetComponentInParent<PlayerMovementController>();
-        Debug.Log("Player Radius: " + playerRadius);
     }
 
     private void FixedUpdate()

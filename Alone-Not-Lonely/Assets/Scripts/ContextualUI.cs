@@ -42,7 +42,7 @@ public class ContextualUI : MonoBehaviour
             }
         }
         ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
-        Debug.Log(this.name + " at Start() player count is " + objs.Length);
+        //Debug.Log(this.name + " at Start() player count is " + objs.Length);
         contextInitial.text = "";
         contextSecondary.text = "";
     }

@@ -132,7 +132,7 @@ public class PatrolPointsController : Grabber
             BoxContactBehavior box = other.gameObject.GetComponent<BoxContactBehavior>();
             if (!this.holdingObject && box != null && box.boxHolder == null)
             {
-                Debug.Log("GRABBING MINE");
+                //Debug.Log("GRABBING MINE");
                 GrabAttempt(other.gameObject, this.gameObject);
             }
         }

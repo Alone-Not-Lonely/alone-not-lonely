@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Player[] objs = (Player[])FindObjectsOfType<Player>();
-        Debug.Log(this.name + " " + objs.Length);
+        //Debug.Log(this.name + " " + objs.Length);
 
         if (objs.Length <= 1)
         {
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Start in player is being run");
+        //Debug.Log("Start in player is being run");
         pmController = (PauseMenuController)FindObjectOfType(typeof(PauseMenuController));
         paused = pmController.isPaused();
         spawnPosition = transform.position;
