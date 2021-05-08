@@ -233,8 +233,8 @@ public class PanicMeterController : MonoBehaviour
         if(other.CompareTag("Monster"))
         {
             monsters.Remove(other.gameObject);
-            Debug.Log("Monster discounted");
-            Debug.Log(monsters.Count);
+            //Debug.Log("Monster discounted");
+            //Debug.Log(monsters.Count);
         }
     }
 

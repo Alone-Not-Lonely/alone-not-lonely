@@ -49,8 +49,9 @@ public class KeyBaring : Interactable
                 containsKey = false;
                 PutDownKey();
                 this.gameObject.SetActive(false);
-                this.GetComponent<OpenableUI>().contextInitial.text = "";
-                this.GetComponent<OpenableUI>().contextSecondary.text = "";
+                this.GetComponent<OpenableUI>().conText.text = "";
+                //this.GetComponent<OpenableUI>().contextInitial.text = "";
+                //this.GetComponent<OpenableUI>().contextSecondary.text = "";
             }
         }
     }

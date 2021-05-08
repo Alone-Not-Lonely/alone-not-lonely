@@ -19,7 +19,7 @@ public abstract class Grabber : MonoBehaviour
 
     public bool GrabAttempt(GameObject objectInRange, GameObject holder)
     {
-        Debug.Log(gameObject.name + " is Calling");
+        //Debug.Log(gameObject.name + " is Calling");
         if(!inGrabCooldown)
         {
             if(!objectInRange.GetComponent<BoxContactBehavior>().beingHeld)
@@ -54,7 +54,7 @@ public abstract class Grabber : MonoBehaviour
     {
         if(heldObject && holdingObject)
         {
-            Debug.Log("Released");
+            //Debug.Log("Released");
             heldObject.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             heldObject.gameObject.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
             heldObject.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;

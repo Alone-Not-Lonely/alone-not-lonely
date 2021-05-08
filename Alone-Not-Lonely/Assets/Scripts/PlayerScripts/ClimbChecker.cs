@@ -61,8 +61,7 @@ public class ClimbChecker : MonoBehaviour
 
         Debug.DrawRay(transform.position, (transform.forward * reachDepth), Color.blue);
         //If an object is close enough to gabe to climb:
-        //if (Physics.SphereCast(obNearRay,detectRadius, out obNearHit, reachDepth, ~ignoreLayer)&&(obNearHit.collider.isTrigger == false))
-        if (Physics.Raycast(obNearRay, out obNearHit, reachDepth, ~ignoreLayer) && (obNearHit.collider.isTrigger == false))
+        if (Physics.SphereCast(obNearRay,detectRadius, out obNearHit, reachDepth, ~ignoreLayer)&&(obNearHit.collider.isTrigger == false))
         {
             //Object Gabe could concievably climb
 

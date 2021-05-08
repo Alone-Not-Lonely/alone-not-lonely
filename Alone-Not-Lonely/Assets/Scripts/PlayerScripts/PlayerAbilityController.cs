@@ -21,18 +21,6 @@ public class PlayerAbilityController : Grabber
     }
     private void OnEnable() {
         playerRef = Player.instance;
-        if(playerRef != null)
-        {
-            //playerRef.InstantiateControls();
-            //playerRef._actionMap.ViewingObject.Disable();
-            //playerRef._actionMap.Platforming.Use.performed += grab => PlayerGrab();
-        }
-    }
-
-    private void OnDisable()
-    {
-        //playerRef._actionMap.ViewingObject.Disable();
-        //playerRef._actionMap.Platforming.Use.performed -= grab => PlayerGrab();
     }
 
     void PlayerGrab()
@@ -41,15 +29,19 @@ public class PlayerAbilityController : Grabber
         {
             if (currentGrab != null && !base.holdingObject)
             {
-                grabText.gameObject.SetActive(false);
-                releaseText.gameObject.SetActive(true);
+                //grabText.gameObject.SetActive(false);
+                //releaseText.gameObject.SetActive(true);
                 GrabAttempt(currentGrab, this.gameObject);
+                //Change the prompt to put down
+                currentGrab.gameObject.GetComponent<ContextualUI>().ChangeToContextSecondary();
             }
             else if (base.holdingObject)//current grab redundant but colliders are wierd...
             {
-                grabText.gameObject.SetActive(false);
-                releaseText.gameObject.SetActive(false);
+                //grabText.gameObject.SetActive(false);
+                //releaseText.gameObject.SetActive(false);
                 ReleaseObject();
+                //change prompt to pick up
+                currentGrab.GetComponent<ContextualUI>().ChangeToContextInit();
             }
         }
     }
@@ -64,8 +56,9 @@ public class PlayerAbilityController : Grabber
         {
             if (!base.holdingObject)
             {
-                grabText.gameObject.SetActive(true);
-                releaseText.gameObject.SetActive(false);
+                
+                //grabText.gameObject.SetActive(true);
+                //releaseText.gameObject.SetActive(false);
             }
             currentGrab = collision.gameObject;
         }
@@ -79,8 +72,8 @@ public class PlayerAbilityController : Grabber
             {
                 currentGrab = null;
             }
-            grabText.gameObject.SetActive(false);
-            releaseText.gameObject.SetActive(false);
+            //grabText.gameObject.SetActive(false);
+            //releaseText.gameObject.SetActive(false);
         }
     }
 }

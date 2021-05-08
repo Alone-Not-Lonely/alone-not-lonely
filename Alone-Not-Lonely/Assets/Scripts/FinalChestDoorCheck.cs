@@ -9,6 +9,7 @@ public class FinalChestDoorCheck : MonoBehaviour
     private Ray leftRay, rightRay;
     private BoxContactBehavior _behavior;
     private AtticLadderController _ladder;
+    public ContextualUI ladderContext;
 
     void Awake()
     {
@@ -64,6 +65,7 @@ public class FinalChestDoorCheck : MonoBehaviour
             return false;
         }
 
+        ladderContext.ChangeToContextSecondary();
         return true;
     }
 }

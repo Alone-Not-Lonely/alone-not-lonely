@@ -8,24 +8,42 @@ using UnityEngine.SceneManagement;
 public class ContextualUI : MonoBehaviour
 {
     public bool conditionMet = false;
-    public Text contextInitial;
-    public Text contextSecondary;
+
+    public Text conText;
+    //public Text contextInitial;
+    //public Text contextSecondary;
+
     public string messageInitial = "Initial message";
     public string messageSecondary = "Secondary message";
 
     private bool inRange = false;
 
+    public HintTypes p1Type;
+    public HintTypes p2Type;
+    private HintManager hMan;
+
+
     protected void OnDisable() {
+        if(conText != null)
+        {
+            //contextInitial.gameObject.SetActive(false);
+            //contextInitial.text = "";
+            conText.gameObject.SetActive(false);
+            conText.text = "";
+        }
+        /*
         if(contextInitial != null)
         {
             contextInitial.gameObject.SetActive(false);
             contextInitial.text = "";
         }
+        
         if(contextSecondary != null)
         {
             contextSecondary.gameObject.SetActive(false);
             contextSecondary.text = "";
         }
+        */
     }
 
     protected void Start() {
@@ -34,22 +52,26 @@ public class ContextualUI : MonoBehaviour
         {
             if(t.gameObject.CompareTag("UIInit"))
             {
-                contextInitial = t;
-            }
+                conText = t;
+                //contextInitial = t;
+            }/*
             else if(t.gameObject.CompareTag("UISec"))
             {
                 contextSecondary = t;
-            }
+            }*/
         }
         ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
         //Debug.Log(this.name + " at Start() player count is " + objs.Length);
-        contextInitial.text = "";
-        contextSecondary.text = "";
+        //contextInitial.text = "";
+        //contextSecondary.text = "";
+        conText.text = "";
+        hMan = FindObjectOfType<HintManager>();
     }
 
     protected void OnEnable() {
         
     }
+
 
     /// <summary>
     /// OnTriggerEnter is called when the Collider other enters the trigger.
@@ -59,15 +81,18 @@ public class ContextualUI : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            if(!conditionMet)
+            conText.gameObject.SetActive(true);
+            if (!conditionMet)
             {
-                contextInitial.text = messageInitial;
-                contextInitial.gameObject.SetActive(true);
+                //contextInitial.text = messageInitial;
+                hMan.prompt(p1Type, conText, messageInitial);
+                //contextInitial.gameObject.SetActive(true);
             }
             else
             {
-                contextSecondary.text = messageSecondary;
-                contextSecondary.gameObject.SetActive(true);
+                //contextSecondary.text = messageSecondary;
+                hMan.prompt(p2Type, conText, messageSecondary);
+                //contextSecondary.gameObject.SetActive(true);
             }
             inRange = true;
         }
@@ -77,10 +102,14 @@ public class ContextualUI : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            /*
             contextInitial.gameObject.SetActive(false);
             contextSecondary.gameObject.SetActive(false);
             contextInitial.text = "";
             contextSecondary.text = "";
+            */
+            conText.gameObject.SetActive(false);
+            conText.text = "";
         }
         inRange = false;
     }
@@ -92,17 +121,19 @@ public class ContextualUI : MonoBehaviour
 
     public void ChangeToContextInit()
     {
-        if(inRange)
+        //Debug.Log("Changed to Init");
+        if (inRange)
         {
             //contextInitial.gameObject.SetActive(true);
             //contextSecondary.gameObject.SetActive(false);
-            contextInitial.text = messageInitial;
-            contextSecondary.text = "";
+            //contextInitial.text = messageInitial;
+        hMan.prompt(p1Type, conText, messageInitial);
+        //contextSecondary.text = "";
         }
-        else
-        {
-            conditionMet = false;
-        }
+        //else
+        //{
+        conditionMet = false;
+        //}
     }
 
     public void ChangeToContextSecondary()
@@ -111,12 +142,13 @@ public class ContextualUI : MonoBehaviour
         {
             //contextInitial.gameObject.SetActive(false);
             //contextSecondary.gameObject.SetActive(true);
-            contextInitial.text = "";
-            contextSecondary.text = messageSecondary;
+            //contextInitial.text = "";
+            //contextSecondary.text = messageSecondary;
+            hMan.prompt(p2Type, conText, messageSecondary);
         }
-        else
-        {
-            conditionMet = true;
-        }
+        //else
+        //{
+        conditionMet = true;
+        //}
     }
 }
