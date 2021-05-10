@@ -226,7 +226,7 @@ public class PlayerMovementController : MonoBehaviour
             RaycastHit holdingObjectCheck;
             if(playerAb.holdingObject && Physics.Raycast(transform.position, transform.forward, out holdingObjectCheck, playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance + .25f, ~(1<<13)))
             {
-                if(!holdingObjectCheck.collider.isTrigger && Vector3.Dot(moveDirection, transform.forward) > .5)
+                if(!holdingObjectCheck.collider.isTrigger && !holdingObjectCheck.collider.gameObject.CompareTag("Grabable") && Vector3.Dot(moveDirection, transform.forward) > .5)
                 {
                     //cant move but CAN rotate
                     Vector3 camRotation = camController.GetCameraRotation(); 

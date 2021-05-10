@@ -64,8 +64,9 @@ public class ClimbChecker : MonoBehaviour
         Debug.DrawRay(transform.position, (transform.forward * reachDepth), Color.blue);
         //If an object is close enough to gabe to climb:
         //if (Physics.SphereCast(obNearRay,detectRadius, out obNearHit, reachDepth, ~ignoreLayer)&&(obNearHit.collider.isTrigger == false))
-        if (Physics.Raycast(obNearRay, out obNearHit, reachDepth, ~ignoreLayer) && (obNearHit.collider.isTrigger == false))
+        if (Physics.SphereCast(obNearRay,detectRadius, out obNearHit, reachDepth, ~ignoreLayer) && (obNearHit.collider.isTrigger == false))
         {
+            //Debug.Log("Hit something");
             //Object Gabe could concievably climb
 
             RaycastHit canLandHit;
@@ -90,7 +91,7 @@ public class ClimbChecker : MonoBehaviour
                     Vector3 probClimbPoint = new Vector3(canStandHit.point.x, edge.y + (playerHeight * 1.1f), canStandHit.point.z);
                     //Checks to see if the intended landing point is higher than the origin of the object that gabe first ran up against
                     //Possible flaws: If origin is somehow above the object (unlikely but possible)
-                    if (possEdge.y > obNearHit.collider.transform.position.y)
+                    if (possEdge.y > obNearHit.collider.transform.position.y )
                     {
                         climbableObject = canStandHit.transform.gameObject;
                         edge = possEdge;
