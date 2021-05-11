@@ -13,8 +13,8 @@ public class PlayerAbilityController : Grabber
     private BoxCollider collideWithWalls;
     void Start()
     {
-        grabText.gameObject.SetActive(false);
-        releaseText.gameObject.SetActive(false);
+        //grabText.gameObject.SetActive(false);
+        //releaseText.gameObject.SetActive(false);
         playerRef = Player.instance;
         playerRef._actionMap.ViewingObject.Disable();
         playerRef._actionMap.Platforming.Use.performed += grab => PlayerGrab();
@@ -41,14 +41,14 @@ public class PlayerAbilityController : Grabber
         {
             if (currentGrab != null && !base.holdingObject)
             {
-                grabText.gameObject.SetActive(false);
-                releaseText.gameObject.SetActive(true);
+                //grabText.gameObject.SetActive(false);
+                //releaseText.gameObject.SetActive(true);
                 GrabAttempt(currentGrab, this.gameObject);
             }
             else if (base.holdingObject)//current grab redundant but colliders are wierd...
             {
-                grabText.gameObject.SetActive(false);
-                releaseText.gameObject.SetActive(false);
+                //grabText.gameObject.SetActive(false);
+                //releaseText.gameObject.SetActive(false);
                 ReleaseObject();
             }
         }
@@ -64,8 +64,8 @@ public class PlayerAbilityController : Grabber
         {
             if (!base.holdingObject)
             {
-                grabText.gameObject.SetActive(true);
-                releaseText.gameObject.SetActive(false);
+                //grabText.gameObject.SetActive(true);
+                //releaseText.gameObject.SetActive(false);
             }
             currentGrab = collision.gameObject;
         }
@@ -79,8 +79,8 @@ public class PlayerAbilityController : Grabber
             {
                 currentGrab = null;
             }
-            grabText.gameObject.SetActive(false);
-            releaseText.gameObject.SetActive(false);
+            //grabText.gameObject.SetActive(false);
+            //releaseText.gameObject.SetActive(false);
         }
     }
 }

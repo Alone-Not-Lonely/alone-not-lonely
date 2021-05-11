@@ -50,10 +50,10 @@ public class PlayerInventory : MonoBehaviour
     //and performs any feedback for pickup
     public void addItem(Item item)
     {
-        Debug.Log("adding item");
+        //Debug.Log("adding item");
         items.Add(item);
         Debug.Log("Item added, starting coroutine");
-        //feedback here
+        ////feedback here
         //StartCoroutine("feedback", "picked up: " + item.key);
         if (item.key.Contains("Piece"))//puzzle pieces must be named "Something Piece
         {

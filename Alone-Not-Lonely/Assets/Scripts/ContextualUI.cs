@@ -8,24 +8,19 @@ using UnityEngine.SceneManagement;
 public class ContextualUI : MonoBehaviour
 {
     public bool conditionMet = false;
-    public Text contextInitial;
-    public Text contextSecondary;
-    public string messageInitial = "Initial message";
-    public string messageSecondary = "Secondary message";
-
+    public Text conText;
+    //public string[] messages;
+    //public string messageInitial = "Initial message";
+    //public string messageSecondary = "Secondary message";
+    public promptType currPromptType; //this will change based on type of prompt
+    public string currentMessage = ""; //this will change what is actually printed
+    private PromptController proController;
     private bool inRange = false;
 
-    protected void OnDisable() {
-        if(contextInitial != null)
-        {
-            contextInitial.gameObject.SetActive(false);
-            contextInitial.text = "";
-        }
-        if(contextSecondary != null)
-        {
-            contextSecondary.gameObject.SetActive(false);
-            contextSecondary.text = "";
-        }
+    protected void OnDisable()
+    {
+        conText.text = "";
+        currentMessage = "";
     }
 
     protected void Start() {
@@ -34,17 +29,14 @@ public class ContextualUI : MonoBehaviour
         {
             if(t.gameObject.CompareTag("UIInit"))
             {
-                contextInitial = t;
-            }
-            else if(t.gameObject.CompareTag("UISec"))
-            {
-                contextSecondary = t;
+                conText = t;
             }
         }
         ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
-        Debug.Log(this.name + " at Start() player count is " + objs.Length);
-        contextInitial.text = "";
-        contextSecondary.text = "";
+        //Debug.Log(this.name + " at Start() player count is " + objs.Length);
+        conText.text = "";
+        currentMessage = "";
+        proController = FindObjectOfType<PromptController>();
     }
 
     protected void OnEnable() {
@@ -59,17 +51,21 @@ public class ContextualUI : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            /*
             if(!conditionMet)
             {
-                contextInitial.text = messageInitial;
-                contextInitial.gameObject.SetActive(true);
+                //conText.text = messageInitial;
+                //conText.gameObject.SetActive(true);
             }
             else
             {
-                contextSecondary.text = messageSecondary;
-                contextSecondary.gameObject.SetActive(true);
+                //conText.text = messageSecondary;
+                //contextSecondary.text = messageSecondary;
+                //contextSecondary.gameObject.SetActive(true);
             }
             inRange = true;
+            */
+            proController.setPrompt(currPromptType, currentMessage);
         }
     }
 
@@ -77,10 +73,10 @@ public class ContextualUI : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            contextInitial.gameObject.SetActive(false);
-            contextSecondary.gameObject.SetActive(false);
-            contextInitial.text = "";
-            contextSecondary.text = "";
+            //conText.gameObject.SetActive(false);
+            //contextSecondary.gameObject.SetActive(false);
+            conText.text = "";
+            //contextSecondary.text = "";
         }
         inRange = false;
     }
@@ -94,10 +90,10 @@ public class ContextualUI : MonoBehaviour
     {
         if(inRange)
         {
-            //contextInitial.gameObject.SetActive(true);
+            //conText.gameObject.SetActive(true);
             //contextSecondary.gameObject.SetActive(false);
-            contextInitial.text = messageInitial;
-            contextSecondary.text = "";
+            //conText.text = messageInitial;
+            //contextSecondary.text = "";
         }
         else
         {
@@ -109,10 +105,10 @@ public class ContextualUI : MonoBehaviour
     {
         if(inRange)
         {
-            //contextInitial.gameObject.SetActive(false);
+            //conText.gameObject.SetActive(false);
             //contextSecondary.gameObject.SetActive(true);
-            contextInitial.text = "";
-            contextSecondary.text = messageSecondary;
+            conText.text = "";
+            //contextSecondary.text = messageSecondary;
         }
         else
         {

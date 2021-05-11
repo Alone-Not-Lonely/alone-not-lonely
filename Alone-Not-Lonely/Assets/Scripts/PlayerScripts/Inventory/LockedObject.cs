@@ -53,8 +53,7 @@ public class LockedObject : MonoBehaviour
         {
             c.enabled = false;
         }
-        GetComponent<ContextualUI>().contextSecondary.text = "";
-        GetComponent<ContextualUI>().contextInitial.text = "";
+        GetComponent<ContextualUI>().conText.text = "";
     }
 
     private void OnTriggerEnter(Collider other)

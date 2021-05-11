@@ -8,7 +8,7 @@ public class ScenePersistence : MonoBehaviour
     public static ScenePersistence instance;
     private void Awake() {
         ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
-        Debug.Log(this.name + " " + objs.Length);
+        //Debug.Log(this.name + " " + objs.Length);
 
         if (objs.Length > 1)
         {
@@ -24,7 +24,7 @@ public class ScenePersistence : MonoBehaviour
     void OnEnable()
     {
         ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
-        Debug.Log(this.name + " " + objs.Length);
+        //Debug.Log(this.name + " " + objs.Length);
 
         if (objs.Length > 1)
         {
@@ -44,7 +44,7 @@ public class ScenePersistence : MonoBehaviour
             Destroy(this.gameObject);
         }
         SceneManager.SetActiveScene(scene);
-        Debug.Log("Active Scene : " + SceneManager.GetActiveScene().name);
+        //Debug.Log("Active Scene : " + SceneManager.GetActiveScene().name);
     }
 
     private void OnDisable(){

@@ -5,13 +5,12 @@ using UnityEngine;
 public class OpenableUI : ContextualUI
 {
     KeyBaring openable;
-    // Start is called before the first frame update
+
     void Start()
     {
         base.Start();
         openable = GetComponent<KeyBaring>();
-        contextInitial.text = "";
-        contextSecondary.text = "";
+        conText.text = "";
     }
 
     void OnEnable() {
@@ -21,9 +20,11 @@ public class OpenableUI : ContextualUI
     void OnDisable()
     {
         base.OnDisable();
-    }    // Update is called once per frame
+    }
+
     void Update()
     {
+        /*
         if(openable.open == true)
         {
             ChangeToContextSecondary();
@@ -32,6 +33,7 @@ public class OpenableUI : ContextualUI
         {
             ChangeToContextInit();
         }
+        */
     }
 
     

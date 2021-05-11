@@ -7,11 +7,13 @@ public class KeyBaring : Interactable
     private bool containsKey = true;
     private PlayerInventory pIn;
     public int ID;
+    private OpenableUI myOpen;
     // Start is called before the first frame update
     void Start()
     {
         base.playerRef = (Player)FindObjectOfType(typeof(Player));
         pIn = FindObjectOfType<PlayerInventory>();
+        myOpen = GetComponent<OpenableUI>();
     }
 
     protected void keyGrab()
@@ -49,8 +51,8 @@ public class KeyBaring : Interactable
                 containsKey = false;
                 PutDownKey();
                 this.gameObject.SetActive(false);
-                this.GetComponent<OpenableUI>().contextInitial.text = "";
-                this.GetComponent<OpenableUI>().contextSecondary.text = "";
+                this.GetComponent<OpenableUI>().conText.text = "";
+                //this.GetComponent<OpenableUI>().contextSecondary.text = "";
             }
         }
     }
@@ -62,6 +64,9 @@ public class KeyBaring : Interactable
         playerRef._actionMap.ViewingObject.InteractionTest.performed += interact => keyGrab();
         playerRef._actionMap.ViewingObject.RotateObj.performed += rot => base.Rotate(rot.ReadValue<Vector2>());
         hiddenObjInstance = Instantiate(hiddenObj, Camera.main.gameObject.transform.position + Camera.main.gameObject.transform.forward, Quaternion.identity);
+
+        //change prompt
+        myOpen.ChangeToContextSecondary();
     }
 
     void PutDownKey()
@@ -71,6 +76,9 @@ public class KeyBaring : Interactable
         base.playerRef._actionMap.Platforming.InteractionTest.performed -= interact => keyGrab();
         playerRef._actionMap.ViewingObject.RotateObj.performed -= rot => Rotate(rot.ReadValue<Vector2>());
         Destroy(hiddenObjInstance);
+
+        //change prompt
+        myOpen.ChangeToContextInit();
     }
 
     /// <summary>
@@ -79,6 +87,7 @@ public class KeyBaring : Interactable
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerEnter(Collider other)
     {
+        
         if(other.CompareTag("Player"))
         {
             base.OnTriggerEnter(other);
