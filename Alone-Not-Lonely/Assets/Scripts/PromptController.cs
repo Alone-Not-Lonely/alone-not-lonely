@@ -28,17 +28,18 @@ public class PromptController : MonoBehaviour
         1
     };
 
-    public void setPrompt(promptType type, string promptText)
+    public void setPrompt(ContextualUI cui)
     {
-        int i = (int)type;
+        int i = (int)cui.currPromptType;
         if (uses[i] > 0)
         {
-            promptText = prompts[i];
+            Debug.Log("PromptController: changing text");
+            cui.currentMessage = prompts[i];
             //add decrementing counter;
         }
         else
         {
-            promptText = "";
+            cui.currentMessage = "";
         }
     }
 

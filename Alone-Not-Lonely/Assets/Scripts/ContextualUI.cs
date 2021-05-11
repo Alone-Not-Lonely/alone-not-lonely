@@ -34,6 +34,7 @@ public class ContextualUI : MonoBehaviour
         }
         ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
         //Debug.Log(this.name + " at Start() player count is " + objs.Length);
+        conText.gameObject.SetActive(true);
         conText.text = "";
         currentMessage = "";
         proController = FindObjectOfType<PromptController>();
@@ -65,7 +66,8 @@ public class ContextualUI : MonoBehaviour
             }
             inRange = true;
             */
-            proController.setPrompt(currPromptType, currentMessage);
+            proController.setPrompt(this);
+            conText.text = currentMessage;
         }
     }
 
@@ -75,7 +77,7 @@ public class ContextualUI : MonoBehaviour
         {
             //conText.gameObject.SetActive(false);
             //contextSecondary.gameObject.SetActive(false);
-            conText.text = "";
+            conText.text = "";//resets text
             //contextSecondary.text = "";
         }
         inRange = false;
