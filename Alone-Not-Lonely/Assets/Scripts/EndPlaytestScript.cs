@@ -23,10 +23,8 @@ public class EndPlaytestScript : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            _player.gameObject.SetActive(false);
-            _player.gameObject.transform.position = positionToReturnTo;
-            _player.gameObject.SetActive(true);
-            SceneManager.LoadScene("Bedroom1");
+            LoadNextLevel();
+            //SceneManager.LoadScene("Bedroom1");
         }
     }
 
