@@ -10,6 +10,8 @@ public class FinalChestDoorCheck : MonoBehaviour
     private BoxContactBehavior _behavior;
     private AtticLadderController _ladder;
 
+    bool wasOnDoor = false;
+
     void Awake()
     {
         _behavior = GetComponent<BoxContactBehavior>();
@@ -21,10 +23,18 @@ public class FinalChestDoorCheck : MonoBehaviour
         
         if (onDoor())
         {
+            if(!wasOnDoor)
+            {
+                _ladder.gameObject.GetComponent<AudioSource>().Play();
+                _ladder.gameObject.GetComponentInParent<ContextualUI>().ChangeToContextSecondary();
+                _ladder.gameObject.GetComponentInParent<ContextualUI>().SetConditionMet(true);
+            }
             _ladder.open();
+            wasOnDoor = true;
         }
         else
         {
+            wasOnDoor = false;
             _ladder.close();
         }
     }
