@@ -23,7 +23,7 @@ public class LockedObject : MonoBehaviour
         {
             return;
         }
-        if (inventory.checkContents(keys))
+        if (keys.Count == 0 || inventory.checkContents(keys))
         {
             openAction();
             //put opening actions here
@@ -46,7 +46,7 @@ public class LockedObject : MonoBehaviour
         _animator.SetBool("open", true);
         foreach(Item key in keys)
         {
-            inventory.removeItem(key);
+            //inventory.removeItem(key);
         }
         Collider[] col = GetComponents<Collider>();
         foreach(Collider c in col)
