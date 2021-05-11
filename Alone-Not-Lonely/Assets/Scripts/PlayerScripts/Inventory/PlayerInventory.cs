@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerInventory : MonoBehaviour
 {
     List<Item> items;
-    List<int> puzzlePieces;
+    public List<int> puzzlePieces;
     public Canvas _canvas;
     [SerializeField]
     private Animator puzzAnim;

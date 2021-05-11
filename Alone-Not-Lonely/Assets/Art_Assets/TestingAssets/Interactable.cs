@@ -7,8 +7,6 @@ public abstract class Interactable : MonoBehaviour
 {
     protected bool inRange = false;
     public bool open = false;
-    //public Text openText;
-    //public Text closeText;
 
     protected Player playerRef;
 
@@ -19,7 +17,7 @@ public abstract class Interactable : MonoBehaviour
 
     void Awake() 
     {
-
+        
     }
     void Start()
     {

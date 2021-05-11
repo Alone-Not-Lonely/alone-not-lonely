@@ -73,7 +73,7 @@ public abstract class Grabber : MonoBehaviour
         {
             if(heldObject.GetComponent<SquashedObject>() != null && holderObject.gameObject.CompareTag("Player"))
             {
-                heldObject.GetComponent<Rigidbody>().MovePosition(holderObject.position + (- holderObject.up * .25f) + (holdOffsetDir * (holdDistance + heldObject.GetComponent<BoxContactBehavior>().holdOffset)) + (holderObject.right * (holdDistance/2)));
+                heldObject.GetComponent<Rigidbody>().MovePosition(holderObject.position + (- holderObject.up * .25f) + (holdOffsetDir * (holdDistance + heldObject.GetComponent<BoxContactBehavior>().holdOffset)) + (-holderObject.right * (holdDistance + heldObject.GetComponent<BoxContactBehavior>().holdOffset)));
                 heldObject.GetComponent<Rigidbody>().MoveRotation(holderObject.rotation);
             }
             else

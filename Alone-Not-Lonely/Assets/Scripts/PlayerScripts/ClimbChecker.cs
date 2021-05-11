@@ -63,6 +63,7 @@ public class ClimbChecker : MonoBehaviour
         //If an object is close enough to gabe to climb:
         if (Physics.SphereCast(obNearRay,detectRadius, out obNearHit, reachDepth, ~ignoreLayer)&&(obNearHit.collider.isTrigger == false))
         {
+            //Debug.Log("Hit something");
             //Object Gabe could concievably climb
 
             RaycastHit canLandHit;
@@ -72,7 +73,7 @@ public class ClimbChecker : MonoBehaviour
 
             //If the landing is short enough for gabe to climb:
             if (!Physics.Raycast(landingRay, out canLandHit, maxDepth, ~ignoreLayer) || (canLandHit.collider.isTrigger == true))
-            {//We are close enough and HAVE found the object's top 
+            {//We are close enough and HAVE found the object's top
                 Vector3 canStandRayStart = landingRayStart + (landingRay.direction * maxDepth);
                 Ray canStandRay = new Ray(canStandRayStart, -transform.up);
                 Debug.DrawRay(canStandRay.origin, canStandRay.direction, Color.green);
@@ -81,13 +82,13 @@ public class ClimbChecker : MonoBehaviour
                 //Debug.Log((!Physics.Raycast(landingRay, out canLandHit, maxDepth)) + " and " + (reachHeight != 0));
                 if (Physics.Raycast(canStandRay, out canStandHit, Mathf.Infinity, ~ignoreLayer) && (canStandHit.collider.isTrigger == false))
                 {
-                    
+
                     Vector3 possEdge = new Vector3(obNearHit.point.x, canStandHit.point.y, obNearHit.point.z);
                     //1.1 used to be 1.3
                     Vector3 probClimbPoint = new Vector3(canStandHit.point.x, edge.y + (playerHeight * 1.1f), canStandHit.point.z);
                     //Checks to see if the intended landing point is higher than the origin of the object that gabe first ran up against
                     //Possible flaws: If origin is somehow above the object (unlikely but possible)
-                    if (possEdge.y > obNearHit.collider.transform.position.y)
+                    if (possEdge.y > obNearHit.collider.transform.position.y )
                     {
                         climbableObject = canStandHit.transform.gameObject;
                         edge = possEdge;
@@ -141,7 +142,7 @@ public void adjustHeight()
         //Checks if player is close to object
         RaycastHit proxHit;
         Ray proxRay = new Ray(transform.position, transform.forward);
-       
+
         Debug.DrawRay(transform.position, (transform.forward*reachDepth), Color.blue);
         //Debug.Log("Detecting object: " + Physics.SphereCast(proxRay, detectRadius, out proxHit, reachDepth));
         if (Physics.SphereCast(proxRay,detectRadius, out proxHit, reachDepth, ~ignoreLayer)&&(proxHit.collider.isTrigger == false))
@@ -168,8 +169,8 @@ public void adjustHeight()
             //if our landing ray isn't hitting anything
             //Debug.Log((!Physics.Raycast(landingRay, out canLandHit, maxDepth)) +" and "+ (reachHeight != 0));
             if ((!Physics.Raycast(landingRay, out canLandHit, maxDepth, ~ignoreLayer)|| (canLandHit.collider.isTrigger == true)) && (reachHeight != 0))
-            {//We are close enough and HAVE found the objects top 
-            
+            {//We are close enough and HAVE found the objects top
+
                 Vector3 possEdge = new Vector3(transform.position.x + landingRay.direction.x,
                                   (transform.position.y - 1) + reachHeight,
                                   transform.position.z + landingRay.direction.z);
@@ -194,5 +195,5 @@ Debug.DrawRay(canStandRay.origin, canStandRay.direction, Color.green);
             //Reset reach height and climbable point
             clear();
         }
-    } 
+    }
 */
