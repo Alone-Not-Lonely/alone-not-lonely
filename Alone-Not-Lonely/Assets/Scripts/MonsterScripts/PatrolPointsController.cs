@@ -149,6 +149,7 @@ public class PatrolPointsController : Grabber
             if(portal.gameObject == activePortal1 || portal.gameObject == activePortal2)
             {
                 StartCoroutine("GrowPortal", portal);
+                portal.GetComponent<SpriteRenderer>().color = new Color(160f/255f, 0, 22f/255f);
             }
             else
             {

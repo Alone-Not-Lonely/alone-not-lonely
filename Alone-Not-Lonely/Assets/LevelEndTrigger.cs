@@ -30,11 +30,11 @@ public class LevelEndTrigger : MonoBehaviour
             {
                 child.gameObject.SetActive(false);
             }
-            else if(child.gameObject.GetComponent<Item>() != null && 
-               child.gameObject.GetComponent<Item>().key.Contains("Key"))
-            {
-                child.gameObject.SetActive(false);
-            }
+            //else if(child.gameObject.GetComponent<Item>() != null && 
+               //child.gameObject.GetComponent<Item>().key.Contains("Key"))
+            //{
+                //child.gameObject.SetActive(false);
+            //}
             CheckObjects(child.gameObject);
         }
     }
