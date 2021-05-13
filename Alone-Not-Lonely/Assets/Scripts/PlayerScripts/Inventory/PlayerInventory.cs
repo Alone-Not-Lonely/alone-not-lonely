@@ -88,7 +88,7 @@ public class PlayerInventory : MonoBehaviour
     IEnumerator keyGet(string name)
     {
         GameObject key = Instantiate(keyTemplate);
-        key.transform.parent = keyUI.transform;
+        /*key.transform.parent = keyUI.transform;*/ key.transform.SetParent(keyUI.transform, false);
         key.name = name;
         key.transform.GetChild(1).GetComponent<Text>().text = name;
         yield return new WaitForSeconds(0);
