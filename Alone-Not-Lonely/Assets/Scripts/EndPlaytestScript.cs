@@ -26,7 +26,7 @@ public class EndPlaytestScript : MonoBehaviour
             _player.gameObject.SetActive(false);
             _player.gameObject.transform.position = positionToReturnTo;
             _player.gameObject.SetActive(true);
-            SceneManager.LoadScene("Bedroom1");
+            SceneManager.LoadScene("GroundFloor");
         }
     }
 
@@ -37,7 +37,7 @@ public class EndPlaytestScript : MonoBehaviour
         _player.gameObject.SetActive(false);
         _player.gameObject.transform.position = positionToReturnTo;
         _player.gameObject.SetActive(true);
-        SceneManager.LoadScene("Bedroom1");
+        SceneManager.LoadScene("GroundFloor");
     }
 
     
