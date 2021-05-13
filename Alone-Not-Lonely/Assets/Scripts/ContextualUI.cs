@@ -9,9 +9,6 @@ public class ContextualUI : MonoBehaviour
 {
     public bool conditionMet = false;
     public Text conText;
-    //public string[] messages;
-    //public string messageInitial = "Initial message";
-    //public string messageSecondary = "Secondary message";
     public promptType currPromptType; //this will change based on type of prompt
     public string currentMessage = ""; //this will change what is actually printed
     private PromptController proController;

@@ -24,16 +24,7 @@ public class OpenableUI : ContextualUI
 
     void Update()
     {
-        /*
-        if(openable.open == true)
-        {
-            ChangeToContextSecondary();
-        }
-        else
-        {
-            ChangeToContextInit();
-        }
-        */
+
     }
 
     

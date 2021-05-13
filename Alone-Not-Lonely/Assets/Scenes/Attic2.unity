@@ -3400,6 +3400,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1016184840}
     m_Modifications:
+    - target: {fileID: 395647914295386144, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 395647914295386144, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
+      propertyPath: currPromptType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9117881485475964940, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3472,7 +3480,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puzzle Container
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 395647914295386144, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
 --- !u!1001 &137566326
 PrefabInstance:
@@ -36323,6 +36332,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9117881485475964940, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
   m_PrefabInstance: {fileID: 2082421078}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &656960301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9117881485475965047, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
+  m_PrefabInstance: {fileID: 135473621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &656960305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656960301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conditionMet: 0
+  conText: {fileID: 0}
+  currPromptType: 1
+  currentMessage: 
 --- !u!1 &657899547
 GameObject:
   m_ObjectHideFlags: 0
