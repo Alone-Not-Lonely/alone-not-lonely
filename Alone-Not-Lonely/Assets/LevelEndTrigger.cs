@@ -26,7 +26,8 @@ public class LevelEndTrigger : MonoBehaviour
                child.gameObject.GetComponent<PatrolPointsController>()!=null ||
                child.gameObject.GetComponent<PortalController>() != null ||
                child.gameObject.GetComponent<ElevatorMonsterController>() != null ||
-               child.gameObject.CompareTag("RemoveOnStart"))
+               child.gameObject.CompareTag("RemoveOnStart") ||
+               child.gameObject.CompareTag("Deadly"))
             {
                 child.gameObject.SetActive(false);
             }
