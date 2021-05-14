@@ -9,7 +9,8 @@ public class ClimbChecker : MonoBehaviour
                  maxDepth = 1.5f, maxClimbHeight = 2,
                  handOffset = .3f, handMoveSpeed = .3f,
                  detectRadius = 1f, landingDepth = .5f,
-                 maxReachDist = 4f, reachDepth = 1f;
+                 maxReachDist = 4f, reachDepth = 1f,
+                 handRestingHeight = .5f;
     private float playerHeight, playerRadius = 1f;
     public Vector3 climbablePoint = Vector3.zero;
     private Vector3 edge;
@@ -115,17 +116,26 @@ public class ClimbChecker : MonoBehaviour
 
     private void updateHands()
     {
+        Vector3 goToPoint = (transform.position + (Vector3.up * handRestingHeight)); 
+        
+        if (edge != transform.position)
         {
-            rhand.position = Vector3.Lerp(rhand.position, edge + (transform.right * handOffset), handMoveSpeed);
-            if (!(pAbil.currentGrab != null && pAbil.heldObject && pAbil.heldObject.gameObject.GetComponent<SquashedObject>() != null))
-            {
-                lhand.position = Vector3.Lerp(lhand.position, edge - (transform.right * handOffset), handMoveSpeed);
-            }
+            goToPoint = edge;
         }
+
+        Debug.Log("Go to point: "+goToPoint);
+
+        rhand.position = Vector3.Lerp(rhand.position, goToPoint + (transform.right * handOffset), handMoveSpeed);
+        if (!(pAbil.currentGrab != null && pAbil.heldObject && pAbil.heldObject.gameObject.GetComponent<SquashedObject>() != null))
+        {
+            lhand.position = Vector3.Lerp(lhand.position, goToPoint - (transform.right * handOffset), handMoveSpeed);
+        }
+        /*
         if (Vector3.Distance(rhand.position, edge) < .1)
         {
             //hand closed indicator
         }
+        */
     }
 
     private float posDiff()
@@ -139,65 +149,3 @@ public class ClimbChecker : MonoBehaviour
         return (maxReachDist > Vector3.Distance(dist1, dist2));
     }
 }
-
-/*
-public void adjustHeight()
-    {
-        //Checks if player is close to object
-        RaycastHit proxHit;
-        Ray proxRay = new Ray(transform.position, transform.forward);
-       
-        Debug.DrawRay(transform.position, (transform.forward*reachDepth), Color.blue);
-        //Debug.Log("Detecting object: " + Physics.SphereCast(proxRay, detectRadius, out proxHit, reachDepth));
-        if (Physics.SphereCast(proxRay,detectRadius, out proxHit, reachDepth, ~ignoreLayer)&&(proxHit.collider.isTrigger == false))
-        {
-            //Object Gabe could concievably climb
-            climbableObject = proxHit.transform.gameObject;
-
-            RaycastHit canLandHit;
-            //current "center" of character
-            Vector3 hcPos = (transform.position+Vector3.down) + (transform.up * reachHeight);
-
-            Ray landingRay = new Ray(hcPos, transform.forward * maxDepth);
-            Debug.DrawRay(landingRay.origin, landingRay.direction, Color.yellow);
-            //Debug.Log(Physics.Raycast(landingRay, out canLandHit, maxDepth));
-            //if (Physics.Raycast(landingRay, out canLandHit, maxDepth, ~ignoreLayer)&& (canLandHit.collider.isTrigger == false))
-            //{
-                //Check to see if the current object is above max height
-                if (reachHeight <= maxClimbHeight)
-                {
-                    //Debug.Log("Should be incrementing");
-                    reachHeight += checkStep;//raises the reach ever so slightly
-                }
-            //}
-            //if our landing ray isn't hitting anything
-            //Debug.Log((!Physics.Raycast(landingRay, out canLandHit, maxDepth)) +" and "+ (reachHeight != 0));
-            if ((!Physics.Raycast(landingRay, out canLandHit, maxDepth, ~ignoreLayer)|| (canLandHit.collider.isTrigger == true)) && (reachHeight != 0))
-            {//We are close enough and HAVE found the objects top 
-            
-                Vector3 possEdge = new Vector3(transform.position.x + landingRay.direction.x,
-                                  (transform.position.y - 1) + reachHeight,
-                                  transform.position.z + landingRay.direction.z);
-
-//Can stand ray slightly upward to deal with the awkward shape of boxes
-//This ray checks to see if player were to stand on the final spot, that there would actually be ground there
-Ray canStandRay = new Ray((possEdge + (Vector3.up * .5f) + transform.forward * landingDepth), -transform.up);
-Debug.DrawRay(canStandRay.origin, canStandRay.direction, Color.green);
-
-                RaycastHit canStandHit;
-                //Debug.Log((!Physics.Raycast(landingRay, out canLandHit, maxDepth)) + " and " + (reachHeight != 0));
-                if (Physics.Raycast(canStandRay, out canStandHit, 2f, ~ignoreLayer) && (canStandHit.collider.isTrigger == false))
-                {
-                    //Debug.Log("Can stand on: " + canStandHit.collider.name);
-                    edge = possEdge;
-                    climbablePoint = new Vector3(edge.x, edge.y + (playerHeight* 1.3f), edge.z) + transform.forward* landingDepth;
-                }
-            }
-        }
-        else
-        {//We are not close to an object
-            //Reset reach height and climbable point
-            clear();
-        }
-    } 
-*/
