@@ -62,7 +62,7 @@ public class PlayerInventory : MonoBehaviour
 
         if (item.key.Contains("Key"))//puzzle pieces must be named "Something Piece
         {
-            StartCoroutine("keyGet", item.key);
+            StartCoroutine("keyGet", item);
         }
     }
 
@@ -85,12 +85,13 @@ public class PlayerInventory : MonoBehaviour
         puzzAnim.SetBool("Gotten Key", false);
     }
 
-    IEnumerator keyGet(string name)
+    IEnumerator keyGet(Item item)
     {
         GameObject key = Instantiate(keyTemplate);
         /*key.transform.parent = keyUI.transform;*/ key.transform.SetParent(keyUI.transform, false);
-        key.name = name;
-        key.transform.GetChild(1).GetComponent<Text>().text = name;
+        key.name = item.key;
+        key.transform.GetChild(1).GetComponent<Text>().text = item.key;
+        key.transform.GetChild(0).GetComponent<Image>().color = item.GetComponent<MeshRenderer>().material.color;  //item.key, 
         yield return new WaitForSeconds(0);
     }
 
