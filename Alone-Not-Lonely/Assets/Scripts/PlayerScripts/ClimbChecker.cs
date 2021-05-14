@@ -63,7 +63,6 @@ public class ClimbChecker : MonoBehaviour
 
         Debug.DrawRay(transform.position, (transform.forward * reachDepth), Color.blue);
         //If an object is close enough to gabe to climb:
-        //if (Physics.SphereCast(obNearRay,detectRadius, out obNearHit, reachDepth, ~ignoreLayer)&&(obNearHit.collider.isTrigger == false))
         if (Physics.SphereCast(obNearRay,detectRadius, out obNearHit, reachDepth, ~ignoreLayer) && (obNearHit.collider.isTrigger == false))
         {
             //Debug.Log("Hit something");
@@ -85,14 +84,16 @@ public class ClimbChecker : MonoBehaviour
                 //Debug.Log((!Physics.Raycast(landingRay, out canLandHit, maxDepth)) + " and " + (reachHeight != 0));
                 if (Physics.Raycast(canStandRay, out canStandHit, Mathf.Infinity, ~ignoreLayer) && (canStandHit.collider.isTrigger == false))
                 {
-                    
+                    //Debug.Log("Can stand on: " + canStandHit.collider.name);
+                    //Debug.Log("Triggered by contact with: " + obNearHit.collider.name);
                     Vector3 possEdge = new Vector3(obNearHit.point.x, canStandHit.point.y, obNearHit.point.z);
                     //1.1 used to be 1.3
                     Vector3 probClimbPoint = new Vector3(canStandHit.point.x, edge.y + (playerHeight * 1.1f), canStandHit.point.z);
                     //Checks to see if the intended landing point is higher than the origin of the object that gabe first ran up against
                     //Possible flaws: If origin is somehow above the object (unlikely but possible)
-                    if (possEdge.y > obNearHit.collider.transform.position.y )
+                    if (possEdge.y > obNearHit.point.y)
                     {
+                        //Debug.Log("Distances: edge y " + possEdge.y + ", ob y " + obNearHit.collider.transform.position.y);
                         climbableObject = canStandHit.transform.gameObject;
                         edge = possEdge;
                         climbablePoint = probClimbPoint;
