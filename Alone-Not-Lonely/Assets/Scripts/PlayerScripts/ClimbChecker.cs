@@ -64,10 +64,21 @@ public class ClimbChecker : MonoBehaviour
 
         Debug.DrawRay(transform.position, (transform.forward * reachDepth), Color.blue);
         //If an object is close enough to gabe to climb:
-        if (Physics.SphereCast(obNearRay,detectRadius, out obNearHit, reachDepth, ~ignoreLayer) && (obNearHit.collider.isTrigger == false))
+        if (Physics.SphereCast(obNearRay,detectRadius, out obNearHit, reachDepth, ~ignoreLayer) )
         {
-            //Debug.Log("Hit something");
-            //Object Gabe could concievably climb
+            //ignore triggers
+            if(obNearHit.collider.isTrigger)
+            {
+                clear();
+                return;
+            }
+
+            //Don't climb on the monsters, dear
+            if(obNearHit.transform.tag == "Monster")
+            {
+                clear();
+                return;
+            }
 
             RaycastHit canLandHit;
             Vector3 landingRayStart = (transform.position + maxClimbHeight * Vector3.up);
@@ -75,16 +86,41 @@ public class ClimbChecker : MonoBehaviour
             Debug.DrawRay(landingRay.origin, landingRay.direction, Color.yellow);
 
             //If the landing is short enough for gabe to climb:
-            if (!Physics.Raycast(landingRay, out canLandHit, maxDepth, ~ignoreLayer) || (canLandHit.collider.isTrigger == true))
+            if (!Physics.Raycast(landingRay, out canLandHit, maxDepth, ~ignoreLayer) || (canLandHit.collider.isTrigger))
             {//We are close enough and HAVE found the object's top 
                 Vector3 canStandRayStart = landingRayStart + (landingRay.direction * maxDepth);
                 Ray canStandRay = new Ray(canStandRayStart, -transform.up);
                 Debug.DrawRay(canStandRay.origin, canStandRay.direction, Color.green);
 
-                RaycastHit canStandHit;
+                RaycastHit canStandHit = obNearHit;//DIDN'T THINK ABOUT THIS MUCH, MAY CAUSE BUG
+                RaycastHit[] canStandHits = Physics.RaycastAll(canStandRay, Mathf.Infinity, ~ignoreLayer);
                 //Debug.Log((!Physics.Raycast(landingRay, out canLandHit, maxDepth)) + " and " + (reachHeight != 0));
-                if (Physics.Raycast(canStandRay, out canStandHit, Mathf.Infinity, ~ignoreLayer) && (canStandHit.collider.isTrigger == false))
+                //if (Physics.Raycast(canStandRay, out canStandHit, Mathf.Infinity, ~ignoreLayer) && (canStandHit.collider.isTrigger == false))
+                float tempMax = float.MinValue;
+                bool verified = false;
+
+                foreach(RaycastHit hit in canStandHits)
                 {
+                    //Finds the highest object on a possible stack
+                    //don't need to worry about too high b/c ray fires from max height->downward
+                    if (hit.point.y > tempMax && !hit.collider.isTrigger)
+                    {
+                        canStandHit = hit;
+                        tempMax = canStandHit.point.y;
+                    }
+
+                    //Checks to make sure the thing we originally wanted to climb is amungst a possible stack of things
+                    if(hit.transform == obNearHit.transform && !hit.collider.isTrigger)
+                    {
+                        //Debug.Log("verified by " + hit.transform.name);
+                        verified = true;
+                    }
+                }
+
+                if(verified)
+                {
+                    //Debug.Log("highestObject = " + canStandHit.transform.name);
+
                     //Debug.Log("Can stand on: " + canStandHit.collider.name);
                     //Debug.Log("Triggered by contact with: " + obNearHit.collider.name);
                     Vector3 possEdge = new Vector3(obNearHit.point.x, canStandHit.point.y, obNearHit.point.z);
@@ -92,8 +128,8 @@ public class ClimbChecker : MonoBehaviour
                     Vector3 probClimbPoint = new Vector3(canStandHit.point.x, edge.y + (playerHeight * 1.1f), canStandHit.point.z);
                     //Checks to see if the intended landing point is higher than the origin of the object that gabe first ran up against
                     //Possible flaws: If origin is somehow above the object (unlikely but possible)
-                    if (possEdge.y > obNearHit.point.y)
-                    {
+                    //if (possEdge.y + .4f > obNearHit.point.y)
+                    //{
                         //Debug.Log("Distances: edge y " + possEdge.y + ", ob y " + obNearHit.collider.transform.position.y);
                         climbableObject = canStandHit.transform.gameObject;
                         edge = possEdge;
@@ -103,7 +139,11 @@ public class ClimbChecker : MonoBehaviour
                     {
                         clear();
                     }
-                }
+                //}
+            }
+            else
+            {
+                clear();
             }
         }
         else
@@ -122,8 +162,6 @@ public class ClimbChecker : MonoBehaviour
         {
             goToPoint = edge;
         }
-
-        Debug.Log("Go to point: "+goToPoint);
 
         rhand.position = Vector3.Lerp(rhand.position, goToPoint + (transform.right * handOffset), handMoveSpeed);
         if (!(pAbil.currentGrab != null && pAbil.heldObject && pAbil.heldObject.gameObject.GetComponent<SquashedObject>() != null))
