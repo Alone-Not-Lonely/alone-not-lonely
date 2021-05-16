@@ -7,20 +7,21 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Collider))]
 public class ContextualUI : MonoBehaviour
 {
-    public bool conditionMet = false;
+    public bool conditionMet = false;//could be removed
     public Text conText;
-    public promptType currPromptType; //this will change based on type of prompt
+    //public promptType currType; //this will change based on type of prompt
     public string currentMessage = ""; //this will change what is actually printed
     private PromptController proController;
-    private bool inRange = false;
+    private bool inRange = false;//could be removed
 
     protected void OnDisable()
     {
-        conText.text = "";
-        currentMessage = "";
+        //conText.text = "";
+        //currentMessage = "";
     }
 
     protected void Start() {
+        //Get reference to conText object
         Text[] allText = (Text[])FindObjectsOfType(typeof(Text), true);
         foreach(Text t in allText)
         {
@@ -29,12 +30,21 @@ public class ContextualUI : MonoBehaviour
                 conText = t;
             }
         }
+        //set up persistence
         ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
         //Debug.Log(this.name + " at Start() player count is " + objs.Length);
+
         conText.gameObject.SetActive(true);
-        conText.text = "";
-        currentMessage = "";
+        //conText.text = "";
+        //currentMessage = "";
         proController = FindObjectOfType<PromptController>();
+    }
+
+    //basically just a wrapper to ease relations between objects and
+    //prompt controller
+    public void updatePrompt(string prompt)
+    {
+        conText.text = proController.setPrompt(prompt);
     }
 
     protected void OnEnable() {
@@ -49,6 +59,9 @@ public class ContextualUI : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            inRange = true;
+            conText.text = proController.setPrompt(currentMessage);
+            
             /*
             if(!conditionMet)
             {
@@ -63,8 +76,7 @@ public class ContextualUI : MonoBehaviour
             }
             inRange = true;
             */
-            proController.setPrompt(this);
-            conText.text = currentMessage;
+            //sets prompt to be correct message
         }
     }
 
@@ -85,6 +97,7 @@ public class ContextualUI : MonoBehaviour
         conditionMet = setting;
     }
 
+    /*
     public void ChangeToContextInit()
     {
         if(inRange)
@@ -114,4 +127,5 @@ public class ContextualUI : MonoBehaviour
             conditionMet = true;
         }
     }
+    */
 }

@@ -10,36 +10,37 @@ public enum promptType {
 };
 public class PromptController : MonoBehaviour
 {
-    private string[] prompts = //must align with promptType List
+    
+    public Dictionary<string, int> prompts;
+    private void Start()
     {
-        "Press 'e' to pick up key",
-        "Press 'e' to open box",
-        "Puzzle piece saved! press 'e' to close box",
-        "Press 'e' to move",
-        "Press 'e' to put down"
-    };
+        prompts = new Dictionary<string, int>();
+        //All prompts must first be added into this dictionary
+        prompts.Add("Press 'F' to open box", 1);
+        prompts.Add("Puzzle piece saved! press 'F' to close box", 1);
+        prompts.Add("Press 'F' to pick up key", 1);
+        prompts.Add("Press 'e' to pick up", 1);
+        prompts.Add("Press 'e' to put down", 1);
+    }
 
-    private int[] uses =
+    //Called every time a player enters the vicinity 
+    //of a prompting object
+    //A script will request it's attachted context ui change its prompt
+    //and this will determine if, globally, we haven't heard enough of it already
+    //public void setPrompt(ContextualUI cui)
+    public string setPrompt(string nuPrompt)
     {
-        1,
-        1,
-        1,
-        1,
-        1
-    };
-
-    public void setPrompt(ContextualUI cui)
-    {
-        int i = (int)cui.currPromptType;
-        if (uses[i] > 0)
+        //int i = (int)cui.currType;
+        //check to see if we have more uses
+        if (prompts[nuPrompt] > 0)
         {
             Debug.Log("PromptController: changing text");
-            cui.currentMessage = prompts[i];
+            return nuPrompt;
             //add decrementing counter;
         }
         else
         {
-            cui.currentMessage = "";
+            return "";
         }
     }
 

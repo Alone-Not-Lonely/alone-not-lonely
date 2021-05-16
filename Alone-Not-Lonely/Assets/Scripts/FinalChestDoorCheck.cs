@@ -26,7 +26,7 @@ public class FinalChestDoorCheck : MonoBehaviour
             if(!wasOnDoor)
             {
                 _ladder.gameObject.GetComponent<AudioSource>().Play();
-                _ladder.gameObject.GetComponentInParent<ContextualUI>().ChangeToContextSecondary();
+                //_ladder.gameObject.GetComponentInParent<ContextualUI>().ChangeToContextSecondary();
                 _ladder.gameObject.GetComponentInParent<ContextualUI>().SetConditionMet(true);
             }
             _ladder.open();

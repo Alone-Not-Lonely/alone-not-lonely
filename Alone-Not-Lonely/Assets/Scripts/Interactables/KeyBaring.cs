@@ -7,13 +7,13 @@ public class KeyBaring : Interactable
     private bool containsKey = true;
     private PlayerInventory pIn;
     public int ID;
-    private OpenableUI myOpen;
+    private ContextualUI myOpen;
     // Start is called before the first frame update
     void Start()
     {
         base.playerRef = (Player)FindObjectOfType(typeof(Player));
         pIn = FindObjectOfType<PlayerInventory>();
-        myOpen = GetComponent<OpenableUI>();
+        myOpen = GetComponent<ContextualUI>();
     }
 
     protected void keyGrab()
@@ -52,7 +52,7 @@ public class KeyBaring : Interactable
                 PutDownKey();
                 this.gameObject.SetActive(false);
                 //this.GetComponent<OpenableUI>().conText.text = "";
-                this.GetComponent<OpenableUI>().conText.text = "";//TESTING PURPOSES
+                this.GetComponent<ContextualUI>().conText.text = "";//TESTING PURPOSES
             }
         }
     }
@@ -66,7 +66,7 @@ public class KeyBaring : Interactable
         hiddenObjInstance = Instantiate(hiddenObj, Camera.main.gameObject.transform.position + Camera.main.gameObject.transform.forward, Quaternion.identity);
 
         //change prompt
-        myOpen.ChangeToContextSecondary();
+        myOpen.updatePrompt("Puzzle piece saved! press 'F' to close box");
     }
 
     void PutDownKey()
@@ -78,7 +78,7 @@ public class KeyBaring : Interactable
         Destroy(hiddenObjInstance);
 
         //change prompt
-        myOpen.ChangeToContextInit();
+        myOpen.updatePrompt("Press 'F' to open box");
     }
 
     /// <summary>
