@@ -48,9 +48,10 @@ public class ReturnToAttic : ContextualUI
             _player.gameObject.SetActive(false);
             _player.gameObject.transform.position =  positionToReturnTo;
             _player.gameObject.SetActive(true);
-            SceneManager.LoadScene("Attic2");
+            //SceneManager.LoadScene("Attic2");
             canGoToAttic = false;
             _player._actionMap.Platforming.ReturnToLevel.performed -= interact => GoToAttic();
+            LoadingScreen.instance.LoadScene("Attic2");
         }
     }
 }

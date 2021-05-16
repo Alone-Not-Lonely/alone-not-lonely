@@ -5,7 +5,7 @@ using UnityEngine;
 public class LockedObject : MonoBehaviour
 {
     private PlayerInventory inventory;
-    public List<Item> keys;
+    public List<string> keyNames;
     bool playerNearby = false;
     Animator _animator;
 
@@ -23,7 +23,7 @@ public class LockedObject : MonoBehaviour
         {
             return;
         }
-        if (keys.Count == 0 || inventory.checkContents(keys))
+        if (keyNames.Count == 0 || inventory.checkContents(keyNames))
         {
             openAction();
             //put opening actions here
@@ -38,16 +38,12 @@ public class LockedObject : MonoBehaviour
 
     public bool CheckHasKey()
     {
-        return inventory.checkContents(keys);
+        return inventory.checkContents(keyNames);
     }
     private void openAction()
     {
         Debug.Log("Open");
         _animator.SetBool("open", true);
-        foreach(Item key in keys)
-        {
-            //inventory.removeItem(key);
-        }
         Collider[] col = GetComponents<Collider>();
         foreach(Collider c in col)
         {

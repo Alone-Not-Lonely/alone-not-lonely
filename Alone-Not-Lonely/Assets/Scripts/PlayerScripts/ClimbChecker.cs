@@ -123,7 +123,7 @@ public class ClimbChecker : MonoBehaviour
             goToPoint = edge;
         }
 
-        Debug.Log("Go to point: "+goToPoint);
+        //Debug.Log("Go to point: "+goToPoint);
 
         rhand.position = Vector3.Lerp(rhand.position, goToPoint + (transform.right * handOffset), handMoveSpeed);
         if (!(pAbil.currentGrab != null && pAbil.heldObject && pAbil.heldObject.gameObject.GetComponent<SquashedObject>() != null))
