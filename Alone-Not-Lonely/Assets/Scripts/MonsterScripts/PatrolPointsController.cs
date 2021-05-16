@@ -76,6 +76,11 @@ public class PatrolPointsController : Grabber
         {
             currentGoal = currentGoal % patrolPoints.Count;
         }
+        if(patrolPoints[currentGoal].CompareTag("BackPortal"))
+        {
+            patrolPoints[currentGoal].GetComponent<SpriteRenderer>().color = new Color(160f/255f, 0, 22f/255f);
+            patrolPoints[currentGoal].GetComponent<PortalController>().partnerPortal.GetComponent<SpriteRenderer>().color = new Color(160f/255f, 0, 22f/255f);
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -97,6 +102,8 @@ public class PatrolPointsController : Grabber
             else if(other.CompareTag("BackPortal"))
             {
                 this.gameObject.SetActive(false);
+                patrolPoints[currentGoal].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+                patrolPoints[currentGoal].GetComponent<PortalController>().partnerPortal.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
                 GameObject partnerPortal = other.GetComponent<PortalController>().partnerPortal;
                 this.transform.position = partnerPortal.transform.position + (partnerPortal.transform.forward * portalSpawnOffset);
                 inColliderCooldown = true;
@@ -149,6 +156,7 @@ public class PatrolPointsController : Grabber
             if(portal.gameObject == activePortal1 || portal.gameObject == activePortal2)
             {
                 StartCoroutine("GrowPortal", portal);
+                //portal.GetComponent<SpriteRenderer>().color = new Color(160f/255f, 0, 22f/255f);
             }
             else
             {

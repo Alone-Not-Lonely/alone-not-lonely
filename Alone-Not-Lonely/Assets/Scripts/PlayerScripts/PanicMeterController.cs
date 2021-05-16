@@ -166,6 +166,10 @@ public class PanicMeterController : MonoBehaviour
             yield return new WaitForSeconds(.001f);
         }
         dead = false;
+        anxietyMeter.fillAmount = 0;
+        currentAnxietyPoints = 0;
+        desaturate.saturation.value = 0f;
+        desaturate.postExposure.value = 0f;
         yield break;
     }
 

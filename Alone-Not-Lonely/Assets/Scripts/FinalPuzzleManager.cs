@@ -46,6 +46,6 @@ public class FinalPuzzleManager : MonoBehaviour
     IEnumerator DramaticZoomOut()
     {
         yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("EndPlaytest");
+        SceneManager.LoadScene("EndCutscene");
     }
 }

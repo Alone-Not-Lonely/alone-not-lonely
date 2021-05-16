@@ -11,7 +11,6 @@ public class CutsceneSceneAdvance : MonoBehaviour
     public string SceneName;
     public DefaultControls _actionMap;
 
-    public GameObject playerCameraRig;
     private void OnEnable() {
         _actionMap.Platforming.Pause.performed += EndReached;
     }
