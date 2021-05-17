@@ -42,13 +42,19 @@ public class PlayerAbilityController : Grabber
             if (currentGrab != null && !base.holdingObject)
             {
                 //sets prompt
-                //currentGrab.gameObject.GetComponent<ContextualUI>().updatePrompt("Press 'e' to put down");
                 GrabAttempt(currentGrab, this.gameObject);
+                if (currentGrab.GetComponent<ContextualUI>()!=null)
+                {
+                    currentGrab.GetComponent<ContextualUI>().nextPrompt();
+                }
+                
             }
             else if (base.holdingObject)//current grab redundant but colliders are wierd...
             {
-                //grabText.gameObject.SetActive(false);
-                //releaseText.gameObject.SetActive(false);
+                if (currentGrab.GetComponent<ContextualUI>() != null)
+                {
+                    currentGrab.GetComponent<ContextualUI>().nextPrompt();
+                }
                 ReleaseObject();
             }
         }
@@ -62,11 +68,6 @@ public class PlayerAbilityController : Grabber
     {
         if(collision.gameObject.CompareTag("Grabable"))
         {
-            if (!base.holdingObject)
-            {
-                //sets prompt
-                //collision.gameObject.GetComponent<ContextualUI>().updatePrompt("Press 'e' to pick up");
-            }
             currentGrab = collision.gameObject;
         }
     }
@@ -79,8 +80,6 @@ public class PlayerAbilityController : Grabber
             {
                 currentGrab = null;
             }
-            //grabText.gameObject.SetActive(false);
-            //releaseText.gameObject.SetActive(false);
         }
     }
 }

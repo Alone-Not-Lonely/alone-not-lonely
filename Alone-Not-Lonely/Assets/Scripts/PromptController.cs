@@ -4,11 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public enum promptType
 {
-    keyPickUp,
-    openableOpen,
-    openableClose,
-    movableGrab,
-    movablePutDown
+    keyBaring,
+    grabbable,
 };
 //Singleton in charge of managing the prompting of player.
 //ContextualUI objects make requests to this object
@@ -19,7 +16,7 @@ public class PromptController : MonoBehaviour
     private ContextualUI currPrompter, prevPrompter;
     public Text conText;
     private PlayerAbilityController pAbil;
-    public Dictionary<string, int> prompts;
+    public Dictionary<promptType, int[]> prompts;
     private bool proJustAdded = false;
     private void Start()
     {
@@ -39,15 +36,8 @@ public class PromptController : MonoBehaviour
         conText.gameObject.SetActive(true);
         pAbil = FindObjectOfType<PlayerAbilityController>();
 
-        prompts = new Dictionary<string, int>();
-        //All prompts must first be added into this dictionary
-        prompts.Add("Press 'F' to open box", 1);
-        prompts.Add("Puzzle piece saved! press 'F' to close box", 1);
-        prompts.Add("Press 'F' to pick up key", 1);
-        prompts.Add("Press 'e' to pick up", 1);
-        prompts.Add("Press 'e' to put down", 1);
-
-
+        //prompts will recieve the prompts and number of times the prompt has been used
+        prompts = new Dictionary<promptType, int[]>();
     }
 
     //Puts a prompter on the list of possible prompters
@@ -55,17 +45,24 @@ public class PromptController : MonoBehaviour
     {
         if (!prompters.Contains(prompter))
         {
-            Debug.Log("Adding: " + prompter.gameObject.name);
+            //Debug.Log("Adding: " + prompter.gameObject.name);
             prompters.Add(prompter);
         }
+
+        //sets up space for recording the usages of certain prompts.
+        //MUST BE CAREFUL ABOUT # OF SLOTS/P-TYPE
+        if (!prompts.ContainsKey(prompter.myPType))
+        {
+            prompts[prompter.myPType] = new int[prompter.maxUsages.Length];
+        }
+        //Debug.Log("Prompts dictionary size: " + prompts.Count);
     }
 
     //Removes prompter from list of possible prompters
     public void removeFromPrompters(ContextualUI prompter)
     {
-        Debug.Log("Removing: " + prompter.gameObject.name);
+        //Debug.Log("Removing: " + prompter.gameObject.name);
         prompters.Remove(prompter);
-        
     }
 
     //Called late to ensure triggers get all information settled
@@ -76,7 +73,7 @@ public class PromptController : MonoBehaviour
         //Get closest viable prompter
         if (currPrompter != null && currPrompter != prevPrompter)
         {
-            conText.text = currPrompter.getMessage();   
+            updatePrompt();
         }
         else if(currPrompter == null)
         {
@@ -87,6 +84,23 @@ public class PromptController : MonoBehaviour
         //prompters.Clear();//clear current registry (inefficient?)
     }
 
+    public void updatePrompt()
+    {
+        conText.text = currPrompter.getMessage();
+    }
+
+    //used by external functions
+    //increments the times a particular prompt was used
+    public void incPromptUsages(promptType prompt, int currInd)
+    {
+        prompts[prompt][currInd]++;
+        Debug.Log("Prompt type: " + currInd + " has been called " + prompts[prompt][currInd] + " times");
+        
+    }
+
+    //determines if a prompter can display its current prompt
+
+
     //recieves a variable number of prompters and returns the one that is nearest the player
     //TODO: Check if can even prompt anymore
     public ContextualUI pickPrompter()
@@ -96,10 +110,19 @@ public class PromptController : MonoBehaviour
         ContextualUI tempCon = null;
         foreach (ContextualUI prompter in prompters)
         {
+            //Pass over a prompter that wouldn't print anything anyway
+            //recall that the prompter's index is set by the prompter, not this script
+            if (!prompter.canPrompt(prompts[prompter.myPType][prompter.getCurrInd()]))
+            {
+                //Debug.Log("Passing over promtper due to overused prompt");
+                continue;
+            }
+
+
             Vector3 dir = prompter.transform.position - transform.position;
             tempSim = Vector3.Dot(transform.forward, dir);
 
-                Debug.DrawRay(prompter.transform.position, dir);
+            //Debug.DrawRay(prompter.transform.position, dir);
             //Looking near check used to go here, not needed as look check now done externally
             if (tempSim > maxSim)
             {
@@ -110,26 +133,4 @@ public class PromptController : MonoBehaviour
 
         return tempCon;
     }
-
-    //Called every time a player enters the vicinity 
-    //of a prompting object
-    //A script will request it's attachted context ui change its prompt
-    //and this will determine if, globally, we haven't heard enough of it already
-    /*
-    public string setPrompt(string nuPrompt)
-    {
-        //int i = (int)cui.currType;
-        //check to see if we have more uses
-        if (prompts[nuPrompt] > 0)
-        {
-            Debug.Log("PromptController: changing text");
-            return nuPrompt;
-            //add decrementing counter;
-        }
-        else
-        {
-            return "";
-        }
-    }
-    */
 }
