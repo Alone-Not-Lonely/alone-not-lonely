@@ -42,7 +42,7 @@ public class PlayerAbilityController : Grabber
             if (currentGrab != null && !base.holdingObject)
             {
                 //sets prompt
-                currentGrab.gameObject.GetComponent<ContextualUI>().updatePrompt("Press 'e' to put down");
+                //currentGrab.gameObject.GetComponent<ContextualUI>().updatePrompt("Press 'e' to put down");
                 GrabAttempt(currentGrab, this.gameObject);
             }
             else if (base.holdingObject)//current grab redundant but colliders are wierd...
@@ -65,7 +65,7 @@ public class PlayerAbilityController : Grabber
             if (!base.holdingObject)
             {
                 //sets prompt
-                collision.gameObject.GetComponent<ContextualUI>().updatePrompt("Press 'e' to pick up");
+                //collision.gameObject.GetComponent<ContextualUI>().updatePrompt("Press 'e' to pick up");
             }
             currentGrab = collision.gameObject;
         }

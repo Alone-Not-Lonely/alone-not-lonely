@@ -14,20 +14,20 @@ public class LockedDoorUI : ContextualUI
     {
         if(other.CompareTag("Player"))
         {
-            conditionMet = doorScript.CheckHasKey();
+            //conditionMet = doorScript.CheckHasKey();
         }
-        base.OnTriggerEnter(other);
+        //base.OnTriggerEnter(other);
     }
 
     void OnTriggerExit(Collider other) {
-        base.OnTriggerExit(other);
+        //base.OnTriggerExit(other);
     }
 
     void OnDisable() {
-        base.OnDisable();
+        //base.OnDisable();
     }
 
     void OnEnable() {
-        base.OnEnable();
+        //base.OnEnable();
     }
 }

@@ -25,7 +25,7 @@ public class ReturnToAttic : ContextualUI
     {
         if(other.CompareTag("Player"))
         {
-            base.OnTriggerEnter(other);
+            //base.OnTriggerEnter(other);
             canGoToAttic = true;
             _player._actionMap.Platforming.ReturnToLevel.performed += interact => GoToAttic();
         }
@@ -35,7 +35,7 @@ public class ReturnToAttic : ContextualUI
     {
         if(other.CompareTag("Player"))
         {
-            base.OnTriggerExit(other);
+            //base.OnTriggerExit(other);
             canGoToAttic = false;
             _player._actionMap.Platforming.ReturnToLevel.performed -= interact => GoToAttic();
         }

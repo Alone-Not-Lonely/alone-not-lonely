@@ -10,11 +10,11 @@ public class OpenableUI : ContextualUI
     {
         base.Start();
         openable = GetComponent<KeyBaring>();
-        conText.text = "";
+        //conText.text = "";
     }
 
     void OnEnable() {
-        base.OnEnable();
+        //base.OnEnable();
     }
 
     void OnDisable()

@@ -52,7 +52,7 @@ public class KeyBaring : Interactable
                 PutDownKey();
                 this.gameObject.SetActive(false);
                 //this.GetComponent<OpenableUI>().conText.text = "";
-                this.GetComponent<ContextualUI>().conText.text = "";//TESTING PURPOSES
+                //this.GetComponent<ContextualUI>().conText.text = "";//TESTING PURPOSES
             }
         }
     }
@@ -66,7 +66,7 @@ public class KeyBaring : Interactable
         hiddenObjInstance = Instantiate(hiddenObj, Camera.main.gameObject.transform.position + Camera.main.gameObject.transform.forward, Quaternion.identity);
 
         //change prompt
-        myOpen.updatePrompt("Puzzle piece saved! press 'F' to close box");
+        //myOpen.updatePrompt("Puzzle piece saved! press 'F' to close box");
     }
 
     void PutDownKey()
@@ -78,7 +78,7 @@ public class KeyBaring : Interactable
         Destroy(hiddenObjInstance);
 
         //change prompt
-        myOpen.updatePrompt("Press 'F' to open box");
+        //myOpen.updatePrompt("Press 'F' to open box");
     }
 
     /// <summary>

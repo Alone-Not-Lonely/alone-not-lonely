@@ -55,7 +55,7 @@ public class EndGamePuzzle : ContextualUI
     {
         if(other.CompareTag("Player"))
         {
-            base.OnTriggerEnter(other);
+            //base.OnTriggerEnter(other);
             canInteract = true;
             //puzzleManager.UpdatePuzzleState();
         }
@@ -65,7 +65,7 @@ public class EndGamePuzzle : ContextualUI
     {
          if(other.CompareTag("Player"))
         {
-            base.OnTriggerExit(other);
+            //base.OnTriggerExit(other);
             canInteract = false;
         }
     }
