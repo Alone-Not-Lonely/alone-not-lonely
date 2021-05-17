@@ -11,7 +11,7 @@ public class GoToLivingRoom : MonoBehaviour
     void Start()
     {
         _player = FindObjectOfType<Player>();
-        positionToReturnTo = new Vector3(30,4,-20);
+        positionToReturnTo = new Vector3(24,10,-25);
         //_player._actionMap.Platforming.SkipLevel.performed += skip => LoadNextLevel();
     }
 

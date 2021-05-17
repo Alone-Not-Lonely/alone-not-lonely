@@ -11,7 +11,7 @@ public class EndPlaytestScript : MonoBehaviour
     void Start()
     {
         _player = FindObjectOfType<Player>();
-        positionToReturnTo = new Vector3(30,4,-49);
+        positionToReturnTo = new Vector3(30,4,-47); 
         _player._actionMap.Platforming.SkipLevel.performed += skip => LoadNextLevel();
     }
 
