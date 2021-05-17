@@ -8,8 +8,9 @@ public class ContextualUI : MonoBehaviour
 {
     //public bool conditionMet = false;//could be removed
     public string[] messages;
+    public int[] usages;
     public int loopPoint = 0;
-    private int currInd = 0;
+    private int currInd = 0;//make private
     //public promptType currType; //this will change based on type of prompt
     //public string currentMessage = ""; //this will change what is actually printed
     private PromptController proController;
@@ -21,10 +22,11 @@ public class ContextualUI : MonoBehaviour
         //currentMessage = "";
     }
 
-    public void incInd()
+    //Called by object itself to progress the prompt counter
+    public void nextPrompt()
     {
         currInd++;
-
+        usages[currInd]--;//this prompt has been used
         if (currInd >= messages.Length)
         {
             currInd = loopPoint;

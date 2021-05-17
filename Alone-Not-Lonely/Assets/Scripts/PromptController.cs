@@ -72,18 +72,18 @@ public class PromptController : MonoBehaviour
     public void LateUpdate()
     {
         currPrompter = pickPrompter();//TRYING STUFF OUT
+        //Debug.Log(currPrompter.gameObject.name);
         //Get closest viable prompter
         if (currPrompter != null && currPrompter != prevPrompter)
         {
-            //Debug.Log(currPrompter.gameObject.name);
-            conText.text = currPrompter.getMessage();
-            prevPrompter = currPrompter;//the new becomes the old
+            conText.text = currPrompter.getMessage();   
         }
         else if(currPrompter == null)
         {
+            //Debug.Log("Clearing Text");
             conText.text = "";
         }
-
+        prevPrompter = currPrompter;//the new becomes the old
         //prompters.Clear();//clear current registry (inefficient?)
     }
 
