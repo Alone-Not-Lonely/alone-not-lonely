@@ -48,9 +48,10 @@ public class ReturnToKitchen : ContextualUI
             _player.gameObject.SetActive(false);
             _player.gameObject.transform.position =  new Vector3(32.7400017f,4.98999977f,-62.7200012f);
             _player.gameObject.SetActive(true);
-            SceneManager.LoadScene("Kitchen");
+            //SceneManager.LoadScene("Kitchen");
             canGoToAttic = false;
             _player._actionMap.Platforming.ReturnToLevel.performed -= interact => GoToKitchen();
+            LoadingScreen.instance.LoadScene("Kitchen");
         }
     }
 }

@@ -90,7 +90,8 @@ public class PlayerInventory : MonoBehaviour
         GameObject key = Instantiate(keyTemplate);
         /*key.transform.parent = keyUI.transform;*/ key.transform.SetParent(keyUI.transform, false);
         key.name = item.key;
-        key.transform.GetChild(1).GetComponent<Text>().text = item.key;
+        //key.transform.GetChild(1).GetComponent<Text>().text = item.key;
+        key.transform.GetChild(1).GetComponent<Text>().text = "";
         key.transform.GetChild(0).GetComponent<Image>().color = item.GetComponent<MeshRenderer>().material.color;  //item.key, 
         yield return new WaitForSeconds(0);
     }
@@ -117,16 +118,23 @@ public class PlayerInventory : MonoBehaviour
     }
 
     //Checks to see if every required item's key exists in the player's items
-    public bool checkContents(List<Item> requirements)
+    public bool checkContents(List<string> requirements)
     {
-        foreach (Item req in requirements)
+        foreach (string req in requirements)
         {
-            if (!items.Contains(req))
+            foreach(Item i in items)
+            {
+                if(i.key == req)
+                {
+                    return true;
+                }
+            }
+            /*if (!items.Contains(req.name))
             {
                 return false;
-            }
+            }*/
         }
-        return true;
+        return false;
     }
 
     //currently creates a text that will disappear after 2 seconds

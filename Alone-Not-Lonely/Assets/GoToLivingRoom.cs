@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EndPlaytestScript : MonoBehaviour
+public class GoToLivingRoom : MonoBehaviour
 {
     public Vector3 positionToReturnTo;
     private Player _player;
@@ -11,8 +11,8 @@ public class EndPlaytestScript : MonoBehaviour
     void Start()
     {
         _player = FindObjectOfType<Player>();
-        positionToReturnTo = new Vector3(30,4,-49);
-        _player._actionMap.Platforming.SkipLevel.performed += skip => LoadNextLevel();
+        positionToReturnTo = new Vector3(30,4,-20);
+        //_player._actionMap.Platforming.SkipLevel.performed += skip => LoadNextLevel();
     }
 
     /// <summary>
@@ -29,8 +29,8 @@ public class EndPlaytestScript : MonoBehaviour
 
     void LoadNextLevel()
     {
-        ProgressionTracker[] p = (ProgressionTracker[])FindObjectsOfType<ProgressionTracker>();
-        p[0].MarkSceneCompleted("Kitchen");
+        //ProgressionTracker[] p = (ProgressionTracker[])FindObjectsOfType<ProgressionTracker>();
+        //p[0].MarkSceneCompleted("Kitchen");
         _player.gameObject.SetActive(false);
         _player.gameObject.transform.position = positionToReturnTo;
         _player.gameObject.SetActive(true);

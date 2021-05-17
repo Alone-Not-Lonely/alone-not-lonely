@@ -20,14 +20,14 @@ public class FinalPuzzleManager : MonoBehaviour
             count++;
         }
         pIn = FindObjectOfType<PlayerInventory>();
-        UpdatePuzzleState();
+        //UpdatePuzzleState();
     }
 
     public void UpdatePuzzleState()
     {
         foreach(GameObject piece in puzzlePiecesOnTable)
         {
-            Debug.Log(pIn);
+            //Debug.Log(pIn);
             if(pIn.puzzlePieces.Contains(piece.GetComponent<PuzzlePiece>().ID))
             {
                 piece.SetActive(true);
