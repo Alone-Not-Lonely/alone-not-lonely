@@ -73,7 +73,7 @@ public class PromptController : MonoBehaviour
         //Get closest viable prompter
         if (currPrompter != null && currPrompter != prevPrompter)
         {
-            updatePrompt();
+            updatePrompt(currPrompter);
         }
         else if(currPrompter == null)
         {
@@ -84,9 +84,12 @@ public class PromptController : MonoBehaviour
         //prompters.Clear();//clear current registry (inefficient?)
     }
 
-    public void updatePrompt()
+    public void updatePrompt(ContextualUI caller)
     {
-        conText.text = currPrompter.getMessage();
+        if (currPrompter == caller)
+        {
+            conText.text = currPrompter.getMessage();
+        }
     }
 
     //used by external functions

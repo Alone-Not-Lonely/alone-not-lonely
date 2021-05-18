@@ -42,7 +42,7 @@ public class ContextualUI : MonoBehaviour
         {
             currInd = loopPoint;
         }
-        proController.updatePrompt();//underthought, could cause problems later
+        proController.updatePrompt(this);//underthought, could cause problems later
     }
 
     public string getMessage()
