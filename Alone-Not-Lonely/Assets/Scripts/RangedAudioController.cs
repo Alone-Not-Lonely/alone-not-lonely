@@ -9,6 +9,8 @@ public class RangedAudioController : MonoBehaviour
     private bool audioPlaying;
     public float range;
 
+    public List<AudioClip> clips;
+
     private bool fadingIn = false;
     private bool fadingOut = false;
     public float fadeSpeed = .01f;
@@ -26,6 +28,10 @@ public class RangedAudioController : MonoBehaviour
     {
         float dist = Vector3.Distance(this.transform.position, target.position);
         if(!audioPlaying && dist < range){
+            if(clips.Count > 0)
+            {
+                sourceToPlay.clip = clips[Random.Range(0, clips.Count)];
+            }
             sourceToPlay.volume = 0;
             sourceToPlay.Play();
             StartCoroutine(FadeIn());
