@@ -21,6 +21,10 @@ public class FinalPuzzleManager : MonoBehaviour
         }
         pIn = FindObjectOfType<PlayerInventory>();
         //UpdatePuzzleState();
+        foreach(GameObject piece in puzzlePiecesOnTable)
+        {
+            piece.SetActive(false);
+        }
     }
 
     public void UpdatePuzzleState()
