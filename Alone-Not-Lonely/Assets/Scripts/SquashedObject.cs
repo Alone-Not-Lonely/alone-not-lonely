@@ -16,11 +16,11 @@ public class SquashedObject : MonoBehaviour
     {
         if (boxBehavior.beingHeld && boxBehavior.boxHolder.CompareTag("Player"))
         {
-            transform.eulerAngles = new Vector3(0, 0, 90) + player.transform.eulerAngles;
+            //transform.eulerAngles = new Vector3(0, 0, 90) + player.transform.eulerAngles;
         }
         else
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            //transform.eulerAngles = new Vector3(0, 0, 0);
         }
     }
 }
