@@ -41,25 +41,32 @@ public class AtticLadderController : MonoBehaviour
         {
             //LoadingScreen.instance.gameObject.SetActive(true);
             _player.gameObject.SetActive(false);
-            _player.gameObject.transform.position =  new Vector3(32.7400017f,4.98999977f,-62.7200012f);
-            _player.gameObject.SetActive(true);
+            //_player.gameObject.transform.position =  new Vector3(32.7400017f,4.98999977f,-62.7200012f);
+            //_player.gameObject.SetActive(true);
             ProgressionTracker[] p = FindObjectsOfType<ProgressionTracker>();
             p[0].MarkSceneCompleted("Attic2");
             //SceneManager.LoadSceneAsync(nextScene);
-            LoadingScreen.instance.LoadScene(nextScene);
+            Transform newTransform = _player.transform;
+            newTransform.position = new Vector3(32.7400017f,4.98999977f,-62.7200012f);
+            newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
+            LoadingScreen.instance.LoadScene(nextScene, newTransform);
         }
     }
 
     void SkipLevel()
     {
         //LoadingScreen.instance.gameObject.SetActive(true);
-        _player.gameObject.SetActive(false);
-        _player.gameObject.transform.position =  new Vector3(32.7400017f,4.98999977f,-62.7200012f);
-        _player.gameObject.SetActive(true);
-        ProgressionTracker[] p = FindObjectsOfType<ProgressionTracker>();
-        p[0].MarkSceneCompleted("Attic2");
-        //SceneManager.LoadSceneAsync(nextScene);
-        LoadingScreen.instance.LoadScene(nextScene);
+            _player.gameObject.SetActive(false);
+            //_player.gameObject.transform.position =  new Vector3(32.7400017f,4.98999977f,-62.7200012f);
+            //_player.gameObject.SetActive(true);
+            //ProgressionTracker[] p = FindObjectsOfType<ProgressionTracker>();
+            //Debug.Log(p.Length);
+            ProgressionTracker.instance.MarkSceneCompleted("Attic2");
+            //SceneManager.LoadSceneAsync(nextScene);
+            Transform newTransform = _player.transform;
+            newTransform.position = new Vector3(32.7400017f,4.98999977f,-62.7200012f);
+            newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
+            LoadingScreen.instance.LoadScene(nextScene, newTransform);
     }
 
     private void OnTriggerExit(Collider other) {

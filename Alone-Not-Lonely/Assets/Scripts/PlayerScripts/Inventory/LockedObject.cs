@@ -11,7 +11,7 @@ public class LockedObject : MonoBehaviour
 
     void Start()
     {
-        Player playerRef = (Player)FindObjectOfType(typeof(Player));
+        Player playerRef = Player.instance;
         inventory = playerRef.GetComponentInChildren<PlayerInventory>();
         playerRef._actionMap.Platforming.Use.performed += grab => OpenAttempt();
         _animator = GetComponent<Animator>();

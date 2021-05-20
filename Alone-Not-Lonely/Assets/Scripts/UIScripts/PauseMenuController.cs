@@ -141,7 +141,7 @@ public class PauseMenuController : MonoBehaviour
             child.gameObject.SetActive(false);
         }
         //SceneManager.LoadScene("MainMenu");
-        LoadingScreen.instance.LoadScene("MainMenu");
+        LoadingScreen.instance.LoadScene("MainMenu", playerRef.transform);
         Destroy(Player.instance.transform.parent.gameObject);
     }
 
