@@ -80,7 +80,7 @@ public class ElevatorMonsterController : Grabber
 
     void OnTriggerEnter(Collider other) 
     {
-        if(other.gameObject.CompareTag("Grabable") && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld && !this.holdingObject && !other.isTrigger)
+        if(other.gameObject.CompareTag("Grabable") && other.isTrigger && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld && !this.holdingObject )
         {
             GrabAttempt(other.gameObject, this.gameObject);
             if(this.holdingObject)
@@ -92,7 +92,7 @@ public class ElevatorMonsterController : Grabber
 
     void OnTriggerStay(Collider other) 
     {
-        if(other.gameObject.CompareTag("Grabable") && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld && !this.holdingObject && !other.isTrigger)
+        if(other.gameObject.CompareTag("Grabable") && other.isTrigger && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld && !this.holdingObject)
         {
             GrabAttempt(other.gameObject, this.gameObject);
         }
