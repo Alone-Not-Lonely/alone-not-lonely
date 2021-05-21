@@ -70,9 +70,9 @@ public class SmashMonsterController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other) 
+    private void OnTriggerEnter(Collider other) 
     {
-        if(smashing && other.gameObject.CompareTag("Grabable"))
+        if(smashing && other.gameObject.CompareTag("Grabable") && !other.isTrigger)
         {
             other.gameObject.GetComponentInParent<BoxSquashBehavior>().Squash();
             mostRecentSquash = Instantiate(other.gameObject.GetComponentInParent<BoxSquashBehavior>().squashedVariant, other.gameObject.transform.position, Quaternion.identity);

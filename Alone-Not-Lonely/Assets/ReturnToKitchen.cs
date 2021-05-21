@@ -10,11 +10,13 @@ public class ReturnToKitchen : ContextualUI
 
     private bool canGoToAttic;
 
+    public bool bedroomDoor;
+
     void Start()
     {
         base.Start();
         _player = Player.instance;
-        positionToReturnTo = new Vector3(27.4599991f,4.95430565f,-88.1100006f);
+        positionToReturnTo = new Vector3(19.5699558f ,1.98000038f ,-69.827858f );
     }
     
     /// <summary>
@@ -52,7 +54,10 @@ public class ReturnToKitchen : ContextualUI
             canGoToAttic = false;
             _player._actionMap.Platforming.ReturnToLevel.performed -= interact => GoToKitchen();
             Transform newTransform = _player.transform;
-            newTransform.position = positionToReturnTo;
+            if(bedroomDoor)
+                newTransform.position = positionToReturnTo;
+            else
+                newTransform.position = positionToReturnTo + new Vector3(0, 0, 20f);
             newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
             LoadingScreen.instance.LoadScene("Kitchen", newTransform);
         }

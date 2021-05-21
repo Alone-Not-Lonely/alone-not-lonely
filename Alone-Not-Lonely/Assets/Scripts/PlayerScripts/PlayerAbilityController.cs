@@ -41,6 +41,10 @@ public class PlayerAbilityController : Grabber
         {
             if (currentGrab != null && !base.holdingObject)
             {
+                if(Vector3.Distance(this.transform.position, currentGrab.transform.position) > 5) //please god no more teleporting
+                {
+                    return;
+                }
                 grabText.gameObject.SetActive(false);
                 releaseText.gameObject.SetActive(true);
                 GrabAttempt(currentGrab, this.gameObject);

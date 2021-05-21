@@ -17,10 +17,18 @@ public class PlayerInventory : MonoBehaviour
     public GameObject keyUI;
     public GameObject keyTemplate;
     
-
+    public static PlayerInventory instance;
 
     void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            DestroyImmediate(this);
+        }
         items = new List<Item>();
         puzzlePieces = new List<int>();
     }
@@ -32,7 +40,7 @@ public class PlayerInventory : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        KeyBaring[] puzzlePieceHolders = (KeyBaring[])Resources.FindObjectsOfTypeAll(typeof(KeyBaring));
+        KeyBaring[] puzzlePieceHolders = FindObjectsOfType<KeyBaring>();
         foreach(KeyBaring p in puzzlePieceHolders)
         {
             if(puzzlePieces.Contains(p.ID))

@@ -8,12 +8,12 @@ public class LockedObject : MonoBehaviour
     public List<string> keyNames;
     bool playerNearby = false;
     Animator _animator;
+    Player playerRef;
 
     void Start()
     {
-        Player playerRef = Player.instance;
+        playerRef = Player.instance;
         inventory = playerRef.GetComponentInChildren<PlayerInventory>();
-        playerRef._actionMap.Platforming.Use.performed += grab => OpenAttempt();
         _animator = GetComponent<Animator>();
     }
 
@@ -43,7 +43,10 @@ public class LockedObject : MonoBehaviour
     private void openAction()
     {
         Debug.Log("Open");
-        _animator.SetBool("open", true);
+        if(_animator != null)
+        {
+            _animator.SetBool("open", true);
+        }
         Collider[] col = GetComponents<Collider>();
         foreach(Collider c in col)
         {
@@ -58,6 +61,7 @@ public class LockedObject : MonoBehaviour
         if(other.tag == "Player")
         {
             playerNearby = true;
+            playerRef._actionMap.Platforming.Use.performed += grab => OpenAttempt();
         }
     }
 
@@ -66,6 +70,7 @@ public class LockedObject : MonoBehaviour
         if (other.tag == "Player")
         {
             playerNearby = false;
+            playerRef._actionMap.Platforming.Use.performed -= grab => OpenAttempt();
         }
     }
 }
