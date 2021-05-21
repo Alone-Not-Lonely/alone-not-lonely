@@ -10,7 +10,7 @@ public class GoToLivingRoom : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _player = FindObjectOfType<Player>();
+        _player = Player.instance;
         positionToReturnTo = new Vector3(24,10,-25);
         //_player._actionMap.Platforming.SkipLevel.performed += skip => LoadNextLevel();
     }

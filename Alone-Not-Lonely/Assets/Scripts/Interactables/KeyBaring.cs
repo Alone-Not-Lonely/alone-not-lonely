@@ -11,8 +11,8 @@ public class KeyBaring : Interactable
     // Start is called before the first frame update
     void Start()
     {
-        base.playerRef = (Player)FindObjectOfType(typeof(Player));
-        pIn = FindObjectOfType<PlayerInventory>();
+        base.playerRef = Player.instance;
+        pIn = PlayerInventory.instance;
     }
 
     protected void keyGrab()

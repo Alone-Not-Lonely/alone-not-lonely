@@ -14,14 +14,15 @@ public class LoadingScreen : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            loadingAnim = this.GetComponent<Image>();
+            loadingAnim.enabled = false;
         }
         else
         {
             DestroyImmediate(this);
         }
-        loadingAnim = this.GetComponent<Image>();
-        loadingAnim.enabled = false;
     }
+
     private void Start() {
         _player = Player.instance;
     }
@@ -29,6 +30,12 @@ public class LoadingScreen : MonoBehaviour
     public void LoadScene(string sceneName, Transform playerSpawn)
     {
         _player.gameObject.SetActive(false);
+        if(sceneName == "Attic2")
+        {
+            _player.transform.position = playerSpawn.position;
+            _player.transform.rotation = playerSpawn.rotation;
+            _player.gameObject.SetActive(true);
+        }
         StartCoroutine(StartLoad(sceneName, playerSpawn));
     }
 

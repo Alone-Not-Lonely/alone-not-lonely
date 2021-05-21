@@ -224,8 +224,10 @@ public class PlayerMovementController : MonoBehaviour
             moveDirection = transform.TransformDirection(moveDirection);
             //Debug.Log("moveDirection: " + moveDirection);
             RaycastHit holdingObjectCheck;
-            if(playerAb.holdingObject && Physics.Raycast(transform.position, transform.forward, out holdingObjectCheck, playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance + 1f, ~(1<<13)))
+            if(playerAb.holdingObject && 
+            Physics.Raycast(transform.position, transform.forward, out holdingObjectCheck, playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance + 1f, ~(1<<13)))
             {
+                Debug.Log("Casting hit at distance " + transform.forward);
                 if(!holdingObjectCheck.collider.isTrigger && !holdingObjectCheck.collider.gameObject.CompareTag("Grabable") && Vector3.Dot(moveDirection, transform.forward) > .5 && playerAb.heldObject.GetComponent<SquashedObject>() == null)
                 {
                     //cant move but CAN rotate
