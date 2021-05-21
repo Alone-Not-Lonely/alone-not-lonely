@@ -41,10 +41,13 @@ public class PlayerInventory : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         KeyBaring[] puzzlePieceHolders = FindObjectsOfType<KeyBaring>();
+        Debug.Log(puzzlePieceHolders.Length + " piece holders");
         foreach(KeyBaring p in puzzlePieceHolders)
         {
+            Debug.Log("ID: " + p.ID);
             if(puzzlePieces.Contains(p.ID))
             {
+                Debug.Log("Removed for duplicate");
                 p.gameObject.SetActive(false);
             }
         }
