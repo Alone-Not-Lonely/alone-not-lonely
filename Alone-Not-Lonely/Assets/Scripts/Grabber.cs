@@ -19,7 +19,7 @@ public abstract class Grabber : MonoBehaviour
 
     public bool GrabAttempt(GameObject objectInRange, GameObject holder)
     {
-        //Debug.Log(gameObject.name + " is Calling");
+        Debug.Log(gameObject.name + " is Calling");
         if(!inGrabCooldown)
         {
             if(!objectInRange.GetComponent<BoxContactBehavior>().beingHeld)

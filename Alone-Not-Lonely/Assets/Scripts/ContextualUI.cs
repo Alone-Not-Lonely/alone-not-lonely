@@ -14,7 +14,6 @@ public class ContextualUI : MonoBehaviour
     public promptType myPType; 
     private PromptController proController;
 
-
     protected void Start()
     {
         //Get reference to conText object

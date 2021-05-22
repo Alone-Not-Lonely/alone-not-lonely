@@ -2054,11 +2054,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5f907b3b944de47ad04f220db549dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionMet: 0
-  contextInitial: {fileID: 0}
-  contextSecondary: {fileID: 0}
-  messageInitial: The laundry room door is locked! I wonder where the key is?
-  messageSecondary: I wonder if that key I found works here?
+  messages:
+  - 
+  - 
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 0
+  myPType: 0
 --- !u!95 &133335736
 Animator:
   serializedVersion: 3
@@ -2109,6 +2111,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7f2bdbbce7526e94ab44c29ee5aad6f5, type: 3}
   m_PrefabInstance: {fileID: 133335732}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &133335740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133335733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - 
+  maxUsages: e8030000
+  startPoint: 0
+  endPoint: 0
+  myPType: 0
 --- !u!1 &136750707
 GameObject:
   m_ObjectHideFlags: 0
@@ -2354,6 +2374,123 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &174169117
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 140326503816515357, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_Name
+      value: PlayerCameraRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084085611755524124, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084085611755524124, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084085612013747448, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084085612013747448, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084085612013747448, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 42.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -63.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6063380298548230421, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6063380298548230421, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6063380298831074801, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6063380298831074801, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6063380298831074801, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117993080154769390, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117993080154769390, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7117993080154769390, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460195437785093034, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8460195437785093034, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
 --- !u!1 &188824327 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 46909d0998f6c0f418534adda50addec, type: 3}
@@ -2565,7 +2702,7 @@ Transform:
   m_LocalScale: {x: 37.492218, y: 1, z: 16.893505}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &246005878
 GameObject:
@@ -2957,7 +3094,7 @@ Transform:
   m_LocalScale: {x: 6.5348, y: 10.536, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &289957424
 GameObject:
@@ -4000,11 +4137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5f907b3b944de47ad04f220db549dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionMet: 0
-  contextInitial: {fileID: 0}
-  contextSecondary: {fileID: 0}
-  messageInitial: This door is locked. I think the key is in another room.
-  messageSecondary: I think that key from the bedroom will work here!
+  messages:
+  - 
+  - 
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 0
+  myPType: 0
 --- !u!114 &399080904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4069,6 +4208,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7f2bdbbce7526e94ab44c29ee5aad6f5, type: 3}
   m_PrefabInstance: {fileID: 399080901}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &399080909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399080902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - 
+  maxUsages: e8030000
+  startPoint: 0
+  endPoint: 0
+  myPType: 0
 --- !u!1 &407549802
 GameObject:
   m_ObjectHideFlags: 0
@@ -5157,11 +5314,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionMet: 0
-  contextInitial: {fileID: 0}
-  contextSecondary: {fileID: 0}
-  messageInitial: E to grab key
-  messageSecondary: 
+  messages:
+  - 
+  - 
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 0
+  myPType: 0
 --- !u!114 &463251523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6102,11 +6261,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionMet: 0
-  contextInitial: {fileID: 0}
-  contextSecondary: {fileID: 0}
-  messageInitial: E to grab key
-  messageSecondary: 
+  messages:
+  - 
+  - 
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 0
+  myPType: 0
 --- !u!114 &566329220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11476,7 +11637,7 @@ Transform:
   m_LocalScale: {x: 13.662, y: 1, z: 13.175}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1120924463
 GameObject:
@@ -19457,7 +19618,7 @@ Transform:
   m_LocalScale: {x: 13.54484, y: 0.8613988, z: 10.917758}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1786350811
 GameObject:
@@ -19470,6 +19631,7 @@ GameObject:
   - component: {fileID: 1786350816}
   - component: {fileID: 1786350813}
   - component: {fileID: 1786350812}
+  - component: {fileID: 1786350814}
   m_Layer: 0
   m_Name: Return to Attic Test
   m_TagString: Untagged
@@ -19489,11 +19651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7388282f0f5bdcb4daae3bcfff81c270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionMet: 0
-  contextInitial: {fileID: 0}
-  contextSecondary: {fileID: 0}
-  messageInitial: Press X to return to the attic
-  messageSecondary: 
   positionToReturnTo: {x: 0, y: 0, z: 0}
 --- !u!65 &1786350813
 BoxCollider:
@@ -19508,6 +19665,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1786350814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786350811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Press X to Return to Attic
+  maxUsages: 10270000
+  startPoint: 0
+  endPoint: 0
+  myPType: 3
 --- !u!4 &1786350816
 Transform:
   m_ObjectHideFlags: 0
@@ -19565,7 +19740,7 @@ Transform:
   m_LocalScale: {x: 6.5348, y: 10.536, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1828180462
 MonoBehaviour:
@@ -20247,7 +20422,7 @@ Transform:
   - {fileID: 711352766}
   - {fileID: 1646299873}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1933792084
 GameObject:
@@ -22671,6 +22846,7 @@ GameObject:
   - component: {fileID: 4654800141298541917}
   - component: {fileID: 4654800141298541916}
   - component: {fileID: 4654800141298541915}
+  - component: {fileID: 4654800141298541920}
   m_Layer: 0
   m_Name: Bedroom Door
   m_TagString: Untagged
@@ -22690,11 +22866,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5f907b3b944de47ad04f220db549dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionMet: 0
-  contextInitial: {fileID: 0}
-  contextSecondary: {fileID: 0}
-  messageInitial: The door to my bedroom is locked?
-  messageSecondary: I wonder if that key I found works here?
+  messages:
+  - 
+  - 
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 0
+  myPType: 0
 --- !u!114 &4654800141298541916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22754,6 +22932,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.9949265, y: 14.201337, z: 1.9905322}
   m_Center: {x: 2.93, y: 6.6006684, z: -1.085266}
+--- !u!114 &4654800141298541920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4654800141298541914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - 
+  maxUsages: e8030000
+  startPoint: 0
+  endPoint: 0
+  myPType: 0
 --- !u!4 &5463707183952297952
 Transform:
   m_ObjectHideFlags: 0

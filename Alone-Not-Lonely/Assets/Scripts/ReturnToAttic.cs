@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class ReturnToAttic : ContextualUI
-{
+//preivously extended ContextUI
+public class ReturnToAttic : MonoBehaviour
+{ 
+    [HideInInspector]
     public Vector3 positionToReturnTo;
     private Player _player;
-
     private bool canGoToAttic;
-
-    void Start()
+    private ContextualUI cu;
+    
+    private void Start()
     {
-        base.Start();
+        //base.Start();
+        cu = GetComponent<ContextualUI>();
         _player = Player.instance;
         positionToReturnTo = new Vector3(27.4599991f,4.95430565f,-88.1100006f);
     }

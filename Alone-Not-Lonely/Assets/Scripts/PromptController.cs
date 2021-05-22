@@ -6,7 +6,9 @@ public enum promptType
 {
     keyBaring,
     grabbable,
-    gameplayPuzzle
+    gameplayPuzzle,
+    prevLevel,
+    door,
 };
 //Singleton in charge of managing the prompting of player.
 //ContextualUI objects make requests to this object
