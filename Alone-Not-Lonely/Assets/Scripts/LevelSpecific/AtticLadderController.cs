@@ -16,6 +16,8 @@ public class AtticLadderController : MonoBehaviour
     //private WinCondition win;
     private Player _player;
     private float doorProgress = 0;
+    public ContextualUI cu;
+    private PromptController gOPU;
 
     private void Start() {
         canUseLadder = false;
@@ -24,18 +26,10 @@ public class AtticLadderController : MonoBehaviour
         _player = FindObjectOfType<Player>();
         //closedLadderAnimator.SetFloat("anim_speed", state);
         _player._actionMap.Platforming.SkipLevel.performed += skip => SkipLevel();
-    }
-
-    private void Update()
-    {
-        
+        gOPU = FindObjectOfType<PromptController>();
     }
 
     private void OnTriggerEnter(Collider other) {
-        //if(other.CompareTag("PhysicalGrabable"))
-        //{
-           // boxBlockingExit = true;
-        //}
 
         if(other.CompareTag("Player"))
         {
@@ -49,36 +43,28 @@ public class AtticLadderController : MonoBehaviour
             newTransform.position = new Vector3(32.7400017f,4.98999977f,-62.7200012f);
             newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
             LoadingScreen.instance.LoadScene(nextScene, newTransform);
+            gOPU.clearSpecificPrompter(cu);
         }
     }
 
     void SkipLevel()
     {
         //LoadingScreen.instance.gameObject.SetActive(true);
-            _player.gameObject.SetActive(false);
-            //_player.gameObject.transform.position =  new Vector3(32.7400017f,4.98999977f,-62.7200012f);
-            //_player.gameObject.SetActive(true);
-            //ProgressionTracker[] p = FindObjectsOfType<ProgressionTracker>();
-            //Debug.Log(p.Length);
-            ProgressionTracker.instance.MarkSceneCompleted("Attic2");
-            //SceneManager.LoadSceneAsync(nextScene);
-            Transform newTransform = _player.transform;
-            newTransform.position = new Vector3(32.7400017f,4.98999977f,-62.7200012f);
-            newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
-            LoadingScreen.instance.LoadScene(nextScene, newTransform);
+         _player.gameObject.SetActive(false);
+         //_player.gameObject.transform.position =  new Vector3(32.7400017f,4.98999977f,-62.7200012f);
+         //_player.gameObject.SetActive(true);
+        //ProgressionTracker[] p = FindObjectsOfType<ProgressionTracker>();
+        //Debug.Log(p.Length);
+        ProgressionTracker.instance.MarkSceneCompleted("Attic2");
+        //SceneManager.LoadSceneAsync(nextScene);
+        Transform newTransform = _player.transform;
+        newTransform.position = new Vector3(32.7400017f,4.98999977f,-62.7200012f);
+        newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
+        LoadingScreen.instance.LoadScene(nextScene, newTransform);
+        gOPU.clearSpecificPrompter(cu);
+            
     }
 
-    private void OnTriggerExit(Collider other) {
-        //if(other.CompareTag("PhysicalGrabable"))
-        //{
-           //boxBlockingExit = false;
-        //}
-    }
-
-    //public void AnimateOpenLadder()
-    //{
-    //    closedLadderAnimator.SetBool("OpenLadder", true);
-    //}
 
     public void EnableDisableLadders()
     {
@@ -96,7 +82,7 @@ public class AtticLadderController : MonoBehaviour
         doorProgress = Mathf.Clamp(doorProgress, 0f, 1f);
         //Debug.Log("DoorProgress: " + doorProgress);
         state = easeInOutQuint(doorProgress);
-        
+
         //Debug.Log("State: " + state);
         closedLadderAnimator.SetFloat("anim_speed", state);
 
@@ -104,6 +90,9 @@ public class AtticLadderController : MonoBehaviour
         {
             //Debug.Log("past threshold");
             upspeed = 0;
+            cu.startPoint = 2;//loop around for the next part of text (sort of a hack)
+            cu.endPoint = 2;
+            cu.nextPrompt();
         }
     }
 

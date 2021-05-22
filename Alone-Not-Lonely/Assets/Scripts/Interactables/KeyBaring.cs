@@ -8,9 +8,11 @@ public class KeyBaring : Interactable
     private PlayerInventory pIn;
     public int ID;
     private bool controlSwapThisFrame = false;
+    private ContextualUI myOpen;
     // Start is called before the first frame update
     void Start()
     {
+        myOpen = GetComponent<ContextualUI>();
         base.playerRef = Player.instance;
         pIn = PlayerInventory.instance;
     }

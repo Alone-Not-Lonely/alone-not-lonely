@@ -26,6 +26,7 @@ public class PanicMeterController : MonoBehaviour
     public RectTransform anxietyMeterHolder;
     private Vector3 origPosMeter;
     public float shakeMagnitude = 3f;
+    private PromptController pc;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class PanicMeterController : MonoBehaviour
         anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         thisPlayer = Player.instance;
         pAbility = thisPlayer.gameObject.GetComponent<PlayerAbilityController>();
+        pc = FindObjectOfType<PromptController>();
         //postProcess = (Volume)FindObjectOfType<Volume>();
         //postProcess.profile.TryGet(out vignette);
         //postProcess.profile.TryGet(out desaturate);
@@ -143,6 +145,7 @@ public class PanicMeterController : MonoBehaviour
         dead = true;
         yield return new WaitForSeconds(.001f);//should be length of animation
         pAbility.ReleaseObject();
+        pc.clearPrompters();
         /*anxietyMeter.fillAmount = 0;
         currentAnxietyPoints = 0;
         desaturate.saturation.value = 0f;
@@ -237,8 +240,8 @@ public class PanicMeterController : MonoBehaviour
         if(other.CompareTag("Monster"))
         {
             monsters.Remove(other.gameObject);
-            Debug.Log("Monster discounted");
-            Debug.Log(monsters.Count);
+            //Debug.Log("Monster discounted");
+            //Debug.Log(monsters.Count);
         }
     }
 

@@ -9,12 +9,10 @@ public class ContextualUI : MonoBehaviour
     //public bool conditionMet = false;//could be removed
     public string[] messages = new string[2];//default, can be overwritten
     public int[] maxUsages = new int[2];//times this should be prompted
-    public int loopPoint = 0;
+    public int startPoint = 0, endPoint = 0;
     private int currInd = 0;//make private
     public promptType myPType; 
-    //public string currentMessage = ""; //this will change what is actually printed
     private PromptController proController;
-    //private bool inRange = false;//could be removed
 
 
     protected void Start()
@@ -26,21 +24,16 @@ public class ContextualUI : MonoBehaviour
         proController = FindObjectOfType<PromptController>();
     }
 
-
-    protected void OnDisable()
-    {
-
-    }
-
     //Called by object itself to progress the prompt counter
     public void nextPrompt()
     {
         proController.incPromptUsages(myPType, currInd);
         currInd++;
         //loop to correct point
-        if (currInd >= messages.Length)
+        if (currInd > endPoint)
         {
-            currInd = loopPoint;
+            Debug.Log("going back to start point");
+            currInd = startPoint;
         }
         proController.updatePrompt(this);//underthought, could cause problems later
     }
@@ -65,8 +58,8 @@ public class ContextualUI : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-                proController.addToPrompters(this);
-
+            proController.addToPrompters(this);
+            //Debug.Log("Staying in Collider");
         }
     }
 
@@ -75,6 +68,7 @@ public class ContextualUI : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             proController.removeFromPrompters(this);
+            //Debug.Log("Leaving Collider");
         }
     }
 }

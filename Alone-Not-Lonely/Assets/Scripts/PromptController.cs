@@ -6,6 +6,7 @@ public enum promptType
 {
     keyBaring,
     grabbable,
+    gameplayPuzzle
 };
 //Singleton in charge of managing the prompting of player.
 //ContextualUI objects make requests to this object
@@ -38,6 +39,20 @@ public class PromptController : MonoBehaviour
 
         //prompts will recieve the prompts and number of times the prompt has been used
         prompts = new Dictionary<promptType, int[]>();
+    }
+
+    //used in case of death of player
+    public void clearPrompters()
+    {
+        conText.text = "";
+        prompters.Clear();
+    }
+
+    //Used in level transitions to remove level-specific prompters
+    //(i.e. the ladder from the attic)
+    public void clearSpecificPrompter(ContextualUI pmtr)
+    {
+        prompters.Remove(pmtr);
     }
 
     //Puts a prompter on the list of possible prompters
@@ -97,8 +112,7 @@ public class PromptController : MonoBehaviour
     public void incPromptUsages(promptType prompt, int currInd)
     {
         prompts[prompt][currInd]++;
-        Debug.Log("Prompt type: " + currInd + " has been called " + prompts[prompt][currInd] + " times");
-        
+        //Debug.Log("Prompt type: " + currInd + " has been called " + prompts[prompt][currInd] + " times");
     }
 
     //determines if a prompter can display its current prompt
@@ -121,7 +135,6 @@ public class PromptController : MonoBehaviour
                 continue;
             }
 
-
             Vector3 dir = prompter.transform.position - transform.position;
             tempSim = Vector3.Dot(transform.forward, dir);
 
@@ -136,4 +149,6 @@ public class PromptController : MonoBehaviour
 
         return tempCon;
     }
+
+
 }

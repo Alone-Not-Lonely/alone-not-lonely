@@ -45,8 +45,8 @@ public class PlayerAbilityController : Grabber
                 {
                     return;
                 }
-                grabText.gameObject.SetActive(false);
-                releaseText.gameObject.SetActive(true);
+                //grabText.gameObject.SetActive(false);
+                //releaseText.gameObject.SetActive(true);
                 GrabAttempt(currentGrab, this.gameObject);
                 if (currentGrab.GetComponent<ContextualUI>()!=null)
                 {

@@ -19,7 +19,7 @@ public class OpenableUI : ContextualUI
 
     void OnDisable()
     {
-        base.OnDisable();
+        //base.OnDisable();
     }
 
     void Update()

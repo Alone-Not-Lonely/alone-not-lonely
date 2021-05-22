@@ -9,6 +9,8 @@ public class FinalChestDoorCheck : MonoBehaviour
     private Ray leftRay, rightRay;
     private BoxContactBehavior _behavior;
     private AtticLadderController _ladder;
+    [SerializeField]
+    private ContextualUI cu;
 
     bool wasOnDoor = false;
 
@@ -26,11 +28,15 @@ public class FinalChestDoorCheck : MonoBehaviour
             if(!wasOnDoor)
             {
                 _ladder.gameObject.GetComponent<AudioSource>().Play();
-                //_ladder.gameObject.GetComponentInParent<ContextualUI>().ChangeToContextSecondary();
-                //_ladder.gameObject.GetComponentInParent<ContextualUI>().SetConditionMet(true);
             }
             _ladder.open();
             wasOnDoor = true;
+            //Pushes prompt along only once
+            if (cu.getCurrInd() == 0)
+            {
+                cu.nextPrompt();
+            }
+
         }
         else
         {
