@@ -158,7 +158,10 @@ public class PatrolPointsController : Grabber
                 thisRB.velocity = Vector3.zero;
                 thisRB.angularVelocity = Vector3.zero;
                 this.gameObject.SetActive(true);
-                soundPlayer.PlayOneShot(portalSound);
+                if(Vector3.Distance(Player.instance.transform.position, this.transform.position) < 25)
+                {
+                    soundPlayer.PlayOneShot(portalSound);
+                }
             }
             else if(other.CompareTag("BackPortal"))
             {
@@ -208,7 +211,10 @@ public class PatrolPointsController : Grabber
                 activePortal1 = patrolPoints[currentGoal].gameObject;
                 activePortal2 = patrolPoints[currentGoal + 1].gameObject;
                 UpdatePortalSizes();
-                soundPlayer.PlayOneShot(portalSound);
+                if(Vector3.Distance(Player.instance.transform.position, this.transform.position) < 25)
+                {
+                    soundPlayer.PlayOneShot(portalSound);
+                }
             }
         }
     }
