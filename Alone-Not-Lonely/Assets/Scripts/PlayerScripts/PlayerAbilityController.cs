@@ -41,13 +41,18 @@ public class PlayerAbilityController : Grabber
         {
             if (currentGrab != null && !base.holdingObject)
             {
-                //sets prompt
+                if(Vector3.Distance(this.transform.position, currentGrab.transform.position) > 5) //please god no more teleporting
+                {
+                    return;
+                }
+                grabText.gameObject.SetActive(false);
+                releaseText.gameObject.SetActive(true);
                 GrabAttempt(currentGrab, this.gameObject);
                 if (currentGrab.GetComponent<ContextualUI>()!=null)
                 {
                     currentGrab.GetComponent<ContextualUI>().nextPrompt();
                 }
-                
+
             }
             else if (base.holdingObject)//current grab redundant but colliders are wierd...
             {

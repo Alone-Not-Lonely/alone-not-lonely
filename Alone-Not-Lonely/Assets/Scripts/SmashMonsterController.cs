@@ -43,7 +43,7 @@ public class SmashMonsterController : MonoBehaviour
         else if(mostRecentSquash != null && currentSquashTime >= timeToUnSquash)
         {
             mostRecentSquash.GetComponent<BoxSquashBehavior>().UnSquash();
-            GameObject unsquashedObj = Instantiate(mostRecentSquash.GetComponent<BoxSquashBehavior>().regularVariant, mostRecentSquash.transform.position, Quaternion.identity);
+            GameObject unsquashedObj = Instantiate(mostRecentSquash.GetComponent<BoxSquashBehavior>().regularVariant, mostRecentSquash.transform.position + (transform.up * .5f), Quaternion.identity);
             unsquashedObj.GetComponent<BoxSquashBehavior>().squashed = false;
             unsquashedObj.GetComponent<BoxSquashBehavior>().squashedVariant = mostRecentSquash.GetComponent<BoxSquashBehavior>().squashedVariant;
             unsquashedObj.GetComponent<BoxSquashBehavior>().regularVariant = mostRecentSquash.GetComponent<BoxSquashBehavior>().regularVariant;
@@ -70,9 +70,9 @@ public class SmashMonsterController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other) 
+    private void OnTriggerEnter(Collider other) 
     {
-        if(smashing && other.gameObject.CompareTag("Grabable"))
+        if(smashing && other.gameObject.CompareTag("Grabable") && !other.isTrigger)
         {
             other.gameObject.GetComponentInParent<BoxSquashBehavior>().Squash();
             mostRecentSquash = Instantiate(other.gameObject.GetComponentInParent<BoxSquashBehavior>().squashedVariant, other.gameObject.transform.position, Quaternion.identity);

@@ -6,7 +6,18 @@ using UnityEngine.SceneManagement;
 public class ProgressionTracker : MonoBehaviour
 {
     public List<string> alreadyVisited = new List<string>();
+    public static ProgressionTracker instance;
 
+    private void Awake() {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            DestroyImmediate(this);
+        }
+    }
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;

@@ -17,10 +17,18 @@ public class PlayerInventory : MonoBehaviour
     public GameObject keyUI;
     public GameObject keyTemplate;
     
-
+    public static PlayerInventory instance;
 
     void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            DestroyImmediate(this);
+        }
         items = new List<Item>();
         puzzlePieces = new List<int>();
     }
@@ -32,11 +40,14 @@ public class PlayerInventory : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        KeyBaring[] puzzlePieceHolders = (KeyBaring[])Resources.FindObjectsOfTypeAll(typeof(KeyBaring));
+        KeyBaring[] puzzlePieceHolders = FindObjectsOfType<KeyBaring>();
+        Debug.Log(puzzlePieceHolders.Length + " piece holders");
         foreach(KeyBaring p in puzzlePieceHolders)
         {
+            Debug.Log("ID: " + p.ID);
             if(puzzlePieces.Contains(p.ID))
             {
+                Debug.Log("Removed for duplicate");
                 p.gameObject.SetActive(false);
             }
         }

@@ -10,7 +10,8 @@ public class ImaginaryEntity : MonoBehaviour
 
     private void Start()
     {
-        pT = FindObjectOfType<Player>().transform;
+        Debug.Log(Player.instance + " Player");
+        pT = Player.instance.transform;
         _render = GetComponent<SpriteRenderer>();
         _render.color = Color.clear;
     }

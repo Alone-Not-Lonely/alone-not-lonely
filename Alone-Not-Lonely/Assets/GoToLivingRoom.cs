@@ -10,8 +10,8 @@ public class GoToLivingRoom : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _player = FindObjectOfType<Player>();
-        positionToReturnTo = new Vector3(30,4,-20);
+        _player = Player.instance;
+        positionToReturnTo = new Vector3(24,10,-25);
         //_player._actionMap.Platforming.SkipLevel.performed += skip => LoadNextLevel();
     }
 
@@ -32,10 +32,13 @@ public class GoToLivingRoom : MonoBehaviour
         //ProgressionTracker[] p = (ProgressionTracker[])FindObjectsOfType<ProgressionTracker>();
         //p[0].MarkSceneCompleted("Kitchen");
         _player.gameObject.SetActive(false);
-        _player.gameObject.transform.position = positionToReturnTo;
-        _player.gameObject.SetActive(true);
+        /*_player.gameObject.transform.position = positionToReturnTo;
+        _player.gameObject.SetActive(true);*/
         //SceneManager.LoadScene("GroundFloor");
-        LoadingScreen.instance.LoadScene("GroundFloor");
+        Transform newTransform = _player.transform;
+        newTransform.position = positionToReturnTo;
+        newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
+        LoadingScreen.instance.LoadScene("GroundFloor", newTransform);
     }
 
     

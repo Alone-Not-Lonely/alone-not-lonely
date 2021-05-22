@@ -132,7 +132,17 @@ public class PauseMenuController : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 1;
+        gamePaused = false;
+        foreach (Transform child in this.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+        //SceneManager.LoadScene("MainMenu");
+        LoadingScreen.instance.LoadScene("MainMenu", playerRef.transform);
+        Destroy(Player.instance.transform.parent.gameObject);
     }
 
     public void ExitGame()
