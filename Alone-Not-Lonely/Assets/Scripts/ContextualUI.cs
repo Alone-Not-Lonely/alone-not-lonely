@@ -22,7 +22,7 @@ public class ContextualUI : MonoBehaviour
         //set up persistence
         ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
         //Debug.Log(this.name + " at Start() player count is " + objs.Length);
-        proController = FindObjectOfType<PromptController>();
+        proController = PromptController.instance;
     }
 
     //Called by object itself to progress the prompt counter
@@ -66,7 +66,7 @@ public class ContextualUI : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             proController.addToPrompters(this);
-           Debug.Log("Staying in Collider");
+            //Debug.Log("Staying in Collider");
         }
     }
 
@@ -75,7 +75,14 @@ public class ContextualUI : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             proController.removeFromPrompters(this);
-            Debug.Log("Leaving Collider");
+            //Debug.Log("Leaving Collider");
+        }
+    }
+
+    private void OnDisable() {
+        if(proController != null)
+        {
+            proController.clearPrompters();
         }
     }
 }

@@ -22,6 +22,22 @@ public class PromptController : MonoBehaviour
     public Dictionary<promptType, int[]> prompts;
     private bool proJustAdded = false;
 
+    public static PromptController instance;
+
+    private void Awake() {
+        PromptController[] objs = (PromptController[])FindObjectsOfType<PromptController>();
+
+        if (objs.Length > 1)
+        {
+            DestroyImmediate(this.gameObject);
+        }
+        else
+        {
+            //DontDestroyOnLoad(this.gameObject); //already done in parent
+            instance = this;
+        }
+    }
+    
     private void Start()
     {
         prompters = new List<ContextualUI>();

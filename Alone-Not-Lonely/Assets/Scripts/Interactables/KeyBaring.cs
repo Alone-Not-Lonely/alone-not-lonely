@@ -9,6 +9,10 @@ public class KeyBaring : Interactable
     public int ID;
     private bool controlSwapThisFrame = false;
     private ContextualUI myOpen;
+
+    public float keyPressCooldown = 1f;
+    private float currentKeyCooldown = 0f;
+    private bool inKeyCooldown = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +23,14 @@ public class KeyBaring : Interactable
 
     protected void keyGrab()
     {
-        if (!playerRef.paused && containsKey)
+        Debug.Log("F pressed, grab attempted");
+        if (!playerRef.paused && !inKeyCooldown)
         {
+            Debug.Log("Player is not paused");
             if (inRange && !open)
             {
+                inKeyCooldown = true;
+                Debug.Log("Player is in range and the object is not open yet");
                 Debug.Log("Opening Object ");
                 //openText.gameObject.SetActive(false);
                 //closeText.gameObject.SetActive(true);
@@ -36,6 +44,8 @@ public class KeyBaring : Interactable
             }
             else if (inRange && open)
             {
+                inKeyCooldown = true;
+                Debug.Log("Player is in range and the object is already open");
                 //openText.gameObject.SetActive(false);
                 //closeText.gameObject.SetActive(false);
                 if (objectAnimator != null)
@@ -64,9 +74,20 @@ public class KeyBaring : Interactable
     {
         if (controlSwapThisFrame)
         {
+            Debug.Log("ControlSwap");
             controlSwapThisFrame = false;
             playerRef._actionMap.ViewingObject.InteractionTest.performed += interact => keyGrab();
             playerRef._actionMap.ViewingObject.RotateObj.performed += rot => base.Rotate(rot.ReadValue<Vector2>());
+        }
+
+        if(inKeyCooldown && currentKeyCooldown < keyPressCooldown)
+        {
+            currentKeyCooldown += Time.deltaTime;
+        }
+        else if(inKeyCooldown && currentKeyCooldown >= keyPressCooldown)
+        {
+            inKeyCooldown = false;
+            currentKeyCooldown = 0f;
         }
     }
 
