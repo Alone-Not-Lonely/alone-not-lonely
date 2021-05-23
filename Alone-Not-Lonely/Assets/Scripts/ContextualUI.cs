@@ -12,7 +12,9 @@ public class ContextualUI : MonoBehaviour
     public int startPoint = 0, endPoint = 0;
     private int currInd = 0;//make private
     public promptType myPType; 
-    private PromptController proController;
+    [HideInInspector]
+    public PromptController proController;//making public late change
+    
 
     protected void Start()
     {
@@ -26,6 +28,7 @@ public class ContextualUI : MonoBehaviour
     //Called by object itself to progress the prompt counter
     public void nextPrompt()
     {
+        proController.addToPrompters(this);//just in case prompter hasn't been triggered yet
         proController.incPromptUsages(myPType, currInd);
         currInd++;
         //loop to correct point
@@ -51,6 +54,11 @@ public class ContextualUI : MonoBehaviour
     {
         //Debug.Log("prompt count = " + promptCount  +", maxUsages = " + maxUsages[currInd]);
         return (promptCount <= maxUsages[currInd]);
+    }
+
+    public void setCID(int x)
+    {
+        currInd = x;
     }
 
     protected void OnTriggerStay(Collider other)
