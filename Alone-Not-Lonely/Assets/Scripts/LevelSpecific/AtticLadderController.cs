@@ -32,7 +32,6 @@ public class AtticLadderController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.CompareTag("Player"))
         {
             //LoadingScreen.instance.gameObject.SetActive(true);

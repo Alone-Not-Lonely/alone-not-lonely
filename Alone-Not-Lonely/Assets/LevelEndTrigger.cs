@@ -6,13 +6,27 @@ public class LevelEndTrigger : MonoBehaviour
 {
     public GameObject levelParent;
     
+    private void Awake() {
+
+    }
+
+    private void Start() {
+        if(ProgressionTracker.instance.alreadyVisited.Contains(levelParent.name))
+        {
+            CheckObjects(levelParent);
+        }
+    }
     /// <summary>
     /// OnTriggerEnter is called when the Collider other enters the trigger.
     /// </summary>
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(levelParent.name != "Attic2" && other.CompareTag("Player"))
+        {
+            CheckObjects(levelParent);
+        }
+        else if(levelParent.name == "Attic2" && other.CompareTag("Grabable"))//check when chest is on door
         {
             CheckObjects(levelParent);
         }
@@ -20,6 +34,7 @@ public class LevelEndTrigger : MonoBehaviour
 
     void CheckObjects(GameObject curr)
     {
+        ProgressionTracker.instance.MarkSceneCompleted(levelParent.name);
         foreach(Transform child in curr.transform)
         {
             if(child.gameObject.CompareTag("Monster") ||

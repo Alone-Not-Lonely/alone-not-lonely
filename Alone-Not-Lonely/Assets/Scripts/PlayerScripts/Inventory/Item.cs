@@ -15,6 +15,17 @@ public class Item : MonoBehaviour
 
     void Start()
     {
+        bool destroyThis = false;
+        foreach(string i in PlayerInventory.instance.items)
+        {
+            if(i != "Puzzle Piece" && i == this.key)
+            {
+                Debug.Log("Destroying " + this.key);
+                destroyThis = true;
+            }
+        }
+        if(destroyThis)
+            Destroy(this.gameObject);
         playerRef = Player.instance;
         inventory = playerRef.GetComponentInChildren<PlayerInventory>();
         playerRef._actionMap.Platforming.Use.performed += grab => pickUp();

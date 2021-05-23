@@ -16,6 +16,10 @@ public class KeyBaring : Interactable
     // Start is called before the first frame update
     void Start()
     {
+        if(PlayerInventory.instance.puzzlePieces.Contains(this.ID))
+        {
+            Destroy(this.gameObject);
+        }
         myOpen = GetComponent<ContextualUI>();
         base.playerRef = Player.instance;
         pIn = PlayerInventory.instance;

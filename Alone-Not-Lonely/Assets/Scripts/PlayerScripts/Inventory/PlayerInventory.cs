@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerInventory : MonoBehaviour
 {
-    List<Item> items;
+    public List<string> items;
     public List<int> puzzlePieces;
     public Canvas _canvas;
     [SerializeField]
@@ -29,7 +29,7 @@ public class PlayerInventory : MonoBehaviour
         {
             DestroyImmediate(this);
         }
-        items = new List<Item>();
+        items = new List<string>();
         puzzlePieces = new List<int>();
     }
 
@@ -58,7 +58,7 @@ public class PlayerInventory : MonoBehaviour
     //and performs any feedback for pickup
     public void addItem(Item item)
     {
-        items.Add(item);
+        items.Add(item.key);
         //feedback here
         //StartCoroutine("feedback", "picked up: " + item.key);
         if (item.key.Contains("Piece"))//puzzle pieces must be named "Something Piece
@@ -105,7 +105,7 @@ public class PlayerInventory : MonoBehaviour
     //and performs any feedback for pickup
     public void removeItem(Item item)
     {
-        items.Remove(item);
+        items.Remove(item.key);
 
         //feedback here
         //StartCoroutine("feedback", "used up: " + item.key);
@@ -127,9 +127,9 @@ public class PlayerInventory : MonoBehaviour
     {
         foreach (string req in requirements)
         {
-            foreach(Item i in items)
+            foreach(string i in items)
             {
-                if(i.key == req)
+                if(i == req)
                 {
                     return true;
                 }

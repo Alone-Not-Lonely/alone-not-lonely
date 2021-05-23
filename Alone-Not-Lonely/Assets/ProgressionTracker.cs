@@ -24,7 +24,7 @@ public class ProgressionTracker : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(alreadyVisited.Contains(scene.name))
+        /*if(alreadyVisited.Contains(scene.name))
         {
             //load progress
             ImaginaryEntity[] imen = (ImaginaryEntity[])Resources.FindObjectsOfTypeAll(typeof(ImaginaryEntity));
@@ -66,7 +66,7 @@ public class ProgressionTracker : MonoBehaviour
         {
             //visiting now
             //alreadyVisited.Add(scene.name);
-        }
+        }*/
     }
 
     private void OnDisable(){

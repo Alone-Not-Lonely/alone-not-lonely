@@ -75,7 +75,6 @@ public class LockedObject : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            
             removeFromActions();
         }
     }
@@ -84,6 +83,14 @@ public class LockedObject : MonoBehaviour
     {
         Debug.Log("Removed Actions");
         playerNearby = false;
+        playerRef._actionMap.Platforming.Use.performed -= grab => OpenAttempt();
+    }
+
+    private void OnDisable() {
+        playerRef._actionMap.Platforming.Use.performed -= grab => OpenAttempt();
+    }
+
+    private void OnDestroy() {
         playerRef._actionMap.Platforming.Use.performed -= grab => OpenAttempt();
     }
 }

@@ -287,5 +287,6 @@ public class PanicMeterController : MonoBehaviour
 
     private void OnDisable(){
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        monsters.Clear();
     }
 }

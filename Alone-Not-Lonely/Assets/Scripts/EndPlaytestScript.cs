@@ -42,7 +42,10 @@ public class EndPlaytestScript : MonoBehaviour
         newTransform.position = positionToReturnTo;
         newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
         LoadingScreen.instance.LoadScene("GroundFloor", newTransform);
-        pC.clearPrompters();
+        if(pC!=null)
+        {
+            pC.clearPrompters();
+        }
         bedroomDoor.removeFromActions();
     }
 

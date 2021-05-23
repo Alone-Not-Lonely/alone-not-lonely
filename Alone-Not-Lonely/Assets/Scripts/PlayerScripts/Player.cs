@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            DestroyImmediate(this);
         }
     }
 
