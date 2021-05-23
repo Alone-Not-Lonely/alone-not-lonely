@@ -405,7 +405,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh560724
+  m_Name: pb_Mesh820246
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1842,6 +1842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!82 &395584326
 AudioSource:
@@ -2239,6 +2240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!82 &475050793
 AudioSource:
@@ -2543,6 +2545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!82 &550849223
 AudioSource:
@@ -2882,6 +2885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!82 &630613121
 AudioSource:
@@ -3280,7 +3284,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh561206
+  m_Name: pb_Mesh820728
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4283,7 +4287,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh561380
+  m_Name: pb_Mesh820902
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4654,6 +4658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!82 &1172529504
 AudioSource:
@@ -6063,6 +6068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!54 &1706826707
 Rigidbody:
@@ -7606,8 +7612,7 @@ GameObject:
   - component: {fileID: 845976062976386110}
   - component: {fileID: 845976062976386114}
   - component: {fileID: 845976062976386111}
-  - component: {fileID: 8091039947469122578}
-  - component: {fileID: 8445580089551686705}
+  - component: {fileID: 845976062976386118}
   m_Layer: 0
   m_Name: Puzzle Container
   m_TagString: Untagged
@@ -7615,6 +7620,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &845976062976386118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845976062976386117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Press F to Open Box
+  - Press F to Close Box
+  maxUsages: 0100000001000000
+  startPoint: 0
+  endPoint: 1
+  myPType: 0
+  proController: {fileID: 0}
 --- !u!114 &845976063528697784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7642,7 +7667,7 @@ GameObject:
   - component: {fileID: 845976063528697796}
   - component: {fileID: 845976063528697784}
   - component: {fileID: 845976063528697797}
-  - component: {fileID: 8091039948020971496}
+  - component: {fileID: 845976063528697792}
   m_Layer: 0
   m_Name: Puzzle Container (1)
   m_TagString: Untagged
@@ -7650,6 +7675,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &845976063528697792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845976063528697791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Press F to Open Box
+  - Press F to Close Box
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 1
+  myPType: 0
+  proController: {fileID: 0}
 --- !u!4 &845976063528697796
 Transform:
   m_ObjectHideFlags: 0
@@ -18810,6 +18855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!23 &4002083214399142401
 MeshRenderer:
@@ -31217,11 +31263,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionMet: 0
-  contextInitial: {fileID: 0}
-  contextSecondary: {fileID: 0}
-  messageInitial: The laundry room door is locked! I wonder where the key is?
-  messageSecondary: 
+  messages:
+  - 
+  - 
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 0
+  myPType: 0
+  proController: {fileID: 0}
 --- !u!114 &4680270337417943043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31234,8 +31283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71cafd21bd77614b99bf1fe5344c859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keys:
-  - {fileID: 0}
+  keyNames: []
 --- !u!65 &4680270337417943046
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32059,11 +32107,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionMet: 0
-  contextInitial: {fileID: 0}
-  contextSecondary: {fileID: 0}
-  messageInitial: The door to the living room is locked.
-  messageSecondary: 
+  messages:
+  - I don't understand. Why did we lock the living room too?!
+  - Press E to Unlock Living Room Door
+  - 
+  maxUsages: 000000000000000000000000
+  startPoint: 0
+  endPoint: 1
+  myPType: 4
+  proController: {fileID: 0}
 --- !u!114 &4680270337779864475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32076,8 +32128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71cafd21bd77614b99bf1fe5344c859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keys:
-  - {fileID: 8445580089646026263}
+  keyNames: []
 --- !u!65 &4680270337779864478
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34171,11 +34222,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionMet: 0
-  contextInitial: {fileID: 0}
-  contextSecondary: {fileID: 0}
-  messageInitial: The bathroom door is locked, where did the key go?
-  messageSecondary: 
+  messages:
+  - Bathrooms locked. I hope I don't have to go any time soon.
+  - Press E to Unlock Bathroom
+  - 
+  maxUsages: 010000006400000064000000
+  startPoint: 0
+  endPoint: 1
+  myPType: 4
+  proController: {fileID: 0}
 --- !u!65 &4680270338433331764
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34214,8 +34269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71cafd21bd77614b99bf1fe5344c859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keys:
-  - {fileID: 8445580089955971573}
+  keyNames: []
 --- !u!95 &4680270338433331767
 Animator:
   serializedVersion: 3
@@ -37154,45 +37208,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionMet: 0
-  contextInitial: {fileID: 0}
-  contextSecondary: {fileID: 0}
-  messageInitial: Press F to Open
-  messageSecondary: Press F to take puzzle piece
---- !u!114 &8091039947469122578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 845976062976386117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conditionMet: 0
-  contextInitial: {fileID: 0}
-  contextSecondary: {fileID: 0}
-  messageInitial: Press F to Open
-  messageSecondary: Press F to take puzzle piece
---- !u!114 &8091039948020971496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 845976063528697791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conditionMet: 0
-  contextInitial: {fileID: 0}
-  contextSecondary: {fileID: 0}
-  messageInitial: Press F to Open
-  messageSecondary: Press F to take puzzle piece
+  messages:
+  - 
+  - 
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 0
+  myPType: 0
+  proController: {fileID: 0}
 --- !u!212 &8126948624641576896
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37668,6 +37691,7 @@ GameObject:
   - component: {fileID: 8445580088429278820}
   - component: {fileID: 8445580088429278823}
   - component: {fileID: 8445580088429278822}
+  - component: {fileID: 8445580088429278818}
   m_Layer: 0
   m_Name: Chair Grabable
   m_TagString: Grabable
@@ -37690,6 +37714,26 @@ Transform:
   m_Father: {fileID: 8445580090455549135}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -133.984, z: 0}
+--- !u!114 &8445580088429278818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8445580088429278816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Press E to Pick Up Objects
+  - Press E to put Object Down
+  maxUsages: 0100000001000000
+  startPoint: 0
+  endPoint: 1
+  myPType: 1
+  proController: {fileID: 0}
 --- !u!65 &8445580088429278820
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38104,6 +38148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!82 &8445580088769087303
 AudioSource:
@@ -38311,6 +38356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!82 &8445580088916835343
 AudioSource:
@@ -38445,6 +38491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!1 &8445580088936837082
 GameObject:
@@ -38974,6 +39021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!82 &8445580089230973899
 AudioSource:
@@ -39441,23 +39489,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8445580089551686705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 845976062976386117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conditionMet: 0
-  contextInitial: {fileID: 0}
-  contextSecondary: {fileID: 0}
-  messageInitial: Press F to Open
-  messageSecondary: Press F to take puzzle piece
 --- !u!64 &8445580089626833644
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39513,6 +39544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: living room Key
   ID: 0
+  doorCU: {fileID: 4680270337779864474}
 --- !u!1 &8445580089650089521
 GameObject:
   m_ObjectHideFlags: 0
@@ -39601,6 +39633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!1 &8445580089839538243
 GameObject:
@@ -39774,6 +39807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: Bathroom Key
   ID: 0
+  doorCU: {fileID: 4680270338433331761}
 --- !u!4 &8445580089986898336
 Transform:
   m_ObjectHideFlags: 0
@@ -39932,6 +39966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!82 &8445580090025419539
 AudioSource:
@@ -40670,6 +40705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!82 &8445580090463697257
 AudioSource:
@@ -41102,6 +41138,7 @@ GameObject:
   - component: {fileID: 7130658334185886356}
   - component: {fileID: 8445580089646026260}
   - component: {fileID: 8445580089646026263}
+  - component: {fileID: 8788162836090827586}
   m_Layer: 0
   m_Name: Living Room Key
   m_TagString: Untagged
@@ -41109,6 +41146,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8788162836090827586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788162836090827585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Press E to Pick Up Key
+  maxUsages: 00000000
+  startPoint: 0
+  endPoint: 0
+  myPType: 5
+  proController: {fileID: 0}
 --- !u!1 &8788162836399574183
 GameObject:
   m_ObjectHideFlags: 0
@@ -41122,6 +41178,7 @@ GameObject:
   - component: {fileID: 7130658333875072370}
   - component: {fileID: 8445580089955971530}
   - component: {fileID: 8445580089955971573}
+  - component: {fileID: 8788162836399574184}
   m_Layer: 0
   m_Name: Bathroom Key
   m_TagString: Untagged
@@ -41129,6 +41186,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8788162836399574184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788162836399574183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Press E to Pick up Bathroom Key
+  maxUsages: 01000000
+  startPoint: 0
+  endPoint: 0
+  myPType: 5
+  proController: {fileID: 0}
 --- !u!1 &8788162836491205390
 GameObject:
   m_ObjectHideFlags: 0
@@ -41284,6 +41360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 7
+  clips: []
   fadeSpeed: 0.01
 --- !u!82 &8864437435792489923
 AudioSource:

@@ -35,7 +35,7 @@ public class ClimbChecker : MonoBehaviour
         playerHeight = GetComponentInParent<CharacterController>().height;
         playerRadius = GetComponentInParent<CharacterController>().radius;
         pMC = GetComponentInParent<PlayerMovementController>();
-        Debug.Log("Player Radius: " + playerRadius);
+        clear();
     }
 
     private void FixedUpdate()
@@ -55,7 +55,7 @@ public class ClimbChecker : MonoBehaviour
         }
     }
 
-    //should be a coroutine for performance, but testing the idea first. 
+    //should be a coroutine for performance, but testing the idea first.
     public void adjustHeight()
     {
         //Checks if player is close to object
@@ -76,7 +76,7 @@ public class ClimbChecker : MonoBehaviour
 
             //If the landing is short enough for gabe to climb:
             if (!Physics.Raycast(landingRay, out canLandHit, maxDepth, ~ignoreLayer) || (canLandHit.collider.isTrigger == true))
-            {//We are close enough and HAVE found the object's top 
+            {//We are close enough and HAVE found the object's top
                 Vector3 canStandRayStart = landingRayStart + (landingRay.direction * maxDepth);
                 Ray canStandRay = new Ray(canStandRayStart, -transform.up);
                 Debug.DrawRay(canStandRay.origin, canStandRay.direction, Color.green);
@@ -116,8 +116,8 @@ public class ClimbChecker : MonoBehaviour
 
     private void updateHands()
     {
-        Vector3 goToPoint = (transform.position + (Vector3.up * handRestingHeight)); 
-        
+        Vector3 goToPoint = (transform.position + (Vector3.up * handRestingHeight));
+
         if (edge != transform.position)
         {
             goToPoint = edge;
