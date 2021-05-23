@@ -13,7 +13,7 @@ public class ReturnToAttic : ContextualUI
     void Start()
     {
         base.Start();
-        _player = FindObjectOfType<Player>();
+        _player = Player.instance;
         positionToReturnTo = new Vector3(27.4599991f,4.95430565f,-88.1100006f);
     }
     
@@ -46,11 +46,15 @@ public class ReturnToAttic : ContextualUI
         if(canGoToAttic)
         {
             _player.gameObject.SetActive(false);
-            _player.gameObject.transform.position =  positionToReturnTo;
-            _player.gameObject.SetActive(true);
-            SceneManager.LoadScene("Attic2");
+            //_player.gameObject.transform.position =  positionToReturnTo;
+            //_player.gameObject.SetActive(true);
+            //SceneManager.LoadScene("Attic2");
             canGoToAttic = false;
             _player._actionMap.Platforming.ReturnToLevel.performed -= interact => GoToAttic();
+            Transform newTransform = _player.transform;
+            newTransform.position = positionToReturnTo;
+            newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
+            LoadingScreen.instance.LoadScene("Attic2", newTransform);
         }
     }
 }

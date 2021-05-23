@@ -19,10 +19,12 @@ public class ScenePersistence : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
             instance = this;
         }
+        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnEnable()
     {
+        Debug.Log("Player enabled");
         ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
         Debug.Log(this.name + " " + objs.Length);
 
@@ -39,6 +41,7 @@ public class ScenePersistence : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log("Scene Loaded: " + scene.name);
         if(scene.name == "MainMenu" || scene.name == "IntroCutscene" || scene.name == "Credits" || scene.name == "Controls" || scene.name == "EndPlaytest")
         {
             Destroy(this.gameObject);
@@ -48,6 +51,7 @@ public class ScenePersistence : MonoBehaviour
     }
 
     private void OnDisable(){
+        Debug.Log("Player disabled");
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

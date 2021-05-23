@@ -29,6 +29,10 @@ public class PatrolPointsController : Grabber
 
     private bool collidingWithGrabable = false;
 
+    public AudioClip portalSound;
+
+    private AudioSource soundPlayer;
+
     void Start()
     {
         currentGoal = 0;
@@ -38,6 +42,35 @@ public class PatrolPointsController : Grabber
         thisRB = GetComponent<Rigidbody>();
         activePortal1 = patrolPoints[0].gameObject;
         activePortal2 = patrolPoints[1].gameObject;
+        soundPlayer = GetComponent<AudioSource>();
+        if(currentGoal == 0)
+        {
+            patrolPoints[0].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            patrolPoints[1].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            patrolPoints[2].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+            patrolPoints[3].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+        }
+        else if(currentGoal == 1)
+        {
+            patrolPoints[0].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            patrolPoints[1].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+            patrolPoints[2].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+            patrolPoints[3].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+        }
+        else if(currentGoal == 2)
+        {
+            patrolPoints[0].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            patrolPoints[1].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            patrolPoints[2].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+            patrolPoints[3].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+        }
+        else
+        {
+            patrolPoints[0].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            patrolPoints[1].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            patrolPoints[2].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+            patrolPoints[3].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+        }
         UpdatePortalSizes();
     }
 
@@ -68,6 +101,8 @@ public class PatrolPointsController : Grabber
 
     public void TurnAround()
     {
+        //patrolPoints[currentGoal].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+        //patrolPoints[currentGoal].GetComponent<PortalController>().partnerPortal.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
         currentGoal++;
         currentState = State.Moving;
         thisRB.velocity = Vector3.zero;
@@ -76,10 +111,35 @@ public class PatrolPointsController : Grabber
         {
             currentGoal = currentGoal % patrolPoints.Count;
         }
-        if(patrolPoints[currentGoal].CompareTag("BackPortal"))
+        //patrolPoints[currentGoal].GetComponent<SpriteRenderer>().color = new Color(160f/255f, 0, 22f/255f);
+        //patrolPoints[currentGoal].GetComponent<PortalController>().partnerPortal.GetComponent<SpriteRenderer>().color = new Color(160f/255f, 0, 22f/255f);
+        if(currentGoal == 0)
         {
-            patrolPoints[currentGoal].GetComponent<SpriteRenderer>().color = new Color(160f/255f, 0, 22f/255f);
-            patrolPoints[currentGoal].GetComponent<PortalController>().partnerPortal.GetComponent<SpriteRenderer>().color = new Color(160f/255f, 0, 22f/255f);
+            patrolPoints[0].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            patrolPoints[1].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            patrolPoints[2].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+            patrolPoints[3].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+        }
+        else if(currentGoal == 1)
+        {
+            patrolPoints[0].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            patrolPoints[1].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+            patrolPoints[2].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+            patrolPoints[3].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+        }
+        else if(currentGoal == 2)
+        {
+            patrolPoints[0].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            patrolPoints[1].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            patrolPoints[2].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+            patrolPoints[3].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+        }
+        else
+        {
+            patrolPoints[0].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            patrolPoints[1].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            patrolPoints[2].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+            patrolPoints[3].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
         }
     }
 
@@ -98,12 +158,14 @@ public class PatrolPointsController : Grabber
                 thisRB.velocity = Vector3.zero;
                 thisRB.angularVelocity = Vector3.zero;
                 this.gameObject.SetActive(true);
+                if(Vector3.Distance(Player.instance.transform.position, this.transform.position) < 25)
+                {
+                    soundPlayer.PlayOneShot(portalSound);
+                }
             }
             else if(other.CompareTag("BackPortal"))
             {
                 this.gameObject.SetActive(false);
-                patrolPoints[currentGoal].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
-                patrolPoints[currentGoal].GetComponent<PortalController>().partnerPortal.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
                 GameObject partnerPortal = other.GetComponent<PortalController>().partnerPortal;
                 this.transform.position = partnerPortal.transform.position + (partnerPortal.transform.forward * portalSpawnOffset);
                 inColliderCooldown = true;
@@ -118,9 +180,41 @@ public class PatrolPointsController : Grabber
                     currentGoal = loopPoint;
                 }
                 this.gameObject.SetActive(true);
+                if(currentGoal == 0)
+                {
+                    patrolPoints[0].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                    patrolPoints[1].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                    patrolPoints[2].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+                    patrolPoints[3].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+                }
+                else if(currentGoal == 1)
+                {
+                    patrolPoints[0].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                    patrolPoints[1].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+                    patrolPoints[2].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+                    patrolPoints[3].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+                }
+                else if(currentGoal == 2)
+                {
+                    patrolPoints[0].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                    patrolPoints[1].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                    patrolPoints[2].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+                    patrolPoints[3].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+                }
+                else
+                {
+                    patrolPoints[0].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                    patrolPoints[1].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                    patrolPoints[2].GetComponent<SpriteRenderer>().color = new Color(255f/255f, 0, 125f/255f);
+                    patrolPoints[3].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                }
                 activePortal1 = patrolPoints[currentGoal].gameObject;
                 activePortal2 = patrolPoints[currentGoal + 1].gameObject;
                 UpdatePortalSizes();
+                if(Vector3.Distance(Player.instance.transform.position, this.transform.position) < 25)
+                {
+                    soundPlayer.PlayOneShot(portalSound);
+                }
             }
         }
     }

@@ -10,8 +10,8 @@ public class EndPlaytestScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _player = FindObjectOfType<Player>();
-        positionToReturnTo = new Vector3(30,4,-49);
+        _player = Player.instance;
+        positionToReturnTo = new Vector3(30,4,-47); 
         _player._actionMap.Platforming.SkipLevel.performed += skip => LoadNextLevel();
     }
 
@@ -23,21 +23,22 @@ public class EndPlaytestScript : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            _player.gameObject.SetActive(false);
-            _player.gameObject.transform.position = positionToReturnTo;
-            _player.gameObject.SetActive(true);
-            SceneManager.LoadScene("GroundFloor");
+            LoadNextLevel();
         }
     }
 
     void LoadNextLevel()
     {
-        ProgressionTracker[] p = (ProgressionTracker[])FindObjectsOfType<ProgressionTracker>();
-        p[0].MarkSceneCompleted("Kitchen");
+        //ProgressionTracker[] p = (ProgressionTracker[])FindObjectsOfType<ProgressionTracker>();
+        ProgressionTracker.instance.MarkSceneCompleted("Kitchen");
         _player.gameObject.SetActive(false);
-        _player.gameObject.transform.position = positionToReturnTo;
-        _player.gameObject.SetActive(true);
-        SceneManager.LoadScene("GroundFloor");
+        //_player.gameObject.transform.position = positionToReturnTo;
+        //_player.gameObject.SetActive(true);
+        //SceneManager.LoadScene("GroundFloor");
+        Transform newTransform = _player.transform;
+        newTransform.position = positionToReturnTo;
+        newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
+        LoadingScreen.instance.LoadScene("GroundFloor", newTransform);
     }
 
     

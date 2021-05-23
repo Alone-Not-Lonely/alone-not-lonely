@@ -22,7 +22,7 @@ public class LevelEndTrigger : MonoBehaviour
     {
         foreach(Transform child in curr.transform)
         {
-            if(child.gameObject.GetComponent<ImaginaryEntity>() != null ||
+            if(child.gameObject.CompareTag("Monster") ||
                child.gameObject.GetComponent<PatrolPointsController>()!=null ||
                child.gameObject.GetComponent<PortalController>() != null ||
                child.gameObject.GetComponent<ElevatorMonsterController>() != null ||

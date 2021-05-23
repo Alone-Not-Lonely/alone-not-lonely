@@ -13,7 +13,7 @@ public class Item : MonoBehaviour
 
     void Start()
     {
-        playerRef = (Player)FindObjectOfType(typeof(Player));
+        playerRef = Player.instance;
         inventory = playerRef.GetComponentInChildren<PlayerInventory>();
         playerRef._actionMap.Platforming.Use.performed += grab => pickUp();
         if(key != "Puzzle Piece"){

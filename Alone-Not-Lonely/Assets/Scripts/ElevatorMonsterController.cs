@@ -31,7 +31,7 @@ public class ElevatorMonsterController : Grabber
 
     void FixedUpdate()
     {
-        if(holdingObject && Vector3.Distance(heldObject.transform.position, targetPoint) > .1f)
+        if(!waiting && holdingObject && Vector3.Distance(heldObject.transform.position, targetPoint) > .1f)
         {
             heldObject.GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(heldObject.transform.position, targetPoint, Time.fixedDeltaTime * speed));
         }
@@ -78,9 +78,9 @@ public class ElevatorMonsterController : Grabber
         }
     }
 
-    void OnCollisionEnter(Collision other) 
+    void OnTriggerEnter(Collider other) 
     {
-        if(other.gameObject.CompareTag("Grabable") && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld && !this.holdingObject)
+        if(other.gameObject.CompareTag("Grabable") && other.isTrigger && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld && !this.holdingObject )
         {
             GrabAttempt(other.gameObject, this.gameObject);
             if(this.holdingObject)
@@ -90,9 +90,9 @@ public class ElevatorMonsterController : Grabber
         }
     }
 
-    void OnCollisionStay(Collision other) 
+    void OnTriggerStay(Collider other) 
     {
-        if(other.gameObject.CompareTag("Grabable") && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld && !this.holdingObject)
+        if(other.gameObject.CompareTag("Grabable") && other.isTrigger && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld && !this.holdingObject)
         {
             GrabAttempt(other.gameObject, this.gameObject);
         }

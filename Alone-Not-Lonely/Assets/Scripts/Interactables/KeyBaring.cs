@@ -7,11 +7,12 @@ public class KeyBaring : Interactable
     private bool containsKey = true;
     private PlayerInventory pIn;
     public int ID;
+    private bool controlSwapThisFrame = false;
     // Start is called before the first frame update
     void Start()
     {
-        base.playerRef = (Player)FindObjectOfType(typeof(Player));
-        pIn = FindObjectOfType<PlayerInventory>();
+        base.playerRef = Player.instance;
+        pIn = PlayerInventory.instance;
     }
 
     protected void keyGrab()
@@ -20,6 +21,7 @@ public class KeyBaring : Interactable
         {
             if (inRange && !open)
             {
+                Debug.Log("Opening Object ");
                 //openText.gameObject.SetActive(false);
                 //closeText.gameObject.SetActive(true);
                 if (objectAnimator != null)
@@ -55,13 +57,22 @@ public class KeyBaring : Interactable
         }
     }
 
+    private void Update() {
+        if(controlSwapThisFrame)
+        {
+            controlSwapThisFrame = false;
+            playerRef._actionMap.ViewingObject.InteractionTest.performed += interact => keyGrab();
+            playerRef._actionMap.ViewingObject.RotateObj.performed += rot => base.Rotate(rot.ReadValue<Vector2>());
+        }    
+    }
+
     void viewPuzzlePiece()
     {
         playerRef._actionMap.Platforming.Disable();
         playerRef._actionMap.ViewingObject.Enable();
-        playerRef._actionMap.ViewingObject.InteractionTest.performed += interact => keyGrab();
-        playerRef._actionMap.ViewingObject.RotateObj.performed += rot => base.Rotate(rot.ReadValue<Vector2>());
+        controlSwapThisFrame = true;
         hiddenObjInstance = Instantiate(hiddenObj, Camera.main.gameObject.transform.position + Camera.main.gameObject.transform.forward, Quaternion.identity);
+        Debug.Log("Object Instantiated " + hiddenObjInstance);
     }
 
     void PutDownKey()
@@ -71,6 +82,7 @@ public class KeyBaring : Interactable
         base.playerRef._actionMap.Platforming.InteractionTest.performed -= interact => keyGrab();
         playerRef._actionMap.ViewingObject.RotateObj.performed -= rot => Rotate(rot.ReadValue<Vector2>());
         Destroy(hiddenObjInstance);
+        Debug.Log("Object Destroyed ");
     }
 
     /// <summary>
@@ -88,9 +100,11 @@ public class KeyBaring : Interactable
 
     void OnTriggerExit(Collider other)
     {
+        Debug.Log("Exited Trigger");
         if(other.CompareTag("Player"))
         {
-            base.OnTriggerEnter(other);
+            Debug.Log("Player Exited Trigger");
+            base.OnTriggerExit(other);
             base.playerRef._actionMap.Platforming.InteractionTest.performed -= interact => keyGrab();
         }
     }
