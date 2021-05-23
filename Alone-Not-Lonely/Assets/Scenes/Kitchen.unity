@@ -3364,13 +3364,59 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puzzle Container (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 395647914295386144, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
 --- !u!4 &301316800 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9117881485475964940, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
   m_PrefabInstance: {fileID: 301316799}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &301316801 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9117881485475965047, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
+  m_PrefabInstance: {fileID: 301316799}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &301316802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301316801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Press F to Open
+  - Press F to Close
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 0
+  myPType: 0
+  proController: {fileID: 0}
+--- !u!114 &301316803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301316801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Press F to Open
+  - Press F to Close
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 0
+  myPType: 0
+  proController: {fileID: 0}
 --- !u!43 &378379517
 Mesh:
   m_ObjectHideFlags: 0

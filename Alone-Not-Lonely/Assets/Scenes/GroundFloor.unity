@@ -3010,12 +3010,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - 
-  - 
+  - Press E to Pick Up
+  - Press E to Put Down
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 0
-  myPType: 0
+  endPoint: 1
+  myPType: 1
   proController: {fileID: 0}
 --- !u!1 &178907794
 GameObject:
@@ -3506,11 +3506,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - 
-  - 
+  - Press F to Open
+  - Press F to Close
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 0
+  endPoint: 1
   myPType: 0
   proController: {fileID: 0}
 --- !u!135 &188430505
@@ -6711,6 +6711,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5923490670168707169, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923490670168707169, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923490670429027461, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923490670429027461, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923490670429027461, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6063380298548230421, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -7839,11 +7859,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - 
-  - 
+  - Press F to Open
+  - Press F to Close
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 0
+  endPoint: 1
   myPType: 0
   proController: {fileID: 0}
 --- !u!135 &423927929
@@ -20523,11 +20543,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - 
-  - 
+  - Press F to Open
+  - Press F to Close
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 0
+  endPoint: 1
   myPType: 0
   proController: {fileID: 0}
 --- !u!135 &1139826708
@@ -22246,11 +22266,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - 
-  - 
+  - Press F to Open
+  - Press F to Close
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 0
+  endPoint: 1
   myPType: 0
   proController: {fileID: 0}
 --- !u!1 &1302605706
@@ -37944,7 +37964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: master Key
   ID: 0
-  doorCU: {fileID: 0}
+  doorCU: {fileID: 1095078878}
 --- !u!135 &1720937680
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -38407,7 +38427,6 @@ GameObject:
   - component: {fileID: 1759589455}
   - component: {fileID: 1759589459}
   - component: {fileID: 1759589458}
-  - component: {fileID: 1759589457}
   - component: {fileID: 1759589456}
   m_Layer: 0
   m_Name: Puzzle Container
@@ -38440,35 +38459,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1759589454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - 
-  - 
+  - Press F to Open
+  - Press F to Close
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 0
-  myPType: 0
-  proController: {fileID: 0}
---- !u!114 &1759589457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1759589454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages:
-  - 
-  - 
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 0
+  endPoint: 1
   myPType: 0
   proController: {fileID: 0}
 --- !u!135 &1759589458
@@ -47864,12 +47863,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - 
-  - 
+  - Press E to Pick Up
+  - Press E to Put Down
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 0
-  myPType: 0
+  endPoint: 1
+  myPType: 1
   proController: {fileID: 0}
 --- !u!1 &2102412768
 GameObject:
@@ -50397,6 +50396,7 @@ GameObject:
   - component: {fileID: 2204613701340658277}
   - component: {fileID: 2204613701340658274}
   - component: {fileID: 2204613701340658273}
+  - component: {fileID: 2204613701340658280}
   m_Layer: 13
   m_Name: Chair Grabable (1)
   m_TagString: Grabable
@@ -50404,6 +50404,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2204613701340658280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204613701340658279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Press E to Pick Up
+  - Press E to Put Down
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 1
+  myPType: 1
+  proController: {fileID: 0}
 --- !u!114 &2204613702003971168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50577,6 +50597,7 @@ GameObject:
   - component: {fileID: 2204613702003971172}
   - component: {fileID: 2204613702003971171}
   - component: {fileID: 2204613702003971168}
+  - component: {fileID: 2204613702003971176}
   m_Layer: 13
   m_Name: Chair Grabable (1)
   m_TagString: Grabable
@@ -50599,6 +50620,26 @@ Transform:
   m_Father: {fileID: 5346167493341029214}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -87.677, z: 0}
+--- !u!114 &2204613702003971176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204613702003971174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Press E to Pick Up
+  - Press E to Put Down
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 1
+  myPType: 1
+  proController: {fileID: 0}
 --- !u!65 &2204613702316231488
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51642,6 +51683,7 @@ GameObject:
   - component: {fileID: 2335933380958868058}
   - component: {fileID: 2335933380958868061}
   - component: {fileID: 2335933380958868064}
+  - component: {fileID: 2335933380958868065}
   m_Layer: 13
   m_Name: GrabBox (2)
   m_TagString: Grabable
@@ -51745,6 +51787,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2335933380958868065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2335933380958868063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Press E to Pick Up
+  - Press E to Put Down
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 1
+  myPType: 1
+  proController: {fileID: 0}
 --- !u!23 &2335933380988442982
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64935,26 +64997,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2672737558752528475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6837554879303417868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages:
-  - 
-  - 
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 0
-  myPType: 0
-  proController: {fileID: 0}
 --- !u!33 &2744485501457152691
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -67251,11 +67293,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - 
-  - 
+  - Press F to Open
+  - Press F to Close
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 0
+  endPoint: 1
   myPType: 0
   proController: {fileID: 0}
 --- !u!114 &3798891725305336822
@@ -67322,11 +67364,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - 
-  - 
+  - Press F to Open
+  - Press F to Close
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 0
+  endPoint: 1
   myPType: 0
   proController: {fileID: 0}
 --- !u!4 &3798891725856065648
@@ -71727,7 +71769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: Bathroom Key
   ID: 0
-  doorCU: {fileID: 0}
+  doorCU: {fileID: 243229787}
 --- !u!114 &5346167494029944128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71915,7 +71957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: living room Key
   ID: 0
-  doorCU: {fileID: 0}
+  doorCU: {fileID: 1766344176}
 --- !u!135 &5346167494116909658
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -80715,7 +80757,7 @@ GameObject:
   - component: {fileID: 6837554879303417975}
   - component: {fileID: 6837554879303417867}
   - component: {fileID: 6837554879303417974}
-  - component: {fileID: 2672737558752528475}
+  - component: {fileID: 6837554879303417869}
   m_Layer: 0
   m_Name: Puzzle Container
   m_TagString: Interactable
@@ -80723,6 +80765,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6837554879303417869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6837554879303417868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Press F to Open
+  - Press F to Close
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 0
+  myPType: 0
+  proController: {fileID: 0}
 --- !u!135 &6837554879303417974
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -82112,12 +82174,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - 
-  - 
+  - Press E to Pick Up
+  - Press E to Put Down
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 0
-  myPType: 0
+  endPoint: 1
+  myPType: 1
   proController: {fileID: 0}
 --- !u!4 &8983852301334877244
 Transform:
@@ -82313,12 +82375,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - 
-  - 
+  - Press E to Pick Up
+  - Press E to Put Down
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 0
-  myPType: 0
+  endPoint: 1
+  myPType: 1
   proController: {fileID: 0}
 --- !u!65 &8983852301565340860
 BoxCollider:
