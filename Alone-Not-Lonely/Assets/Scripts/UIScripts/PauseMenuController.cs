@@ -35,7 +35,6 @@ public class PauseMenuController : MonoBehaviour
         }
         GetComponent<AudioSource>().enabled = false;
         playerRef = transform.parent.parent.Find("Player").GetComponent<Player>();
-        Debug.Log("Playerref: " + playerRef);
         playerRef._actionMap.Platforming.Pause.performed += pause => PauseControl();
     }
 

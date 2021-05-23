@@ -41,13 +41,10 @@ public class PlayerInventory : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         KeyBaring[] puzzlePieceHolders = FindObjectsOfType<KeyBaring>();
-        Debug.Log(puzzlePieceHolders.Length + " piece holders");
         foreach(KeyBaring p in puzzlePieceHolders)
         {
-            Debug.Log("ID: " + p.ID);
             if(puzzlePieces.Contains(p.ID))
             {
-                Debug.Log("Removed for duplicate");
                 p.gameObject.SetActive(false);
             }
         }
@@ -61,9 +58,7 @@ public class PlayerInventory : MonoBehaviour
     //and performs any feedback for pickup
     public void addItem(Item item)
     {
-        Debug.Log("adding item");
         items.Add(item);
-        Debug.Log("Item added, starting coroutine");
         //feedback here
         //StartCoroutine("feedback", "picked up: " + item.key);
         if (item.key.Contains("Piece"))//puzzle pieces must be named "Something Piece
@@ -122,7 +117,6 @@ public class PlayerInventory : MonoBehaviour
 
     IEnumerator keyUsed(string name)
     {
-
         GameObject usedKey = keyUI.transform.Find(name).gameObject;
         Destroy(usedKey);
         yield return new WaitForSeconds(0);
