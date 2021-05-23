@@ -1,121 +1,81 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Collider))]
 public class ContextualUI : MonoBehaviour
 {
-    public bool conditionMet = false;
-    public Text contextInitial;
-    public Text contextSecondary;
-    public string messageInitial = "Initial message";
-    public string messageSecondary = "Secondary message";
+    //public bool conditionMet = false;//could be removed
+    public string[] messages = new string[2];//default, can be overwritten
+    public int[] maxUsages = new int[2];//times this should be prompted
+    public int startPoint = 0, endPoint = 0;
+    private int currInd = 0;//make private
+    public promptType myPType; 
+    [HideInInspector]
+    public PromptController proController;//making public late change
+    
 
-    private bool inRange = false;
-
-    protected void OnDisable() {
-        if(contextInitial != null)
-        {
-            contextInitial.gameObject.SetActive(false);
-            contextInitial.text = "";
-        }
-        if(contextSecondary != null)
-        {
-            contextSecondary.gameObject.SetActive(false);
-            contextSecondary.text = "";
-        }
-    }
-
-    protected void Start() {
-        Text[] allText = (Text[])FindObjectsOfType(typeof(Text), true);
-        foreach(Text t in allText)
-        {
-            if(t.gameObject.CompareTag("UIInit"))
-            {
-                contextInitial = t;
-            }
-            else if(t.gameObject.CompareTag("UISec"))
-            {
-                contextSecondary = t;
-            }
-        }
+    protected void Start()
+    {
+        //Get reference to conText object
+        //set up persistence
         ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
-        contextInitial.text = "";
-        contextSecondary.text = "";
+        //Debug.Log(this.name + " at Start() player count is " + objs.Length);
+        proController = FindObjectOfType<PromptController>();
     }
 
-    protected void OnEnable() {
-        
-    }
-
-    /// <summary>
-    /// OnTriggerEnter is called when the Collider other enters the trigger.
-    /// </summary>
-    /// <param name="other">The other Collider involved in this collision.</param>
-    protected void OnTriggerEnter(Collider other)
+    //Called by object itself to progress the prompt counter
+    public void nextPrompt()
     {
-        if(other.CompareTag("Player"))
+        proController.addToPrompters(this);//just in case prompter hasn't been triggered yet
+        proController.incPromptUsages(myPType, currInd);
+        currInd++;
+        //loop to correct point
+        if (currInd > endPoint)
         {
-            if(!conditionMet)
-            {
-                contextInitial.text = messageInitial;
-                contextInitial.gameObject.SetActive(true);
-            }
-            else
-            {
-                contextSecondary.text = messageSecondary;
-                contextSecondary.gameObject.SetActive(true);
-            }
-            inRange = true;
+            //Debug.Log("going back to start point");
+            currInd = startPoint;
+        }
+        proController.updatePrompt(this);//underthought, could cause problems later
+    }
+
+    public string getMessage()
+    {
+        return messages[currInd];
+    }
+
+    public int getCurrInd()
+    {
+        return currInd;
+    }
+
+    public bool canPrompt(int promptCount)
+    {
+        //Debug.Log("prompt count = " + promptCount  +", maxUsages = " + maxUsages[currInd]);
+        return (promptCount <= maxUsages[currInd]);
+    }
+
+    public void setCID(int x)
+    {
+        currInd = x;
+    }
+
+    protected void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            proController.addToPrompters(this);
+           Debug.Log("Staying in Collider");
         }
     }
 
-    protected void OnTriggerExit(Collider other) 
+    protected void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            contextInitial.gameObject.SetActive(false);
-            contextSecondary.gameObject.SetActive(false);
-            contextInitial.text = "";
-            contextSecondary.text = "";
-        }
-        inRange = false;
-    }
-
-    public void SetConditionMet(bool setting)
-    {
-        conditionMet = setting;
-    }
-
-    public void ChangeToContextInit()
-    {
-        if(inRange)
-        {
-            //contextInitial.gameObject.SetActive(true);
-            //contextSecondary.gameObject.SetActive(false);
-            contextInitial.text = messageInitial;
-            contextSecondary.text = "";
-        }
-        else
-        {
-            conditionMet = false;
-        }
-    }
-
-    public void ChangeToContextSecondary()
-    {
-        if(inRange)
-        {
-            //contextInitial.gameObject.SetActive(false);
-            //contextSecondary.gameObject.SetActive(true);
-            contextInitial.text = "";
-            contextSecondary.text = messageSecondary;
-        }
-        else
-        {
-            conditionMet = true;
+            proController.removeFromPrompters(this);
+            Debug.Log("Leaving Collider");
         }
     }
 }

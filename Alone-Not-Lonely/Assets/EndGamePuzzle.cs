@@ -33,7 +33,7 @@ public class EndGamePuzzle : ContextualUI
                 Camera.main.GetComponent<CameraController>().MoveToFixedPosition(cameraTarget.position, this.gameObject);
                 inPuzzleMode = true;
                 puzzleManager.UpdatePuzzleState();
-                base.ChangeToContextSecondary();
+                //base.ChangeToContextSecondary();
             }
             else if (canInteract)
             {
@@ -42,7 +42,7 @@ public class EndGamePuzzle : ContextualUI
                 _player._actionMap.Platforming.InteractionTest.performed += interact => PlayerInteract();
                 Camera.main.GetComponent<CameraController>().cameraFree = true;
                 inPuzzleMode = false;
-                base.ChangeToContextInit();
+                //base.ChangeToContextInit();
             }
         }
     }
@@ -55,7 +55,7 @@ public class EndGamePuzzle : ContextualUI
     {
         if(other.CompareTag("Player"))
         {
-            base.OnTriggerEnter(other);
+            //base.OnTriggerEnter(other);
             canInteract = true;
             //puzzleManager.UpdatePuzzleState();
         }

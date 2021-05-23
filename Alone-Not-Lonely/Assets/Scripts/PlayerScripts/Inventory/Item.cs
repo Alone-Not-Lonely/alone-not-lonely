@@ -10,6 +10,8 @@ public class Item : MonoBehaviour
     private PlayerInventory inventory;
     bool playerNearby = false;
     Player playerRef;
+    //[SerializeField]
+    public ContextualUI doorCU;
 
     void Start()
     {
@@ -27,7 +29,10 @@ public class Item : MonoBehaviour
         {
             return;
         }
-
+        doorCU.nextPrompt();//advance prompt on pickup
+        doorCU.proController.clearPrompters();//precaution against item disappearing
+        //could have some kind of ienumerator that waits a second with a "wow you found a key" prompt
+        
         inventory.addItem(this);
         this.gameObject.SetActive(false);//cannot destroy, causes scripting complications
     }

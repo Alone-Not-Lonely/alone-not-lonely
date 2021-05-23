@@ -8,9 +8,11 @@ public class KeyBaring : Interactable
     private PlayerInventory pIn;
     public int ID;
     private bool controlSwapThisFrame = false;
+    private ContextualUI myOpen;
     // Start is called before the first frame update
     void Start()
     {
+        myOpen = GetComponent<ContextualUI>();
         base.playerRef = Player.instance;
         pIn = PlayerInventory.instance;
     }
@@ -40,9 +42,10 @@ public class KeyBaring : Interactable
                 {
                     objectAnimator.SetBool("OpenObj", false);
                 }
-                
+
                 open = false;
-                if (containsKey) { 
+                if (containsKey)
+                {
                     //set ID to that of this obj
                     //hiddenObj.gameObject.GetComponent<Item>().ID = this.ID;
                     pIn.addPuzzlePiece(this.ID);
@@ -51,19 +54,20 @@ public class KeyBaring : Interactable
                 containsKey = false;
                 PutDownKey();
                 this.gameObject.SetActive(false);
-                this.GetComponent<OpenableUI>().contextInitial.text = "";
-                this.GetComponent<OpenableUI>().contextSecondary.text = "";
+                //this.GetComponent<OpenableUI>().conText.text = "";
+                //this.GetComponent<ContextualUI>().conText.text = "";//TESTING PURPOSES
             }
         }
     }
 
-    private void Update() {
-        if(controlSwapThisFrame)
+    private void Update()
+    {
+        if (controlSwapThisFrame)
         {
             controlSwapThisFrame = false;
             playerRef._actionMap.ViewingObject.InteractionTest.performed += interact => keyGrab();
             playerRef._actionMap.ViewingObject.RotateObj.performed += rot => base.Rotate(rot.ReadValue<Vector2>());
-        }    
+        }
     }
 
     void viewPuzzlePiece()
@@ -72,7 +76,9 @@ public class KeyBaring : Interactable
         playerRef._actionMap.ViewingObject.Enable();
         controlSwapThisFrame = true;
         hiddenObjInstance = Instantiate(hiddenObj, Camera.main.gameObject.transform.position + Camera.main.gameObject.transform.forward, Quaternion.identity);
-        Debug.Log("Object Instantiated " + hiddenObjInstance);
+
+        //change prompt
+        myOpen.nextPrompt();
     }
 
     void PutDownKey()
@@ -82,7 +88,9 @@ public class KeyBaring : Interactable
         base.playerRef._actionMap.Platforming.InteractionTest.performed -= interact => keyGrab();
         playerRef._actionMap.ViewingObject.RotateObj.performed -= rot => Rotate(rot.ReadValue<Vector2>());
         Destroy(hiddenObjInstance);
-        Debug.Log("Object Destroyed ");
+
+        //change prompt
+        myOpen.nextPrompt();
     }
 
     /// <summary>
@@ -91,7 +99,8 @@ public class KeyBaring : Interactable
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+
+        if (other.CompareTag("Player"))
         {
             base.OnTriggerEnter(other);
             base.playerRef._actionMap.Platforming.InteractionTest.performed += interact => keyGrab();
@@ -101,12 +110,11 @@ public class KeyBaring : Interactable
     void OnTriggerExit(Collider other)
     {
         Debug.Log("Exited Trigger");
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             Debug.Log("Player Exited Trigger");
             base.OnTriggerExit(other);
             base.playerRef._actionMap.Platforming.InteractionTest.performed -= interact => keyGrab();
         }
     }
-
 }

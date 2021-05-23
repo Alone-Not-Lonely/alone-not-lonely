@@ -27,7 +27,7 @@ public class ReturnToKitchen : ContextualUI
     {
         if(other.CompareTag("Player"))
         {
-            base.OnTriggerEnter(other);
+            //base.OnTriggerEnter(other);
             canGoToAttic = true;
             _player._actionMap.Platforming.ReturnToLevel.performed += interact => GoToKitchen();
         }

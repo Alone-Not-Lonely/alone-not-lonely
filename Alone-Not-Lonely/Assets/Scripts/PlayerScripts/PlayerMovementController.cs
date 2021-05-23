@@ -121,8 +121,8 @@ public class PlayerMovementController : MonoBehaviour
         GameObject pointToClimb = new GameObject();
         pointToClimb.transform.position = cCheck.climbablePoint;
         pointToClimb.transform.parent = cCheck.climbableObject.transform;
-        Debug.Log("object height: " + (pointToClimb.transform.position.y - 1.3));
-        Debug.Log("my height: " + transform.position.y);
+        //Debug.Log("object height: " + (pointToClimb.transform.position.y - 1.3));
+        //Debug.Log("my height: " + transform.position.y);
         //check to see if the height of the original object is low enough such that 
         //The player can just hop onto it
         if (pointToClimb.transform.position.y - 1.3 > transform.position.y)
@@ -227,7 +227,7 @@ public class PlayerMovementController : MonoBehaviour
             if(playerAb.holdingObject && 
             Physics.Raycast(transform.position, transform.forward, out holdingObjectCheck, playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance + 1f, ~(1<<13)))
             {
-                Debug.Log("Casting hit at distance " + transform.forward);
+                //Debug.Log("Casting hit at distance " + transform.forward);
                 if(!holdingObjectCheck.collider.isTrigger && !holdingObjectCheck.collider.gameObject.CompareTag("Grabable") && Vector3.Dot(moveDirection, transform.forward) > .5 && playerAb.heldObject.GetComponent<SquashedObject>() == null)
                 {
                     //cant move but CAN rotate
