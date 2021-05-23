@@ -1730,7 +1730,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970336
+  m_Name: pb_Mesh134746
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2023,7 +2023,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970292
+  m_Name: pb_Mesh134702
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2500,7 +2500,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970222
+  m_Name: pb_Mesh134632
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2814,7 +2814,6 @@ GameObject:
   - component: {fileID: 175363570}
   - component: {fileID: 175363569}
   - component: {fileID: 175363573}
-  - component: {fileID: 175363574}
   m_Layer: 13
   m_Name: GrabBox (4)
   m_TagString: Grabable
@@ -2997,26 +2996,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &175363574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 175363567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages:
-  - Press E to Pick Up
-  - Press E to Drop
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 0
-  myPType: 1
-  proController: {fileID: 0}
 --- !u!1 &178907794
 GameObject:
   m_ObjectHideFlags: 0
@@ -3470,6 +3449,7 @@ GameObject:
   - component: {fileID: 188430502}
   - component: {fileID: 188430506}
   - component: {fileID: 188430505}
+  - component: {fileID: 188430504}
   - component: {fileID: 188430503}
   m_Layer: 0
   m_Name: Puzzle Container
@@ -3502,17 +3482,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 188430501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - Press F to Open
-  - Press F to Close
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 1
-  myPType: 0
-  proController: {fileID: 0}
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press F to Open
+  messageSecondary: Press F to take puzzle piece
+--- !u!114 &188430504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188430501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press F to Open
+  messageSecondary: Press F to take puzzle piece
 --- !u!135 &188430505
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4126,7 +4120,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh971008
+  m_Name: pb_Mesh135418
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4446,7 +4440,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970884
+  m_Name: pb_Mesh135294
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4847,18 +4841,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 243229786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e5f907b3b944de47ad04f220db549dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - Door Stuck!
-  - Press E to Unlock Door with Bathroom Key
-  - 
-  maxUsages: 0100000000000000e8030000
-  startPoint: 0
-  endPoint: 1
-  myPType: 4
-  proController: {fileID: 0}
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: The bathroom door is locked.
+  messageSecondary: Maybe the key I found works here?
 --- !u!114 &243229788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5798,7 +5788,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh971758
+  m_Name: pb_Mesh136172
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6146,7 +6136,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh971542
+  m_Name: pb_Mesh135956
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6617,103 +6607,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!1001 &333494033
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 140326503816515357, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_Name
-      value: PlayerCameraRig
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084085611755524124, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084085611755524124, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084085612013747448, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084085612013747448, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1084085612013747448, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.367827
-      objectReference: {fileID: 0}
-    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.34000015
-      objectReference: {fileID: 0}
-    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -35.967113
-      objectReference: {fileID: 0}
-    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6063380298548230421, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6063380298548230421, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6063380298831074801, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6063380298831074801, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6063380298831074801, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
 --- !u!1 &342886332
 GameObject:
   m_ObjectHideFlags: 0
@@ -6816,7 +6709,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970608
+  m_Name: pb_Mesh135018
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7784,6 +7677,7 @@ GameObject:
   - component: {fileID: 423927926}
   - component: {fileID: 423927930}
   - component: {fileID: 423927929}
+  - component: {fileID: 423927928}
   - component: {fileID: 423927927}
   m_Layer: 0
   m_Name: Puzzle Container
@@ -7816,17 +7710,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 423927925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - Press F to Open
-  - Press F to Close
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 1
-  myPType: 0
-  proController: {fileID: 0}
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press F to Open
+  messageSecondary: Press F to take puzzle piece
+--- !u!114 &423927928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423927925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press F to Open
+  messageSecondary: Press F to take puzzle piece
 --- !u!135 &423927929
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7946,7 +7854,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -119.769, y: -30, z: 0}
 --- !u!1 &455658345
 GameObject:
@@ -8820,7 +8728,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &544364527
 GameObject:
@@ -9304,7 +9212,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970114
+  m_Name: pb_Mesh134524
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11638,14 +11546,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d0284ed4ea7924cadcd2be930fc493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - 
-  - 
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 0
-  myPType: 0
-  proController: {fileID: 0}
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press X to return to kitchen
+  messageSecondary: 
   positionToReturnTo: {x: 0, y: 0, z: 0}
   bedroomDoor: 0
 --- !u!4 &778470194 stripped
@@ -11704,7 +11609,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh972276
+  m_Name: pb_Mesh136682
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12575,7 +12480,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970070
+  m_Name: pb_Mesh134480
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12739,7 +12644,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh971148
+  m_Name: pb_Mesh135562
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18221,7 +18126,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970542
+  m_Name: pb_Mesh134952
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19109,7 +19014,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970030
+  m_Name: pb_Mesh134440
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19273,7 +19178,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh971354
+  m_Name: pb_Mesh135768
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19604,16 +19509,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - I'm not supposed to go in there, but maybe I can just pop in and check on Mom
-    and Dad. Now where's the key...
-  - Press E to Open Unlock the Door
-  - 
-  maxUsages: e803000000000000e8030000
-  startPoint: 0
-  endPoint: 0
-  myPType: 4
-  proController: {fileID: 0}
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: The door to my parents bedroom is unlocked
+  messageSecondary: 
 --- !u!95 &1095078879
 Animator:
   serializedVersion: 3
@@ -19671,6 +19571,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5f907b3b944de47ad04f220db549dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: The door to my parents bedroom is locked.
+  messageSecondary: That key should work here!
 --- !u!1 &1109701012
 GameObject:
   m_ObjectHideFlags: 0
@@ -19811,7 +19716,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970656
+  m_Name: pb_Mesh135066
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20462,6 +20367,7 @@ GameObject:
   - component: {fileID: 1139826705}
   - component: {fileID: 1139826709}
   - component: {fileID: 1139826708}
+  - component: {fileID: 1139826707}
   - component: {fileID: 1139826706}
   m_Layer: 0
   m_Name: Puzzle Container
@@ -20494,17 +20400,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1139826704}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - Press F to Open
-  - Press F to Close
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 1
-  myPType: 0
-  proController: {fileID: 0}
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press F to Open
+  messageSecondary: Press F to take puzzle piece
+--- !u!114 &1139826707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139826704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press F to Open
+  messageSecondary: Press F to take puzzle piece
 --- !u!135 &1139826708
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21659,8 +21579,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puzzle Container (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 395647914295386144, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
 --- !u!4 &1231844020 stripped
 Transform:
@@ -21673,7 +21592,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970582
+  m_Name: pb_Mesh134992
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22203,31 +22122,6 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &1295063207 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9117881485475965047, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
-  m_PrefabInstance: {fileID: 1231844019}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1295063208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295063207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages:
-  - Press F to Open
-  - Press F to Close
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 1
-  myPType: 0
-  proController: {fileID: 0}
 --- !u!1 &1302605706
 GameObject:
   m_ObjectHideFlags: 0
@@ -27228,7 +27122,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970324
+  m_Name: pb_Mesh134734
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27508,7 +27402,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh971258
+  m_Name: pb_Mesh135672
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -28543,7 +28437,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970042
+  m_Name: pb_Mesh134452
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -30010,7 +29904,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh971726
+  m_Name: pb_Mesh136140
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -30546,7 +30440,7 @@ Transform:
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1551020198
 GameObject:
@@ -30661,14 +30555,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d0284ed4ea7924cadcd2be930fc493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - 
-  - 
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 0
-  myPType: 0
-  proController: {fileID: 0}
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press X to return to the kitchen
+  messageSecondary: 
   positionToReturnTo: {x: 0, y: 0, z: 0}
   bedroomDoor: 1
 --- !u!95 &1554261345
@@ -37031,7 +36922,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970002
+  m_Name: pb_Mesh134412
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -37638,7 +37529,7 @@ Transform:
   - {fileID: 1701873017}
   - {fileID: 742154489}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1717258835
 Mesh:
@@ -37646,7 +37537,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh969968
+  m_Name: pb_Mesh134378
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -37919,7 +37810,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: master Key
   ID: 0
-  doorCU: {fileID: 1095078878}
 --- !u!135 &1720937680
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -38418,14 +38308,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - 
-  - 
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 0
-  myPType: 0
-  proController: {fileID: 0}
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press F to Open
+  messageSecondary: Press F to take puzzle piece
 --- !u!114 &1759589457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38438,14 +38325,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - 
-  - 
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 0
-  myPType: 0
-  proController: {fileID: 0}
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press F to Open
+  messageSecondary: Press F to take puzzle piece
 --- !u!135 &1759589458
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -38629,15 +38513,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - 'Surprise! Living Room''s Locked. '
-  - Press E to Unlock door
-  - 
-  maxUsages: 0100000001000000e8030000
-  startPoint: 0
-  endPoint: 0
-  myPType: 4
-  proController: {fileID: 0}
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: The door between the living room and bathroom is locked too!
+  messageSecondary: That key should work here!
 --- !u!114 &1766344177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38822,7 +38702,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970636
+  m_Name: pb_Mesh135046
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -39806,7 +39686,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh970158
+  m_Name: pb_Mesh134568
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -40399,7 +40279,7 @@ Transform:
   - {fileID: 1229327535}
   - {fileID: 778470194}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1914431877
 GameObject:
@@ -40730,18 +40610,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1945816679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e5f907b3b944de47ad04f220db549dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - Door Stuck!
-  - Press E to Unlock Door with Bathroom Key
-  - 
-  maxUsages: 0100000000000000e8030000
-  startPoint: 0
-  endPoint: 1
-  myPType: 4
-  proController: {fileID: 0}
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: This door to the bathroom is locked too! Where's that other key?
+  messageSecondary: That key should work here.
 --- !u!114 &1945816681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41599,7 +41475,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: BathroomL Key
   ID: 0
-  doorCU: {fileID: 1945816680}
 --- !u!135 &2011991490
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -41683,7 +41558,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-412856
+  m_Name: pb_Mesh-86562
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -47645,7 +47520,6 @@ GameObject:
   - component: {fileID: 2090565217}
   - component: {fileID: 2090565216}
   - component: {fileID: 2090565220}
-  - component: {fileID: 2090565221}
   m_Layer: 13
   m_Name: GrabBox (3)
   m_TagString: Grabable
@@ -47828,26 +47702,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2090565221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090565214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages:
-  - Press E to Pick Up
-  - Press E to Drop
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 0
-  myPType: 1
-  proController: {fileID: 0}
 --- !u!1 &2102412768
 GameObject:
   m_ObjectHideFlags: 0
@@ -54419,7 +54273,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: BathroomM Key
   ID: 0
-  doorCU: {fileID: 0}
 --- !u!135 &2335933382272240737
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -54457,7 +54310,7 @@ Transform:
   - {fileID: 1095078875}
   - {fileID: 2335933380958868060}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2335933382315785631
 GameObject:
@@ -64924,14 +64777,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - 
-  - 
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 0
-  myPType: 0
-  proController: {fileID: 0}
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press F to Open
+  messageSecondary: Press F to take puzzle piece
 --- !u!33 &2744485501457152691
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -66203,14 +66053,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91cfd9fea92f2948af3e684463a5f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - 
-  - 
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 0
-  myPType: 0
-  proController: {fileID: 0}
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press F to assemble the puzzle
+  messageSecondary: 
   cameraTarget: {fileID: 3323505744887973122}
 --- !u!65 &3323505745205843033
 BoxCollider:
@@ -67207,7 +67054,7 @@ GameObject:
   - component: {fileID: 3798891725305336714}
   - component: {fileID: 3798891725305336822}
   - component: {fileID: 3798891725305336715}
-  - component: {fileID: 3798891725305336818}
+  - component: {fileID: 5714215445325306790}
   m_Layer: 0
   m_Name: Puzzle Container (1)
   m_TagString: Untagged
@@ -67215,26 +67062,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &3798891725305336818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3798891725305336817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages:
-  - Press F to Open
-  - Press F to Close
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 1
-  myPType: 0
-  proController: {fileID: 0}
 --- !u!114 &3798891725305336822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67262,7 +67089,8 @@ GameObject:
   - component: {fileID: 3798891725856065648}
   - component: {fileID: 3798891725856065548}
   - component: {fileID: 3798891725856065649}
-  - component: {fileID: 3798891725856065549}
+  - component: {fileID: 5714215445876621404}
+  - component: {fileID: 5346167494010052735}
   m_Layer: 0
   m_Name: Puzzle Container
   m_TagString: Untagged
@@ -67286,26 +67114,6 @@ MonoBehaviour:
   objectAnimator: {fileID: 0}
   hiddenObj: {fileID: 4516361032090350063, guid: 6f97942fbe4612a4dbdc69a8bd00304e, type: 3}
   ID: 4
---- !u!114 &3798891725856065549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3798891725856065547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages:
-  - Press F to Open
-  - Press F to Close
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 1
-  myPType: 0
-  proController: {fileID: 0}
 --- !u!4 &3798891725856065648
 Transform:
   m_ObjectHideFlags: 0
@@ -71704,7 +71512,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: Bathroom Key
   ID: 0
-  doorCU: {fileID: 243229787}
+--- !u!114 &5346167494010052735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798891725856065547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press F to Open
+  messageSecondary: Press F to take puzzle piece
 --- !u!114 &5346167494029944128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71892,7 +71716,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: living room Key
   ID: 0
-  doorCU: {fileID: 1766344176}
 --- !u!135 &5346167494116909658
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -73114,7 +72937,7 @@ Transform:
   - {fileID: 1138815960}
   - {fileID: 1584418964}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &5601315201460342266
 Transform:
@@ -73172,7 +72995,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5111601877952831247}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 3.42, y: 14.661, z: 12.354}
+  m_LocalPosition: {x: 4.607, y: 14.661, z: 12.354}
   m_LocalScale: {x: 38.666317, y: 12.318136, z: 38.66621}
   m_Children:
   - {fileID: 1838198796}
@@ -73204,7 +73027,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5111601877707940073}
   m_LocalRotation: {x: -0.35355285, y: -0.35355285, z: 0.61237276, w: 0.61237276}
-  m_LocalPosition: {x: 33.06, y: 8.08, z: 37.42}
+  m_LocalPosition: {x: 32.370003, y: 8.17, z: 37}
   m_LocalScale: {x: 38.666317, y: 12.318135, z: 38.66621}
   m_Children:
   - {fileID: 230585996}
@@ -78057,6 +77880,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274800443157331094}
   m_Mesh: {fileID: 3335724914305450694, guid: 279e97965d1bde24e92200e0bcf514fb, type: 3}
+--- !u!114 &5714215445325306790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798891725305336817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press F to Open
+  messageSecondary: Press F to take puzzle piece
+--- !u!114 &5714215445876621404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798891725856065547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press F to Open
+  messageSecondary: Press F to take puzzle piece
 --- !u!114 &5714215446353353910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78069,14 +77926,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b7cde8d06c6d743a6696df714ebe84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messages:
-  - 
-  - 
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 0
-  myPType: 0
-  proController: {fileID: 0}
+  conditionMet: 0
+  contextInitial: {fileID: 0}
+  contextSecondary: {fileID: 0}
+  messageInitial: Press F to Open
+  messageSecondary: Press F to take puzzle piece
 --- !u!33 &5749715508246194473
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -81614,7 +81468,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6092011713174336473}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.0295, z: 0.0008924165}
+  m_LocalPosition: {x: -0, y: 0.02907317, z: 0.0008924165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4075586308643914246}
@@ -81968,7 +81822,6 @@ GameObject:
   - component: {fileID: 8983852301334877245}
   - component: {fileID: 7656318700287606334}
   - component: {fileID: 8983852301334877188}
-  - component: {fileID: 8983852301334877189}
   m_Layer: 13
   m_Name: GrabBox (1)
   m_TagString: Grabable
@@ -82072,26 +81925,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8983852301334877189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8983852301334877187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages:
-  - Press E to Pick Up
-  - Press E to Drop
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 0
-  myPType: 1
-  proController: {fileID: 0}
 --- !u!4 &8983852301334877244
 Transform:
   m_ObjectHideFlags: 0
@@ -82169,7 +82002,6 @@ GameObject:
   - component: {fileID: 8983852301565340860}
   - component: {fileID: 7656318700577228479}
   - component: {fileID: 8983852301565340803}
-  - component: {fileID: 8983852301565340804}
   m_Layer: 13
   m_Name: GrabBox
   m_TagString: Grabable
@@ -82273,26 +82105,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8983852301565340804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8983852301565340802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages:
-  - Press E to Pick Up
-  - Press E to Drop
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 0
-  myPType: 1
-  proController: {fileID: 0}
 --- !u!65 &8983852301565340860
 BoxCollider:
   m_ObjectHideFlags: 0

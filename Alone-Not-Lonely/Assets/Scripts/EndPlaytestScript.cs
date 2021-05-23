@@ -7,15 +7,12 @@ public class EndPlaytestScript : MonoBehaviour
 {
     public Vector3 positionToReturnTo;
     private Player _player;
-    private PromptController pC;
-    public LockedObject bedroomDoor; //Necessary to avoid error
     // Start is called before the first frame update
     void Start()
     {
         _player = Player.instance;
         positionToReturnTo = new Vector3(30,4,-47); 
         _player._actionMap.Platforming.SkipLevel.performed += skip => LoadNextLevel();
-        pC = FindObjectOfType<PromptController>();
     }
 
     /// <summary>
@@ -42,8 +39,6 @@ public class EndPlaytestScript : MonoBehaviour
         newTransform.position = positionToReturnTo;
         newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
         LoadingScreen.instance.LoadScene("GroundFloor", newTransform);
-        pC.clearPrompters();
-        bedroomDoor.removeFromActions();
     }
 
     

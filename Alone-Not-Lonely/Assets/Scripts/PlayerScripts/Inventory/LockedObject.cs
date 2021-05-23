@@ -9,11 +9,9 @@ public class LockedObject : MonoBehaviour
     bool playerNearby = false;
     Animator _animator;
     Player playerRef;
-    private ContextualUI cui;
 
     void Start()
     {
-        cui = GetComponent<ContextualUI>();
         playerRef = Player.instance;
         inventory = playerRef.GetComponentInChildren<PlayerInventory>();
         _animator = GetComponent<Animator>();
@@ -42,7 +40,6 @@ public class LockedObject : MonoBehaviour
     {
         return inventory.checkContents(keyNames);
     }
-
     private void openAction()
     {
         Debug.Log("Open");
@@ -55,11 +52,7 @@ public class LockedObject : MonoBehaviour
         {
             c.enabled = false;
         }
-        cui.nextPrompt();
-        Debug.Log("cui curr index = " + cui.getCurrInd());
-        cui.startPoint = 2;//make sure 'e never says nothin again
-        cui.endPoint = 2;
-        cui.setCID(2);// a bit embarassing, but it'll have to do for now
+        //GetComponent<ContextualUI>().conText.text = "";
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,15 +68,8 @@ public class LockedObject : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            
-            removeFromActions();
+            playerNearby = false;
+            playerRef._actionMap.Platforming.Use.performed -= grab => OpenAttempt();
         }
-    }
-
-    public void removeFromActions()
-    {
-        Debug.Log("Removed Actions");
-        playerNearby = false;
-        playerRef._actionMap.Platforming.Use.performed -= grab => OpenAttempt();
     }
 }

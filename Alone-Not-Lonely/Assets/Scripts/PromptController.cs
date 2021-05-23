@@ -9,19 +9,18 @@ public enum promptType
     gameplayPuzzle,
     prevLevel,
     door,
-    key
 };
 //Singleton in charge of managing the prompting of player.
 //ContextualUI objects make requests to this object
 public class PromptController : MonoBehaviour
 {
+    [SerializeField]
     private List<ContextualUI> prompters;
     private ContextualUI currPrompter, prevPrompter;
     public Text conText;
     private PlayerAbilityController pAbil;
     public Dictionary<promptType, int[]> prompts;
     private bool proJustAdded = false;
-
     private void Start()
     {
         prompters = new List<ContextualUI>();
