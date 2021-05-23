@@ -3698,7 +3698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd6fc0087400104bbca70204301c17e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.09
+      value: 16.31
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd6fc0087400104bbca70204301c17e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3706,7 +3706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd6fc0087400104bbca70204301c17e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -59.34
+      value: -53.13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd6fc0087400104bbca70204301c17e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3837,6 +3837,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &391075374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391075368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Press E to Pick Up
+  - Press E to Put Down
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 1
+  myPType: 1
+  proController: {fileID: 0}
 --- !u!82 &391075376
 AudioSource:
   m_ObjectHideFlags: 0
@@ -22712,6 +22732,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b2c05c39f545e1428b5dc24f1dc690c, type: 3}
+--- !u!1 &3091884875145800067 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5271724955085112165, guid: 0b2c05c39f545e1428b5dc24f1dc690c, type: 3}
+  m_PrefabInstance: {fileID: 3091884875145800066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3091884875145800068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091884875145800067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - Press E to Pick Up
+  - Press E to Put Down
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 1
+  myPType: 1
+  proController: {fileID: 0}
 --- !u!23 &3576702991762400865
 MeshRenderer:
   m_ObjectHideFlags: 0
