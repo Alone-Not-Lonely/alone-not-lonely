@@ -10,8 +10,8 @@ public class Item : MonoBehaviour
     private PlayerInventory inventory;
     bool playerNearby = false;
     Player playerRef;
-    [SerializeField]
-    private ContextualUI doorCU;
+    //[SerializeField]
+    public ContextualUI doorCU;
 
     void Start()
     {

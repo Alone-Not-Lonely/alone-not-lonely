@@ -13,15 +13,16 @@ public class PlayerAbilityController : Grabber
     private BoxCollider collideWithWalls;
     void Start()
     {
-        grabText.gameObject.SetActive(false);
-        releaseText.gameObject.SetActive(false);
+        //grabText.gameObject.SetActive(false);
+        //releaseText.gameObject.SetActive(false);
         playerRef = Player.instance;
         playerRef._actionMap.ViewingObject.Disable();
         playerRef._actionMap.Platforming.Use.performed += grab => PlayerGrab();
     }
-    private void OnEnable() {
+    private void OnEnable()
+    {
         playerRef = Player.instance;
-        if(playerRef != null)
+        if (playerRef != null)
         {
             //playerRef.InstantiateControls();
             //playerRef._actionMap.ViewingObject.Disable();
@@ -41,50 +42,51 @@ public class PlayerAbilityController : Grabber
         {
             if (currentGrab != null && !base.holdingObject)
             {
-                if(Vector3.Distance(this.transform.position, currentGrab.transform.position) > 5) //please god no more teleporting
+                if (Vector3.Distance(this.transform.position, currentGrab.transform.position) > 5) //please god no more teleporting
                 {
                     return;
                 }
-                grabText.gameObject.SetActive(false);
-                releaseText.gameObject.SetActive(true);
+                //grabText.gameObject.SetActive(false);
+                //releaseText.gameObject.SetActive(true);
                 GrabAttempt(currentGrab, this.gameObject);
+                if (currentGrab.GetComponent<ContextualUI>() != null)
+                {
+                    currentGrab.GetComponent<ContextualUI>().nextPrompt();
+                }
+
             }
             else if (base.holdingObject)//current grab redundant but colliders are wierd...
             {
-                grabText.gameObject.SetActive(false);
-                releaseText.gameObject.SetActive(false);
+                if (currentGrab.GetComponent<ContextualUI>() != null)
+                {
+                    currentGrab.GetComponent<ContextualUI>().nextPrompt();
+                }
                 ReleaseObject();
             }
         }
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         FixedUpdate(this.transform, this.transform.forward);
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.CompareTag("Grabable"))
+        if (collision.gameObject.CompareTag("Grabable"))
         {
-            if (!base.holdingObject)
-            {
-                grabText.gameObject.SetActive(true);
-                releaseText.gameObject.SetActive(false);
-            }
             currentGrab = collision.gameObject;
         }
     }
 
     private void OnTriggerExit(Collider collision)
     {
-        if(!base.holdingObject && collision.gameObject.CompareTag("Grabable"))
+        if (!base.holdingObject && collision.gameObject.CompareTag("Grabable"))
         {
             if (currentGrab == collision.gameObject)
             {
                 currentGrab = null;
             }
-            grabText.gameObject.SetActive(false);
-            releaseText.gameObject.SetActive(false);
         }
     }
 }

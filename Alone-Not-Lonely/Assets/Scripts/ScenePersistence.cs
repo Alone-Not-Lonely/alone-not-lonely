@@ -8,7 +8,7 @@ public class ScenePersistence : MonoBehaviour
     public static ScenePersistence instance;
     private void Awake() {
         ScenePersistence[] objs = (ScenePersistence[])FindObjectsOfType<ScenePersistence>();
-        Debug.Log(this.name + " " + objs.Length);
+        //Debug.Log(this.name + " " + objs.Length);
 
         if (objs.Length > 1)
         {
@@ -41,13 +41,13 @@ public class ScenePersistence : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Scene Loaded: " + scene.name);
+        //Debug.Log("Scene Loaded: " + scene.name);
         if(scene.name == "MainMenu" || scene.name == "IntroCutscene" || scene.name == "Credits" || scene.name == "Controls" || scene.name == "EndPlaytest")
         {
             Destroy(this.gameObject);
         }
         SceneManager.SetActiveScene(scene);
-        Debug.Log("Active Scene : " + SceneManager.GetActiveScene().name);
+        //Debug.Log("Active Scene : " + SceneManager.GetActiveScene().name);
     }
 
     private void OnDisable(){

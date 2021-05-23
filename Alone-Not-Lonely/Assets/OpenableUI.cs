@@ -10,27 +10,27 @@ public class OpenableUI : ContextualUI
     {
         base.Start();
         openable = GetComponent<KeyBaring>();
-        contextInitial.text = "";
-        contextSecondary.text = "";
+        //contextInitial.text = "";
+        //contextSecondary.text = "";
     }
 
     void OnEnable() {
-        base.OnEnable();
+        //base.OnEnable();
     }
 
     void OnDisable()
     {
-        base.OnDisable();
+        //base.OnDisable();
     }    // Update is called once per frame
     void Update()
     {
         if(openable.open == true)
         {
-            ChangeToContextSecondary();
+            //ChangeToContextSecondary();
         }
         else
         {
-            ChangeToContextInit();
+//ChangeToContextInit();
         }
     }
 

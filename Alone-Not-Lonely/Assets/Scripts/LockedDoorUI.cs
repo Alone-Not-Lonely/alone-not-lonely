@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(LockedObject))]
 public class LockedDoorUI : ContextualUI
 {
+    /*
     private LockedObject doorScript;
 
     void Start() {
@@ -30,4 +31,5 @@ public class LockedDoorUI : ContextualUI
     void OnEnable() {
         base.OnEnable();
     }
+    */
 }

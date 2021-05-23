@@ -44,10 +44,10 @@ public class PlayerInventory : MonoBehaviour
         Debug.Log(puzzlePieceHolders.Length + " piece holders");
         foreach(KeyBaring p in puzzlePieceHolders)
         {
-            Debug.Log("ID: " + p.ID);
+            //Debug.Log("ID: " + p.ID);
             if(puzzlePieces.Contains(p.ID))
             {
-                Debug.Log("Removed for duplicate");
+                //Debug.Log("Removed for duplicate");
                 p.gameObject.SetActive(false);
             }
         }

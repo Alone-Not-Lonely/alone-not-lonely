@@ -93,7 +93,7 @@ public class PromptController : MonoBehaviour
         {
             updatePrompt(currPrompter);
         }
-        else if(currPrompter == null)
+        else if (currPrompter == null)
         {
             //Debug.Log("Clearing Text");
             conText.text = "";
@@ -107,6 +107,7 @@ public class PromptController : MonoBehaviour
         if (currPrompter == caller)
         {
             conText.text = currPrompter.getMessage();
+            Debug.Log(conText.text);
         }
     }
 
@@ -124,7 +125,7 @@ public class PromptController : MonoBehaviour
     //recieves a variable number of prompters and returns the one that is nearest the player
     //TODO: Check if can even prompt anymore
     public ContextualUI pickPrompter()
-    { 
+    {
         float maxSim = -1;
         float tempSim;
         ContextualUI tempCon = null;

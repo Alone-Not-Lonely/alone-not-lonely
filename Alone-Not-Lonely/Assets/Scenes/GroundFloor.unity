@@ -3010,12 +3010,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Press E to Pick Up
-  - Press E to Drop
+  - 
+  - 
   maxUsages: 0000000000000000
   startPoint: 0
   endPoint: 0
-  myPType: 1
+  myPType: 0
   proController: {fileID: 0}
 --- !u!1 &178907794
 GameObject:
@@ -3506,11 +3506,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Press F to Open
-  - Press F to Close
+  - 
+  - 
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 1
+  endPoint: 0
   myPType: 0
   proController: {fileID: 0}
 --- !u!135 &188430505
@@ -4851,13 +4851,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Door Stuck!
-  - Press E to Unlock Door with Bathroom Key
   - 
-  maxUsages: 0100000000000000e8030000
+  - 
+  maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 1
-  myPType: 4
+  endPoint: 0
+  myPType: 0
   proController: {fileID: 0}
 --- !u!114 &243229788
 MonoBehaviour:
@@ -6628,6 +6627,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCameraRig
       objectReference: {fileID: 0}
+    - target: {fileID: 714372662858186062, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 714372662858186062, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 714372663112716714, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 714372663112716714, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 714372663112716714, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1084085611755524124, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -7820,11 +7839,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Press F to Open
-  - Press F to Close
+  - 
+  - 
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 1
+  endPoint: 0
   myPType: 0
   proController: {fileID: 0}
 --- !u!135 &423927929
@@ -19605,14 +19624,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - I'm not supposed to go in there, but maybe I can just pop in and check on Mom
-    and Dad. Now where's the key...
-  - Press E to Open Unlock the Door
   - 
-  maxUsages: e803000000000000e8030000
+  - 
+  maxUsages: 0000000000000000
   startPoint: 0
   endPoint: 0
-  myPType: 4
+  myPType: 0
   proController: {fileID: 0}
 --- !u!95 &1095078879
 Animator:
@@ -19671,6 +19688,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5f907b3b944de47ad04f220db549dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messages:
+  - 
+  - 
+  maxUsages: 0000000000000000
+  startPoint: 0
+  endPoint: 0
+  myPType: 0
+  proController: {fileID: 0}
 --- !u!1 &1109701012
 GameObject:
   m_ObjectHideFlags: 0
@@ -20498,11 +20523,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Press F to Open
-  - Press F to Close
+  - 
+  - 
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 1
+  endPoint: 0
   myPType: 0
   proController: {fileID: 0}
 --- !u!135 &1139826708
@@ -22221,11 +22246,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Press F to Open
-  - Press F to Close
+  - 
+  - 
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 1
+  endPoint: 0
   myPType: 0
   proController: {fileID: 0}
 --- !u!1 &1302605706
@@ -37919,7 +37944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: master Key
   ID: 0
-  doorCU: {fileID: 1095078878}
+  doorCU: {fileID: 0}
 --- !u!135 &1720937680
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -38630,13 +38655,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - 'Surprise! Living Room''s Locked. '
-  - Press E to Unlock door
   - 
-  maxUsages: 0100000001000000e8030000
+  - 
+  maxUsages: 0000000000000000
   startPoint: 0
   endPoint: 0
-  myPType: 4
+  myPType: 0
   proController: {fileID: 0}
 --- !u!114 &1766344177
 MonoBehaviour:
@@ -40734,13 +40758,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Door Stuck!
-  - Press E to Unlock Door with Bathroom Key
   - 
-  maxUsages: 0100000000000000e8030000
+  - 
+  maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 1
-  myPType: 4
+  endPoint: 0
+  myPType: 0
   proController: {fileID: 0}
 --- !u!114 &1945816681
 MonoBehaviour:
@@ -41599,7 +41622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: BathroomL Key
   ID: 0
-  doorCU: {fileID: 1945816680}
+  doorCU: {fileID: 0}
 --- !u!135 &2011991490
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -47841,12 +47864,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Press E to Pick Up
-  - Press E to Drop
+  - 
+  - 
   maxUsages: 0000000000000000
   startPoint: 0
   endPoint: 0
-  myPType: 1
+  myPType: 0
   proController: {fileID: 0}
 --- !u!1 &2102412768
 GameObject:
@@ -67228,11 +67251,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Press F to Open
-  - Press F to Close
+  - 
+  - 
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 1
+  endPoint: 0
   myPType: 0
   proController: {fileID: 0}
 --- !u!114 &3798891725305336822
@@ -67299,11 +67322,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Press F to Open
-  - Press F to Close
+  - 
+  - 
   maxUsages: 0000000000000000
   startPoint: 0
-  endPoint: 1
+  endPoint: 0
   myPType: 0
   proController: {fileID: 0}
 --- !u!4 &3798891725856065648
@@ -71704,7 +71727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: Bathroom Key
   ID: 0
-  doorCU: {fileID: 243229787}
+  doorCU: {fileID: 0}
 --- !u!114 &5346167494029944128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71892,7 +71915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: living room Key
   ID: 0
-  doorCU: {fileID: 1766344176}
+  doorCU: {fileID: 0}
 --- !u!135 &5346167494116909658
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -78712,6 +78735,7 @@ MonoBehaviour:
   movementLastFrame: {x: 0, y: 0, z: 0}
   activePortal1: {fileID: 0}
   activePortal2: {fileID: 0}
+  portalSound: {fileID: 0}
 --- !u!65 &6297709705480372038
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78855,6 +78879,7 @@ MonoBehaviour:
   movementLastFrame: {x: 0, y: 0, z: 0}
   activePortal1: {fileID: 0}
   activePortal2: {fileID: 0}
+  portalSound: {fileID: 0}
 --- !u!1 &6297709705749710520
 GameObject:
   m_ObjectHideFlags: 0
@@ -81129,6 +81154,8 @@ MonoBehaviour:
   deltaPos: 1
   mostRecentSquash: {fileID: 0}
   timeToUnSquash: 30
+  colorToFlash: {r: 0, g: 0, b: 0, a: 0}
+  currentlyFlashColor: 0
 --- !u!1 &7677639870995855406
 GameObject:
   m_ObjectHideFlags: 0
@@ -82085,12 +82112,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Press E to Pick Up
-  - Press E to Drop
+  - 
+  - 
   maxUsages: 0000000000000000
   startPoint: 0
   endPoint: 0
-  myPType: 1
+  myPType: 0
   proController: {fileID: 0}
 --- !u!4 &8983852301334877244
 Transform:
@@ -82286,12 +82313,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Press E to Pick Up
-  - Press E to Drop
+  - 
+  - 
   maxUsages: 0000000000000000
   startPoint: 0
   endPoint: 0
-  myPType: 1
+  myPType: 0
   proController: {fileID: 0}
 --- !u!65 &8983852301565340860
 BoxCollider:

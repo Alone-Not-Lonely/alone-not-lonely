@@ -34,7 +34,7 @@ public class ContextualUI : MonoBehaviour
         //loop to correct point
         if (currInd > endPoint)
         {
-            Debug.Log("going back to start point");
+            //Debug.Log("going back to start point");
             currInd = startPoint;
         }
         proController.updatePrompt(this);//underthought, could cause problems later
@@ -66,7 +66,7 @@ public class ContextualUI : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             proController.addToPrompters(this);
-            //Debug.Log("Staying in Collider");
+           Debug.Log("Staying in Collider");
         }
     }
 
@@ -75,7 +75,7 @@ public class ContextualUI : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             proController.removeFromPrompters(this);
-            //Debug.Log("Leaving Collider");
+            Debug.Log("Leaving Collider");
         }
     }
 }
