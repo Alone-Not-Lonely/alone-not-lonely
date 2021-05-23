@@ -31,7 +31,7 @@ public class ElevatorMonsterController : Grabber
 
     void FixedUpdate()
     {
-        if(!waiting && holdingObject && Vector3.Distance(heldObject.transform.position, targetPoint) > .1f)
+        if(holdingObject && Vector3.Distance(heldObject.transform.position, targetPoint) > .1f)
         {
             heldObject.GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(heldObject.transform.position, targetPoint, Time.fixedDeltaTime * speed));
         }

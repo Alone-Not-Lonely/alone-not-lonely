@@ -17,10 +17,6 @@ public class SmashMonsterController : MonoBehaviour
     public float timeToUnSquash = 5f;
     private float currentSquashTime = 0f;
 
-    public Color colorToFlash;
-    public bool currentlyFlashColor = false;
-    private Color usualColor;
-
     private void Start() {
         groundLocation = this.transform.position;
         groundLocation -= new Vector3(0, liftHeight, 0);
@@ -51,25 +47,9 @@ public class SmashMonsterController : MonoBehaviour
             unsquashedObj.GetComponent<BoxSquashBehavior>().squashed = false;
             unsquashedObj.GetComponent<BoxSquashBehavior>().squashedVariant = mostRecentSquash.GetComponent<BoxSquashBehavior>().squashedVariant;
             unsquashedObj.GetComponent<BoxSquashBehavior>().regularVariant = mostRecentSquash.GetComponent<BoxSquashBehavior>().regularVariant;
-            unsquashedObj.GetComponentInChildren<MeshRenderer>().material.SetColor("Color_C8F70FC4", usualColor);
             Destroy(mostRecentSquash);
             mostRecentSquash = null;
             currentSquashTime = 0f;
-        }
-
-        //applying effects & feedback!
-        if(mostRecentSquash != null && currentSquashTime >= (2*timeToUnSquash)/4)
-        {
-            if(!currentlyFlashColor && Mathf.Round(Mathf.Sin(Time.time * (currentSquashTime/5))) == 0)
-            {
-                mostRecentSquash.GetComponentInChildren<MeshRenderer>().material.SetColor("Color_C8F70FC4", colorToFlash);
-                currentlyFlashColor = true;
-            }
-            else if(currentlyFlashColor && Mathf.Round(Mathf.Sin(Time.time * (currentSquashTime/5))) == 1 || Mathf.Round(Mathf.Sin(Time.time * (currentSquashTime/5))) == -1)
-            {
-                mostRecentSquash.GetComponentInChildren<MeshRenderer>().material.SetColor("Color_C8F70FC4", usualColor);
-                currentlyFlashColor = false;
-            }
         }
     }
 
@@ -92,14 +72,13 @@ public class SmashMonsterController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if(smashing && other.gameObject.CompareTag("Grabable") && !other.isTrigger && mostRecentSquash == null)
+        if(smashing && other.gameObject.CompareTag("Grabable") && !other.isTrigger)
         {
             other.gameObject.GetComponentInParent<BoxSquashBehavior>().Squash();
             mostRecentSquash = Instantiate(other.gameObject.GetComponentInParent<BoxSquashBehavior>().squashedVariant, other.gameObject.transform.position, Quaternion.identity);
             mostRecentSquash.GetComponent<BoxSquashBehavior>().squashed = true;
             mostRecentSquash.GetComponent<BoxSquashBehavior>().squashedVariant = other.gameObject.GetComponentInParent<BoxSquashBehavior>().squashedVariant;
             mostRecentSquash.GetComponent<BoxSquashBehavior>().regularVariant = other.gameObject.GetComponentInParent<BoxSquashBehavior>().regularVariant;
-            usualColor = mostRecentSquash.GetComponentInChildren<MeshRenderer>().material.GetColor("Color_C8F70FC4");
             Destroy(other.gameObject);
         }
     }
