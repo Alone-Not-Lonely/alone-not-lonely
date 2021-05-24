@@ -29,7 +29,7 @@ public class ReturnToKitchen : ContextualUI
         {
             //base.OnTriggerEnter(other);
             canGoToAttic = true;
-            _player._actionMap.Platforming.ReturnToLevel.performed += interact => GoToKitchen();
+            _player._actionMap.Platforming.Use.performed += interact => GoToKitchen();
         }
     }
 
@@ -39,7 +39,7 @@ public class ReturnToKitchen : ContextualUI
         {
             base.OnTriggerExit(other);
             canGoToAttic = false;
-            _player._actionMap.Platforming.ReturnToLevel.performed -= interact => GoToKitchen();
+            _player._actionMap.Platforming.Use.performed -= interact => GoToKitchen();
         }
     }
 
@@ -52,7 +52,7 @@ public class ReturnToKitchen : ContextualUI
             //_player.gameObject.SetActive(true);
             //SceneManager.LoadScene("Kitchen");
             canGoToAttic = false;
-            _player._actionMap.Platforming.ReturnToLevel.performed -= interact => GoToKitchen();
+            _player._actionMap.Platforming.Use.performed -= interact => GoToKitchen();
             Transform newTransform = _player.transform;
             if(bedroomDoor)
                 newTransform.position = positionToReturnTo;

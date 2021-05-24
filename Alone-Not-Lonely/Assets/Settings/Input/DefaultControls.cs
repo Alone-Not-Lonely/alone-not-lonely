@@ -389,7 +389,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1415f803-9e0a-4b29-8cea-a26ab7ac6eef"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
@@ -457,7 +457,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""74abc05b-4fbc-4c88-8b20-af16cabc0564"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
