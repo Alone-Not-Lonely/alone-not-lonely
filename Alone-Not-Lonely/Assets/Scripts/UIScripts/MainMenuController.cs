@@ -7,16 +7,38 @@ public class MainMenuController : MonoBehaviour
 {
     public string SceneName;
     public GameObject MenuMusic;
+    AudioSource sfx;
+    public AudioClip[] clips = new AudioClip[2];
+
+    private void Awake() {
+        AudioSource[] objs = FindObjectsOfType<AudioSource>();
+        sfx = GetComponent<AudioSource>();
+        if(objs.Length <= 2)
+        {
+            //first time in the menu
+            sfx.PlayOneShot(clips[0]);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        MenuMusic = FindObjectOfType<AudioSource>().gameObject;
+        AudioSource[] objs = FindObjectsOfType<AudioSource>();
+        foreach(AudioSource a in objs)
+        {
+            if(a.gameObject.CompareTag("MenuMusic"))
+            {
+                MenuMusic = a.gameObject;
+            }
+        }
+        Debug.Log(MenuMusic);
+        //MenuMusic = FindObjectOfType<AudioSource>().gameObject;
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator PlaySound(string name)
     {
-        
+        sfx.PlayOneShot(clips[1]);
+        yield return new WaitWhile (()=> sfx.isPlaying);
+        SceneManager.LoadScene(name);
     }
 
     public void LoadGame(string scenenamepass)
@@ -24,6 +46,7 @@ public class MainMenuController : MonoBehaviour
         {
             Destroy(MenuMusic);
         }
+        //StartCoroutine(PlaySound(scenenamepass));
         SceneManager.LoadScene(scenenamepass);
     }
 
@@ -31,9 +54,9 @@ public class MainMenuController : MonoBehaviour
     {
         if(SceneName == "IntroCutscene")
         {
-            Destroy(MenuMusic);
+            DestroyImmediate(MenuMusic);
         }
-        SceneManager.LoadScene(SceneName);
+        StartCoroutine(PlaySound(SceneName));
     }
 
     public void QuitGame()

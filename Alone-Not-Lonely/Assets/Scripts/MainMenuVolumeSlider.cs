@@ -12,7 +12,9 @@ public class MainMenuVolumeSlider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mixer.SetFloat("Volume", Mathf.Log10(volumeSlider.value) * 20);
+        float volumeOut = .5f;
+        mixer.GetFloat("Volume", out volumeOut);
+        volumeSlider.value = Mathf.Pow(10, volumeOut/20);
     }
 
     public void OnSliderValueChanged(float value)
