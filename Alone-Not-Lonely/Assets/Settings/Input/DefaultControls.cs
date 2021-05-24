@@ -422,7 +422,7 @@ public class @DefaultControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b834f6f7-48c9-41f5-a7d3-df485d904282"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
