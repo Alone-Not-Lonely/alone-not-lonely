@@ -2833,7 +2833,7 @@ GameObject:
   - component: {fileID: 157556997}
   m_Layer: 13
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Grabable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8412,6 +8412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelParent: {fileID: 1912892150}
+  dissolveStep: 0.01
 --- !u!135 &455845860
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8626,7 +8627,7 @@ GameObject:
   - component: {fileID: 506819785}
   m_Layer: 13
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Grabable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55013,6 +55014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelParent: {fileID: 5346167495178211331}
+  dissolveStep: 0.01
 --- !u!65 &1379095471
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76772,7 +76774,7 @@ GameObject:
   - component: {fileID: 2204613702965863745}
   m_Layer: 13
   m_Name: kitchen_chair (2)
-  m_TagString: PhysicalGrabable
+  m_TagString: Grabable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80043,6 +80045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelParent: {fileID: 2335933382315785631}
+  dissolveStep: 0.01
 --- !u!95 &2335933381225919260
 Animator:
   serializedVersion: 3
@@ -82804,7 +82807,7 @@ GameObject:
   - component: {fileID: 2335933382534721286}
   m_Layer: 13
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Grabable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92830,7 +92833,7 @@ GameObject:
   - component: {fileID: 2335933382272240737}
   - component: {fileID: 2335933382272240736}
   m_Layer: 0
-  m_Name: Bathroom Key
+  m_Name: BathroomM Key
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -96040,8 +96043,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30.00001, y: 20.009768, z: 0.20000005}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 20.14831, y: 15.008154, z: 0.20000005}
+  m_Center: {x: 0.19844426, y: 0.3799581, z: -0.000014789836}
 --- !u!95 &4541279180379043739
 Animator:
   serializedVersion: 3
@@ -108834,7 +108837,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7677639870995855406}
   m_LocalRotation: {x: -0, y: -0.70413405, z: -0, w: -0.71006703}
-  m_LocalPosition: {x: 7.6, y: 14.03, z: -21.29}
+  m_LocalPosition: {x: 7.6, y: 12.63, z: -21.29}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 4524935472231594526}
@@ -108888,7 +108891,7 @@ MonoBehaviour:
   deltaPos: 1
   mostRecentSquash: {fileID: 0}
   timeToUnSquash: 30
-  colorToFlash: {r: 0, g: 0, b: 0, a: 0}
+  colorToFlash: {r: 0.9720186, g: 0.3726415, b: 1, a: 0}
   currentlyFlashColor: 0
 --- !u!1 &7677639870995855406
 GameObject:
@@ -110208,7 +110211,7 @@ GameObject:
   - component: {fileID: 8983852301646449489}
   m_Layer: 13
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Grabable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110304,7 +110307,7 @@ GameObject:
   - component: {fileID: 8983852301893694416}
   m_Layer: 13
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Grabable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

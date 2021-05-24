@@ -24,7 +24,7 @@ public class AtticLadderController : MonoBehaviour
         canUseLadder = false;
 
         //win = GetComponent<WinCondition>();
-        _player = FindObjectOfType<Player>();
+        _player = Player.instance;
         //closedLadderAnimator.SetFloat("anim_speed", state);
         _player._actionMap.Platforming.SkipLevel.performed += skip => SkipLevel();
         gOPU = FindObjectOfType<PromptController>();
