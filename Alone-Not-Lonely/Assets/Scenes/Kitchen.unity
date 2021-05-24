@@ -2376,6 +2376,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 0.009999997, z: 0.01}
   m_Center: {x: 0, y: 6.984919e-10, z: 0}
+--- !u!114 &188824329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188824327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4228c8a88065ce84f8cb569ab65c7511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &188824330
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188824327}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4f8a368f10f480b4f8f8cb624eaeb3bd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!135 &188824331
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188824327}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.015663745
+  m_Center: {x: 0, y: 0, z: -0.0005268774}
 --- !u!1001 &212657395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3360,6 +3404,10 @@ PrefabInstance:
       propertyPath: closeText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9117881485475965040, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
+      propertyPath: hiddenObj
+      value: 
+      objectReference: {fileID: 621447275645221578, guid: 141c035846a6cb24eb75eaaaa28e24db, type: 3}
     - target: {fileID: 9117881485475965047, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
       propertyPath: m_Name
       value: Puzzle Container (1)
@@ -3378,26 +3426,6 @@ GameObject:
   m_PrefabInstance: {fileID: 301316799}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &301316802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301316801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 192be6ddd774ce241866e38821bbf21a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages:
-  - Press F to Open
-  - Press F to Close
-  maxUsages: 0000000000000000
-  startPoint: 0
-  endPoint: 0
-  myPType: 0
-  proController: {fileID: 0}
---- !u!114 &301316803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10607,6 +10635,10 @@ PrefabInstance:
       propertyPath: closeText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9117881485475965040, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
+      propertyPath: hiddenObj
+      value: 
+      objectReference: {fileID: 1178396212947591404, guid: e255a7b87b624264f94376fd42cef3db, type: 3}
     - target: {fileID: 9117881485475965047, guid: 87997829a0699bf4a9f46e28824d08ec, type: 3}
       propertyPath: m_Name
       value: Puzzle Container (2)
