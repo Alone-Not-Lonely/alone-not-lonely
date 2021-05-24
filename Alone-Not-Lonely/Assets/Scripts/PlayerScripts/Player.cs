@@ -70,12 +70,12 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag("Deadly"))
         {
-            this.gameObject.SetActive(false);
-            transform.position = spawnPosition;
-            transform.rotation = spawnRotation;
-            Camera.main.gameObject.transform.position = camSpawnPosition;
-            Camera.main.gameObject.transform.rotation = camSpawnRotation;
-            this.gameObject.SetActive(true);
+            //this.gameObject.SetActive(false);
+            //transform.position = spawnPosition;
+            //transform.rotation = spawnRotation;
+            //Camera.main.gameObject.transform.position = camSpawnPosition;
+            //Camera.main.gameObject.transform.rotation = camSpawnRotation;
+            //this.gameObject.SetActive(true);
         }
         else if(other.CompareTag("SetSpawn"))
         {
