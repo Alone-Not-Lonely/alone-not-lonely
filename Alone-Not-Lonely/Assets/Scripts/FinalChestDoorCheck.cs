@@ -70,7 +70,7 @@ public class FinalChestDoorCheck : MonoBehaviour
         Debug.DrawRay(rightRay.origin, rightRay.direction * rayLength, Color.red);
         RaycastHit rightOut;
 
-        if (!Physics.Raycast(rightRay, out rightOut, rayLength))
+        if (!Physics.Raycast(rightRay, out rightOut, rayLength, ~LayerMask.GetMask("Ignore Raycast")))  
         {
             return false;
         }

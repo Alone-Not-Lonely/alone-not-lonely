@@ -32381,6 +32381,65 @@ Transform:
   m_Father: {fileID: 1297049099}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 43.73, z: 0}
+--- !u!1 &544530351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 544530354}
+  - component: {fileID: 544530353}
+  - component: {fileID: 544530352}
+  m_Layer: 2
+  m_Name: TriggerMonsterDissolve
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &544530352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544530351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57d90ccf596cce43a624f47fc4a8f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelParent: {fileID: 2128243283}
+  dissolveStep: 0.01
+--- !u!65 &544530353
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544530351}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &544530354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544530351}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 25.27, y: -1.05, z: -93.48}
+  m_LocalScale: {x: 8.4399, y: 1, z: 8.675}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &558557363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39377,7 +39436,7 @@ AudioSource:
   m_GameObject: {fileID: 1093435679}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 25b1dc95874e11c4f81597dbc75766c1, type: 2}
   m_audioClip: {fileID: 8300000, guid: 6525917ccac975240b8cd460f701a06d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -46583,7 +46642,7 @@ AudioSource:
   m_GameObject: {fileID: 1588469115}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 25b1dc95874e11c4f81597dbc75766c1, type: 2}
   m_audioClip: {fileID: 8300000, guid: 6525917ccac975240b8cd460f701a06d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -47187,7 +47246,7 @@ AudioSource:
   m_GameObject: {fileID: 1609293293}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 25b1dc95874e11c4f81597dbc75766c1, type: 2}
   m_audioClip: {fileID: 8300000, guid: 6525917ccac975240b8cd460f701a06d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -47734,7 +47793,7 @@ AudioSource:
   m_GameObject: {fileID: 1648415987}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 25b1dc95874e11c4f81597dbc75766c1, type: 2}
   m_audioClip: {fileID: 8300000, guid: 6525917ccac975240b8cd460f701a06d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -49150,7 +49209,7 @@ AudioSource:
   m_GameObject: {fileID: 1685025672}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 25b1dc95874e11c4f81597dbc75766c1, type: 2}
   m_audioClip: {fileID: 8300000, guid: 6525917ccac975240b8cd460f701a06d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -70347,7 +70406,6 @@ GameObject:
   - component: {fileID: 7902776084346970996}
   - component: {fileID: 7902776084346971004}
   - component: {fileID: 7902776084346971003}
-  - component: {fileID: 7902776084346971005}
   m_Layer: 0
   m_Name: LadderClooge
   m_TagString: Finish
@@ -70389,20 +70447,6 @@ MonoBehaviour:
   endPoint: 1
   myPType: 2
   proController: {fileID: 0}
---- !u!114 &7902776084346971005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7902776084346971002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b57d90ccf596cce43a624f47fc4a8f66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelParent: {fileID: 2128243283}
-  dissolveStep: 0.01
 --- !u!95 &7902776084461320996
 Animator:
   serializedVersion: 3
