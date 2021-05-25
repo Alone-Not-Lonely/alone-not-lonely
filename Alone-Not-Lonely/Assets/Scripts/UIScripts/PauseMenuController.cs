@@ -131,8 +131,6 @@ public class PauseMenuController : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         Time.timeScale = 1;
         gamePaused = false;
         foreach (Transform child in this.transform)
@@ -140,7 +138,12 @@ public class PauseMenuController : MonoBehaviour
             child.gameObject.SetActive(false);
         }
         //SceneManager.LoadScene("MainMenu");
+        Unpause();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         LoadingScreen.instance.LoadScene("MainMenu", playerRef.transform);
+        Debug.Log(Time.timeScale + " time speed");
+        Debug.Log(Cursor.lockState + " lockstate");
         //Destroy(Player.instance.transform.parent.gameObject);
     }
 

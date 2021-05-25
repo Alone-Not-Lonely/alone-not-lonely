@@ -3401,6 +3401,50 @@ MonoBehaviour:
   endPoint: 0
   myPType: 0
   proController: {fileID: 0}
+--- !u!1 &339226899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 339226901}
+  - component: {fileID: 339226900}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &339226900
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339226899}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &339226901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339226899}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.3, y: 0, z: -89.4}
+  m_LocalScale: {x: 106.06256, y: 1, z: 35.424}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &378379517
 Mesh:
   m_ObjectHideFlags: 0
@@ -4996,6 +5040,10 @@ PrefabInstance:
       propertyPath: loopPoint
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8579096246017061572, guid: 5f69e2d087608c642af463f8c688f1d0, type: 3}
+      propertyPath: portalSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ee61ce73fa85d97438c40e16d21e9a64, type: 3}
     - target: {fileID: 8579096246017061572, guid: 5f69e2d087608c642af463f8c688f1d0, type: 3}
       propertyPath: holdDistance
       value: 2
