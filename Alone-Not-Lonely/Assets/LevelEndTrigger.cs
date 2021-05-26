@@ -96,12 +96,14 @@ public class LevelEndTrigger : MonoBehaviour
             thisSprite.material.SetFloat("_Dissolve", thisSprite.material.GetFloat("_Dissolve") - dissolveStep);
             yield return null;
         }
-        if(thisSprite.gameObject.transform.parent.gameObject.GetComponent<Billboard>() == null)
+        if(thisSprite.gameObject.transform.parent.gameObject.GetComponent<RangedAudioController>() != null)
         {
-            thisSprite.gameObject.SetActive(false);
+            //thisSprite.gameObject.SetActive(false);
+            thisSprite.gameObject.transform.parent.gameObject.SetActive(false);
         }
         else
-            thisSprite.gameObject.transform.parent.gameObject.SetActive(false);
+            //thisSprite.gameObject.transform.parent.gameObject.SetActive(false);
+            thisSprite.gameObject.SetActive(false);
         yield return null;
     }
 }
