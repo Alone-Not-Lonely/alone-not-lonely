@@ -36,6 +36,10 @@ public class LoadingScreen : MonoBehaviour
             _player.transform.rotation = playerSpawn.rotation;
             _player.gameObject.SetActive(true);
         }
+        else if(sceneName == "MainMenu")
+        {
+            
+        }
         StartCoroutine(StartLoad(sceneName, playerSpawn));
     }
 
@@ -49,9 +53,16 @@ public class LoadingScreen : MonoBehaviour
         {
             yield return null;
         }
-
-        yield return StartCoroutine(FadeLoadingScreen(0, 1, playerSpawn));
-        loadingAnim.enabled = false;
+        if(sceneToLoad == "MainMenu")
+        {
+            DestroyImmediate(_player.transform.parent.gameObject);
+            yield return null;
+        }
+        else
+        {
+            yield return StartCoroutine(FadeLoadingScreen(0, 1, playerSpawn));
+            loadingAnim.enabled = false;
+        }
     }
 
     IEnumerator FadeLoadingScreen(float targetValue, float duration, Transform playerSpawn)

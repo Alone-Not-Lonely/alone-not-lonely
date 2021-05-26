@@ -141,10 +141,11 @@ public class PauseMenuController : MonoBehaviour
         Unpause();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        LoadingScreen.instance.LoadScene("MainMenu", playerRef.transform);
+        //LoadingScreen.instance.LoadScene("MainMenu", playerRef.transform);
+        SceneManager.LoadScene("MainMenu");
         Debug.Log(Time.timeScale + " time speed");
         Debug.Log(Cursor.lockState + " lockstate");
-        //Destroy(Player.instance.transform.parent.gameObject);
+        Destroy(Player.instance.transform.parent.gameObject);
     }
 
     public void ExitGame()
