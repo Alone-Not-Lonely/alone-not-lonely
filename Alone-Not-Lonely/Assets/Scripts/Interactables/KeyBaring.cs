@@ -9,8 +9,8 @@ public class KeyBaring : Interactable
     public int ID;
     private bool controlSwapThisFrame = false;
     private ContextualUI myOpen;
-
-    public float keyPressCooldown = 1f;
+   
+    public float keyPressCooldown = 1f, showDelayTime = .5f;
     private float currentKeyCooldown = 0f;
     private bool inKeyCooldown = false;
     // Start is called before the first frame update
@@ -27,35 +27,27 @@ public class KeyBaring : Interactable
 
     protected void keyGrab()
     {
-        Debug.Log("F pressed, grab attempted");
+        //Debug.Log("E pressed, grab attempted");
         if (!playerRef.paused && !inKeyCooldown)
         {
-            Debug.Log("Player is not paused");
+            //Debug.Log("Player is not paused");
             if (inRange && !open)
             {
                 inKeyCooldown = true;
-                Debug.Log("Player is in range and the object is not open yet");
-                Debug.Log("Opening Object ");
-                //openText.gameObject.SetActive(false);
-                //closeText.gameObject.SetActive(true);
-                if (objectAnimator != null)
-                {
-                    objectAnimator.SetBool("OpenObj", true);
-                }
+                //Debug.Log("Player is in range and the object is not open yet");
+                //Debug.Log("Opening Object ");
+              
                 open = true;
-                //base.LookAtObject();
-                viewPuzzlePiece();
+                StartCoroutine("viewPuzzlePiece");
             }
             else if (inRange && open)
             {
                 inKeyCooldown = true;
                 Debug.Log("Player is in range and the object is already open");
-                //openText.gameObject.SetActive(false);
-                //closeText.gameObject.SetActive(false);
-                if (objectAnimator != null)
+                /*if (objectAnimator != null)
                 {
                     objectAnimator.SetBool("OpenObj", false);
-                }
+                }*/
 
                 open = false;
                 if (containsKey)
@@ -68,8 +60,6 @@ public class KeyBaring : Interactable
                 containsKey = false;
                 PutDownKey();
                 this.gameObject.SetActive(false);
-                //this.GetComponent<OpenableUI>().conText.text = "";
-                //this.GetComponent<ContextualUI>().conText.text = "";//TESTING PURPOSES
             }
         }
     }
@@ -95,9 +85,15 @@ public class KeyBaring : Interactable
         }
     }
 
-    void viewPuzzlePiece()
+    IEnumerator viewPuzzlePiece()
     {
+        if (objectAnimator != null)
+        {
+            objectAnimator.SetBool("OpenObj", true);
+        }
+
         playerRef._actionMap.Platforming.Disable();
+        yield return new WaitForSeconds(showDelayTime);
         playerRef._actionMap.ViewingObject.Enable();
         controlSwapThisFrame = true;
         hiddenObjInstance = Instantiate(hiddenObj, Camera.main.gameObject.transform.position + Camera.main.gameObject.transform.forward, Quaternion.identity);

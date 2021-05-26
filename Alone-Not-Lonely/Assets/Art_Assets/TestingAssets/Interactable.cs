@@ -19,40 +19,36 @@ public abstract class Interactable : MonoBehaviour
     {
         
     }
+
     void Start()
     {
-        //openText.gameObject.SetActive(false);
-        //closeText.gameObject.SetActive(false);
+
     }
 
-    /*protected void PlayerInteract()
+    protected void PlayerInteract()
     {
         if (!playerRef.paused)
         {
             if (inRange && !open)
             {
-                //openText.gameObject.SetActive(false);
-                //closeText.gameObject.SetActive(true);
-                if(objectAnimator != null)
+                if (objectAnimator != null)
                 {
                     objectAnimator.SetBool("OpenObj", true);
                 }
                 open = true;
-                LookAtObject();
+                //LookAtObject();
             }
-            else if(inRange && open)
+            else if (inRange && open)
             {
-                //openText.gameObject.SetActive(true);
-                //closeText.gameObject.SetActive(false);
-                if(objectAnimator != null)
+                if (objectAnimator != null)
                 {
                     objectAnimator.SetBool("OpenObj", false);
                 }
                 open = false;
-                PutDownObject();
+                //PutDownObject();
             }
         }
-    }*/
+    }
 
     /*protected void LookAtObject()
     {
@@ -89,8 +85,6 @@ public abstract class Interactable : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             inRange = true;
-            //openText.gameObject.SetActive(true);
-            //closeText.gameObject.SetActive(false);
         }
     }
 
@@ -99,8 +93,6 @@ public abstract class Interactable : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             inRange = false;
-            //openText.gameObject.SetActive(false);
-            //closeText.gameObject.SetActive(false);
         }
     }
 }

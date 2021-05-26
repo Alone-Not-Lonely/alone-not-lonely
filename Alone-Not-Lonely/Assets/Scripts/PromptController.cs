@@ -123,7 +123,7 @@ public class PromptController : MonoBehaviour
         if (currPrompter == caller)
         {
             conText.text = currPrompter.getMessage();
-            Debug.Log(conText.text);
+            //Debug.Log(conText.text);
         }
     }
 
