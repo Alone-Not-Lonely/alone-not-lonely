@@ -21,6 +21,17 @@ public class ClimbChecker : MonoBehaviour
     private PlayerMovementController pMC;
     public GameObject climbableObject;
 
+    //Dealing with hand model swaps
+    protected MeshFilter rHandMesh;
+    protected MeshFilter lhandMesh;
+
+    public Mesh relaxedRHand;
+    public Mesh relaxedLHand;
+    public Mesh grabRHand;
+    public Mesh grabLHand;
+    public Mesh climbRHand;
+    public Mesh climbLHand;
+
     //Scripts using this will check if Vector3.zero
     //So lets just be sure not to have any climbable places at origin
 
@@ -35,6 +46,8 @@ public class ClimbChecker : MonoBehaviour
         playerHeight = GetComponentInParent<CharacterController>().height;
         playerRadius = GetComponentInParent<CharacterController>().radius;
         pMC = GetComponentInParent<PlayerMovementController>();
+        rHandMesh = rhand.GetComponentInChildren<MeshFilter>();
+        lhandMesh = lhand.GetComponentInChildren<MeshFilter>();
         clear();
     }
 
@@ -42,6 +55,24 @@ public class ClimbChecker : MonoBehaviour
     {
         if (pControl.isGrounded) { adjustHeight(); }
         updateHands();
+        if(climbablePoint != Vector3.zero)
+        {
+            //climbing hands
+            rHandMesh.mesh = climbRHand;
+            lhandMesh.mesh = climbLHand;
+        }
+        else if(pAbil.holdingObject)
+        {
+            //grab hands
+            rHandMesh.mesh = grabRHand;
+            lhandMesh.mesh = grabLHand;
+        }
+        else
+        {
+            //resting hands
+            rHandMesh.mesh = relaxedRHand;
+            lhandMesh.mesh = relaxedLHand;
+        }
     }
 
     public void clear()

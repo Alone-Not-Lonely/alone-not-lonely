@@ -18,6 +18,9 @@ public class MainMenuController : MonoBehaviour
             //first time in the menu
             sfx.PlayOneShot(clips[0]);
         }
+        
+        Time.timeScale = 1;
+        Debug.Log("Unfroze " + Time.timeScale);
     }
     // Start is called before the first frame update
     void Start()

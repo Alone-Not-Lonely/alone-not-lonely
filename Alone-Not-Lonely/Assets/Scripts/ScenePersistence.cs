@@ -39,7 +39,7 @@ public class ScenePersistence : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         //Debug.Log("Scene Loaded: " + scene.name);
-        if(scene.name == "MainMenu" || scene.name == "IntroCutscene" || scene.name == "Credits" || scene.name == "Controls" || scene.name == "EndPlaytest")
+        if(scene.name == "MainMenu" || scene.name == "IntroCutscene" || scene.name == "Credits" || scene.name == "Controls" || scene.name == "EndCutscene")
         {
             Destroy(this.gameObject);
         }
