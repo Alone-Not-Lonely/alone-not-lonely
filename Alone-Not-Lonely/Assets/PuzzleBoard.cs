@@ -11,7 +11,16 @@ public class PuzzleBoard : MonoBehaviour, IDropHandler
         if(eventData.pointerDrag != null)
         {
             if(Vector2.Distance(eventData.pointerDrag.gameObject.GetComponent<RectTransform>().anchoredPosition, this.GetComponent<RectTransform>().anchoredPosition) < snapThreshold)
+            {
                 eventData.pointerDrag.gameObject.GetComponent<RectTransform>().anchoredPosition = this.GetComponent<RectTransform>().anchoredPosition;
+                eventData.pointerDrag.gameObject.GetComponent<DragDrop>().piecePlaced = true;
+            }
+            else
+            {
+                eventData.pointerDrag.gameObject.GetComponent<DragDrop>().piecePlaced = false;
+            }
+
+
         }
     }
 }

@@ -10,10 +10,12 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     RectTransform thisTransform;
 
     private CanvasGroup canvasGroup;
+    public bool piecePlaced = false;
     private void Awake() {
         thisTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         GetComponent<Image>().alphaHitTestMinimumThreshold = .001f;
+        canvas.worldCamera = Camera.main;
     }
     public void OnPointerDown(PointerEventData eventData)
     {
