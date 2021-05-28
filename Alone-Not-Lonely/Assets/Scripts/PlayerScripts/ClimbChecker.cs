@@ -147,20 +147,21 @@ public class ClimbChecker : MonoBehaviour
 
     private void updateHands()
     {
+        /*
         Vector3 goToPoint = (transform.position + (Vector3.up * handRestingHeight));
 
         if (edge != transform.position)
         {
             goToPoint = edge;
         }
-
+        */
         //Debug.Log("Go to point: "+goToPoint);
 
-        rhand.position = Vector3.Lerp(rhand.position, goToPoint + (transform.right * handOffset), handMoveSpeed);
-        if (!(pAbil.currentGrab != null && pAbil.heldObject && pAbil.heldObject.gameObject.GetComponent<SquashedObject>() != null))
-        {
-            lhand.position = Vector3.Lerp(lhand.position, goToPoint - (transform.right * handOffset), handMoveSpeed);
-        }
+        //rhand.position = Vector3.Lerp(rhand.position, goToPoint + (transform.right * handOffset), handMoveSpeed);
+        //if (!(pAbil.currentGrab != null && pAbil.heldObject && pAbil.heldObject.gameObject.GetComponent<SquashedObject>() != null))
+        //{
+            //lhand.position = Vector3.Lerp(lhand.position, goToPoint - (transform.right * handOffset), handMoveSpeed);
+        //}
         /*
         if (Vector3.Distance(rhand.position, edge) < .1)
         {
