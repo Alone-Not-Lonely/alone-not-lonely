@@ -20,7 +20,7 @@ public class PuzzleBoard : MonoBehaviour, IDropHandler
                 eventData.pointerDrag.gameObject.GetComponent<DragDrop>().piecePlaced = false;
             }
 
-
+            FindObjectOfType<FinalPuzzleManager>().UpdatePuzzleState();
         }
     }
 }
