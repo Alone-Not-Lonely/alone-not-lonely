@@ -52,4 +52,6 @@ public class FinalPuzzleManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("EndCutscene");
     }
+
+    
 }
