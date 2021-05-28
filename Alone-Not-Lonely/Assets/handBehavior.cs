@@ -21,6 +21,7 @@ public class handBehavior : MonoBehaviour
     {
         handMesh = GetComponent<MeshFilter>();
         handMesh.mesh = relaxedHand;
+
         hQ = (int)handedness;//makes hand direction simpler
         pAbil = FindObjectOfType<PlayerAbilityController>();
         cCheck = FindObjectOfType<ClimbChecker>();
