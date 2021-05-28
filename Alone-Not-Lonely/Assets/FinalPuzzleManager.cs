@@ -29,19 +29,24 @@ public class FinalPuzzleManager : MonoBehaviour
 
     public void UpdatePuzzleState()
     {
+        int ctr = 0;
         foreach(GameObject piece in puzzlePiecesOnTable)
         {
             //Debug.Log(pIn);
             if(pIn.puzzlePieces.Contains(piece.GetComponent<PuzzlePiece>().ID))
             {
                 piece.SetActive(true);
+                if(piece.GetComponent<DragDrop>().piecePlaced)
+                {
+                    ctr ++;
+                }
             }
             else
             {
                 piece.SetActive(false);
             }
         }
-        if(pIn.puzzlePieces.Count == 12)
+        if(ctr == 12)
         {
             StartCoroutine("DramaticZoomOut");
         }
@@ -52,4 +57,6 @@ public class FinalPuzzleManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("EndCutscene");
     }
+
+    
 }

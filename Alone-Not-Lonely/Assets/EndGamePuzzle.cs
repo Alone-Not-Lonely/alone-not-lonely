@@ -34,6 +34,7 @@ public class EndGamePuzzle : ContextualUI
                 inPuzzleMode = true;
                 puzzleManager.UpdatePuzzleState();
                 //base.ChangeToContextSecondary();
+                Cursor.lockState = CursorLockMode.None;
             }
             else if (canInteract)
             {
@@ -43,6 +44,7 @@ public class EndGamePuzzle : ContextualUI
                 Camera.main.GetComponent<CameraController>().cameraFree = true;
                 inPuzzleMode = false;
                 //base.ChangeToContextInit();
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }
