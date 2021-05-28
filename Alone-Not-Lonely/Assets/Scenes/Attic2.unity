@@ -42197,7 +42197,7 @@ PrefabInstance:
     - target: {fileID: -5754084199372789682, guid: 1c4c3a26c2307274894ad4543973147b, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -2432090755550338912, guid: 0fdbf0d71e0e99e40941df4b54a29746, type: 3}
+      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 919132149155446097, guid: 1c4c3a26c2307274894ad4543973147b, type: 3}
       propertyPath: m_Name
       value: R-Hand
@@ -46707,10 +46707,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33241d7e7b398547b1052e7d98a2493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relaxedHand: {fileID: -2432090755550338912, guid: 9ee3d1ab99875654d86c60abf98c4d02, type: 3}
-  grabHand: {fileID: -2432090755550338912, guid: 987477014566e4948b38c61a57d54cec, type: 3}
-  climbHand: {fileID: -2432090755550338912, guid: 0fdbf0d71e0e99e40941df4b54a29746, type: 3}
+  relaxedHand: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  grabHand: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  climbHand: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   handedness: -1
+  facingImportant: 0
 --- !u!1 &1588469115
 GameObject:
   m_ObjectHideFlags: 0
@@ -52635,6 +52636,10 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5754084199372789682, guid: 1c4c3a26c2307274894ad4543973147b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 919132149155446097, guid: 1c4c3a26c2307274894ad4543973147b, type: 3}
       propertyPath: m_Name
       value: L-Hand
@@ -53537,10 +53542,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d33241d7e7b398547b1052e7d98a2493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relaxedHand: {fileID: -2432090755550338912, guid: 31051cd0e1702b941b475a9881f02288, type: 3}
-  grabHand: {fileID: -2432090755550338912, guid: 6c19b5ef121171c4b8d99eaf6120af7e, type: 3}
-  climbHand: {fileID: -2432090755550338912, guid: 65e8a86ca9f73164a8701fc9bdccb76d, type: 3}
+  relaxedHand: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  grabHand: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  climbHand: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   handedness: 1
+  facingImportant: 0
 --- !u!1 &1915038028
 GameObject:
   m_ObjectHideFlags: 0
@@ -67049,16 +67055,14 @@ MonoBehaviour:
   reachHeight: 0
   maxDepth: 2
   maxClimbHeight: 2.5
-  handOffset: 0
-  handMoveSpeed: 0.5
+  shandMoveSpeed: 0.3
   detectRadius: 0.5
   landingDepth: 1
   maxReachDist: 4.75
   reachDepth: 0.5
-  handRestingHeight: 0.5
   climbablePoint: {x: 0, y: 0, z: 0}
-  lhand: {fileID: 611125234}
-  rhand: {fileID: 33446941}
+  lhand: {fileID: 1580021242}
+  rhand: {fileID: 1912754743}
   climbableObject: {fileID: 0}
 --- !u!1 &5257471346633579625
 GameObject:

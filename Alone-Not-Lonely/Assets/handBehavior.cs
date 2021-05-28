@@ -16,9 +16,12 @@ public class handBehavior : MonoBehaviour
     private int hQ;
     private PlayerAbilityController pAbil;
     private ClimbChecker cCheck;
-    private GameObject focus;
+    private GameObject focus;//will be either thing to climb on or to pick up
     private RaycastHit mostRecentHit;
-    //public float handOffset = .3f; for later
+    private Vector3 goToPoint;//point which hands will center around
+    public bool facingImportant = false;
+
+    //public float handOffset = .3f,handRestingHeight = .5f; for later
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +34,9 @@ public class handBehavior : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        Debug.Log("check result: " + checkInFront());
         //Debug.Log("current hand mesh: "+handMesh.mesh);           
         if(cCheck.climbablePoint != Vector3.zero && handMesh.mesh!=climbHand)
         {
@@ -55,13 +59,52 @@ public class handBehavior : MonoBehaviour
         
         //transform.Rotate(Vector3.up * hQ, Space.Self);
     }
-
-    public void recieveNearHit(RaycastHit hit)
+    
+    //called by climb checker to inform hands whether there is an interesting object ahead
+    private bool findSignificant(GameObject t)
     {
-        //Debug.Log("Recieving hit");
-        focus = hit.transform.gameObject;
-        mostRecentHit = hit;
+        Debug.Log("called findSignificant");
+        //check objects themselves
+        if (t.GetComponent<BoxContactBehavior>()!=null || t.GetComponent<KeyBaring>() != null)
+        {
+            return true;
+        }
+
+        //check if they have children with the components
+        if(t.GetComponentInChildren<BoxContactBehavior>() != null || t.GetComponentInChildren<KeyBaring>() != null)
+        {
+            return true;
+        }
+        //probably going to have to deal with the parent problem but will hold off for now
+    
+        return false;
     }
+
+    //runs either to check if the set of hits brings with it an object that is important
+    //or can be run just to clear facing important
+    public bool checkInFront()
+    {
+        //Essentially all repurposed from climb checker, had to move it over due to timing issues. 
+        //Vector3 landingRayStart = (cCheck.transform.position + cCheck.maxClimbHeight * Vector3.up);
+        //Ray landingRay = new Ray(landingRayStart, transform.forward * cCheck.maxDepth);
+        //Vector3 canStandRayStart = landingRayStart + (landingRay.direction * cCheck.maxDepth);
+        Ray castDir = new Ray(transform.position, -transform.up);
+        Debug.DrawRay(castDir.origin, castDir.direction, Color.grey);
+        RaycastHit[] hits = Physics.SphereCastAll(castDir, 1);
+       
+
+        foreach(RaycastHit hit in hits)
+        {
+            if (findSignificant(hit.collider.gameObject))
+            {
+                return true;
+            }
+        }
+
+        return false; 
+    }
+
+    
 
     private void LateUpdate()
     {
@@ -69,7 +112,7 @@ public class handBehavior : MonoBehaviour
     }
 }
 
-/* private void updateHands()
+/* private void updateHandLocation()
  {
 
      Vector3 goToPoint = (transform.position + (Vector3.up * handRestingHeight));
