@@ -250,7 +250,7 @@ public class PanicMeterController : MonoBehaviour
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * rayDepth, Color.yellow);
 
         //could adjust starting position to align with player perception
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, rayDepth))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, rayDepth, ~LayerMask.GetMask("Grabable")))
         {
             
             //can but other floor based traits here
