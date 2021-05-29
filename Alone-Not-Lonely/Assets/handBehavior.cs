@@ -44,6 +44,7 @@ public class handBehavior : MonoBehaviour
         {
             goToPoint = (cCheck.transform.position + (Vector3.up * handRestingHeight) + transform.right * hQ * handOffset);
         }
+        
 
         /*Priority order:
          * 1) Mid Climb must be Climb Hands
@@ -63,13 +64,9 @@ public class handBehavior : MonoBehaviour
         else if (pAbil.holdingObject && handMesh.mesh != grabHand)
         {
             handMesh.mesh = grabHand;
-            //MOVE HANDS TO SIDE OF OBJECT
-            
             BoxCollider temp = getObjectsCollider(pAbil.currentGrab);
-            
             //pray temp doesn't return null for now
             goToPoint = getSideHit(temp);
-            
         }
         else if (facingImportant)
         {
@@ -189,25 +186,3 @@ public class handBehavior : MonoBehaviour
         
     }
 }
-
-/* private void updateHandLocation()
- {
-
-     Vector3 goToPoint = (transform.position + (Vector3.up * handRestingHeight));
-
-     if (edge != transform.position)
-     {
-         goToPoint = edge;
-     }
-     //Debug.Log("Go to point: "+goToPoint);
-
-     //rhand.position = Vector3.Lerp(rhand.position, goToPoint + (transform.right * handOffset), handMoveSpeed);
-     //if (!(pAbil.currentGrab != null && pAbil.heldObject && pAbil.heldObject.gameObject.GetComponent<SquashedObject>() != null))
-     //{
-         //lhand.position = Vector3.Lerp(lhand.position, goToPoint - (transform.right * handOffset), handMoveSpeed);
-     //}
-     if (Vector3.Distance(rhand.position, edge) < .1)
-     {
-         //hand closed indicator
-     }
- }*/
