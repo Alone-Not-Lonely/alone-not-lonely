@@ -48,9 +48,10 @@ public class LevelEndTrigger : MonoBehaviour
             }
             if(child.gameObject.GetComponent<LockedObject>() != null)
             {
-                child.gameObject.GetComponent<LockedObject>().playerNearby = true;
+                //opens all doors that you have a key for? no thanks
+                /*child.gameObject.GetComponent<LockedObject>().playerNearby = true;
                 child.gameObject.GetComponent<LockedObject>().OpenAttempt();
-                child.gameObject.GetComponent<LockedObject>().playerNearby = false;
+                child.gameObject.GetComponent<LockedObject>().playerNearby = false;*/
             }
             //else if(child.gameObject.GetComponent<Item>() != null && 
                //child.gameObject.GetComponent<Item>().key.Contains("Key"))
