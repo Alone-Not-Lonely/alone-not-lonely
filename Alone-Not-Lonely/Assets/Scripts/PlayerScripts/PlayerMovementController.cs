@@ -125,14 +125,14 @@ public class PlayerMovementController : MonoBehaviour
         //Debug.Log("my height: " + transform.position.y);
         //check to see if the height of the original object is low enough such that 
         //The player can just hop onto it
-        if (pointToClimb.transform.position.y - 1.3 > transform.position.y)
-        {
+        //if (pointToClimb.transform.position.y - 1.3 > transform.position.y)
+        //{
             StartCoroutine("climb", pointToClimb);
-        }
-        else
-        {
-            StartCoroutine("hop", pointToClimb);
-        }
+        //}
+        //else
+        //{
+            //StartCoroutine("hop", pointToClimb);
+        //}
         
     }
 
