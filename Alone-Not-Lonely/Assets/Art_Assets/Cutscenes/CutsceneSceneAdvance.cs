@@ -10,9 +10,10 @@ public class CutsceneSceneAdvance : MonoBehaviour
     private VideoPlayer video;
     public string SceneName;
     public DefaultControls _actionMap;
+    public GameObject UI;
 
     private void OnEnable() {
-        _actionMap.Platforming.Pause.performed += EndReached;
+        _actionMap.Platforming.Jump.performed += EndReached;
     }
     private void Awake() {
         _actionMap = new DefaultControls();
@@ -31,19 +32,23 @@ public class CutsceneSceneAdvance : MonoBehaviour
 
     void EndReached(InputAction.CallbackContext context)
     {
-        _actionMap.Platforming.Pause.performed -= EndReached;
+        _actionMap.Platforming.Jump.performed -= EndReached;
         //Instantiate(playerCameraRig, new Vector3(10.9f, 3.33f, -3.8f), Quaternion.identity);
         Debug.Log("Skipped Cutscene");
+        video.gameObject.SetActive(false);
+        UI.SetActive(false);
         SceneManager.LoadScene(SceneName);
     }
     void EndReached(VideoPlayer vp)
     {
-        _actionMap.Platforming.Pause.performed -= EndReached;
+        _actionMap.Platforming.Jump.performed -= EndReached;
         //Instantiate(playerCameraRig, new Vector3(10.9f, 3.33f, -3.8f), Quaternion.identity);
         Debug.Log("Skipped Cutscene");
+        video.gameObject.SetActive(false);
+        UI.SetActive(false);
         SceneManager.LoadScene(SceneName);
     }
     private void OnDisable() {
-        _actionMap.Platforming.Pause.performed -= endCutscene => EndReached(video);
+        _actionMap.Platforming.Jump.performed -= endCutscene => EndReached(video);
     }
 }
