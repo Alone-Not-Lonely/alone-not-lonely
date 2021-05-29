@@ -6,15 +6,11 @@ using UnityEngine.UI;
 public class PlayerAbilityController : Grabber
 {
     public GameObject currentGrab = null;
-    public Text grabText;
-    public Text releaseText;
 
     private Player playerRef;
     private BoxCollider collideWithWalls;
     void Start()
     {
-        //grabText.gameObject.SetActive(false);
-        //releaseText.gameObject.SetActive(false);
         playerRef = Player.instance;
         playerRef._actionMap.ViewingObject.Disable();
         playerRef._actionMap.Platforming.Use.performed += grab => PlayerGrab();
@@ -46,8 +42,6 @@ public class PlayerAbilityController : Grabber
                 {
                     return;
                 }
-                //grabText.gameObject.SetActive(false);
-                //releaseText.gameObject.SetActive(true);
                 GrabAttempt(currentGrab, this.gameObject);
                 if (currentGrab.GetComponent<ContextualUI>() != null)
                 {

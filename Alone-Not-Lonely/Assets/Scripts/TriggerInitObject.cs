@@ -6,6 +6,7 @@ public class TriggerInitObject : MonoBehaviour
 {
     public GameObject objectToInit;
     private AudioSource aS;
+    public bool nonPlayerTrigger = false;
     private void Start()
     {
         aS = objectToInit.GetComponent<AudioSource>();
@@ -16,7 +17,17 @@ public class TriggerInitObject : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(!nonPlayerTrigger && other.CompareTag("Player"))
+        {
+            aS.Play(0);
+            objectToInit.GetComponent<Animator>().SetBool("StartAnim", true);
+            foreach(Transform child in objectToInit.transform)
+            {
+                child.gameObject.GetComponent<Animator>().SetBool("StartAnim", true);
+            }
+            Deactivate();
+        }
+        else if(nonPlayerTrigger && other.CompareTag("Grabable"))
         {
             aS.Play(0);
             objectToInit.GetComponent<Animator>().SetBool("StartAnim", true);

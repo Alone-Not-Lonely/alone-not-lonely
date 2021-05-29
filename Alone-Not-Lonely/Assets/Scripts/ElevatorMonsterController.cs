@@ -16,6 +16,7 @@ public class ElevatorMonsterController : Grabber
     private bool waiting;
     public float waitTime = 2f;
     private float currentWaitTime;
+    private Animator anims;
     void Start()
     {
         targetPoint = this.transform.position + (this.transform.up * height);
@@ -27,6 +28,7 @@ public class ElevatorMonsterController : Grabber
         goingUp = true;
         waiting = false;
         currentWaitTime = 0;
+        anims = GetComponentInChildren<Animator>();
     }
 
     void FixedUpdate()
@@ -41,12 +43,16 @@ public class ElevatorMonsterController : Grabber
             targetPoint = startPoint;
             goingUp = !goingUp;
             waiting = true;
+            anims.SetBool("Raising", false);
+            anims.SetBool("Lowering", false);
         }
         else if(!waiting && !goingUp && holdingObject && Vector3.Distance(heldObject.transform.position, targetPoint) <= .1f)
         {
             targetPoint = this.transform.position + (this.transform.up * height);
             goingUp = !goingUp;
             waiting = true;
+            anims.SetBool("Raising", false);
+            anims.SetBool("Lowering", false);
         }
         else if(waiting && currentWaitTime < waitTime)
         {
@@ -56,6 +62,14 @@ public class ElevatorMonsterController : Grabber
         {
             waiting = false;
             currentWaitTime = 0;
+            if(goingUp)
+            {
+                anims.SetBool("Raising", true);
+            }
+            else
+            {
+                anims.SetBool("Lowering", true);
+            }
         }
 
     }
@@ -85,7 +99,8 @@ public class ElevatorMonsterController : Grabber
             GrabAttempt(other.gameObject, this.gameObject);
             if(this.holdingObject)
             {
-                startPoint = this.transform.position - (transform.localScale.y * transform.up) + new Vector3(0, other.gameObject.transform.localScale.y/2, 0);
+                anims.SetBool("Raising", true);
+                startPoint = this.transform.position - (transform.localScale.y * transform.up) + new Vector3(0, other.gameObject.transform.localScale.y/1, 0);
             }
         }
     }
@@ -94,7 +109,8 @@ public class ElevatorMonsterController : Grabber
     {
         if(other.gameObject.CompareTag("Grabable") && other.isTrigger && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld && !this.holdingObject)
         {
-            GrabAttempt(other.gameObject, this.gameObject);
+            //I dont think this ever executes?
+            //GrabAttempt(other.gameObject, this.gameObject);
         }
     }
 }

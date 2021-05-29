@@ -681,7 +681,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30632
+  m_Name: pb_Mesh58324
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -983,6 +983,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (8)
@@ -1000,7 +1004,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29902
+  m_Name: pb_Mesh57526
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1340,7 +1344,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31054
+  m_Name: pb_Mesh58786
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2115,6 +2119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyNames:
   - laundry Key
+  playerNearby: 0
 --- !u!95 &133335736
 Animator:
   serializedVersion: 3
@@ -2711,6 +2716,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (3)
@@ -3654,6 +3663,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (10)
@@ -3715,7 +3728,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30786
+  m_Name: pb_Mesh58490
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4308,6 +4321,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (2)
@@ -4459,6 +4476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyNames:
   - living room Key
+  playerNearby: 0
 --- !u!95 &399080905
 Animator:
   serializedVersion: 3
@@ -4522,7 +4540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Livingroom Locked...
+  - "Weird\u2026 this door is never locked! I think the key is in another room."
   - Press E to Open Door with Living Room Key
   - 
   maxUsages: e803000001000000e8030000
@@ -4667,6 +4685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisClip: {fileID: 8300000, guid: 4a2913bddc736484c8f33866e291382a, type: 3}
+  persistent: 0
 --- !u!65 &411557826
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4686,7 +4705,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30752
+  m_Name: pb_Mesh58452
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4850,7 +4869,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30488
+  m_Name: pb_Mesh58176
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5077,7 +5096,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30378
+  m_Name: pb_Mesh58042
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5332,6 +5351,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d43de6565e269c54cb33485ba8059303, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cd25c31c583fce445b1f168ba4a5ef95, type: 2}
     - target: {fileID: 919132149155446097, guid: d43de6565e269c54cb33485ba8059303, type: 3}
       propertyPath: m_Name
       value: kitchen_pan
@@ -5742,7 +5765,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: af786a838e8aab741a0be8469b4b86b9, type: 3}
+  - {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6782,7 +6805,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 588576012}
-  - component: {fileID: 588576016}
   - component: {fileID: 588576015}
   - component: {fileID: 588576014}
   - component: {fileID: 588576013}
@@ -6801,8 +6823,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588576011}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.0342822, y: 0.4160835, z: 1}
+  m_LocalPosition: {x: 0.8, y: -1.58, z: 1.08}
+  m_LocalScale: {x: 3.9565158, y: 0.80924904, z: 1.9449197}
   m_Children: []
   m_Father: {fileID: 1607054228}
   m_RootOrder: 0
@@ -6890,18 +6912,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &588576016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588576011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7845f46e3c83e364da9d71e5ba44653d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &591680430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7260,15 +7270,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5533008684585255692, guid: 05071b4832621aa4bbaf6504e66e9ef9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.46
+      value: 15.36
       objectReference: {fileID: 0}
     - target: {fileID: 5533008684585255692, guid: 05071b4832621aa4bbaf6504e66e9ef9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.48
+      value: 7.64
       objectReference: {fileID: 0}
     - target: {fileID: 5533008684585255692, guid: 05071b4832621aa4bbaf6504e66e9ef9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39.36
+      value: -51.95
       objectReference: {fileID: 0}
     - target: {fileID: 5533008684585255692, guid: 05071b4832621aa4bbaf6504e66e9ef9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7398,6 +7408,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (8)
@@ -8098,6 +8112,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (1)
@@ -8115,7 +8133,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31132
+  m_Name: pb_Mesh58876
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8404,6 +8422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisClip: {fileID: 8300000, guid: 0d44fee45944f4f458268d7e76654484, type: 3}
+  persistent: 0
 --- !u!65 &711352768
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8554,6 +8573,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (7)
@@ -8571,7 +8594,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30320
+  m_Name: pb_Mesh57976
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8816,7 +8839,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31150
+  m_Name: pb_Mesh58894
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9537,6 +9560,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (9)
@@ -9600,7 +9627,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: b90e85666c345834fb34d1493d93c9eb, type: 3}
+  - {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10078,6 +10105,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (6)
@@ -10152,6 +10183,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate
@@ -10226,6 +10261,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (10)
@@ -10363,7 +10402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelParent: {fileID: 1981890972}
-  dissolveStep: 0.01
+  dissolveStep: 0.005
 --- !u!4 &934869913
 Transform:
   m_ObjectHideFlags: 0
@@ -10465,7 +10504,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30666
+  m_Name: pb_Mesh58358
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11044,7 +11083,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30436
+  m_Name: pb_Mesh58120
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11208,7 +11247,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30930
+  m_Name: pb_Mesh58646
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11429,6 +11468,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (7)
@@ -11497,7 +11540,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30184
+  m_Name: pb_Mesh57836
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12745,7 +12788,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 842135b56a8657c4c9652c5c75efb4cc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 15dbeec4652347147b1aace7682c8459, type: 2}
+      objectReference: {fileID: 2100000, guid: 07fb165e9ffbf6e40a9cc319367009d6, type: 2}
     - target: {fileID: 919132149155446097, guid: 842135b56a8657c4c9652c5c75efb4cc, type: 3}
       propertyPath: m_Name
       value: window_frame (2)
@@ -12842,6 +12885,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (9)
@@ -15775,6 +15822,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (5)
@@ -16906,6 +16957,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (3)
@@ -17117,7 +17172,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30308
+  m_Name: pb_Mesh57964
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18114,6 +18169,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (4)
@@ -19197,7 +19256,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30708
+  m_Name: pb_Mesh58400
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19510,6 +19569,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (5)
@@ -19687,7 +19750,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30764
+  m_Name: pb_Mesh58464
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20096,7 +20159,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1607054223}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 37.04, y: 10.85, z: -40.6}
+  m_LocalPosition: {x: 38.66, y: 3.96, z: -40.6}
   m_LocalScale: {x: -0.11096, y: 0.61911, z: 2.0395}
   m_Children:
   - {fileID: 588576012}
@@ -20335,6 +20398,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8191826778103411039, guid: 40cd980c129d6924ba9f5ec1fafe0faa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e12c8d11414d454fb8950862436323a, type: 2}
     - target: {fileID: -2298535301240979946, guid: 40cd980c129d6924ba9f5ec1fafe0faa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -20371,6 +20438,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: toaster
       objectReference: {fileID: 0}
+    - target: {fileID: 1170970068873931921, guid: 40cd980c129d6924ba9f5ec1fafe0faa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 824c657057d59b54db939581ced7939d, type: 2}
     - target: {fileID: 5898855749840620490, guid: 40cd980c129d6924ba9f5ec1fafe0faa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.00044
@@ -20461,6 +20532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisClip: {fileID: 8300000, guid: b3dc728facb01a543b54ceb2dc2d2a4b, type: 3}
+  persistent: 0
 --- !u!65 &1646299875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20793,7 +20865,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30054
+  m_Name: pb_Mesh57690
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20957,7 +21029,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30582
+  m_Name: pb_Mesh58274
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21289,6 +21361,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (2)
@@ -21366,7 +21442,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 842135b56a8657c4c9652c5c75efb4cc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 15dbeec4652347147b1aace7682c8459, type: 2}
+      objectReference: {fileID: 2100000, guid: 07fb165e9ffbf6e40a9cc319367009d6, type: 2}
     - target: {fileID: 919132149155446097, guid: 842135b56a8657c4c9652c5c75efb4cc, type: 3}
       propertyPath: m_Name
       value: window_frame (1)
@@ -21666,6 +21742,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 80ad314e75abc8e42a8e88fc4f4cea9e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: 80ad314e75abc8e42a8e88fc4f4cea9e, type: 3}
       propertyPath: m_Name
       value: kitchen_bowl
@@ -21740,6 +21820,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (4)
@@ -21815,7 +21899,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29940
+  m_Name: pb_Mesh57568
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -23166,7 +23250,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: b90e85666c345834fb34d1493d93c9eb, type: 3}
+  - {fileID: 2100000, guid: 74f3abb8b254bab428e5d4186f00eb3f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23759,6 +23843,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e2f502adae2b9904089a8939447256b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
     - target: {fileID: 919132149155446097, guid: e2f502adae2b9904089a8939447256b9, type: 3}
       propertyPath: m_Name
       value: kitchen_plate (6)
@@ -24883,6 +24971,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a8f7b226dc1888848bd111666211220c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cd25c31c583fce445b1f168ba4a5ef95, type: 2}
     - target: {fileID: 919132149155446097, guid: a8f7b226dc1888848bd111666211220c, type: 3}
       propertyPath: m_Name
       value: Teapot_temp
@@ -25080,7 +25172,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 842135b56a8657c4c9652c5c75efb4cc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 103bb68b62cafa948aab935c8352e69d, type: 2}
+      objectReference: {fileID: 2100000, guid: 07fb165e9ffbf6e40a9cc319367009d6, type: 2}
     - target: {fileID: 919132149155446097, guid: 842135b56a8657c4c9652c5c75efb4cc, type: 3}
       propertyPath: m_Name
       value: window_frame
@@ -25133,7 +25225,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 746d98169bb323c4795f6800097dd2d9, type: 3}
+  - {fileID: 2100000, guid: 8f43ecee75984354e84aef91352bf014, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25996,6 +26088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyNames:
   - bedroom Key
+  playerNearby: 0
 --- !u!95 &4654800141298541917
 Animator:
   serializedVersion: 3
@@ -26054,7 +26147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Someone Locked my Bedroom.
+  - Someone just ran into my bedroom? I need the key.
   - Press E to use Bedroom key
   - 
   maxUsages: e803000001000000e8030000
@@ -26095,7 +26188,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: b90e85666c345834fb34d1493d93c9eb, type: 3}
+  - {fileID: 2100000, guid: 74f3abb8b254bab428e5d4186f00eb3f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26153,7 +26246,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: b90e85666c345834fb34d1493d93c9eb, type: 3}
+  - {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26202,7 +26295,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 746d98169bb323c4795f6800097dd2d9, type: 3}
+  - {fileID: 2100000, guid: 8f43ecee75984354e84aef91352bf014, type: 2}
   - {fileID: -7806760071296807454, guid: 746d98169bb323c4795f6800097dd2d9, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -26398,7 +26491,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 746d98169bb323c4795f6800097dd2d9, type: 3}
+  - {fileID: 2100000, guid: 8f43ecee75984354e84aef91352bf014, type: 2}
   - {fileID: -7806760071296807454, guid: 746d98169bb323c4795f6800097dd2d9, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -26471,7 +26564,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: af786a838e8aab741a0be8469b4b86b9, type: 3}
+  - {fileID: 2100000, guid: 132a3244aa4b39541af91dec86daff24, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
