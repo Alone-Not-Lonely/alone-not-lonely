@@ -7,12 +7,10 @@ public class ClimbChecker : MonoBehaviour
     public LayerMask ignoreLayer;
     public float reachHeight = 0,
                  maxDepth = 1.5f, maxClimbHeight = 2,
-                 shandMoveSpeed = .3f,
                  detectRadius = 1f, landingDepth = .5f,
                  maxReachDist = 4f, reachDepth = 1f;
     private float playerHeight, playerRadius = 1f;
-    public Vector3 climbablePoint = Vector3.zero;
-    private Vector3 edge;
+    public Vector3 climbablePoint = Vector3.zero, edge;
     public handBehavior lhand, rhand;
     private Transform pTransform;
     private CharacterController pControl;
@@ -34,12 +32,18 @@ public class ClimbChecker : MonoBehaviour
         playerHeight = GetComponentInParent<CharacterController>().height;
         playerRadius = GetComponentInParent<CharacterController>().radius;
         pMC = GetComponentInParent<PlayerMovementController>();
-        Debug.Log("Player Radius: " + playerRadius);
+        //Debug.Log("Player Radius: " + playerRadius);
     }
 
     private void FixedUpdate()
     {
         if (pControl.isGrounded) { adjustHeight(); }
+        //Fires a ball forward to get information about all subjects in front
+        Ray castDir = new Ray(transform.position, transform.forward);
+        Debug.DrawRay(castDir.origin, castDir.direction, Color.grey);
+        RaycastHit[] hits = Physics.SphereCastAll(castDir, 1f, .1f);
+        lhand.handCast(hits);
+        rhand.handCast(hits);
     }
 
     public void clear()
@@ -141,7 +145,6 @@ public class ClimbChecker : MonoBehaviour
             clear();
         }
     }
-
 
     private float posDiff()
     {
