@@ -46,7 +46,12 @@ public class LevelEndTrigger : MonoBehaviour
             {
                 child.gameObject.SetActive(false);
             }
-
+            if(child.gameObject.GetComponent<LockedObject>() != null)
+            {
+                child.gameObject.GetComponent<LockedObject>().playerNearby = true;
+                child.gameObject.GetComponent<LockedObject>().OpenAttempt();
+                child.gameObject.GetComponent<LockedObject>().playerNearby = false;
+            }
             //else if(child.gameObject.GetComponent<Item>() != null && 
                //child.gameObject.GetComponent<Item>().key.Contains("Key"))
             //{

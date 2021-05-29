@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoodModule : MonoBehaviour
 {
     public AudioClip thisClip;
+    public bool persistent = false;
     AudioClip GetClip()
     {
         return thisClip;
@@ -16,7 +17,10 @@ public class MoodModule : MonoBehaviour
         {
             MoodModuleController mController = other.GetComponent<MoodModuleController>();
             mController.ChangeSong(thisClip);
-            this.gameObject.SetActive(false);
+            if(!persistent)
+            {
+                this.gameObject.SetActive(false);
+            }
         }
     }
 }

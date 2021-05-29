@@ -6,7 +6,7 @@ public class LockedObject : MonoBehaviour
 {
     private PlayerInventory inventory;
     public List<string> keyNames;
-    bool playerNearby = false;
+    public bool playerNearby = false;
     Animator _animator;
     Player playerRef;
     private ContextualUI cui;
@@ -19,7 +19,7 @@ public class LockedObject : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    void OpenAttempt()
+    public void OpenAttempt()
     {
         if (!playerNearby)
         {
