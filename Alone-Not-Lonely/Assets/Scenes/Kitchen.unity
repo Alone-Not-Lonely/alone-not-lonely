@@ -3160,7 +3160,7 @@ Transform:
   m_LocalScale: {x: 6.5348, y: 10.536, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &289957424
 GameObject:
@@ -3719,7 +3719,7 @@ Transform:
   m_LocalScale: {x: 106.06256, y: 1, z: 35.424}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &378379517
 Mesh:
@@ -4538,7 +4538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Livingroom Locked...
+  - "Weird\u2026 this door is never locked! I think the key is in another room."
   - Press E to Open Door with Living Room Key
   - 
   maxUsages: e803000001000000e8030000
@@ -6802,7 +6802,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 588576012}
-  - component: {fileID: 588576016}
   - component: {fileID: 588576015}
   - component: {fileID: 588576014}
   - component: {fileID: 588576013}
@@ -6821,7 +6820,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588576011}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.8, y: -13.05, z: 1.08}
+  m_LocalPosition: {x: 0.8, y: -1.58, z: 1.08}
   m_LocalScale: {x: 3.9565158, y: 0.80924904, z: 1.9449197}
   m_Children: []
   m_Father: {fileID: 1607054228}
@@ -6910,18 +6909,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &588576016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588576011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7845f46e3c83e364da9d71e5ba44653d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &591680430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7280,15 +7267,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5533008684585255692, guid: 05071b4832621aa4bbaf6504e66e9ef9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.46
+      value: 15.36
       objectReference: {fileID: 0}
     - target: {fileID: 5533008684585255692, guid: 05071b4832621aa4bbaf6504e66e9ef9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.48
+      value: 7.64
       objectReference: {fileID: 0}
     - target: {fileID: 5533008684585255692, guid: 05071b4832621aa4bbaf6504e66e9ef9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39.36
+      value: -51.95
       objectReference: {fileID: 0}
     - target: {fileID: 5533008684585255692, guid: 05071b4832621aa4bbaf6504e66e9ef9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10411,7 +10398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelParent: {fileID: 1981890972}
-  dissolveStep: 0.01
+  dissolveStep: 0.005
 --- !u!4 &934869913
 Transform:
   m_ObjectHideFlags: 0
@@ -15768,6 +15755,103 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1001 &1303507433
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 140326503816515357, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_Name
+      value: PlayerCameraRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 714372662858186062, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 714372662858186062, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 714372663112716714, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 714372663112716714, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 714372663112716714, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 43.216663
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.34000015
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -41.98733
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908702292230332143, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923490670168707169, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923490670168707169, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923490670429027461, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923490670429027461, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923490670429027461, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4429b64c02c26724c9c637b578e78e36, type: 3}
 --- !u!1001 &1312351574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20168,7 +20252,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1607054223}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 37.04, y: 10.85, z: -40.6}
+  m_LocalPosition: {x: 38.66, y: 3.96, z: -40.6}
   m_LocalScale: {x: -0.11096, y: 0.61911, z: 2.0395}
   m_Children:
   - {fileID: 588576012}
@@ -21607,7 +21691,7 @@ Transform:
   m_LocalScale: {x: 13.54484, y: 0.8613988, z: 10.917758}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1786350811
 GameObject:
@@ -21886,7 +21970,7 @@ Transform:
   m_LocalScale: {x: 6.5348, y: 10.536, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1828180462
 MonoBehaviour:
@@ -23624,7 +23708,7 @@ Transform:
   - {fileID: 1922429190}
   - {fileID: 934869913}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1987989566
 PrefabInstance:
@@ -25620,7 +25704,7 @@ Transform:
   - {fileID: 5615618931998644529}
   - {fileID: 1042362606}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1835949346895211530
 GameObject:
@@ -26154,7 +26238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - Someone Locked my Bedroom.
+  - Someone just ran into my bedroom? I need the key.
   - Press E to use Bedroom key
   - 
   maxUsages: e803000001000000e8030000

@@ -16,8 +16,11 @@ public class FinalPuzzleManager : MonoBehaviour
         int count = 0;
         foreach(Transform child in this.transform)
         {
-            puzzlePiecesOnTable[count] = child.gameObject;
-            count++;
+            if(child.gameObject.GetComponent<DragDrop>())
+            {
+                puzzlePiecesOnTable[count] = child.gameObject;
+                count++;
+            }
         }
         pIn = PlayerInventory.instance;
         //UpdatePuzzleState();
