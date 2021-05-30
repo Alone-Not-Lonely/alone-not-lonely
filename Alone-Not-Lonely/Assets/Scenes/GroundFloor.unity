@@ -686,6 +686,7 @@ GameObject:
   - component: {fileID: 48976228}
   - component: {fileID: 48976230}
   - component: {fileID: 48976231}
+  - component: {fileID: 48976232}
   m_Layer: 0
   m_Name: mombie_spritesheet_0
   m_TagString: Untagged
@@ -889,6 +890,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &48976232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48976226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bc26dbc96511a448a9575b3c3614ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visDist: 5
 --- !u!1001 &51712120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47570,6 +47584,7 @@ GameObject:
   - component: {fileID: 1138815958}
   - component: {fileID: 1138815961}
   - component: {fileID: 1138815962}
+  - component: {fileID: 1138815963}
   m_Layer: 0
   m_Name: clothes_spritesheet_0
   m_TagString: Monster
@@ -47774,6 +47789,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1138815963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138815957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bc26dbc96511a448a9575b3c3614ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visDist: 5
 --- !u!1 &1138821699
 GameObject:
   m_ObjectHideFlags: 0
@@ -55876,6 +55904,7 @@ GameObject:
   - component: {fileID: 1584418962}
   - component: {fileID: 1584418965}
   - component: {fileID: 1584418966}
+  - component: {fileID: 1584418967}
   m_Layer: 0
   m_Name: clothes_spritesheet_0 (1)
   m_TagString: Monster
@@ -56080,6 +56109,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1584418967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584418961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bc26dbc96511a448a9575b3c3614ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visDist: 5
 --- !u!1 &1585443431
 GameObject:
   m_ObjectHideFlags: 0
@@ -91630,7 +91672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61bc26dbc96511a448a9575b3c3614ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visDist: 15
+  visDist: 5
 --- !u!95 &6731602477317651737
 Animator:
   serializedVersion: 3
