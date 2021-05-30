@@ -93,8 +93,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.1892247, y: 5.5515213, z: 2.2557518}
-  m_Center: {x: 0, y: -0.17520308, z: 0.174384}
+  m_Size: {x: 4.1892247, y: 5.6884522, z: 2.4293458}
+  m_Center: {x: 0, y: -0.24366769, z: 0.08758687}
 --- !u!1 &5271724955085112165
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 5271724955085112160}
   - component: {fileID: 8670914424047370090}
   - component: {fileID: 6136048699701765744}
+  - component: {fileID: 680053815956536429}
   m_Layer: 13
   m_Name: ActualLaundryBasket
   m_TagString: Grabable
@@ -123,8 +124,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5271724955085112165}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 38.55715, y: 0.56, z: -42.546528}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.64, y: 0.28, z: -21.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2307280580827478974}
@@ -142,8 +143,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.0725355, y: 1.9478142, z: 5.534321}
-  m_Center: {x: 0.0074281693, y: 0, z: -0.09878349}
+  m_Size: {x: 7.0725355, y: 1.5868342, z: 5.534321}
+  m_Center: {x: 0.0074281693, y: 0.18049002, z: -0.09878349}
 --- !u!54 &5271724955085112161
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -290,3 +291,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &680053815956536429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5271724955085112165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68cfb50f3078624c8e70c1998f306cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smashPosition: {x: 7.64, y: 0.28, z: -21.46}
+  bedPosition: {x: -8.37, y: 0.28, z: -57.87}
