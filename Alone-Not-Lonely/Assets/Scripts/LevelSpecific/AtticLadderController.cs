@@ -15,6 +15,7 @@ public class AtticLadderController : MonoBehaviour
     private float state = 0;
     //private WinCondition win;
     private Player _player;
+    private PlayerAbilityController pAbil;
     private float doorProgress = 0;
     public ContextualUI cu;
     private PromptController gOPU;
@@ -22,7 +23,7 @@ public class AtticLadderController : MonoBehaviour
     private void Start()
     {
         canUseLadder = false;
-
+        pAbil = FindObjectOfType<PlayerAbilityController>();
         //win = GetComponent<WinCondition>();
         _player = Player.instance;
         //closedLadderAnimator.SetFloat("anim_speed", state);
@@ -34,7 +35,9 @@ public class AtticLadderController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            pAbil.ReleaseObject();//drop box just in case still holding it
             //LoadingScreen.instance.gameObject.SetActive(true);
+           
             _player.gameObject.SetActive(false);
             //_player.gameObject.transform.position =  new Vector3(32.7400017f,4.98999977f,-62.7200012f);
             //_player.gameObject.SetActive(true);
@@ -79,6 +82,10 @@ public class AtticLadderController : MonoBehaviour
 
     public void open()
     {
+        if (_player.paused)
+        {
+            return;
+        }
         doorProgress += downspeed;
         doorProgress = Mathf.Clamp(doorProgress, 0f, 1f);
         //Debug.Log("DoorProgress: " + doorProgress);
@@ -99,7 +106,10 @@ public class AtticLadderController : MonoBehaviour
 
     public void close()
     {
-
+        if (_player.paused)
+        {
+            return;
+        }
         doorProgress -= upspeed;
         doorProgress = Mathf.Clamp(doorProgress, 0f, 1f);
         state = easeInOutQuint(doorProgress);
