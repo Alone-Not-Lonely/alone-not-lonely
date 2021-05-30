@@ -754,6 +754,7 @@ GameObject:
   - component: {fileID: 6202989567517701561}
   - component: {fileID: 3571066501687976744}
   - component: {fileID: 2251271580287610088}
+  - component: {fileID: 7479998607871754908}
   m_Layer: 5
   m_Name: AnxietyFill
   m_TagString: Untagged
@@ -818,48 +819,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2485183306294814465
-MonoBehaviour:
+--- !u!225 &7479998607871754908
+CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3367651133723157158}
+  m_GameObject: {fileID: 1533947459694594129}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d33241d7e7b398547b1052e7d98a2493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  relaxedHand: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  grabHand: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
-  climbHand: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  handedness: 1
-  facingImportant: 0
-  handOffset: 0.3
-  handRestingHeight: 1
-  forwardAmount: 0.5
-  handMoveSpeed: 0.3
---- !u!114 &2485183306627383500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3367651134322493425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d33241d7e7b398547b1052e7d98a2493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  relaxedHand: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  grabHand: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
-  climbHand: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  handedness: -1
-  facingImportant: 0
-  handOffset: 0.3
-  handRestingHeight: 1
-  forwardAmount: 0.5
-  handMoveSpeed: 0.3
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2932593884942738782
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +844,7 @@ GameObject:
   - component: {fileID: 2932593884942738781}
   - component: {fileID: 2932593884942738780}
   - component: {fileID: 2932593884942738723}
+  - component: {fileID: 8272646372276111440}
   m_Layer: 0
   m_Name: LoadingScreen
   m_TagString: Untagged
@@ -968,6 +940,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6909f6004766ee46a9cd1b325dd3348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &8272646372276111440
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932593884942738782}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2964451476424060797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1129,6 +1113,7 @@ GameObject:
   - component: {fileID: 6936916493505931699}
   - component: {fileID: 4396750821461993583}
   - component: {fileID: 2145547673726107431}
+  - component: {fileID: 1154231390479860017}
   m_Layer: 5
   m_Name: AnxietyMeter
   m_TagString: Untagged
@@ -1193,6 +1178,60 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &1154231390479860017
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3012604636890027102}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &2485183306294814465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3367651133723157158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33241d7e7b398547b1052e7d98a2493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relaxedHand: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  grabHand: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  climbHand: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  handedness: 1
+  facingImportant: 0
+  handOffset: 0.3
+  handRestingHeight: 1
+  forwardAmount: 0.5
+  handMoveSpeed: 0.3
+--- !u!114 &2485183306627383500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3367651134322493425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33241d7e7b398547b1052e7d98a2493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relaxedHand: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  grabHand: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  climbHand: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  handedness: -1
+  facingImportant: 0
+  handOffset: 0.3
+  handRestingHeight: 1
+  forwardAmount: 0.5
+  handMoveSpeed: 0.3
 --- !u!1 &4628770544557680479
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,6 +1382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4683546592148557851}
   - component: {fileID: 2143794443049914478}
+  - component: {fileID: 1556843734174752913}
   m_Layer: 5
   m_Name: UI Key LIst
   m_TagString: Untagged
@@ -1395,6 +1435,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!225 &1556843734174752913
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4683546592148557844}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &4683546592356798663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,6 +1630,7 @@ GameObject:
   - component: {fileID: 4683546592849695755}
   - component: {fileID: 4683546592849695748}
   - component: {fileID: 4683546592849695749}
+  - component: {fileID: 2371961694533835884}
   m_Layer: 5
   m_Name: Puzzle Indicator
   m_TagString: Untagged
@@ -1662,6 +1715,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!225 &2371961694533835884
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4683546592849695751}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &5258016812137865857
 GameObject:
   m_ObjectHideFlags: 0
@@ -3632,14 +3697,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c4c3a26c2307274894ad4543973147b, type: 3}
---- !u!1 &3367651134322493425 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1c4c3a26c2307274894ad4543973147b, type: 3}
-  m_PrefabInstance: {fileID: 2485183306349869728}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2735827310716099915 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1c4c3a26c2307274894ad4543973147b, type: 3}
+  m_PrefabInstance: {fileID: 2485183306349869728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3367651134322493425 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1c4c3a26c2307274894ad4543973147b, type: 3}
   m_PrefabInstance: {fileID: 2485183306349869728}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2485183306959658999
@@ -3723,13 +3788,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c4c3a26c2307274894ad4543973147b, type: 3}
---- !u!1 &3367651133723157158 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1c4c3a26c2307274894ad4543973147b, type: 3}
-  m_PrefabInstance: {fileID: 2485183306959658999}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2735827310139865116 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1c4c3a26c2307274894ad4543973147b, type: 3}
+  m_PrefabInstance: {fileID: 2485183306959658999}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3367651133723157158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1c4c3a26c2307274894ad4543973147b, type: 3}
   m_PrefabInstance: {fileID: 2485183306959658999}
   m_PrefabAsset: {fileID: 0}
