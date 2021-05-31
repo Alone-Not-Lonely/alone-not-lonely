@@ -12,11 +12,14 @@ public class ReturnToKitchen : ContextualUI
 
     public bool bedroomDoor;
 
+    private AudioSource doorSounds;
+
     void Start()
     {
         base.Start();
         _player = Player.instance;
         positionToReturnTo = new Vector3(19.5699558f ,1.98000038f ,-69.827858f );
+        doorSounds = GetComponent<AudioSource>();
     }
     
     /// <summary>
@@ -59,6 +62,7 @@ public class ReturnToKitchen : ContextualUI
             else
                 newTransform.position = positionToReturnTo + new Vector3(0, 0, 20f);
             newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
+            doorSounds.Play();
             LoadingScreen.instance.LoadScene("Kitchen", newTransform);
         }
     }
