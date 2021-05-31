@@ -11,10 +11,12 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     private CanvasGroup canvasGroup;
     public bool piecePlaced = false;
+    AudioSource startDrag;
     private void Awake() {
         thisTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         GetComponent<Image>().alphaHitTestMinimumThreshold = .001f;
+        startDrag = GetComponent<AudioSource>();
         //canvas.worldCamera = Camera.main;
     }
     public void OnPointerDown(PointerEventData eventData)
@@ -37,7 +39,8 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public void OnDrag(PointerEventData eventData)
     {
         Debug.Log("Dragging");
-        thisTransform.anchoredPosition += eventData.delta / (canvas.scaleFactor + 3f); 
+        thisTransform.anchoredPosition += eventData.delta / (canvas.scaleFactor); 
+        startDrag.Play();
     }
 
     public void OnDrop(PointerEventData eventData)

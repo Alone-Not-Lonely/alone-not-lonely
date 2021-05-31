@@ -11,6 +11,7 @@ public class FinalPuzzleManager : MonoBehaviour
 
     Vector3 desiredEndPosition = new Vector3(-0.730000019f,3.31999993f,-7.5f);
     public static FinalPuzzleManager instance;
+    AudioSource completeSound;
     private void Awake() {
         FinalPuzzleManager[] objs = (FinalPuzzleManager[])FindObjectsOfType<FinalPuzzleManager>();
 
@@ -23,6 +24,7 @@ public class FinalPuzzleManager : MonoBehaviour
             //DontDestroyOnLoad(this.gameObject);
             instance = this;
         }
+        completeSound = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -85,6 +87,7 @@ public class FinalPuzzleManager : MonoBehaviour
         }
         if(ctr == 12)
         {
+            completeSound.Play();
             StartCoroutine("DramaticZoomOut");
         }
     }

@@ -7,6 +7,7 @@ public class PuzzleBoard : MonoBehaviour, IDropHandler
 {
     public float snapThreshold;
     public static PuzzleBoard instance;
+    AudioSource pieceDropped;
 
     void Awake() {
         PuzzleBoard[] objs = (PuzzleBoard[])FindObjectsOfType<PuzzleBoard>();
@@ -20,6 +21,7 @@ public class PuzzleBoard : MonoBehaviour, IDropHandler
             //DontDestroyOnLoad(this.gameObject);
             instance = this;
         }
+        pieceDropped = GetComponent<AudioSource>();
     }
 
     void OnEnable()
@@ -50,6 +52,7 @@ public class PuzzleBoard : MonoBehaviour, IDropHandler
             {
                 eventData.pointerDrag.gameObject.GetComponent<RectTransform>().anchoredPosition = this.GetComponent<RectTransform>().anchoredPosition;
                 eventData.pointerDrag.gameObject.GetComponent<DragDrop>().piecePlaced = true;
+                pieceDropped.Play();
             }
             else
             {
