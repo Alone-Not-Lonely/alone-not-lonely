@@ -12,13 +12,20 @@ public class EndGamePuzzle : ContextualUI
     public Transform cameraTarget;
 
     FinalPuzzleManager puzzleManager;
+    PuzzleBoard puzzleBoard;
+
+    FinalPuzzleManager worldPuzzleManager;
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Executing Start");
         base.Start();
         _player = Player.instance;
         _player._actionMap.Platforming.InteractionTest.performed += interact => PlayerInteract();
-        puzzleManager = FindObjectOfType<FinalPuzzleManager>();
+        puzzleManager = FinalPuzzleManager.instance;
+        puzzleBoard = PuzzleBoard.instance;
+        puzzleManager.gameObject.SetActive(false);
+        puzzleBoard.gameObject.SetActive(false);
     }
 
     void PlayerInteract()
@@ -32,9 +39,13 @@ public class EndGamePuzzle : ContextualUI
                 _player._actionMap.PuzzleAssembly.Exit.performed += close => PlayerInteract();
                 Camera.main.GetComponent<CameraController>().MoveToFixedPosition(cameraTarget.position, this.gameObject);
                 inPuzzleMode = true;
-                puzzleManager.UpdatePuzzleState();
+                
                 //base.ChangeToContextSecondary();
                 Cursor.lockState = CursorLockMode.None;
+                puzzleManager.gameObject.SetActive(true);
+                puzzleBoard.gameObject.SetActive(true);
+                if(puzzleManager)
+                    puzzleManager.UpdatePuzzleState();
             }
             else if (canInteract)
             {
@@ -45,6 +56,8 @@ public class EndGamePuzzle : ContextualUI
                 inPuzzleMode = false;
                 //base.ChangeToContextInit();
                 Cursor.lockState = CursorLockMode.Locked;
+                puzzleManager.gameObject.SetActive(false);
+                puzzleBoard.gameObject.SetActive(false);
             }
         }
     }

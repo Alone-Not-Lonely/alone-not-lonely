@@ -64,6 +64,14 @@ public class KeyBaring : Interactable
         }
     }
 
+    public void ForceDrop()
+    {
+        inKeyCooldown = true;
+
+        open = false;
+        PutDownKey();
+    }
+
     private void Update()
     {
         if (controlSwapThisFrame)
@@ -135,6 +143,8 @@ public class KeyBaring : Interactable
         {
             Debug.Log("Player Exited Trigger");
             base.OnTriggerExit(other);
+            if(open)
+                ForceDrop();
             base.playerRef._actionMap.Platforming.InteractionTest.performed -= interact => keyGrab();
         }
     }

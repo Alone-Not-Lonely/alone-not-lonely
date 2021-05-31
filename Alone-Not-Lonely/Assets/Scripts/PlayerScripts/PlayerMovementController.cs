@@ -66,8 +66,9 @@ public class PlayerMovementController : MonoBehaviour
     bool stopFootstepsV;
     public void MoveHoriz(float horizMvmt)
     {
-        if (horizDirection == 0 && vertDirection == 0 && playerController.isGrounded)
+        if (horizDirection == 0 && vertDirection == 0)
         {
+            Debug.Log("Footsteps");
             footsteps.UnPause();
         }
         else if(horizMvmt == 0 && (horizDirection != 0 || vertDirection != 0))
@@ -80,8 +81,9 @@ public class PlayerMovementController : MonoBehaviour
 
     public void MoveVert(float vertMvmt)
     {
-        if (vertDirection == 0 && horizDirection == 0 && playerController.isGrounded)
+        if (vertDirection == 0 && horizDirection == 0)
         {
+            Debug.Log("Footsteps");
             footsteps.UnPause();
         }
         else if(vertMvmt == 0 && (horizDirection != 0 || vertDirection != 0))
@@ -211,6 +213,7 @@ public class PlayerMovementController : MonoBehaviour
         if(horizDirection == 0 && vertDirection == 0)
         {
             footsteps.Pause();
+            Debug.Log("Stop footsteps");
         }
         if(!thisPlayer.paused && !climbing)
         {
@@ -227,11 +230,28 @@ public class PlayerMovementController : MonoBehaviour
             if(playerAb.holdingObject && 
             Physics.Raycast(transform.position, transform.forward, out holdingObjectCheck, playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance + 1f, ~(1<<13)))
             {
-                //Debug.Log("Casting hit at distance " + transform.forward);
                 if(!holdingObjectCheck.collider.isTrigger && !holdingObjectCheck.collider.gameObject.CompareTag("Grabable") && Vector3.Dot(moveDirection, transform.forward) > .5 && playerAb.heldObject.GetComponent<SquashedObject>() == null)
                 {
-                    //cant move but CAN rotate
+                    //cant move and CANT rotate
                     Vector3 camRotation = camController.GetCameraRotation(); 
+                    /*RaycastHit rotationCheck;
+                    float deltaRotation = camRotation.y - playerController.gameObject.transform.eulerAngles.y;
+                    if(deltaRotation > 0)
+                    {
+                        deltaRotation = -1;
+                    }
+                    else if(deltaRotation < 0)
+                    {
+                        deltaRotation = 1;
+                    }
+                    else
+                    {
+                        deltaRotation = 0;
+                    }
+                    if(!Physics.Raycast(transform.position, transform.right * deltaRotation, out rotationCheck, playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance + 1f, ~(1<<13)))
+                    {
+                        playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
+                    }*/
                     playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
                 }
                 else
@@ -248,7 +268,7 @@ public class PlayerMovementController : MonoBehaviour
             }
         }
         else{
-            footsteps.Stop();
+            footsteps.Pause();
         }
     }
 }

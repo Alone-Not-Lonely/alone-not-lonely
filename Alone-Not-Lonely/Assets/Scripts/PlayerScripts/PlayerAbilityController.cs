@@ -30,6 +30,7 @@ public class PlayerAbilityController : Grabber
     {
         //playerRef._actionMap.ViewingObject.Disable();
         //playerRef._actionMap.Platforming.Use.performed -= grab => PlayerGrab();
+        ReleaseObject();
     }
 
     void PlayerGrab()

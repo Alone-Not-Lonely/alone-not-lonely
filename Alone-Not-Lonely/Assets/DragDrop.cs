@@ -15,25 +15,28 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         thisTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         GetComponent<Image>().alphaHitTestMinimumThreshold = .001f;
-        canvas.worldCamera = Camera.main;
+        //canvas.worldCamera = Camera.main;
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("TextAsset");
+        Debug.Log("Clicked");
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Debug.Log("Start Drag");
         canvasGroup.blocksRaycasts = false;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        Debug.Log("EndDrag");
         canvasGroup.blocksRaycasts = true;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        Debug.Log("Dragging");
         thisTransform.anchoredPosition += eventData.delta / (canvas.scaleFactor + 3f); 
     }
 
