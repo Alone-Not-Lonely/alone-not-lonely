@@ -21,12 +21,19 @@ public class SmashMonsterController : MonoBehaviour
     public bool currentlyFlashColor = false;
     private Color usualColor;
 
+    private AudioSource squishSound;
+    private AudioSource unsquishSound;
+
     private void Start() {
         groundLocation = this.transform.position;
         groundLocation -= new Vector3(0, liftHeight, 0);
         raisedLocation = this.transform.position;
         //raisedLocation += new Vector3(0, liftHeight, 0);
         rb = this.GetComponent<Rigidbody>();
+        //squishSound = GetComponent<AudioSource>();
+        AudioSource[] sounds = GetComponents<AudioSource>();
+        squishSound = sounds[0];
+        unsquishSound = sounds[1];
     }
 
     private void Update() {
@@ -55,6 +62,7 @@ public class SmashMonsterController : MonoBehaviour
             Destroy(mostRecentSquash);
             mostRecentSquash = null;
             currentSquashTime = 0f;
+            unsquishSound.Play();
         }
 
         //applying effects & feedback!
@@ -101,6 +109,7 @@ public class SmashMonsterController : MonoBehaviour
             mostRecentSquash.GetComponent<BoxSquashBehavior>().regularVariant = other.gameObject.GetComponentInParent<BoxSquashBehavior>().regularVariant;
             usualColor = mostRecentSquash.GetComponentInChildren<MeshRenderer>().material.GetColor("Color_C8F70FC4");
             Destroy(other.gameObject.transform.parent.gameObject);
+            squishSound.Play();
         }
         else if (smashing && other.gameObject.CompareTag("Grabable") && !other.isTrigger && other.gameObject.GetComponentInParent<SquashedObject>() == null && mostRecentSquash != null)
         {
@@ -114,6 +123,7 @@ public class SmashMonsterController : MonoBehaviour
             Destroy(mostRecentSquash);
             mostRecentSquash = null;
             currentSquashTime = 0f;
+            unsquishSound.Play();
 
             //NEW SQUASH
             other.gameObject.GetComponentInParent<BoxSquashBehavior>().Squash();
@@ -123,6 +133,7 @@ public class SmashMonsterController : MonoBehaviour
             mostRecentSquash.GetComponent<BoxSquashBehavior>().regularVariant = other.gameObject.GetComponentInParent<BoxSquashBehavior>().regularVariant;
             usualColor = mostRecentSquash.GetComponentInChildren<MeshRenderer>().material.GetColor("Color_C8F70FC4");
             Destroy(other.gameObject.transform.parent.gameObject);
+            squishSound.Play();
         }
     }
 }
