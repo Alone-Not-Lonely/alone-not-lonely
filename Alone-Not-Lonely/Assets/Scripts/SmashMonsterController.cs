@@ -45,6 +45,8 @@ public class SmashMonsterController : MonoBehaviour
         {
             smashing = true;
             smashCountdown = 0f;
+            if(Vector3.Distance(Player.instance.transform.position, this.transform.position) < 15f)
+                squishSound.Play();
         }
         //manage squash
         if(mostRecentSquash != null && currentSquashTime < timeToUnSquash)

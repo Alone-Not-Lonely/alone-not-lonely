@@ -58,7 +58,10 @@ public abstract class Grabber : MonoBehaviour
             heldObject.gameObject.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
             heldObject.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             heldObject.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            heldObject.GetComponent<BoxContactBehavior>().boxSFX.PlayOneShot(heldObject.GetComponent<BoxContactBehavior>().boxDrop);
+            if(heldObject.GetComponent<BoxContactBehavior>().boxSFX)
+            {
+                heldObject.GetComponent<BoxContactBehavior>().boxSFX.PlayOneShot(heldObject.GetComponent<BoxContactBehavior>().boxDrop);
+            }
             holdingObject = false;
             heldObject.GetComponent<BoxContactBehavior>().beingHeld = false;
             heldObject.GetComponent<BoxContactBehavior>().boxHolder = null;
