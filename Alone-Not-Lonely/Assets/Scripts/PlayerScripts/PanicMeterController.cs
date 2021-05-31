@@ -38,19 +38,6 @@ public class PanicMeterController : MonoBehaviour
         anxietyMeter.fillAmount = currentAnxietyPoints/totalAnxietyPoints;
         thisPlayer = Player.instance;
         pAbility = thisPlayer.gameObject.GetComponent<PlayerAbilityController>();
-        //postProcess = (Volume)FindObjectOfType<Volume>();
-        //postProcess.profile.TryGet(out vignette);
-        //postProcess.profile.TryGet(out desaturate);
-        /*if(vignette)
-        {
-            vignette.intensity.value = 0f;
-        }
-
-        if(desaturate)
-        {
-            desaturate.saturation.value = 0f;
-            desaturate.postExposure.value = 0f;
-        }*/
         breathing = GetComponent<AudioSource>();
         //breathing.enabled = false;
         //playerAnimator = GetComponent<Animator>();
@@ -278,9 +265,6 @@ public class PanicMeterController : MonoBehaviour
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
         postProcess = (Volume)FindObjectOfType<Volume>();
         postProcess.profile.TryGet(out vignette);
         postProcess.profile.TryGet(out desaturate);
@@ -288,13 +272,46 @@ public class PanicMeterController : MonoBehaviour
         {
             vignette.intensity.value = 0f;
         }
+        else
+        {
+            Debug.LogWarning("Vignette missing");
+        }
 
         if(desaturate)
         {
             desaturate.saturation.value = 0f;
             desaturate.postExposure.value = 0f;
         }
+        else
+        {
+            Debug.LogWarning("Vignette missing");
+        }
         monsters = new List<GameObject>();
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        /*postProcess = (Volume)FindObjectOfType<Volume>();
+        postProcess.profile.TryGet(out vignette);
+        postProcess.profile.TryGet(out desaturate);
+        if(vignette)
+        {
+            vignette.intensity.value = 0f;
+        }
+        else
+        {
+            Debug.LogWarning("Vignette missing");
+        }
+
+        if(desaturate)
+        {
+            desaturate.saturation.value = 0f;
+            desaturate.postExposure.value = 0f;
+        }
+        else
+        {
+            Debug.LogWarning("Vignette missing");
+        }
+        monsters = new List<GameObject>();*/
     }
 
     private void OnDisable(){
