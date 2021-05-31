@@ -58,7 +58,7 @@ public class FinalChestDoorCheck : MonoBehaviour
 
     bool onDoor()
     {
-        Debug.Log("Door Progress: "+_ladder.doorProgress);
+        //Debug.Log("Door Progress: "+_ladder.doorProgress);
         if (_behavior.beingHeld)
         {
             return false;
