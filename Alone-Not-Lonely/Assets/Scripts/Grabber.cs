@@ -97,4 +97,8 @@ public abstract class Grabber : MonoBehaviour
         }
     }
 
+    private void OnDisable() {
+        ReleaseObject();
+    }
+
 }
