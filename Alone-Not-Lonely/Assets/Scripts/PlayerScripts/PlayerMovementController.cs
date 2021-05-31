@@ -66,8 +66,9 @@ public class PlayerMovementController : MonoBehaviour
     bool stopFootstepsV;
     public void MoveHoriz(float horizMvmt)
     {
-        if (horizDirection == 0 && vertDirection == 0 && playerController.isGrounded)
+        if (horizDirection == 0 && vertDirection == 0)
         {
+            Debug.Log("Footsteps");
             footsteps.UnPause();
         }
         else if(horizMvmt == 0 && (horizDirection != 0 || vertDirection != 0))
@@ -80,8 +81,9 @@ public class PlayerMovementController : MonoBehaviour
 
     public void MoveVert(float vertMvmt)
     {
-        if (vertDirection == 0 && horizDirection == 0 && playerController.isGrounded)
+        if (vertDirection == 0 && horizDirection == 0)
         {
+            Debug.Log("Footsteps");
             footsteps.UnPause();
         }
         else if(vertMvmt == 0 && (horizDirection != 0 || vertDirection != 0))
@@ -211,6 +213,7 @@ public class PlayerMovementController : MonoBehaviour
         if(horizDirection == 0 && vertDirection == 0)
         {
             footsteps.Pause();
+            Debug.Log("Stop footsteps");
         }
         if(!thisPlayer.paused && !climbing)
         {
@@ -265,7 +268,7 @@ public class PlayerMovementController : MonoBehaviour
             }
         }
         else{
-            footsteps.Stop();
+            footsteps.Pause();
         }
     }
 }
