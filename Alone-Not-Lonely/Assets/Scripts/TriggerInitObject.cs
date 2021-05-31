@@ -39,16 +39,24 @@ public class TriggerInitObject : MonoBehaviour
             {
                 child.gameObject.GetComponent<Animator>().SetBool("StartAnim", true);
             }
-            gabeAs.Play();
+            //gabeAs.Play();
             Deactivate();
         }
     }
 
     IEnumerator PlaySound()
     {
-        gabeAs.Play();
-        yield return new WaitWhile (()=> gabeAs.isPlaying);
-        this.gameObject.SetActive(false);
+        if(gabeAs)
+        {
+            gabeAs.Play();
+            yield return new WaitWhile (()=> gabeAs.isPlaying);
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.gameObject.SetActive(false);
+            yield return null;
+        }
     }
 
     public void Deactivate()
