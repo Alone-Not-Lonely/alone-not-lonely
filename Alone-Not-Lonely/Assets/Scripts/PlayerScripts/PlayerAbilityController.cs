@@ -9,6 +9,8 @@ public class PlayerAbilityController : Grabber
 
     private Player playerRef;
     private BoxCollider collideWithWalls;
+    public AudioSource liftSounds;
+    public List<AudioClip> liftClips;
     void Start()
     {
         playerRef = Player.instance;
@@ -44,6 +46,7 @@ public class PlayerAbilityController : Grabber
                     return;
                 }
                 GrabAttempt(currentGrab, this.gameObject);
+                liftSounds.PlayOneShot(liftClips[Mathf.FloorToInt(Random.Range(0, liftClips.Count))]);
                 if (currentGrab.GetComponent<ContextualUI>() != null)
                 {
                     currentGrab.GetComponent<ContextualUI>().nextPrompt();
