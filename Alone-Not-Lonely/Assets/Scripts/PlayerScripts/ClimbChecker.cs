@@ -66,7 +66,7 @@ public class ClimbChecker : MonoBehaviour
     //should be a coroutine for performance, but testing the idea first. 
     public void adjustHeight()
     {
-        Debug.Log("Adjust height called");
+        //Debug.Log("Adjust height called");
         //Checks if player is close to object
         RaycastHit obNearHit;
         Ray obNearRay = new Ray(transform.position, transform.forward);

@@ -28,6 +28,8 @@ public class PlayerMovementController : MonoBehaviour
     private ClimbChecker cCheck;
     public float lerpEpsilon = 0.01f, climbSpeed = 10f, crawlHeight = 1f;
 
+    public List<AudioClip> footstepSounds;
+
     private void Start() 
     {
         //thisPlayer = (Player)FindObjectOfType<Player>();
@@ -45,6 +47,7 @@ public class PlayerMovementController : MonoBehaviour
         camController = (CameraController)FindObjectOfType(typeof(CameraController));
         playerAb = GetComponent<PlayerAbilityController>();
         footsteps.Play();
+        footsteps.clip = footstepSounds[0];
         footsteps.Pause();
         cCheck = (ClimbChecker)FindObjectOfType(typeof(ClimbChecker));
 
@@ -69,7 +72,8 @@ public class PlayerMovementController : MonoBehaviour
         if (horizDirection == 0 && vertDirection == 0)
         {
             Debug.Log("Footsteps");
-            footsteps.UnPause();
+            footsteps.clip = footstepSounds[Mathf.FloorToInt(Random.Range(0, footstepSounds.Count))];
+            footsteps.Play();
         }
         else if(horizMvmt == 0 && (horizDirection != 0 || vertDirection != 0))
         {
@@ -84,7 +88,8 @@ public class PlayerMovementController : MonoBehaviour
         if (vertDirection == 0 && horizDirection == 0)
         {
             Debug.Log("Footsteps");
-            footsteps.UnPause();
+            footsteps.clip = footstepSounds[Mathf.FloorToInt(Random.Range(0, footstepSounds.Count))];
+            footsteps.Play();
         }
         else if(vertMvmt == 0 && (horizDirection != 0 || vertDirection != 0))
         {
@@ -172,7 +177,7 @@ public class PlayerMovementController : MonoBehaviour
  
     void FixedUpdate()
     {
-        if(horizDirection == 0 && vertDirection == 0)
+        if(horizDirection == 0 && vertDirection == 0 && footsteps.isPlaying)
         {
             footsteps.Pause();
             Debug.Log("Stop footsteps");
