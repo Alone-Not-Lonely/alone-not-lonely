@@ -18,7 +18,7 @@ public class HamperPersistence : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(ProgressionTracker.instance.alreadyVisited.Contains(scene.name))
+        if(ProgressionTracker.instance.alreadyVisited.Contains("Bedroom1"))
         {
             this.transform.position = bedPosition;
         }
