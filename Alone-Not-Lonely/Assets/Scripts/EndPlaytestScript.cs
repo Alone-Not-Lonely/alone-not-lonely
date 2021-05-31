@@ -14,7 +14,7 @@ public class EndPlaytestScript : MonoBehaviour
     {
         _player = Player.instance;
         positionToReturnTo = new Vector3(30,4,-47); 
-        _player._actionMap.Platforming.SkipLevel.performed += skip => LoadNextLevel();
+        //_player._actionMap.Platforming.SkipLevel.performed += skip => LoadNextLevel();
         pC = FindObjectOfType<PromptController>();
     }
 
