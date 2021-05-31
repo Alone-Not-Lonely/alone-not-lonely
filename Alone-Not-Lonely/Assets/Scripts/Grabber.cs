@@ -53,7 +53,7 @@ public abstract class Grabber : MonoBehaviour
     {
         if(heldObject && holdingObject)
         {
-            Debug.Log("Released");
+            //Debug.Log("Released");
             heldObject.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             heldObject.gameObject.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
             heldObject.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;

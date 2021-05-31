@@ -58,39 +58,57 @@ public class FinalChestDoorCheck : MonoBehaviour
 
     bool onDoor()
     {
+        Debug.Log("Door Progress: "+_ladder.doorProgress);
         if (_behavior.beingHeld)
         {
             return false;
         }
-
-        leftRay = new Ray((transform.position - transform.right * offsetLength - transform.up * offsetHeight), -transform.up * rayLength);
+        
+        leftRay = new Ray((transform.position - transform.right * offsetLength - transform.up * offsetHeight), -Vector3.up * rayLength);
         Debug.DrawRay(leftRay.origin, leftRay.direction * rayLength, Color.red);
         RaycastHit leftOut;
-
-        if (!Physics.Raycast(leftRay, out leftOut, rayLength))
+       
+        if(Physics.Raycast(leftRay, out leftOut, rayLength, ~LayerMask.GetMask("Ignore Raycast"))) { 
+            if (leftOut.collider.tag != "Finish")
+            {
+                if (_ladder.doorProgress < .2)
+                {
+                    return false;
+                }
+            }
+        }
+        else
         {
-            return false;
+            if (_ladder.doorProgress < .2)
+            {
+                return false;
+            }
         }
 
-        if (leftOut.collider.tag != "Finish")
-        {
-            return false;
-        }
 
-        rightRay = new Ray((transform.position + transform.right * offsetLength - transform.up * offsetHeight), -transform.up * rayLength);
+        rightRay = new Ray((transform.position + transform.right * offsetLength - transform.up * offsetHeight), -Vector3.up * rayLength);
         Debug.DrawRay(rightRay.origin, rightRay.direction * rayLength, Color.red);
         RaycastHit rightOut;
 
-        if (!Physics.Raycast(rightRay, out rightOut, rayLength, ~LayerMask.GetMask("Ignore Raycast")))  
+      
+        if (Physics.Raycast(rightRay, out rightOut, rayLength, ~LayerMask.GetMask("Ignore Raycast")))
         {
-            return false;
+            if (rightOut.collider.tag != "Finish")
+            {
+                if (_ladder.doorProgress < .2)
+                {
+                    return false;
+                }
+            }
         }
-
-        if (rightOut.collider.tag != "Finish")
+        else
         {
-            return false;
+            if (_ladder.doorProgress < .2)
+            {
+                return false;
+            }
+           
         }
-
         return true;
     }
 }

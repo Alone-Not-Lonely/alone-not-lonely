@@ -16,7 +16,7 @@ public class AtticLadderController : MonoBehaviour
     //private WinCondition win;
     private Player _player;
     private PlayerAbilityController pAbil;
-    private float doorProgress = 0;
+    public float doorProgress = 0;
     public ContextualUI cu;
     private PromptController gOPU;
 

@@ -190,7 +190,7 @@ public class handBehavior : MonoBehaviour
         {
             if (hit.collider == currGrab)
             {
-                Debug.Log(hit.point);
+                //Debug.Log(hit.point);
                 return hit.point;//creates a point slightly back from contact point and sufficiently away
 
             }
