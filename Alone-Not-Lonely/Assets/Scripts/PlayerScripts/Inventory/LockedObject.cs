@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class LockedObject : MonoBehaviour
 {
     private PlayerInventory inventory;
@@ -11,12 +12,15 @@ public class LockedObject : MonoBehaviour
     Player playerRef;
     private ContextualUI cui;
 
+    private AudioSource openDoor;
+
     void Start()
     {
         cui = GetComponent<ContextualUI>();
         playerRef = Player.instance;
         inventory = playerRef.GetComponentInChildren<PlayerInventory>();
         _animator = GetComponent<Animator>();
+        openDoor = GetComponentInParent<AudioSource>();
     }
 
     public void OpenAttempt()
@@ -30,6 +34,7 @@ public class LockedObject : MonoBehaviour
             openAction();
             //put opening actions here
             //remove key from inventory
+            openDoor.Play();
         }
         else
         {
@@ -60,6 +65,7 @@ public class LockedObject : MonoBehaviour
         cui.startPoint = 2;//make sure 'e never says nothin again
         cui.endPoint = 2;
         cui.setCID(2);// a bit embarassing, but it'll have to do for now
+        removeFromActions();
     }
 
     private void OnTriggerEnter(Collider other)
