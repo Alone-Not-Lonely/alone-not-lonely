@@ -33,6 +33,7 @@ public class ProgressionTracker : MonoBehaviour
 
     public void MarkSceneCompleted(string name)
     {
-        alreadyVisited.Add(name);
+        if(!alreadyVisited.Contains(name))
+            alreadyVisited.Add(name);
     }
 }
