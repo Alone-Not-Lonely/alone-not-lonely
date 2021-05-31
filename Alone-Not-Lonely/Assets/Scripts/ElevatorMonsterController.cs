@@ -74,23 +74,6 @@ public class ElevatorMonsterController : Grabber
 
     }
 
-    void HitTop()
-    {
-        if (goingUp && holdingObject)
-        {
-            targetPoint = startPoint;
-            goingUp = !goingUp;
-        }
-    }
-
-    void HitBottom()
-    {
-        if(!goingUp && holdingObject)
-        {
-            targetPoint = this.transform.position + (this.transform.up * height);
-            goingUp = !goingUp;
-        }
-    }
 
     void OnTriggerEnter(Collider other) 
     {
@@ -100,7 +83,7 @@ public class ElevatorMonsterController : Grabber
             if(this.holdingObject)
             {
                 anims.SetBool("Raising", true);
-                startPoint = this.transform.position - (transform.localScale.y * transform.up) + new Vector3(0, other.gameObject.transform.localScale.y/1, 0);
+                startPoint = this.transform.position - (transform.localScale.y * transform.up) + new Vector3(0, other.gameObject.transform.localScale.y/2f, 0);
             }
         }
     }
@@ -110,7 +93,7 @@ public class ElevatorMonsterController : Grabber
         if(other.gameObject.CompareTag("Grabable") && other.isTrigger && !other.gameObject.GetComponent<BoxContactBehavior>().beingHeld && !this.holdingObject)
         {
             //I dont think this ever executes?
-            //GrabAttempt(other.gameObject, this.gameObject);
+            GrabAttempt(other.gameObject, this.gameObject);
         }
     }
 }

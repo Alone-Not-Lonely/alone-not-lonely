@@ -2,10 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using UnityEngine.SceneManagement;
 public class PuzzleBoard : MonoBehaviour, IDropHandler
 {
     public float snapThreshold;
+    public static PuzzleBoard instance;
+
+    void Awake() {
+        PuzzleBoard[] objs = (PuzzleBoard[])FindObjectsOfType<PuzzleBoard>();
+
+        if (objs.Length > 1)
+        {
+            DestroyImmediate(this.gameObject);
+        }
+        else
+        {
+            //DontDestroyOnLoad(this.gameObject);
+            instance = this;
+        }
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Loaded into " + scene.name);
+        if(scene.name != "GroundFloor")
+        {
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnDisable(){
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
     public void OnDrop(PointerEventData eventData)
     {
         if(eventData.pointerDrag != null)

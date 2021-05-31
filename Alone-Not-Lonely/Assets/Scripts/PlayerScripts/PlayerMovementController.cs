@@ -227,11 +227,28 @@ public class PlayerMovementController : MonoBehaviour
             if(playerAb.holdingObject && 
             Physics.Raycast(transform.position, transform.forward, out holdingObjectCheck, playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance + 1f, ~(1<<13)))
             {
-                //Debug.Log("Casting hit at distance " + transform.forward);
                 if(!holdingObjectCheck.collider.isTrigger && !holdingObjectCheck.collider.gameObject.CompareTag("Grabable") && Vector3.Dot(moveDirection, transform.forward) > .5 && playerAb.heldObject.GetComponent<SquashedObject>() == null)
                 {
-                    //cant move but CAN rotate
+                    //cant move and CANT rotate
                     Vector3 camRotation = camController.GetCameraRotation(); 
+                    /*RaycastHit rotationCheck;
+                    float deltaRotation = camRotation.y - playerController.gameObject.transform.eulerAngles.y;
+                    if(deltaRotation > 0)
+                    {
+                        deltaRotation = -1;
+                    }
+                    else if(deltaRotation < 0)
+                    {
+                        deltaRotation = 1;
+                    }
+                    else
+                    {
+                        deltaRotation = 0;
+                    }
+                    if(!Physics.Raycast(transform.position, transform.right * deltaRotation, out rotationCheck, playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance + 1f, ~(1<<13)))
+                    {
+                        playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
+                    }*/
                     playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
                 }
                 else

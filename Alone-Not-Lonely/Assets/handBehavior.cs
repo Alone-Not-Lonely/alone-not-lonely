@@ -9,27 +9,32 @@ public class handBehavior : MonoBehaviour
     public Mesh relaxedHand;
     public Mesh grabHand;
     public Mesh climbHand;
-
-    private enum handed {right = 1, left = -1};
+    public float restingYRot, holdingYRot;
+    public Vector3 climbingRotations;
+    //private enum handed {right = -1, left = 1};
+    private enum handed { right = 1, left = -1 };
     [SerializeField]
     private handed handedness;
     private int hQ;
     private PlayerAbilityController pAbil;
     private PlayerMovementController pMov;
     private ClimbChecker cCheck;
-    private GameObject focus;//will be either thing to climb on or to pick up
-    private RaycastHit mostRecentHit;
     private Vector3 goToPoint;//point which hands will center around
     public bool facingImportant = false;
-    //private List<GameObject> nearSig;//contains nearby objects of interest
+    private Transform origParent;
+    
 
     public float handOffset = .3f,handRestingHeight = .5f, forwardAmount = .5f,
                  handMoveSpeed = .3f;
     // Start is called before the first frame update
     void Start()
     {
+        origParent = transform.parent;
         handMesh = GetComponent<MeshFilter>();
         handMesh.mesh = relaxedHand;
+        //transform.localEulerAngles = new Vector3(0, restingYRot, 0);
+        transform.localRotation = Quaternion.Euler(0, restingYRot, 0);
+        //transform.eulerAngles = new Vector3(0, restingYRot, 0);
         goToPoint = transform.position;//lazy way of instantiation
         hQ = (int)handedness;//makes hand direction simpler
         pAbil = FindObjectOfType<PlayerAbilityController>();
@@ -38,7 +43,7 @@ public class handBehavior : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    private void EarlyUpdate()
     {
         if (!pMov.climbing)//maintains consistant gotopoint in case of climbing
         {
@@ -58,6 +63,8 @@ public class handBehavior : MonoBehaviour
             if (handMesh.mesh != climbHand)
             {
                 handMesh.mesh = climbHand;
+                transform.localRotation = Quaternion.Euler(climbingRotations);
+                goToPoint = cCheck.edge + (cCheck.transform.right * hQ * -1 * handOffset) + cCheck.transform.forward * .5f;
             }
             //we actively avoid updating goToPoint
         }
@@ -65,8 +72,11 @@ public class handBehavior : MonoBehaviour
         {
             handMesh.mesh = grabHand;
             BoxCollider temp = getObjectsCollider(pAbil.currentGrab);
+
             //pray temp doesn't return null for now
             goToPoint = getSideHit(temp);
+            transform.localRotation = Quaternion.Euler(0, holdingYRot, 0);
+            //CHANGE PARENT HERE
         }
         else if (facingImportant)
         {
@@ -74,24 +84,29 @@ public class handBehavior : MonoBehaviour
             goToPoint += forwardAmount * cCheck.transform.forward;
             if (handMesh.mesh != relaxedHand)
             {
+                transform.localRotation = Quaternion.Euler(0, restingYRot, 0);
                 handMesh.mesh = relaxedHand;
             }
         }
-        else if (cCheck.climbablePoint != Vector3.zero && handMesh.mesh != climbHand)
+        else if (cCheck.climbablePoint != Vector3.zero)
         {
-            handMesh.mesh = climbHand;
+            if (handMesh.mesh != climbHand) { handMesh.mesh = climbHand; }
+            
+            goToPoint = cCheck.edge + (cCheck.transform.right * hQ * -1 * handOffset) + cCheck.transform.forward*.5f;
+            transform.localRotation = Quaternion.Euler(climbingRotations);
+        }
+        else 
+        {
+            if (handMesh.mesh != relaxedHand) {
+                handMesh.mesh = relaxedHand;
+                transform.localRotation = Quaternion.Euler(0, restingYRot, 0);
+            }
+        }
 
-            goToPoint = cCheck.edge + (transform.right * hQ * handOffset);
-        }
-        else if (handMesh.mesh != relaxedHand)
-        {
-            //resting hands
-            handMesh.mesh = relaxedHand;
-            //Debug.Log("Relaxed Hand Selected");
-        }
         if (pAbil.holdingObject)
         {
             transform.position = goToPoint;//Snap to sides of object if carrying
+            
         }
         transform.position = Vector3.Lerp(transform.position, goToPoint, handMoveSpeed);
         //transform.Rotate(Vector3.up * hQ, Space.Self);
@@ -133,16 +148,14 @@ public class handBehavior : MonoBehaviour
         {
             if (hit.collider == currGrab)
             {
-                firePoint = hit.point + transform.forward * .2f + transform.right * hQ * 5f;//creates a point slightly back from contact point and sufficiently away
+                firePoint = hit.point + hit.transform.forward * .1f + hit.transform.right * -1 *hQ * 5f;//creates a point slightly back from contact point and sufficiently away
             }
         }
-      
-        Ray fireBack = new Ray(firePoint, transform.right * -1 * hQ);//fires ray back at object
+        Ray fireBack = new Ray(firePoint, cCheck.transform.right  * hQ);//fires ray back at object
         RaycastHit[] fireBackHits = Physics.RaycastAll(fireBack);
-
+        Debug.DrawRay(fireBack.origin, fireBack.direction, Color.cyan);
         foreach(RaycastHit hit in fireBackHits)
         {
-
             if (hit.collider == currGrab)
             {
                 return hit.point;//creates a point slightly back from contact point and sufficiently away
@@ -162,8 +175,7 @@ public class handBehavior : MonoBehaviour
         {
             return false;
         }
-
-        //Debug.Log("Searching in object: " + t.name);
+        
         //check objects themselves
         if (t.GetComponent<BoxContactBehavior>()!=null || t.GetComponent<KeyBaring>() != null)
         {
@@ -178,11 +190,5 @@ public class handBehavior : MonoBehaviour
         //probably going to have to deal with the parent problem but will hold off for now
     
         return false;
-    }
-    
-
-    private void LateUpdate()
-    {
-        
     }
 }
