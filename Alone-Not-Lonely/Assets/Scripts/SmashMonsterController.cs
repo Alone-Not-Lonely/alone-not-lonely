@@ -62,7 +62,7 @@ public class SmashMonsterController : MonoBehaviour
             Destroy(mostRecentSquash);
             mostRecentSquash = null;
             currentSquashTime = 0f;
-            unsquishSound.Play();
+            //unsquishSound.Play();
         }
 
         //applying effects & feedback!
@@ -77,6 +77,10 @@ public class SmashMonsterController : MonoBehaviour
             {
                 mostRecentSquash.GetComponentInChildren<MeshRenderer>().material.SetColor("Color_C8F70FC4", usualColor);
                 currentlyFlashColor = false;
+            }
+            if(currentSquashTime >= (7*timeToUnSquash)/8 && !unsquishSound.isPlaying)
+            {
+                unsquishSound.Play();
             }
         }
     }
@@ -123,7 +127,7 @@ public class SmashMonsterController : MonoBehaviour
             Destroy(mostRecentSquash);
             mostRecentSquash = null;
             currentSquashTime = 0f;
-            unsquishSound.Play();
+            
 
             //NEW SQUASH
             other.gameObject.GetComponentInParent<BoxSquashBehavior>().Squash();

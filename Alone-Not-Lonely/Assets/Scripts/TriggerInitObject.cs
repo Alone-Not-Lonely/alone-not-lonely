@@ -23,6 +23,7 @@ public class TriggerInitObject : MonoBehaviour
         if(!nonPlayerTrigger && other.CompareTag("Player"))
         {
             aS.Play(0);
+            objectToInit.SetActive(true);
             objectToInit.GetComponent<Animator>().SetBool("StartAnim", true);
             foreach(Transform child in objectToInit.transform)
             {

@@ -50,8 +50,8 @@ public class Item : MonoBehaviour
         //could have some kind of ienumerator that waits a second with a "wow you found a key" prompt
         
         inventory.addItem(this);
-        itemPickup.Play();
-        this.gameObject.SetActive(false);//cannot destroy, causes scripting complications
+        //itemPickup.Play();
+        Deactivate();//cannot destroy, causes scripting complications
     }
 
 
@@ -74,5 +74,18 @@ public class Item : MonoBehaviour
     private void OnDisable()
     {
         playerNearby = false;
+    }
+
+    IEnumerator PlaySound()
+    {
+        itemPickup.Play();
+        yield return new WaitWhile (()=> itemPickup.isPlaying);
+        this.gameObject.SetActive(false);
+    }
+
+    public void Deactivate()
+    {
+        StartCoroutine(PlaySound());
+        //this.enabled = false;
     }
 }
