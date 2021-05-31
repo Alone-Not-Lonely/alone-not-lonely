@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(AudioSource))]
 public class Item : MonoBehaviour
 {
     public string key;
@@ -12,6 +12,8 @@ public class Item : MonoBehaviour
     Player playerRef;
     //[SerializeField]
     public ContextualUI doorCU;
+
+    private AudioSource itemPickup;
 
     void Start()
     {
@@ -32,6 +34,9 @@ public class Item : MonoBehaviour
         if(key != "Puzzle Piece"){
             ID = -1;
         }
+        itemPickup = GetComponent<AudioSource>();
+        itemPickup.loop = false;
+        itemPickup.playOnAwake = false;
     }
 
     void pickUp()
@@ -45,6 +50,7 @@ public class Item : MonoBehaviour
         //could have some kind of ienumerator that waits a second with a "wow you found a key" prompt
         
         inventory.addItem(this);
+        itemPickup.Play();
         this.gameObject.SetActive(false);//cannot destroy, causes scripting complications
     }
 
