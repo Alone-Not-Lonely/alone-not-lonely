@@ -45,7 +45,8 @@ public class CutsceneSceneAdvance : MonoBehaviour
         //Instantiate(playerCameraRig, new Vector3(10.9f, 3.33f, -3.8f), Quaternion.identity);
         Debug.Log("Skipped Cutscene");
         video.gameObject.SetActive(false);
-        UI.SetActive(false);
+        if(UI)
+            UI.SetActive(false);
         SceneManager.LoadScene(SceneName);
     }
     private void OnDisable() {
