@@ -7,9 +7,12 @@ public class TriggerInitObject : MonoBehaviour
     public GameObject objectToInit;
     private AudioSource aS;
     public bool nonPlayerTrigger = false;
+
+    private AudioSource gabeAs;
     private void Start()
     {
         aS = objectToInit.GetComponent<AudioSource>();
+        gabeAs = GetComponent<AudioSource>();
     }
     /// <summary>
     /// OnTriggerEnter is called when the Collider other enters the trigger.
@@ -35,12 +38,21 @@ public class TriggerInitObject : MonoBehaviour
             {
                 child.gameObject.GetComponent<Animator>().SetBool("StartAnim", true);
             }
+            gabeAs.Play();
             Deactivate();
         }
     }
 
+    IEnumerator PlaySound()
+    {
+        gabeAs.Play();
+        yield return new WaitWhile (()=> gabeAs.isPlaying);
+        this.gameObject.SetActive(false);
+    }
+
     public void Deactivate()
     {
-        this.gameObject.SetActive(false);
+        StartCoroutine(PlaySound());
+        //this.enabled = false;
     }
 }
