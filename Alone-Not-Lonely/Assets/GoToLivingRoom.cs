@@ -7,6 +7,8 @@ public class GoToLivingRoom : MonoBehaviour
 {
     public Vector3 positionToReturnTo;
     private Player _player;
+    private PromptController pC;
+    public LockedObject lrDoor; //Necessary to avoid error
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,11 @@ public class GoToLivingRoom : MonoBehaviour
         newTransform.position = positionToReturnTo;
         newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
         LoadingScreen.instance.LoadScene("GroundFloor", newTransform);
+        if(pC!=null)
+        {
+            pC.clearPrompters();
+        }
+        lrDoor.removeFromActions();
     }
 
     
