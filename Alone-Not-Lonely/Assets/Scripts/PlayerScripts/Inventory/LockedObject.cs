@@ -20,7 +20,11 @@ public class LockedObject : MonoBehaviour
         playerRef = Player.instance;
         inventory = playerRef.GetComponentInChildren<PlayerInventory>();
         _animator = GetComponent<Animator>();
-        openDoor = GetComponentInParent<AudioSource>();
+        openDoor = GetComponent<AudioSource>();
+        if (openDoor == null)
+        {
+            openDoor = GetComponentInParent<AudioSource>();
+        }
     }
 
     public void OpenAttempt()

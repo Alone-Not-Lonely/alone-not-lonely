@@ -37,11 +37,17 @@ public class ClimbChecker : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (pControl.isGrounded) { adjustHeight(); }
+        if (pControl.isGrounded && !pAbil.holdingObject) {
+            adjustHeight();
+        }
+        else
+        {
+            clear();
+        }
         //Fires a ball forward to get information about all subjects in front
         Ray castDir = new Ray(transform.position, transform.forward);
         Debug.DrawRay(castDir.origin, castDir.direction, Color.grey);
-        RaycastHit[] hits = Physics.SphereCastAll(castDir, 1f, .1f);
+        RaycastHit[] hits = Physics.SphereCastAll(castDir, 1f, .05f);
         lhand.handCast(hits);
         rhand.handCast(hits);
     }
@@ -60,7 +66,7 @@ public class ClimbChecker : MonoBehaviour
     //should be a coroutine for performance, but testing the idea first. 
     public void adjustHeight()
     {
-    
+        Debug.Log("Adjust height called");
         //Checks if player is close to object
         RaycastHit obNearHit;
         Ray obNearRay = new Ray(transform.position, transform.forward);

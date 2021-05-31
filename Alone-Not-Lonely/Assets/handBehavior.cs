@@ -144,6 +144,7 @@ public class handBehavior : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, goToPoint, handMoveSpeed);
     }
 
+    //Called from cCheck
     public void handCast(RaycastHit[] hits)
     {
         foreach (RaycastHit hit in hits)
@@ -208,7 +209,20 @@ public class handBehavior : MonoBehaviour
         {
             return false;
         }
-        
+
+        //Contextual ui should probably do it for pretty much everyone
+        //check objects themselves
+        if (t.GetComponent<Item>() != null || t.GetComponent<ContextualUI>() != null)
+        {
+            return true;
+        }
+
+        //check if they have children with the components
+        if (t.GetComponentInChildren<Item>() != null || t.GetComponentInChildren<ContextualUI>() != null)
+        {
+            return true;
+        }
+
         //check objects themselves
         if (t.GetComponent<BoxContactBehavior>()!=null || t.GetComponent<KeyBaring>() != null)
         {

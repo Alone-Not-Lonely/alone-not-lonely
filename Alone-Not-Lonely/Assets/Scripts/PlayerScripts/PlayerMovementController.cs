@@ -111,10 +111,6 @@ public class PlayerMovementController : MonoBehaviour
            {
                 climbTypeCheck();
            }
-           //else if(jumping)
-           //{
-           //  moveDirY = jumpHeight;
-           //}
         }
     }
 
@@ -123,40 +119,9 @@ public class PlayerMovementController : MonoBehaviour
         GameObject pointToClimb = new GameObject();
         pointToClimb.transform.position = cCheck.climbablePoint;
         pointToClimb.transform.parent = cCheck.climbableObject.transform;
-        //Debug.Log("object height: " + (pointToClimb.transform.position.y - 1.3));
-        //Debug.Log("my height: " + transform.position.y);
-        //check to see if the height of the original object is low enough such that 
-        //The player can just hop onto it
-        //if (pointToClimb.transform.position.y - 1.3 > transform.position.y)
-        //{
-            StartCoroutine("climb", pointToClimb);
-        //}
-        //else
-        //{
-            //StartCoroutine("hop", pointToClimb);
-        //}
-        
+        StartCoroutine("climb", pointToClimb);
     }
 
-
-    IEnumerator hop(GameObject pointToClimb)
-    {
-        Debug.Log("Hopping");
-        climbing = true;
-        //getting normal stuff out of the way
-        camController.headbob = false;
-        playerController.detectCollisions = false;
-
-        //setting climbing parameters
-        Vector3 finalPosition = pointToClimb.transform.position;
-
-        //hop right to the point
-        while (cCheck.climbableDistance(transform.position, finalPosition) && Vector3.Distance(transform.position, finalPosition) > lerpEpsilon)
-        {
-            transform.position = Vector3.Lerp(transform.position, finalPosition, climbSpeed * Time.deltaTime);
-            yield return null;
-        }
-    }
 
     IEnumerator climb(GameObject pointToClimb)
     {
@@ -203,10 +168,7 @@ public class PlayerMovementController : MonoBehaviour
         Destroy(pointToClimb);
         
     }
-    //private void MoveCamera(InputAction.CallbackContext context)
-    //{
-    //    Vector2 value = context.ReadValue<Vector2>();
-    //}
+
  
     void FixedUpdate()
     {
@@ -232,26 +194,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 if(!holdingObjectCheck.collider.isTrigger && !holdingObjectCheck.collider.gameObject.CompareTag("Grabable") && Vector3.Dot(moveDirection, transform.forward) > .5 && playerAb.heldObject.GetComponent<SquashedObject>() == null)
                 {
-                    //cant move and CANT rotate
                     Vector3 camRotation = camController.GetCameraRotation(); 
-                    /*RaycastHit rotationCheck;
-                    float deltaRotation = camRotation.y - playerController.gameObject.transform.eulerAngles.y;
-                    if(deltaRotation > 0)
-                    {
-                        deltaRotation = -1;
-                    }
-                    else if(deltaRotation < 0)
-                    {
-                        deltaRotation = 1;
-                    }
-                    else
-                    {
-                        deltaRotation = 0;
-                    }
-                    if(!Physics.Raycast(transform.position, transform.right * deltaRotation, out rotationCheck, playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance + 1f, ~(1<<13)))
-                    {
-                        playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
-                    }*/
                     playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
                 }
                 else
