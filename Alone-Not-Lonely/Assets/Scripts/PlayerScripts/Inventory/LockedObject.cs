@@ -64,11 +64,10 @@ public class LockedObject : MonoBehaviour
         {
             c.enabled = false;
         }
-        cui.nextPrompt();
-        Debug.Log("cui curr index = " + cui.getCurrInd());
         cui.startPoint = 2;//make sure 'e never says nothin again
         cui.endPoint = 2;
         cui.setCID(2);// a bit embarassing, but it'll have to do for now
+        cui.nextPrompt();
         removeFromActions();
     }
 

@@ -60,6 +60,11 @@ public class PromptController : MonoBehaviour
         prompts = new Dictionary<promptType, int[]>();
     }
 
+    public void clearText()
+    {
+        conText.text = "";
+    }
+
     //used in case of death of player
     public void clearPrompters()
     {
