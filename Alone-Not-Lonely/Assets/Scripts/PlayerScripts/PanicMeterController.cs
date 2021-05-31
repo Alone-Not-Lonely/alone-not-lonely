@@ -27,6 +27,8 @@ public class PanicMeterController : MonoBehaviour
     private Vector3 origPosMeter;
     public float shakeMagnitude = 3f;
 
+    bool wasHeavyBreathing;
+
     void Start()
     {
         origPosMeter = anxietyMeterHolder.position;
@@ -50,7 +52,7 @@ public class PanicMeterController : MonoBehaviour
             desaturate.postExposure.value = 0f;
         }*/
         breathing = GetComponent<AudioSource>();
-        breathing.enabled = false;
+        //breathing.enabled = false;
         //playerAnimator = GetComponent<Animator>();
         anxietyRadius = GetComponent<SphereCollider>();
     }
@@ -101,10 +103,20 @@ public class PanicMeterController : MonoBehaviour
                 currentAnxietyPoints -= Time.deltaTime * anxietySpeed;
             }
             vignette.intensity.value = Mathf.Pow(anxietyMeter.fillAmount, 4f);
+            if(!wasHeavyBreathing)
+            {
+                breathing.Play();
+            }
+            wasHeavyBreathing = true;
         }
         else{
             StopCoroutine("Shake");
             anxietyMeterHolder.position = origPosMeter;
+            if(wasHeavyBreathing)
+            {
+                breathing.Pause();
+            }
+            wasHeavyBreathing = false;
         }
         if(anxietyMeter.fillAmount > .5f)
         {
@@ -113,11 +125,11 @@ public class PanicMeterController : MonoBehaviour
         }
         if(anxietyMeter.fillAmount <= 0)
         {
-            if(breathing.enabled)
+            if(wasHeavyBreathing)
             {
                 breathing.Stop();
             }
-            breathing.enabled = false;
+            wasHeavyBreathing = false;
         }
         if (currentAnxietyPoints > totalAnxietyPoints)
         {
@@ -203,9 +215,8 @@ public class PanicMeterController : MonoBehaviour
             if(!found)
             {
                 monsters.Add(other.gameObject);
-                if(!breathing.enabled)
+                if(!wasHeavyBreathing)
                 {
-                    breathing.enabled = true;
                     breathing.Play();
                 }
             }
