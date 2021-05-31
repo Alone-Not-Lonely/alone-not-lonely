@@ -14,10 +14,14 @@ public class FinalChestDoorCheck : MonoBehaviour
 
     bool wasOnDoor = false;
 
+    public AudioSource atticCreak;
+
+
     void Awake()
     {
         _behavior = GetComponent<BoxContactBehavior>();
         _ladder = FindObjectOfType<AtticLadderController>();
+        //atticCreak.Play();
     }
 
     void LateUpdate()
@@ -28,6 +32,8 @@ public class FinalChestDoorCheck : MonoBehaviour
             if (!wasOnDoor)
             {
                 _ladder.gameObject.GetComponent<AudioSource>().Play();
+                Debug.Log("playing");
+                atticCreak.Play();
             }
             _ladder.open();
             wasOnDoor = true;
@@ -40,6 +46,11 @@ public class FinalChestDoorCheck : MonoBehaviour
         }
         else
         {
+            if(wasOnDoor)
+            {
+                Debug.Log("Stopping");
+                atticCreak.Stop();
+            }
             wasOnDoor = false;
             _ladder.close();
         }
