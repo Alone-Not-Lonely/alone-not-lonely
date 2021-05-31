@@ -24,8 +24,11 @@ public class KeyBaring : Interactable
         myOpen = GetComponent<ContextualUI>();
         base.playerRef = Player.instance;
         pIn = PlayerInventory.instance;
-        if(objectAnimator)
-            boxSound = objectAnimator.gameObject.GetComponent<AudioSource>();
+        if (objectAnimator != null)
+        {
+            //boxSound = objectAnimator.gameObject.GetComponent<AudioSource>();
+            boxSound = gameObject.GetComponent<AudioSource>();
+        }
     }
 
     protected void keyGrab()
@@ -41,9 +44,10 @@ public class KeyBaring : Interactable
                 //Debug.Log("Opening Object ");
               
                 open = true;
-                if(objectAnimator)
+                if (objectAnimator!=null){ 
                     boxSound.Play();
-                StartCoroutine("viewPuzzlePiece");
+                    StartCoroutine("viewPuzzlePiece");
+                }
             }
             else if (inRange && open)
             {
