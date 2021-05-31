@@ -13,6 +13,7 @@ public class KeyBaring : Interactable
     public float keyPressCooldown = 1f, showDelayTime = .5f;
     private float currentKeyCooldown = 0f;
     private bool inKeyCooldown = false;
+    private AudioSource boxSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,8 @@ public class KeyBaring : Interactable
         myOpen = GetComponent<ContextualUI>();
         base.playerRef = Player.instance;
         pIn = PlayerInventory.instance;
+        if(objectAnimator)
+            boxSound = objectAnimator.gameObject.GetComponent<AudioSource>();
     }
 
     protected void keyGrab()
@@ -38,6 +41,8 @@ public class KeyBaring : Interactable
                 //Debug.Log("Opening Object ");
               
                 open = true;
+                if(objectAnimator)
+                    boxSound.Play();
                 StartCoroutine("viewPuzzlePiece");
             }
             else if (inRange && open)
