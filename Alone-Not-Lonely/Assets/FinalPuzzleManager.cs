@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class FinalPuzzleManager : MonoBehaviour
 {
-    GameObject[] puzzlePiecesOnTable;
+    public GameObject[] puzzlePiecesOnTable;
     Player _player = Player.instance;
     PlayerInventory pIn;
 
@@ -98,6 +98,7 @@ public class FinalPuzzleManager : MonoBehaviour
             completeSound.Play();
             StartCoroutine("DramaticZoomOut");
         }
+        CoffeeTableSpritesManager.instance.UpdatePuzzleState();
     }
 
     IEnumerator DramaticZoomOut()
