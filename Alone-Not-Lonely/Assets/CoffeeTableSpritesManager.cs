@@ -43,6 +43,7 @@ public class CoffeeTableSpritesManager : MonoBehaviour
         int ctr = 0;
         foreach(GameObject piece in puzzlePiecesOnTable)
         {
+            Debug.Log(ctr + " of " + FinalPuzzleManager.instance.puzzlePiecesOnTable.Length);
             if(FinalPuzzleManager.instance.puzzlePiecesOnTable[ctr].GetComponent<DragDrop>().piecePlaced)
             {
                 piece.SetActive(true);

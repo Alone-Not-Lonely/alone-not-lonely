@@ -98,7 +98,7 @@ public class FinalPuzzleManager : MonoBehaviour
             completeSound.Play();
             StartCoroutine("DramaticZoomOut");
         }
-        CoffeeTableSpritesManager.instance.UpdatePuzzleState();
+        //CoffeeTableSpritesManager.instance.UpdatePuzzleState();
     }
 
     IEnumerator DramaticZoomOut()
