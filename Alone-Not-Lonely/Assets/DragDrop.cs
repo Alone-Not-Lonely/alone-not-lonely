@@ -56,7 +56,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public void OnDrag(PointerEventData eventData)
     {
         Debug.Log("Dragging");
-        thisTransform.anchoredPosition += eventData.delta / (canvas.scaleFactor); 
+        thisTransform.anchoredPosition += eventData.delta / (canvas.scaleFactor * transform.lossyScale); 
         startDrag.Play();
     }
 
