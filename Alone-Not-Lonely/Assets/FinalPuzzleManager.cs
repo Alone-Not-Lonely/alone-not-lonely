@@ -43,7 +43,14 @@ public class FinalPuzzleManager : MonoBehaviour
         //UpdatePuzzleState();
         foreach(GameObject piece in puzzlePiecesOnTable)
         {
-            piece.SetActive(false);
+            if(pIn.puzzlePieces.Contains(piece.GetComponent<PuzzlePiece>().ID))
+            {
+                piece.SetActive(true);
+            }
+            else
+            {
+                piece.SetActive(false);
+            }
         }
     }
 
