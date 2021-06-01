@@ -33,18 +33,27 @@ public class CameraController : MonoBehaviour
     //headbob values
     public float headAmplitude = 1f, headSpeed = 0.3f;
     private float startingY, headProgress = 0;
+    //public float sinkRate = 0f;
+    //private float uOSinkY;
     private Player _player;
     private Vector3 lastLocation;
-    public bool headbob = true;
+
+    public bool headbob = true, sinking = false;
 
     private Player player;
 
     private Vector3 velocity = Vector3.zero;
     public bool cameraFree = true;
 
+    
+    public float camMoveSpeed = .8f;
+    private float dramaticSpeed, goToHeight;
     // Start is called before the first frame update
     void Start()
     {
+        dramaticSpeed = camMoveSpeed;
+        goToHeight = transform.position.y;
+        //startingY = transform.position.y;
         //Moved mouse logic to Pause Menu Controller
         player = Player.instance;
         
@@ -76,7 +85,20 @@ public class CameraController : MonoBehaviour
 
             // rotate game objects accordingly
             transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0);
-            transform.position = new Vector3(player.transform.position.x, (player.transform.position.y + 2f + getBobHeight()), player.transform.position.z);
+            
+            if (sinking)//if we're sinking
+            {
+                goToHeight = player.transform.position.y;
+                dramaticSpeed = .03f;
+            }
+            else
+            {
+                goToHeight = player.transform.position.y + 2f + getBobHeight();
+                dramaticSpeed = camMoveSpeed;
+            }
+            
+            float currHeight = Mathf.Lerp(transform.position.y, goToHeight,dramaticSpeed);
+            transform.position = new Vector3(player.transform.position.x, currHeight, player.transform.position.z);
         }
         //else
         //{
@@ -116,7 +138,6 @@ public class CameraController : MonoBehaviour
         {
             return 0;
         }
-     
     }
 
     public Vector3 GetCameraRotation()

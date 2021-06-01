@@ -20,6 +20,10 @@ public class TriggerInitObject : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+        {
+            return;
+        }
         if(!nonPlayerTrigger && other.CompareTag("Player"))
         {
             aS.Play(0);
@@ -50,18 +54,17 @@ public class TriggerInitObject : MonoBehaviour
         {
             gabeAs.Play();
             yield return new WaitWhile (()=> gabeAs.isPlaying);
-            this.enabled = false;
         }
         else
         {
-            this.enabled = false;
             yield return null;
         }
     }
 
     public void Deactivate()
     {
+        enabled = false;
         StartCoroutine(PlaySound());
-        //this.enabled = false;
+        
     }
 }

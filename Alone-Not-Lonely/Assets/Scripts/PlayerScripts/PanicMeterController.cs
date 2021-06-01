@@ -8,6 +8,9 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 public class PanicMeterController : MonoBehaviour
 {
+    private enum passOutType { faint, sink}
+    private passOutType howIGo = passOutType.faint;
+
     public Image anxietyMeter;
     public float totalAnxietyPoints = 50f, rayDepth = 1f;
     private float currentAnxietyPoints, monstDist;
@@ -18,6 +21,7 @@ public class PanicMeterController : MonoBehaviour
     private float anxConst;
     private List<GameObject> monsters;
 
+    private CameraController cam;
     public Volume postProcess;
     private Vignette vignette;
     private ColorAdjustments desaturate;
@@ -42,6 +46,7 @@ public class PanicMeterController : MonoBehaviour
         //breathing.enabled = false;
         //playerAnimator = GetComponent<Animator>();
         anxietyRadius = GetComponent<SphereCollider>();
+        cam = FindObjectOfType<CameraController>();
     }
 
     // Update is called once per frame
@@ -133,6 +138,7 @@ public class PanicMeterController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         checkFloor();
     }
 
@@ -253,12 +259,17 @@ public class PanicMeterController : MonoBehaviour
             
             //can but other floor based traits here
             if (hit.collider.tag == "Deadly") {
-                Debug.Log("Yowch!");
-                //100 as an arbitrarily high number
+                cam.sinking = true;//CHANGES BOOL IN CAMERA CONTROLLER
                 currentAnxietyPoints += (100 * Time.deltaTime);
-                //Debug.Log(currentAnxietyPoints);
-            };
-            //There may be a problem w/ calling faint twice, but we'll see
+            }
+            else
+            {
+                cam.sinking = false;
+            }
+        }
+        else
+        {
+            cam.sinking = false;//CHANGES BOOL IN CAMERA CONTROLLER
         }
     }
 
