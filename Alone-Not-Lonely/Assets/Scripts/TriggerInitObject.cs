@@ -50,11 +50,11 @@ public class TriggerInitObject : MonoBehaviour
         {
             gabeAs.Play();
             yield return new WaitWhile (()=> gabeAs.isPlaying);
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
         }
         else
         {
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
             yield return null;
         }
     }
