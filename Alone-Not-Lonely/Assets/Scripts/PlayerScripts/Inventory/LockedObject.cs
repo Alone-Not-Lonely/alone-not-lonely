@@ -16,6 +16,7 @@ public class LockedObject : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(transform.name + " Starting");
         cui = GetComponent<ContextualUI>();
         playerRef = Player.instance;
         inventory = playerRef.GetComponentInChildren<PlayerInventory>();
@@ -25,6 +26,27 @@ public class LockedObject : MonoBehaviour
         {
             openDoor = GetComponentInParent<AudioSource>();
         }
+        //opens door if player loads in with key
+        if (keyNames.Count == 0 || inventory.checkUsed(keyNames))
+        {
+            shiftToOpen();
+        }
+    }
+
+    //An extremely silly function
+    private void shiftToOpen()
+    {
+        //Open doors Quickly
+        _animator.speed = 1000;//Just Extremely Fast
+        if (_animator != null)
+        {
+            _animator.SetBool("open", true);
+        }
+
+        //make sure prompt stays quiet
+        cui.startPoint = 2;
+        cui.endPoint = 2;
+        cui.setCID(2);
     }
 
     public void OpenAttempt()
@@ -55,6 +77,7 @@ public class LockedObject : MonoBehaviour
     private void openAction()
     {
         Debug.Log("Open");
+        inventory.used.AddRange(keyNames);
         if(_animator != null)
         {
             _animator.SetBool("open", true);

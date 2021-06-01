@@ -87,7 +87,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (vertDirection == 0 && horizDirection == 0)
         {
-            Debug.Log("Footsteps");
+            //Debug.Log("Footsteps");
             footsteps.clip = footstepSounds[Mathf.FloorToInt(Random.Range(0, footstepSounds.Count))];
             footsteps.Play();
         }
@@ -180,7 +180,7 @@ public class PlayerMovementController : MonoBehaviour
         if(horizDirection == 0 && vertDirection == 0 && footsteps.isPlaying)
         {
             footsteps.Pause();
-            Debug.Log("Stop footsteps");
+            //Debug.Log("Stop footsteps");
         }
         if(!thisPlayer.paused && !climbing)
         {
