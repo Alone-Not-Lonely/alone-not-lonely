@@ -15,6 +15,8 @@ public class Item : MonoBehaviour
 
     private AudioSource itemPickup;
 
+    bool itemGet = false;
+
     void Start()
     {
         bool destroyThis = false;
@@ -45,14 +47,16 @@ public class Item : MonoBehaviour
         {
             return;
         }
-        Deactivate();//cannot destroy, causes scripting complications
-        //doorCU.nextPrompt();//advance prompt on pickup
-        doorCU.proController.clearPrompters();//precaution against item disappearing
-        //could have some kind of ienumerator that waits a second with a "wow you found a key" prompt
-        
-        inventory.addItem(this);
-        //itemPickup.Play();
-        //Deactivate();//cannot destroy, causes scripting complications
+        if(!itemGet)
+        {
+            inventory.addItem(this);
+            itemGet = true;
+            Deactivate();//cannot destroy, causes scripting complications
+
+            doorCU.proController.clearPrompters();//precaution against item disappearing
+            //could have some kind of ienumerator that waits a second with a "wow you found a key" promp
+            //itemPickup.Play();
+        }
     }
 
 
