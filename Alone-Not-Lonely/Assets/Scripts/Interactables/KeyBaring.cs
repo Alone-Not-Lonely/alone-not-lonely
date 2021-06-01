@@ -26,22 +26,17 @@ public class KeyBaring : Interactable
         pIn = PlayerInventory.instance;
         if (objectAnimator != null)
         {
-            //boxSound = objectAnimator.gameObject.GetComponent<AudioSource>();
             boxSound = gameObject.GetComponent<AudioSource>();
         }
     }
 
     protected void keyGrab()
     {
-        //Debug.Log("E pressed, grab attempted");
         if (!playerRef.paused && !inKeyCooldown)
         {
-            //Debug.Log("Player is not paused");
             if (inRange && !open)
             {
                 inKeyCooldown = true;
-                //Debug.Log("Player is in range and the object is not open yet");
-                //Debug.Log("Opening Object ");
               
                 open = true;
                 if (objectAnimator!=null){ 
