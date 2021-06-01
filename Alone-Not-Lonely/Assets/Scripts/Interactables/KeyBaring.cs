@@ -108,7 +108,7 @@ public class KeyBaring : Interactable
         yield return new WaitForSeconds(showDelayTime);
         playerRef._actionMap.ViewingObject.Enable();
         controlSwapThisFrame = true;
-        hiddenObjInstance = Instantiate(hiddenObj, Camera.main.gameObject.transform.position + Camera.main.gameObject.transform.forward, Quaternion.identity);
+        hiddenObjInstance = Instantiate(hiddenObj, Camera.main.gameObject.transform.position + (Camera.main.gameObject.transform.forward * .75f), Quaternion.identity);
 
         //change prompt
         myOpen.nextPrompt();

@@ -211,7 +211,7 @@ public class PatrolPointsController : Grabber
                 activePortal1 = patrolPoints[currentGoal].gameObject;
                 activePortal2 = patrolPoints[currentGoal + 1].gameObject;
                 UpdatePortalSizes();
-                if(Vector3.Distance(Player.instance.transform.position, this.transform.position) < 25)
+                if(Vector3.Distance(Player.instance.transform.position, this.transform.position) < 15)
                 {
                     soundPlayer.PlayOneShot(portalSound);
                 }
