@@ -25,6 +25,7 @@ public class FinalPuzzleManager : MonoBehaviour
             instance = this;
         }
         completeSound = GetComponent<AudioSource>();
+        
     }
     void Start()
     {

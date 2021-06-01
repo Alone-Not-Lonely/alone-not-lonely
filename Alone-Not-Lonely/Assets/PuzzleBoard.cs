@@ -7,7 +7,7 @@ public class PuzzleBoard : MonoBehaviour, IDropHandler
 {
     public float snapThreshold;
     public static PuzzleBoard instance;
-    AudioSource pieceDropped;
+    public AudioSource pieceDropped;
 
     void Awake() {
         PuzzleBoard[] objs = (PuzzleBoard[])FindObjectsOfType<PuzzleBoard>();
@@ -50,16 +50,19 @@ public class PuzzleBoard : MonoBehaviour, IDropHandler
         {
             if(Vector2.Distance(eventData.pointerDrag.gameObject.GetComponent<RectTransform>().anchoredPosition, this.GetComponent<RectTransform>().anchoredPosition) < snapThreshold)
             {
+                Debug.Log("Piece dropped into correct position");
                 eventData.pointerDrag.gameObject.GetComponent<RectTransform>().anchoredPosition = this.GetComponent<RectTransform>().anchoredPosition;
                 eventData.pointerDrag.gameObject.GetComponent<DragDrop>().piecePlaced = true;
                 pieceDropped.Play();
             }
             else
             {
+                Debug.Log("Piece dropped in incorrect location");
                 eventData.pointerDrag.gameObject.GetComponent<DragDrop>().piecePlaced = false;
+                eventData.pointerDrag.gameObject.GetComponent<RectTransform>().anchoredPosition = eventData.pointerDrag.gameObject.GetComponent<DragDrop>().initPosition;
             }
 
-            FindObjectOfType<FinalPuzzleManager>().UpdatePuzzleState();
+            FinalPuzzleManager.instance.UpdatePuzzleState();
         }
     }
 }

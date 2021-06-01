@@ -12,11 +12,14 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private CanvasGroup canvasGroup;
     public bool piecePlaced = false;
     AudioSource startDrag;
+
+    public Vector2 initPosition;
     private void Awake() {
         thisTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         GetComponent<Image>().alphaHitTestMinimumThreshold = .001f;
         startDrag = GetComponent<AudioSource>();
+        initPosition = thisTransform.anchoredPosition;
         //canvas.worldCamera = Camera.main;
     }
     public void OnPointerDown(PointerEventData eventData)
@@ -34,6 +37,20 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     {
         Debug.Log("EndDrag");
         canvasGroup.blocksRaycasts = true;
+        if(Vector2.Distance(thisTransform.anchoredPosition, PuzzleBoard.instance.GetComponent<RectTransform>().anchoredPosition) < PuzzleBoard.instance.snapThreshold)
+        {
+            Debug.Log("Piece dropped into correct position");
+            thisTransform.anchoredPosition = PuzzleBoard.instance.GetComponent<RectTransform>().anchoredPosition;
+            this.piecePlaced = true;
+            FinalPuzzleManager.instance.UpdatePuzzleState();
+            PuzzleBoard.instance.pieceDropped.Play();
+        }
+        else
+        {
+            Debug.Log("Snap Back to start");
+            this.piecePlaced = false;
+            thisTransform.anchoredPosition = initPosition;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -45,6 +62,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnDrop(PointerEventData eventData)
     {
-        
+        Debug.Log("Drop from DragDrop");
     }
 }
