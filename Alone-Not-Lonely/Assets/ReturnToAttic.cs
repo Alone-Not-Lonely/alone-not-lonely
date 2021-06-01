@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 //preivously extended ContextUI
 public class ReturnToAttic : MonoBehaviour
@@ -10,6 +11,8 @@ public class ReturnToAttic : MonoBehaviour
     private Player _player;
     private bool canGoToAttic;
     private ContextualUI cu;
+    public Sprite transitionImage;
+    public string aCPath;
 
     private void Start()
     {
@@ -27,6 +30,8 @@ public class ReturnToAttic : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            //LoadingScreen.instance.SetImage(transitionImage, true);//sets transition image (hopefully not too late)
+            LoadingScreen.instance.SetReturning(true);
             //base.OnTriggerEnter(other);
             canGoToAttic = true;
             _player._actionMap.Platforming.ReturnToLevel.performed += interact => GoToAttic();
@@ -43,6 +48,7 @@ public class ReturnToAttic : MonoBehaviour
         }
     }
 
+
     void GoToAttic()
     {
         if (canGoToAttic)
@@ -56,6 +62,7 @@ public class ReturnToAttic : MonoBehaviour
             Transform newTransform = _player.transform;
             newTransform.position = positionToReturnTo;
             newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
+            
             LoadingScreen.instance.LoadScene("Attic2", newTransform);
         }
     }
