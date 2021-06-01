@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerInventory : MonoBehaviour
 {
     public List<string> items;
+    public List<string> used;
     public List<int> puzzlePieces;
     public Canvas _canvas;
     [SerializeField]
@@ -134,10 +135,21 @@ public class PlayerInventory : MonoBehaviour
                     return true;
                 }
             }
-            /*if (!items.Contains(req.name))
+        }
+        return false;
+    }
+
+    public bool checkUsed(List<string> requirements)
+    {
+        foreach (string req in requirements)
+        {
+            foreach (string i in used)
             {
-                return false;
-            }*/
+                if (i == req)
+                {
+                    return true;
+                }
+            }
         }
         return false;
     }
