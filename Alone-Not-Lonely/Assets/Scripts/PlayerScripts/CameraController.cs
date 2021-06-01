@@ -37,6 +37,7 @@ public class CameraController : MonoBehaviour
     //private float uOSinkY;
     private Player _player;
     private Vector3 lastLocation;
+    private PanicMeterController panic;
 
     public bool headbob = true, sinking = false;
 
@@ -53,8 +54,7 @@ public class CameraController : MonoBehaviour
     {
         dramaticSpeed = camMoveSpeed;
         goToHeight = transform.position.y;
-        //startingY = transform.position.y;
-        //Moved mouse logic to Pause Menu Controller
+        panic = FindObjectOfType<PanicMeterController>();
         player = Player.instance;
         
         player._actionMap.Platforming.Camera.performed += look =>
@@ -86,26 +86,17 @@ public class CameraController : MonoBehaviour
             // rotate game objects accordingly
             transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0);
             
-            if (sinking)//if we're sinking
-            {
-                goToHeight = player.transform.position.y;
-                dramaticSpeed = .03f;
-            }
-            else
-            {
-                goToHeight = player.transform.position.y + 2f + getBobHeight();
-                dramaticSpeed = camMoveSpeed;
-            }
+
             
-            float currHeight = Mathf.Lerp(transform.position.y, goToHeight,dramaticSpeed);
-            transform.position = new Vector3(player.transform.position.x, currHeight, player.transform.position.z);
+
         }
-        //else
-        //{
-            //Cursor.lockState = CursorLockMode.None;
-            //Cursor.visible = true;
-        //}
     }
+
+    /*
+    public void resetHead()
+    {
+        new Vector3(player.transform.position.x, player.transform.position.y + 2f + getBobHeight(), player.transform.position.z);
+    }*/
 
     void FixedUpdate()
     {
@@ -124,6 +115,21 @@ public class CameraController : MonoBehaviour
                 headProgress = 0;
             }
         }
+
+        if (sinking)//if we're sinking
+        {
+            goToHeight = player.transform.position.y;
+            dramaticSpeed = .02f;
+        }
+        else
+        {
+            goToHeight = player.transform.position.y + 2f + getBobHeight();
+            dramaticSpeed = camMoveSpeed;
+        }
+
+        //who knows, might work
+        float currHeight = Mathf.Lerp(transform.position.y, goToHeight, dramaticSpeed);
+        transform.position = new Vector3(player.transform.position.x, currHeight, player.transform.position.z);
     }
 
     //Determines addition to Y placement by amount of time player has been walking

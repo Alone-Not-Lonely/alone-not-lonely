@@ -12,7 +12,7 @@ public class PanicMeterController : MonoBehaviour
     private passOutType howIGo = passOutType.faint;
 
     public Image anxietyMeter;
-    public float totalAnxietyPoints = 50f, rayDepth = 1f;
+    public float totalAnxietyPoints = 50f, rayDepth = 1f, fallSpeed = 1;
     private float currentAnxietyPoints, monstDist;
     public bool dead = false;
     private Player thisPlayer;
@@ -30,6 +30,8 @@ public class PanicMeterController : MonoBehaviour
     public RectTransform anxietyMeterHolder;
     private Vector3 origPosMeter;
     public float shakeMagnitude = 3f;
+
+    public Transform wholeBody;
 
     bool wasHeavyBreathing;
 
@@ -52,6 +54,15 @@ public class PanicMeterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //tip over if dead
+        if (dead && !cam.sinking)//not drowning add here
+        {
+            wholeBody.transform.Rotate(cam.transform.right, -fallSpeed, Space.Self);
+        }//else if(wholeBody.transform.rotation != Quaternion.Euler(Vector3.zero))
+        //{
+        //    wholeBody.transform.rotation = Vector3.Lerp(wholeBody.transform.rotation, Vector3.zero, .7);
+        //}
+
         if(monsters.Count != 0)
         {
             float monstPoints = 0;
@@ -81,7 +92,9 @@ public class PanicMeterController : MonoBehaviour
             {
                 anxietySpeed = (anxConst) / (monstPoints/monsters.Count);
                 //Debug.Log(anxietySpeed + " speed to a total of " + currentAnxietyPoints);
+
                 currentAnxietyPoints += anxietySpeed * Time.deltaTime;
+                currentAnxietyPoints = Mathf.Clamp(currentAnxietyPoints, 0, totalAnxietyPoints+10);//makes sure we don't have an insane overflow
             }
         }
         else{
@@ -138,7 +151,6 @@ public class PanicMeterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         checkFloor();
     }
 
@@ -146,20 +158,21 @@ public class PanicMeterController : MonoBehaviour
     private IEnumerator faint()
     {
         dead = true;
-        yield return new WaitForSeconds(.001f);//should be length of animation
         pAbility.ReleaseObject();
-        /*anxietyMeter.fillAmount = 0;
-        currentAnxietyPoints = 0;
-        desaturate.saturation.value = 0f;
-        desaturate.postExposure.value = 0f;*/
-        
-        thisPlayer.backToSpawn();
+        yield return new WaitForSeconds(.5f);//should be length of animation
+
         StartCoroutine("wakeUp");
     }
 
     private IEnumerator wakeUp()
     {
-        while(anxietyMeter.fillAmount > 0f)
+        cam.sinking = false;
+        //cam.resetHead();
+        thisPlayer.backToSpawn();//Moved from faint()
+        
+        wholeBody.transform.rotation = Quaternion.Euler(Vector3.zero);
+
+        while (anxietyMeter.fillAmount > 0f)
         {
             currentAnxietyPoints -= Time.deltaTime * anxietySpeed * 10f;
             if(anxietyMeter.fillAmount > .5f)
