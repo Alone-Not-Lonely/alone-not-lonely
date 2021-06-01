@@ -15,6 +15,10 @@ public class EndGamePuzzle : ContextualUI
     PuzzleBoard puzzleBoard;
 
     FinalPuzzleManager worldPuzzleManager;
+
+    public float interactionCooldown = 1f;
+    private float currentInteractionCooldown = 0f;
+    bool inInteractionCooldown = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +33,7 @@ public class EndGamePuzzle : ContextualUI
 
     void PlayerInteract()
     {
-        if(!_player.paused)
+        if(!_player.paused && !inInteractionCooldown)
         {
             if(!inPuzzleMode && canInteract)
             {
@@ -44,6 +48,7 @@ public class EndGamePuzzle : ContextualUI
                 Cursor.lockState = CursorLockMode.None;
                 puzzleManager.gameObject.SetActive(true);
                 puzzleBoard.gameObject.SetActive(true);
+                inInteractionCooldown = true;
                 if(puzzleManager)
                     FinalPuzzleManager.instance.UpdatePuzzleState();
             }
@@ -59,7 +64,21 @@ public class EndGamePuzzle : ContextualUI
                 Cursor.lockState = CursorLockMode.Locked;
                 puzzleManager.gameObject.SetActive(false);
                 puzzleBoard.gameObject.SetActive(false);
+                inInteractionCooldown = true;
             }
+        }
+    }
+
+    void Update() 
+    {
+        if(inInteractionCooldown && currentInteractionCooldown < interactionCooldown)
+        {
+            currentInteractionCooldown += Time.deltaTime;
+        }
+        else if(inInteractionCooldown && currentInteractionCooldown >= interactionCooldown)
+        {
+            currentInteractionCooldown = 0;
+            inInteractionCooldown = false;
         }
     }
 
