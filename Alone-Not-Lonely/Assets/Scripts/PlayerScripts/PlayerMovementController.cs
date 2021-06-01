@@ -194,26 +194,54 @@ public class PlayerMovementController : MonoBehaviour
             moveDirection = transform.TransformDirection(moveDirection);
             //Debug.Log("moveDirection: " + moveDirection);
             RaycastHit holdingObjectCheck;
+            Vector3 camRotation;
             if(playerAb.holdingObject && 
             Physics.Raycast(transform.position, transform.forward, out holdingObjectCheck, playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance + 1f, ~(1<<13)))
             {
                 if(!holdingObjectCheck.collider.isTrigger && !holdingObjectCheck.collider.gameObject.CompareTag("Grabable") && Vector3.Dot(moveDirection, transform.forward) > .5 && playerAb.heldObject.GetComponent<SquashedObject>() == null)
                 {
-                    Vector3 camRotation = camController.GetCameraRotation(); 
-                    playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
+                    camRotation = camController.GetCameraRotation(); 
+                    //playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
                 }
                 else
                 {
                     playerController.Move(moveDirection * walkSpeed * Time.deltaTime);
-                    Vector3 camRotation = camController.GetCameraRotation(); 
-                    playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
+                    camRotation = camController.GetCameraRotation(); 
+                    //playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
                 }
             }
             else{
                 playerController.Move(moveDirection * walkSpeed * Time.deltaTime);
-                Vector3 camRotation = camController.GetCameraRotation(); 
-                playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0)); 
+                camRotation = camController.GetCameraRotation(); 
+                //playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0)); 
             }
+            //begin foolin
+            RaycastHit rotationCheck;
+            float deltaRotation = camRotation.y - playerController.gameObject.transform.eulerAngles.y;
+            if(deltaRotation > 0)
+            {
+                deltaRotation = 1;
+            }
+            else if(deltaRotation < 0)
+            {
+                deltaRotation = -1;
+            }
+            else
+            {
+                deltaRotation = 0;
+            }
+            if(playerAb.holdingObject)
+                Debug.DrawRay(transform.position + (transform.forward * (playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance)), transform.right * deltaRotation);
+            if(playerAb.holdingObject && 
+            !Physics.Raycast(transform.position + (transform.forward * (playerAb.heldObject.GetComponent<BoxContactBehavior>().holdOffset + playerAb.holdDistance)), transform.right * deltaRotation, out rotationCheck, 1.5f, ~(1<<13)))
+            {
+                playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
+            }
+            else if(!playerAb.holdingObject)
+            {
+                playerController.gameObject.transform.eulerAngles = (new Vector3(0, camRotation.y, 0));
+            }
+            //end foolin
         }
         else{
             footsteps.Pause();
