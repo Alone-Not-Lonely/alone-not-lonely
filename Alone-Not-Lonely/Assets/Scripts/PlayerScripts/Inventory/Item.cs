@@ -46,7 +46,7 @@ public class Item : MonoBehaviour
             return;
         }
         Deactivate();//cannot destroy, causes scripting complications
-        doorCU.nextPrompt();//advance prompt on pickup
+        //doorCU.nextPrompt();//advance prompt on pickup
         doorCU.proController.clearPrompters();//precaution against item disappearing
         //could have some kind of ienumerator that waits a second with a "wow you found a key" prompt
         

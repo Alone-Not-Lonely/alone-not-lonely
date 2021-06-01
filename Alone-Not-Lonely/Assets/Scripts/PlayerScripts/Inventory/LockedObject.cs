@@ -75,6 +75,10 @@ public class LockedObject : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            if(inventory.items.Contains(keyNames[0]) && cui.getCurrInd() == 0)
+            {
+                cui.nextPrompt();
+            }
             playerNearby = true;
             playerRef._actionMap.Platforming.Use.performed += grab => OpenAttempt();
         }
