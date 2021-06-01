@@ -67,15 +67,15 @@ public class LevelEndTrigger : MonoBehaviour
         ProgressionTracker.instance.MarkSceneCompleted(levelParent.name);
         foreach(Transform child in curr.transform)
         {
-            if(child.gameObject.CompareTag("RemoveOnStart") ||
-               child.gameObject.CompareTag("Deadly"))
+            if(child.gameObject.CompareTag("RemoveOnStart"))
             {
                 child.gameObject.SetActive(false);
             }
             else if(child.gameObject.CompareTag("Monster") || 
+                child.gameObject.CompareTag("Deadly") ||
                 child.gameObject.GetComponent<PatrolPointsController>()!=null ||
-               child.gameObject.GetComponent<PortalController>() != null ||
-               child.gameObject.GetComponent<ElevatorMonsterController>() != null)
+                child.gameObject.GetComponent<PortalController>() != null ||
+                child.gameObject.GetComponent<ElevatorMonsterController>() != null)
             {
                 if(child.gameObject.GetComponentInChildren<SpriteRenderer>() != null)
                 {
