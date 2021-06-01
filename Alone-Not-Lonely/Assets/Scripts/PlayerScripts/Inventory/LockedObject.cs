@@ -16,7 +16,6 @@ public class LockedObject : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(transform.name + " Starting");
         cui = GetComponent<ContextualUI>();
         playerRef = Player.instance;
         inventory = playerRef.GetComponentInChildren<PlayerInventory>();
