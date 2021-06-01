@@ -45,7 +45,7 @@ public class EndGamePuzzle : ContextualUI
                 puzzleManager.gameObject.SetActive(true);
                 puzzleBoard.gameObject.SetActive(true);
                 if(puzzleManager)
-                    puzzleManager.UpdatePuzzleState();
+                    FinalPuzzleManager.instance.UpdatePuzzleState();
             }
             else if (canInteract)
             {
