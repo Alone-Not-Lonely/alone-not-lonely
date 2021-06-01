@@ -46,8 +46,8 @@ public class KeyBaring : Interactable
                 open = true;
                 if (objectAnimator!=null){ 
                     boxSound.Play();
-                    StartCoroutine("viewPuzzlePiece");
                 }
+                StartCoroutine("viewPuzzlePiece");
             }
             else if (inRange && open)
             {
