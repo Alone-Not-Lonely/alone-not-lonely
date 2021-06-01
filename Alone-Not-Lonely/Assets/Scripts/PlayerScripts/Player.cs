@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -86,6 +87,13 @@ public class Player : MonoBehaviour
         {
             _actionMap.Disable();
         }
+    }
+
+    public void SoftResetLevel()
+    {   
+        backToSpawn();
+        pmController.Unpause();
+        LoadingScreen.instance.LoadScene(SceneManager.GetActiveScene().name, this.transform);
     }
 
 }
