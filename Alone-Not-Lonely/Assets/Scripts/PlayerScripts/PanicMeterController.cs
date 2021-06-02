@@ -56,16 +56,19 @@ public class PanicMeterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //tip over if dead
+        
         if (thisPlayer.paused)
         {
             return;
         }
+        
+        //tip over if dead
         if (dead && !cam.sinking)//not drowning add here
         {
             cam.transform.RotateAround(wholeBody.transform.position, cam.transform.right, -fallSpeed);
             return;
         }
+        
 
         if(monsters.Count != 0)
         {
@@ -148,11 +151,10 @@ public class PanicMeterController : MonoBehaviour
             {
                 playerAbility.ReleaseObject();
             }
-            prepForFaint();
+            
             if (!dead)
             {
                 dead = true;
-
                 StartCoroutine("faint");
             }
         }
@@ -181,13 +183,16 @@ public class PanicMeterController : MonoBehaviour
 
     private IEnumerator faint()
     {
+        prepForFaint();
         Debug.Log("Faint Running");
         //dead = true;
-        
-        yield return new WaitForSeconds(.4f);//should be length of animation
-        //prepForFaint();
+        float yieldfor = 0;
+        //tip over if dead
+        if (!cam.sinking) {
+            yieldfor = .4f;
+        }
+        yield return new WaitForSeconds(yieldfor);//should be length of animation
         StartCoroutine("wakeUp");
-
     }
 
     private IEnumerator wakeUp()
@@ -198,6 +203,7 @@ public class PanicMeterController : MonoBehaviour
             Debug.Log("Wakeup Running");
             resetPlayer();
         }
+
         while (anxietyMeter.fillAmount > 0f)
         {
             currentAnxietyPoints -= Time.deltaTime * anxietySpeed * 10f;

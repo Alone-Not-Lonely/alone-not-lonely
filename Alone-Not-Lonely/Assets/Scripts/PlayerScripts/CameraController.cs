@@ -91,8 +91,8 @@ public class CameraController : MonoBehaviour
     
     public void resetHead()
     {
-        //transform.position = player.camSpawnPosition;
-        //transform.rotation = player.camSpawnRotation;
+        transform.position = player.camSpawnPosition;
+        transform.rotation = player.camSpawnRotation;
     }
 
     void FixedUpdate()
@@ -116,7 +116,7 @@ public class CameraController : MonoBehaviour
         if (sinking)//if we're sinking
         {
             goToHeight = player.transform.position.y;
-            dramaticSpeed = .02f;
+            dramaticSpeed = .1f;
         }
         else
         {
