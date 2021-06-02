@@ -91,8 +91,8 @@ public class CameraController : MonoBehaviour
     
     public void resetHead()
     {
-        //new Vector3(player.transform.position.x, player.transform.position.y + 2f + getBobHeight(), player.transform.position.z);
-        //transform.rotation = Quaternion.Euler(Vector3.zero);
+        //transform.position = player.camSpawnPosition;
+        //transform.rotation = player.camSpawnRotation;
     }
 
     void FixedUpdate()

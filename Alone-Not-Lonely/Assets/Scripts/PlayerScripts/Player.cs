@@ -9,8 +9,8 @@ public class Player : MonoBehaviour
     //Will contain all player status effects
     private Vector3 spawnPosition;
     private Quaternion spawnRotation;
-    private Vector3 camSpawnPosition;
-    private Quaternion camSpawnRotation;
+    public Vector3 camSpawnPosition;
+    public Quaternion camSpawnRotation;
     private PauseMenuController pmController;
     public DefaultControls _actionMap;
     public bool paused;
@@ -60,6 +60,8 @@ public class Player : MonoBehaviour
         //Debug.Log("Return to start");
         transform.position = spawnPosition;
         transform.rotation = spawnRotation;
+
+        
     }
 
     // Update is called once per frame

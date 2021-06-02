@@ -174,7 +174,11 @@ public class PlayerMovementController : MonoBehaviour
         
     }
 
- 
+    public void clearDirections()
+    {
+        horizDirection = 0;
+        vertDirection = 0;
+    }
     void FixedUpdate()
     {
         if(horizDirection == 0 && vertDirection == 0 && footsteps.isPlaying)

@@ -16,6 +16,7 @@ public class PanicMeterController : MonoBehaviour
     private float currentAnxietyPoints, monstDist;
     public bool dead = false;
     private Player thisPlayer;
+    private PlayerMovementController movement;
     private PlayerAbilityController pAbility;
     public float anxietySpeed = 10f;
     private float anxConst;
@@ -37,6 +38,7 @@ public class PanicMeterController : MonoBehaviour
 
     void Start()
     {
+        movement = FindObjectOfType<PlayerMovementController>();
         origPosMeter = anxietyMeterHolder.position;
         monsters = new List<GameObject>();
         anxConst = anxietySpeed;
@@ -55,10 +57,14 @@ public class PanicMeterController : MonoBehaviour
     void Update()
     {
         //tip over if dead
+        if (thisPlayer.paused)
+        {
+            return;
+        }
         if (dead && !cam.sinking)//not drowning add here
         {
-            //wholeBody.transform.Rotate(cam.transform.right, -fallSpeed, Space.Self);
             cam.transform.RotateAround(wholeBody.transform.position, cam.transform.right, -fallSpeed);
+            return;
         }
 
         if(monsters.Count != 0)
@@ -142,7 +148,13 @@ public class PanicMeterController : MonoBehaviour
             {
                 playerAbility.ReleaseObject();
             }
-            StartCoroutine("faint");
+            prepForFaint();
+            if (!dead)
+            {
+                dead = true;
+
+                StartCoroutine("faint");
+            }
         }
         anxietyMeter.fillAmount = (currentAnxietyPoints/totalAnxietyPoints);
     }
@@ -152,24 +164,40 @@ public class PanicMeterController : MonoBehaviour
         checkFloor();
     }
 
+    private void prepForFaint()
+    {
+        cam.cameraFree = false;
+        pAbility.ReleaseObject();
+    }
+
+    private void resetPlayer()
+    {
+        thisPlayer.backToSpawn();//Moved from faint()
+        movement.clearDirections();
+        cam.sinking = false;
+        cam.cameraFree = true;
+        cam.resetHead();
+    }
 
     private IEnumerator faint()
     {
-        dead = true;
-        cam.cameraFree = false;
-        pAbility.ReleaseObject();
-        yield return new WaitForSeconds(.5f);//should be length of animation
+        Debug.Log("Faint Running");
+        //dead = true;
+        
+        yield return new WaitForSeconds(.4f);//should be length of animation
+        //prepForFaint();
         StartCoroutine("wakeUp");
+
     }
 
     private IEnumerator wakeUp()
     {
-        cam.sinking = false;
-        thisPlayer.backToSpawn();//Moved from faint()
-        //wholeBody.transform.rotation = Quaternion.Euler(Vector3.zero);
-        cam.cameraFree = true;
-        dead = false;//moved up slightly
-        //cam.resetHead();
+        if (dead)
+        {
+            dead = false;//moved up slightly
+            Debug.Log("Wakeup Running");
+            resetPlayer();
+        }
         while (anxietyMeter.fillAmount > 0f)
         {
             currentAnxietyPoints -= Time.deltaTime * anxietySpeed * 10f;
