@@ -46,6 +46,7 @@ public class EndGamePuzzle : ContextualUI
                 
                 //base.ChangeToContextSecondary();
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 puzzleManager.gameObject.SetActive(true);
                 puzzleBoard.gameObject.SetActive(true);
                 inInteractionCooldown = true;
@@ -62,6 +63,7 @@ public class EndGamePuzzle : ContextualUI
                 inPuzzleMode = false;
                 //base.ChangeToContextInit();
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 puzzleManager.gameObject.SetActive(false);
                 puzzleBoard.gameObject.SetActive(false);
                 inInteractionCooldown = true;
