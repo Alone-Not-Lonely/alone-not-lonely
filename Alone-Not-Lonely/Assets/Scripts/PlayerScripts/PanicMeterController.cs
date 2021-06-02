@@ -179,31 +179,26 @@ public class PanicMeterController : MonoBehaviour
         cam.sinking = false;
         cam.cameraFree = true;
         cam.resetHead();
+        dead = false;//moved up slightly
     }
 
     private IEnumerator faint()
     {
         prepForFaint();
         Debug.Log("Faint Running");
-        //dead = true;
-        float yieldfor = 0;
-        //tip over if dead
-        if (!cam.sinking) {
-            yieldfor = .4f;
-        }
-        yield return new WaitForSeconds(yieldfor);//should be length of animation
+        yield return new WaitForSeconds(0);//should be length of animation
+        
         StartCoroutine("wakeUp");
     }
 
     private IEnumerator wakeUp()
     {
-        if (dead)
+        if (!cam.sinking)
         {
-            dead = false;//moved up slightly
-            Debug.Log("Wakeup Running");
-            resetPlayer();
+            yield return new WaitForSeconds(.4f);//should be length of animation
         }
-
+        Debug.Log("Wakeup Running");
+        resetPlayer();
         while (anxietyMeter.fillAmount > 0f)
         {
             currentAnxietyPoints -= Time.deltaTime * anxietySpeed * 10f;
@@ -220,6 +215,8 @@ public class PanicMeterController : MonoBehaviour
         currentAnxietyPoints = 0;
         desaturate.saturation.value = 0f;
         desaturate.postExposure.value = 0f;
+
+        
         yield break;
     }
 
