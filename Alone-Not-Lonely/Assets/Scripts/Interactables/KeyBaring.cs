@@ -47,7 +47,6 @@ public class KeyBaring : Interactable
             else if (inRange && open)
             {
                 inKeyCooldown = true;
-                Debug.Log("Player is in range and the object is already open");
                 /*if (objectAnimator != null)
                 {
                     objectAnimator.SetBool("OpenObj", false);
@@ -80,7 +79,6 @@ public class KeyBaring : Interactable
     {
         if (controlSwapThisFrame)
         {
-            Debug.Log("ControlSwap");
             controlSwapThisFrame = false;
             playerRef._actionMap.ViewingObject.InteractionTest.performed += interact => keyGrab();
             playerRef._actionMap.ViewingObject.RotateObj.performed += rot => base.Rotate(rot.ReadValue<Vector2>());
@@ -142,10 +140,8 @@ public class KeyBaring : Interactable
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("Exited Trigger");
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player Exited Trigger");
             base.OnTriggerExit(other);
             if(open)
                 ForceDrop();

@@ -27,11 +27,9 @@ public class ContextualUI : MonoBehaviour
     //Called by object itself to progress the prompt counter
     public void nextPrompt()
     {
-        Debug.Log("Next Prompt successfully called");
         proController.addToPrompters(this);//just in case prompter hasn't been triggered yet
         proController.incPromptUsages(myPType, currInd);
         currInd++;
-        Debug.Log(transform.name + "'s current index: " + currInd);
         //loop to correct point
         if (currInd > endPoint)
         {

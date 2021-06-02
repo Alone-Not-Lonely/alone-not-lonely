@@ -30,7 +30,7 @@ public class PuzzleBoard : MonoBehaviour, IDropHandler
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Loaded into " + scene.name);
+        //.Log("Loaded into " + scene.name);
         if(scene.name != "GroundFloor")
         {
             this.gameObject.SetActive(false);
@@ -50,14 +50,14 @@ public class PuzzleBoard : MonoBehaviour, IDropHandler
         {
             if(Vector2.Distance(eventData.pointerDrag.gameObject.GetComponent<RectTransform>().anchoredPosition, this.GetComponent<RectTransform>().anchoredPosition) < snapThreshold)
             {
-                Debug.Log("Piece dropped into correct position");
+                //Debug.Log("Piece dropped into correct position");
                 eventData.pointerDrag.gameObject.GetComponent<RectTransform>().anchoredPosition = this.GetComponent<RectTransform>().anchoredPosition;
                 eventData.pointerDrag.gameObject.GetComponent<DragDrop>().piecePlaced = true;
                 pieceDropped.Play();
             }
             else
             {
-                Debug.Log("Piece dropped in incorrect location");
+                //Debug.Log("Piece dropped in incorrect location");
                 eventData.pointerDrag.gameObject.GetComponent<DragDrop>().piecePlaced = false;
                 eventData.pointerDrag.gameObject.GetComponent<RectTransform>().anchoredPosition = eventData.pointerDrag.gameObject.GetComponent<DragDrop>().initPosition;
             }

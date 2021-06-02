@@ -24,22 +24,22 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("Clicked");
+        //Debug.Log("Clicked");
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Start Drag");
+        //Debug.Log("Start Drag");
         canvasGroup.blocksRaycasts = false;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("EndDrag");
+        //Debug.Log("EndDrag");
         canvasGroup.blocksRaycasts = true;
         if(Vector2.Distance(thisTransform.anchoredPosition, PuzzleBoard.instance.GetComponent<RectTransform>().anchoredPosition) < PuzzleBoard.instance.snapThreshold)
         {
-            Debug.Log("Piece dropped into correct position");
+            //Debug.Log("Piece dropped into correct position");
             thisTransform.anchoredPosition = PuzzleBoard.instance.GetComponent<RectTransform>().anchoredPosition;
             this.piecePlaced = true;
             FinalPuzzleManager.instance.UpdatePuzzleState();
@@ -47,7 +47,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         }
         else
         {
-            Debug.Log("Snap Back to start");
+            //Debug.Log("Snap Back to start");
             this.piecePlaced = false;
             thisTransform.anchoredPosition = initPosition;
         }
@@ -55,13 +55,13 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("Dragging");
-        thisTransform.anchoredPosition += eventData.delta / (canvas.scaleFactor); 
+        //Debug.Log("Dragging");
+        thisTransform.anchoredPosition += eventData.delta / (canvas.scaleFactor * transform.lossyScale); 
         startDrag.Play();
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("Drop from DragDrop");
+        //Debug.Log("Drop from DragDrop");
     }
 }

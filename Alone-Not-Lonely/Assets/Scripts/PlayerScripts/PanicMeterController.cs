@@ -56,19 +56,19 @@ public class PanicMeterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (thisPlayer.paused)
         {
             return;
         }
-        
+
         //tip over if dead
         if (dead && !cam.sinking)//not drowning add here
         {
             cam.transform.RotateAround(wholeBody.transform.position, cam.transform.right, -fallSpeed);
             return;
         }
-        
+
 
         if(monsters.Count != 0)
         {
@@ -151,7 +151,7 @@ public class PanicMeterController : MonoBehaviour
             {
                 playerAbility.ReleaseObject();
             }
-            
+
             if (!dead)
             {
                 dead = true;
@@ -215,7 +215,7 @@ public class PanicMeterController : MonoBehaviour
             vignette.intensity.value = Mathf.Pow(anxietyMeter.fillAmount, 2f);
             yield return new WaitForSeconds(.001f);
         }
-        
+
         anxietyMeter.fillAmount = 0;
         currentAnxietyPoints = 0;
         desaturate.saturation.value = 0f;
@@ -227,7 +227,7 @@ public class PanicMeterController : MonoBehaviour
     {
         while(anxietyMeter.fillAmount > 0f)
         {
-            anxietyMeterHolder.position = new Vector3(origPosMeter.x + (Mathf.Sin((Time.time % 10) * 50f) * anxietyMeter.fillAmount * shakeMagnitude), 
+            anxietyMeterHolder.position = new Vector3(origPosMeter.x + (Mathf.Sin((Time.time % 10) * 50f) * anxietyMeter.fillAmount * shakeMagnitude),
                                                     origPosMeter.y  + (Mathf.Cos((Time.time % 8)* 50f) * anxietyMeter.fillAmount * shakeMagnitude),
                                                     origPosMeter.z);
             yield return new WaitForSeconds(.001f);
@@ -286,8 +286,6 @@ public class PanicMeterController : MonoBehaviour
         if(other.CompareTag("Monster"))
         {
             monsters.Remove(other.gameObject);
-            Debug.Log("Monster discounted");
-            Debug.Log(monsters.Count);
         }
     }
 
@@ -301,7 +299,7 @@ public class PanicMeterController : MonoBehaviour
         //could adjust starting position to align with player perception
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, rayDepth, ~LayerMask.GetMask("Grabable")))
         {
-            
+
             //can but other floor based traits here
             if (hit.collider.tag == "Deadly") {
                 cam.sinking = true;//CHANGES BOOL IN CAMERA CONTROLLER

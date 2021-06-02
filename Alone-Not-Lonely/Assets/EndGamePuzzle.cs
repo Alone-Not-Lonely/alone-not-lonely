@@ -15,10 +15,14 @@ public class EndGamePuzzle : ContextualUI
     PuzzleBoard puzzleBoard;
 
     FinalPuzzleManager worldPuzzleManager;
+
+    public float interactionCooldown = 1f;
+    private float currentInteractionCooldown = 0f;
+    bool inInteractionCooldown = false;
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Executing Start");
+        //Debug.Log("Executing Start");
         base.Start();
         _player = Player.instance;
         puzzleManager = FinalPuzzleManager.instance;
@@ -29,7 +33,7 @@ public class EndGamePuzzle : ContextualUI
 
     void PlayerInteract()
     {
-        if(!_player.paused)
+        if(!_player.paused && !inInteractionCooldown)
         {
             if(!inPuzzleMode && canInteract)
             {
@@ -42,8 +46,10 @@ public class EndGamePuzzle : ContextualUI
                 
                 //base.ChangeToContextSecondary();
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 puzzleManager.gameObject.SetActive(true);
                 puzzleBoard.gameObject.SetActive(true);
+                inInteractionCooldown = true;
                 if(puzzleManager)
                     FinalPuzzleManager.instance.UpdatePuzzleState();
             }
@@ -57,9 +63,24 @@ public class EndGamePuzzle : ContextualUI
                 inPuzzleMode = false;
                 //base.ChangeToContextInit();
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 puzzleManager.gameObject.SetActive(false);
                 puzzleBoard.gameObject.SetActive(false);
+                inInteractionCooldown = true;
             }
+        }
+    }
+
+    void Update() 
+    {
+        if(inInteractionCooldown && currentInteractionCooldown < interactionCooldown)
+        {
+            currentInteractionCooldown += Time.deltaTime;
+        }
+        else if(inInteractionCooldown && currentInteractionCooldown >= interactionCooldown)
+        {
+            currentInteractionCooldown = 0;
+            inInteractionCooldown = false;
         }
     }
 

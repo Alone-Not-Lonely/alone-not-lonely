@@ -40,36 +40,46 @@ public class CoffeeTableSpritesManager : MonoBehaviour
         }
         pIn = PlayerInventory.instance;
         //UpdatePuzzleState();
-        int ctr = 0;
-        foreach(GameObject piece in puzzlePiecesOnTable)
-        {
-            Debug.Log(ctr + " of " + FinalPuzzleManager.instance.puzzlePiecesOnTable.Length);
-            if(FinalPuzzleManager.instance.puzzlePiecesOnTable[ctr].GetComponent<DragDrop>().piecePlaced)
-            {
-                piece.SetActive(true);
-            }
-            else
-            {
-                piece.SetActive(false);
-            }
-            ctr++;
-        }
     }
 
     public void UpdatePuzzleState()
     {
-        int ctr = 0;
-        foreach(GameObject piece in puzzlePiecesOnTable)
+        if(FinalPuzzleManager.instance.puzzlePiecesOnTable.Length > 0)
         {
-            if(FinalPuzzleManager.instance.puzzlePiecesOnTable[ctr].GetComponent<DragDrop>().piecePlaced)
+            int ctr = 0;
+            foreach(GameObject piece in puzzlePiecesOnTable)
             {
-                piece.SetActive(true);
+                if(FinalPuzzleManager.instance.puzzlePiecesOnTable[ctr].GetComponent<DragDrop>().piecePlaced)
+                {
+                    piece.SetActive(true);
+                }
+                else
+                {
+                    piece.SetActive(false);
+                }
+                ctr++;
             }
-            else
-            {
-                piece.SetActive(false);
-            }
-            ctr++;
         }
+    }
+
+    private void OnEnable() {
+        int ctr = 0;
+        if(FinalPuzzleManager.instance.puzzlePiecesOnTable.Length > 0)
+        {
+            foreach(GameObject piece in puzzlePiecesOnTable)
+            {
+                Debug.Log(ctr + " of " + FinalPuzzleManager.instance.puzzlePiecesOnTable.Length);
+                if(FinalPuzzleManager.instance.puzzlePiecesOnTable[ctr].GetComponent<DragDrop>().piecePlaced)
+                {
+                    piece.SetActive(true);
+                }
+                else
+                {
+                    piece.SetActive(false);
+                }
+                ctr++;
+            }
+        }
+
     }
 }
