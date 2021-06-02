@@ -19,6 +19,7 @@ public class AtticLadderController : MonoBehaviour
     public float doorProgress = 0;
     public ContextualUI cu;
     private PromptController gOPU;
+    public Sprite tIm;
 
     private void Start()
     {
@@ -46,6 +47,7 @@ public class AtticLadderController : MonoBehaviour
             Transform newTransform = _player.transform;
             newTransform.position = new Vector3(32.7400017f, 4.98999977f, -62.7200012f);
             newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
+
             LoadingScreen.instance.LoadScene(nextScene, newTransform);
             gOPU.clearSpecificPrompter(cu);
         }
@@ -64,6 +66,7 @@ public class AtticLadderController : MonoBehaviour
         Transform newTransform = _player.transform;
         newTransform.position = new Vector3(32.7400017f, 4.98999977f, -62.7200012f);
         newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
+        LoadingScreen.instance.SetReturning(tIm, false);
         LoadingScreen.instance.LoadScene(nextScene, newTransform);
         gOPU.clearSpecificPrompter(cu);
 

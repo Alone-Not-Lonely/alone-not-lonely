@@ -30,8 +30,10 @@ public class LoadingScreen : MonoBehaviour
     }
 
     //called by various returns to change scene transitions
-    public void SetReturning(bool returning)
+    public void SetReturning(Sprite image, bool returning)
     {
+        loadingAnim.sprite = image;
+        Debug.Log("Sprite changed to: " + loadingAnim.sprite);
         animator.SetBool("Returning", returning);//determines which animation to play
     }
 

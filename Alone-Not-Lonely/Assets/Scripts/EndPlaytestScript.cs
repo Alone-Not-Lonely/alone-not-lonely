@@ -9,6 +9,7 @@ public class EndPlaytestScript : MonoBehaviour
     private Player _player;
     private PromptController pC;
     public LockedObject bedroomDoor; //Necessary to avoid error
+    public Sprite tIm;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +42,7 @@ public class EndPlaytestScript : MonoBehaviour
         Transform newTransform = _player.transform;
         newTransform.position = positionToReturnTo;
         newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
-        LoadingScreen.instance.SetReturning(false);
+        LoadingScreen.instance.SetReturning(tIm, false);
         LoadingScreen.instance.LoadScene("GroundFloor", newTransform);
         if(pC!=null)
         {
