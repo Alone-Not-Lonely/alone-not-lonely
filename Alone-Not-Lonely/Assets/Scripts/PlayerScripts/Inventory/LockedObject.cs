@@ -99,6 +99,7 @@ public class LockedObject : MonoBehaviour
         {
             if(inventory.items.Contains(keyNames[0]) && cui.getCurrInd() == 0)
             {
+                Debug.Log("Door moved to next prompt: " + transform.name);
                 cui.nextPrompt();
             }
             playerNearby = true;
