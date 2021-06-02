@@ -235,8 +235,6 @@ public class PanicMeterController : MonoBehaviour
         if(other.CompareTag("Monster"))
         {
             monsters.Remove(other.gameObject);
-            Debug.Log("Monster discounted");
-            Debug.Log(monsters.Count);
         }
     }
 
@@ -253,7 +251,6 @@ public class PanicMeterController : MonoBehaviour
             
             //can but other floor based traits here
             if (hit.collider.tag == "Deadly") {
-                Debug.Log("Yowch!");
                 //100 as an arbitrarily high number
                 currentAnxietyPoints += (100 * Time.deltaTime);
                 //Debug.Log(currentAnxietyPoints);

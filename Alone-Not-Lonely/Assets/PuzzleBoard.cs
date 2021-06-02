@@ -30,7 +30,7 @@ public class PuzzleBoard : MonoBehaviour, IDropHandler
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Loaded into " + scene.name);
+        //Debug.Log("Loaded into " + scene.name);
         if(scene.name != "GroundFloor")
         {
             this.gameObject.SetActive(false);
