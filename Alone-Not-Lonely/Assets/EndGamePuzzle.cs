@@ -22,7 +22,7 @@ public class EndGamePuzzle : ContextualUI
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Executing Start");
+        //Debug.Log("Executing Start");
         base.Start();
         _player = Player.instance;
         puzzleManager = FinalPuzzleManager.instance;
