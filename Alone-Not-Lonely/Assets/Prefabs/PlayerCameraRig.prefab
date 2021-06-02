@@ -2838,6 +2838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c8ed9e334195f4ca17af11d19018cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzlePiecesOnTable: []
 --- !u!82 &3420220732039356225
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3766,7 +3767,9 @@ MonoBehaviour:
   headAmplitude: 0.2
   headSpeed: 0.3
   headbob: 1
+  sinking: 0
   cameraFree: 1
+  camMoveSpeed: 0.8
 --- !u!1 &4683546592148557844
 GameObject:
   m_ObjectHideFlags: 0
@@ -4973,12 +4976,14 @@ MonoBehaviour:
   anxietyMeter: {fileID: 2251271580287610088}
   totalAnxietyPoints: 50
   rayDepth: 2.25
+  fallSpeed: 1
   dead: 0
   anxietySpeed: 40
   postProcess: {fileID: 0}
   breathing: {fileID: 7489733609631229484}
   anxietyMeterHolder: {fileID: 6936916493505931699}
   shakeMagnitude: 3
+  wholeBody: {fileID: 3908702292230332143}
 --- !u!82 &7489733609631229484
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5194,6 +5199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
+  used: []
   puzzlePieces: 
   _canvas: {fileID: 2179940615179419674}
   puzzAnim: {fileID: 4683546592849695749}

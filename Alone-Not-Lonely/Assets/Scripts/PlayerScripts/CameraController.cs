@@ -85,18 +85,15 @@ public class CameraController : MonoBehaviour
 
             // rotate game objects accordingly
             transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0);
-            
-
-            
-
         }
     }
 
-    /*
+    
     public void resetHead()
     {
-        new Vector3(player.transform.position.x, player.transform.position.y + 2f + getBobHeight(), player.transform.position.z);
-    }*/
+        //new Vector3(player.transform.position.x, player.transform.position.y + 2f + getBobHeight(), player.transform.position.z);
+        //transform.rotation = Quaternion.Euler(Vector3.zero);
+    }
 
     void FixedUpdate()
     {
@@ -129,7 +126,10 @@ public class CameraController : MonoBehaviour
 
         //who knows, might work
         float currHeight = Mathf.Lerp(transform.position.y, goToHeight, dramaticSpeed);
-        transform.position = new Vector3(player.transform.position.x, currHeight, player.transform.position.z);
+        if (!panic.dead)
+        {
+            transform.position = new Vector3(player.transform.position.x, currHeight, player.transform.position.z);
+        }
     }
 
     //Determines addition to Y placement by amount of time player has been walking

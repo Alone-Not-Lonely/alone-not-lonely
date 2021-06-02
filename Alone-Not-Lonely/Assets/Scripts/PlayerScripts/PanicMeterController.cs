@@ -57,11 +57,9 @@ public class PanicMeterController : MonoBehaviour
         //tip over if dead
         if (dead && !cam.sinking)//not drowning add here
         {
-            wholeBody.transform.Rotate(cam.transform.right, -fallSpeed, Space.Self);
-        }//else if(wholeBody.transform.rotation != Quaternion.Euler(Vector3.zero))
-        //{
-        //    wholeBody.transform.rotation = Vector3.Lerp(wholeBody.transform.rotation, Vector3.zero, .7);
-        //}
+            //wholeBody.transform.Rotate(cam.transform.right, -fallSpeed, Space.Self);
+            cam.transform.RotateAround(wholeBody.transform.position, cam.transform.right, -fallSpeed);
+        }
 
         if(monsters.Count != 0)
         {
@@ -158,20 +156,20 @@ public class PanicMeterController : MonoBehaviour
     private IEnumerator faint()
     {
         dead = true;
+        cam.cameraFree = false;
         pAbility.ReleaseObject();
         yield return new WaitForSeconds(.5f);//should be length of animation
-
         StartCoroutine("wakeUp");
     }
 
     private IEnumerator wakeUp()
     {
         cam.sinking = false;
-        //cam.resetHead();
         thisPlayer.backToSpawn();//Moved from faint()
-        
-        wholeBody.transform.rotation = Quaternion.Euler(Vector3.zero);
-
+        //wholeBody.transform.rotation = Quaternion.Euler(Vector3.zero);
+        cam.cameraFree = true;
+        dead = false;//moved up slightly
+        //cam.resetHead();
         while (anxietyMeter.fillAmount > 0f)
         {
             currentAnxietyPoints -= Time.deltaTime * anxietySpeed * 10f;
@@ -183,7 +181,7 @@ public class PanicMeterController : MonoBehaviour
             vignette.intensity.value = Mathf.Pow(anxietyMeter.fillAmount, 2f);
             yield return new WaitForSeconds(.001f);
         }
-        dead = false;
+        
         anxietyMeter.fillAmount = 0;
         currentAnxietyPoints = 0;
         desaturate.saturation.value = 0f;
