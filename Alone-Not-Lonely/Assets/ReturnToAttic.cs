@@ -12,7 +12,6 @@ public class ReturnToAttic : MonoBehaviour
     private bool canGoToAttic;
     private ContextualUI cu;
     public Sprite transitionImage;
-    public string aCPath;
 
     private void Start()
     {
@@ -31,7 +30,7 @@ public class ReturnToAttic : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //LoadingScreen.instance.SetImage(transitionImage, true);//sets transition image (hopefully not too late)
-            LoadingScreen.instance.SetReturning(true);
+            
             //base.OnTriggerEnter(other);
             canGoToAttic = true;
             _player._actionMap.Platforming.ReturnToLevel.performed += interact => GoToAttic();
@@ -53,6 +52,7 @@ public class ReturnToAttic : MonoBehaviour
     {
         if (canGoToAttic)
         {
+            //LoadingScreen.instance.SetReturning(transitionImage, true);//STUFF FOR CHANGING LOADING SCENE
             _player.gameObject.SetActive(false);
             //_player.gameObject.transform.position =  positionToReturnTo;
             //_player.gameObject.SetActive(true);
