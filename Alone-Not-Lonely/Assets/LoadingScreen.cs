@@ -8,16 +8,17 @@ public class LoadingScreen : MonoBehaviour
 {
     public static LoadingScreen instance;
     private Image loadingAnim;
-    private Animator animator;
+    Animator animator;
 
     private Player _player;
     private void Awake() {
         if(instance == null)
         {
             instance = this;
-            loadingAnim = this.GetComponent<Image>();
+            loadingAnim = GetComponent<Image>();
             animator = this.GetComponent<Animator>();
             loadingAnim.enabled = false;
+            //animator.enabled = false;
         }
         else
         {
@@ -30,12 +31,15 @@ public class LoadingScreen : MonoBehaviour
     }
 
     //called by various returns to change scene transitions
-    public void SetReturning(Sprite image, bool returning)
+    /*public void SetReturning()
     {
-        loadingAnim.sprite = image;
-        Debug.Log("Sprite changed to: " + loadingAnim.sprite);
+        animator.enabled = false;
+        loadingAnim.enabled = true;
+        Debug.Log("Image changed, animator: " + animator.enabled);
+        animator.enabled = true;
         animator.SetBool("Returning", returning);//determines which animation to play
-    }
+ 
+    }*/
 
     public void LoadScene(string sceneName, Transform playerSpawn)
     {

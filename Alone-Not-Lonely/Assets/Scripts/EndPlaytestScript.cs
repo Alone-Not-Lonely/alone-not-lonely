@@ -33,6 +33,7 @@ public class EndPlaytestScript : MonoBehaviour
 
     void LoadNextLevel()
     {
+        //LoadingScreen.instance.SetReturning(tIm, false);
         //ProgressionTracker[] p = (ProgressionTracker[])FindObjectsOfType<ProgressionTracker>();
         ProgressionTracker.instance.MarkSceneCompleted("Kitchen");
         _player.gameObject.SetActive(false);
@@ -42,7 +43,7 @@ public class EndPlaytestScript : MonoBehaviour
         Transform newTransform = _player.transform;
         newTransform.position = positionToReturnTo;
         newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
-        LoadingScreen.instance.SetReturning(tIm, false);
+        
         LoadingScreen.instance.LoadScene("GroundFloor", newTransform);
         if(pC!=null)
         {

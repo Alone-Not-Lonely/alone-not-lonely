@@ -52,7 +52,7 @@ public class ReturnToAttic : MonoBehaviour
     {
         if (canGoToAttic)
         {
-            LoadingScreen.instance.SetReturning(transitionImage, true);//STUFF FOR CHANGING LOADING SCENE
+            //LoadingScreen.instance.SetReturning(transitionImage, true);//STUFF FOR CHANGING LOADING SCENE
             _player.gameObject.SetActive(false);
             //_player.gameObject.transform.position =  positionToReturnTo;
             //_player.gameObject.SetActive(true);
