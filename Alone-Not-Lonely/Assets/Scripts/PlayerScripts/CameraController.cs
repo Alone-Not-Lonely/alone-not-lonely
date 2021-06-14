@@ -77,14 +77,15 @@ public class CameraController : MonoBehaviour
             //Cursor.lockState = CursorLockMode.Locked;
             //Cursor.visible = false;
             // update current values
-            rotationY += inX * sensitivityX * Time.deltaTime;
-            rotationX += iny * sensitivityY * Time.deltaTime;
+            rotationY = inX * sensitivityX * Time.deltaTime;
+            rotationX = iny * sensitivityY * Time.deltaTime;
 
             // constrain x
-            rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);
+            //rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);
+            transform.localEulerAngles += new Vector3(-rotationX, rotationY, 0);
 
             // rotate game objects accordingly
-            transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0);
+            //transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0);
         }
     }
 
@@ -148,7 +149,7 @@ public class CameraController : MonoBehaviour
 
     public Vector3 GetCameraRotation()
     {
-        return new Vector3(-rotationX, rotationY, 0);
+        return new Vector3(-transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
     }
 
      public void OnSliderValueChanged(float value)

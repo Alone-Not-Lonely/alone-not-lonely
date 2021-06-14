@@ -42,7 +42,7 @@ public class GoToLivingRoom : MonoBehaviour
         newTransform.position = positionToReturnTo;
         newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
         //LoadingScreen.instance.SetReturning(tIm, false);
-        LoadingScreen.instance.LoadScene("GroundFloor", newTransform);
+        LoadingScreen.instance.LoadScene("GroundFloor", newTransform, Vector3.zero);
         if(pC!=null)
         {
             pC.clearPrompters();

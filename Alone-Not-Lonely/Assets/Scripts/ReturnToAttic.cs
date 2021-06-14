@@ -63,7 +63,7 @@ public class ReturnToAttic : MonoBehaviour
             newTransform.position = positionToReturnTo;
             newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
             
-            LoadingScreen.instance.LoadScene("Attic2", newTransform);
+            LoadingScreen.instance.LoadScene("Attic2", newTransform, Vector3.zero);
         }
     }
 }

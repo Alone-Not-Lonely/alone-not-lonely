@@ -65,7 +65,7 @@ public class ReturnToKitchen : ContextualUI
                 newTransform.position = positionToReturnTo + new Vector3(0, 0, 20f);
             newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
             doorSounds.Play();
-            LoadingScreen.instance.LoadScene("Kitchen", newTransform);
+            LoadingScreen.instance.LoadScene("Kitchen", newTransform, Vector3.zero);
         }
     }
 }

@@ -44,7 +44,7 @@ public class EndPlaytestScript : MonoBehaviour
         newTransform.position = positionToReturnTo;
         newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
         
-        LoadingScreen.instance.LoadScene("GroundFloor", newTransform);
+        LoadingScreen.instance.LoadScene("GroundFloor", newTransform, new Vector3(-11, 238.5f, 0));
         if(pC!=null)
         {
             pC.clearPrompters();

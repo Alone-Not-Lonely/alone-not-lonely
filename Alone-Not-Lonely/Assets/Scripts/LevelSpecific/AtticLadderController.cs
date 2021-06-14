@@ -48,7 +48,7 @@ public class AtticLadderController : MonoBehaviour
             newTransform.position = new Vector3(32.7400017f, 4.98999977f, -62.7200012f);
             newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
 
-            LoadingScreen.instance.LoadScene(nextScene, newTransform);
+            LoadingScreen.instance.LoadScene(nextScene, newTransform, Vector3.zero);
             gOPU.clearSpecificPrompter(cu);
         }
     }
@@ -67,7 +67,7 @@ public class AtticLadderController : MonoBehaviour
         newTransform.position = new Vector3(32.7400017f, 4.98999977f, -62.7200012f);
         newTransform.rotation = Quaternion.identity; //CHANGE THIS LINE
         //LoadingScreen.instance.SetReturning(tIm, false);
-        LoadingScreen.instance.LoadScene(nextScene, newTransform);
+        LoadingScreen.instance.LoadScene(nextScene, newTransform, new Vector3(-8, -50, 0));
         gOPU.clearSpecificPrompter(cu);
 
     }

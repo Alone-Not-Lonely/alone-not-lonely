@@ -65,6 +65,11 @@ public class PlayerMovementController : MonoBehaviour
         _actionMap.Disable();
     }
    */
+
+    private void OnEnable() {
+        if(playerController && camController)
+            playerController.gameObject.transform.eulerAngles = camController.GetCameraRotation();
+    }
     bool stopFootstepsH;
     bool stopFootstepsV;
     public void MoveHoriz(float horizMvmt)

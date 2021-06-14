@@ -41,26 +41,23 @@ public class LoadingScreen : MonoBehaviour
  
     }*/
 
-    public void LoadScene(string sceneName, Transform playerSpawn)
+    public void LoadScene(string sceneName, Transform playerSpawn, Vector3 desiredCameraRotation)
     {
         _player.gameObject.SetActive(false);
+        Camera.main.GetComponent<CameraController>().cameraFree = false;
         if(sceneName == "Attic2")
         {
             _player.transform.position = playerSpawn.position;
             _player.transform.rotation = playerSpawn.rotation;
             _player.gameObject.SetActive(true);
         }
-        else if(sceneName == "MainMenu")
-        {
-            
-        }
-        StartCoroutine(StartLoad(sceneName, playerSpawn));
+        StartCoroutine(StartLoad(sceneName, playerSpawn, desiredCameraRotation));
     }
 
-    IEnumerator StartLoad(string sceneToLoad, Transform playerSpawn)
+    IEnumerator StartLoad(string sceneToLoad, Transform playerSpawn, Vector3 desiredCameraRotation)
     {
         loadingAnim.enabled = true;
-        yield return StartCoroutine(FadeLoadingScreen(1, 1, playerSpawn));
+        yield return StartCoroutine(FadeLoadingScreen(1, 1, playerSpawn, desiredCameraRotation));
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad);
         while (!operation.isDone)
@@ -74,12 +71,12 @@ public class LoadingScreen : MonoBehaviour
         }
         else
         {
-            yield return StartCoroutine(FadeLoadingScreen(0, 1, playerSpawn));
+            yield return StartCoroutine(FadeLoadingScreen(0, 1, playerSpawn, desiredCameraRotation));
             loadingAnim.enabled = false;
         }
     }
 
-    IEnumerator FadeLoadingScreen(float targetValue, float duration, Transform playerSpawn)
+    IEnumerator FadeLoadingScreen(float targetValue, float duration, Transform playerSpawn, Vector3 desiredCameraRotation)
     {
         float startValue = loadingAnim.color.a;
         float time = 0;
@@ -95,6 +92,8 @@ public class LoadingScreen : MonoBehaviour
             _player.transform.position = playerSpawn.position;
             _player.transform.rotation = playerSpawn.rotation;
             _player.gameObject.SetActive(true);
+            Camera.main.transform.localEulerAngles = desiredCameraRotation;
+            Camera.main.GetComponent<CameraController>().cameraFree = true;
         }
         loadingAnim.color = new Color(loadingAnim.color.r, loadingAnim.color.g, loadingAnim.color.b, targetValue);
     }

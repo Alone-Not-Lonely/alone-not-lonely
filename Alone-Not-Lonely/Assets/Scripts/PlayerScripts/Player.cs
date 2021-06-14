@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
     {   
         backToSpawn();
         pmController.Unpause();
-        LoadingScreen.instance.LoadScene(SceneManager.GetActiveScene().name, this.transform);
+        LoadingScreen.instance.LoadScene(SceneManager.GetActiveScene().name, this.transform, Vector3.zero);
     }
 
 }
