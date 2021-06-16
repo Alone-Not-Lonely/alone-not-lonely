@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class CameraController : MonoBehaviour
 {
@@ -77,15 +79,19 @@ public class CameraController : MonoBehaviour
             //Cursor.lockState = CursorLockMode.Locked;
             //Cursor.visible = false;
             // update current values
-            rotationY = inX * sensitivityX * Time.deltaTime;
-            rotationX = iny * sensitivityY * Time.deltaTime;
+            rotationY += inX * sensitivityX * Time.deltaTime;
+            rotationX += iny * sensitivityY * Time.deltaTime;
 
             // constrain x
-            //rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);
-            transform.localEulerAngles += new Vector3(-rotationX, rotationY, 0);
-
+            rotationX = Mathf.Clamp(rotationX, minimumX, maximumX);
             // rotate game objects accordingly
-            //transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0);
+            transform.eulerAngles = new Vector3(-rotationX, rotationY, 0);
+        }
+        else if (!cameraFree)
+        {
+            InputState.Change(Mouse.current.position, Vector2.zero);
+            rotationX = -transform.localEulerAngles.x;
+            rotationY = transform.localEulerAngles.y;
         }
     }
 
@@ -149,7 +155,7 @@ public class CameraController : MonoBehaviour
 
     public Vector3 GetCameraRotation()
     {
-        return new Vector3(-transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
+        return new Vector3(-transform.eulerAngles.x, transform.eulerAngles.y, 0);
     }
 
      public void OnSliderValueChanged(float value)
@@ -164,5 +170,10 @@ public class CameraController : MonoBehaviour
         this.transform.rotation = Quaternion.Euler(90, 90, 0);
         //this.transform.LookAt(targetLookAt.transform);
         cameraFree = false;
+    }
+
+    private void OnEnable() {
+        rotationX = -transform.localEulerAngles.x;
+        rotationY = transform.localEulerAngles.y;    
     }
 }

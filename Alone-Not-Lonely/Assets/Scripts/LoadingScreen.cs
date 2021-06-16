@@ -93,8 +93,14 @@ public class LoadingScreen : MonoBehaviour
             _player.transform.rotation = playerSpawn.rotation;
             _player.gameObject.SetActive(true);
             Camera.main.transform.localEulerAngles = desiredCameraRotation;
-            Camera.main.GetComponent<CameraController>().cameraFree = true;
+            StartCoroutine(WaitForCamera());
         }
         loadingAnim.color = new Color(loadingAnim.color.r, loadingAnim.color.g, loadingAnim.color.b, targetValue);
+    }
+
+    IEnumerator WaitForCamera()
+    {
+        yield return new WaitForSeconds(4);
+        Camera.main.GetComponent<CameraController>().cameraFree = true;
     }
 }
