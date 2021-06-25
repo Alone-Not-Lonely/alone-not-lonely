@@ -12,6 +12,7 @@ public class ReturnToKitchen : ContextualUI
 
     public bool bedroomDoor;
     public Sprite tIm;
+    public RuntimeAnimatorController rac;
 
     private AudioSource doorSounds;
 
@@ -32,6 +33,8 @@ public class ReturnToKitchen : ContextualUI
     {
         if(other.CompareTag("Player"))
         {
+
+            LoadingScreen.instance.SetReturning(tIm, rac);
             //base.OnTriggerEnter(other);
             canGoToAttic = true;
             _player._actionMap.Platforming.Use.performed += interact => GoToKitchen();

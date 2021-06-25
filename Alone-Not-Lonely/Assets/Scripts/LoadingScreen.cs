@@ -8,7 +8,7 @@ public class LoadingScreen : MonoBehaviour
 {
     public static LoadingScreen instance;
     private Image loadingAnim;
-    Animator animator;
+    private Animator animator;
 
     private Player _player;
     private void Awake() {
@@ -16,7 +16,7 @@ public class LoadingScreen : MonoBehaviour
         {
             instance = this;
             loadingAnim = GetComponent<Image>();
-            animator = this.GetComponent<Animator>();
+            animator = GetComponent<Animator>();
             loadingAnim.enabled = false;
             //animator.enabled = false;
         }
@@ -31,15 +31,28 @@ public class LoadingScreen : MonoBehaviour
     }
 
     //called by various returns to change scene transitions
-    /*public void SetReturning()
+    //TESTING TESTING TESTING, BIG RISKY,. PLZ DELETE!!!!
+    public void SetReturning(Sprite im, RuntimeAnimatorController rac)
     {
-        animator.enabled = false;
-        loadingAnim.enabled = true;
-        Debug.Log("Image changed, animator: " + animator.enabled);
-        animator.enabled = true;
-        animator.SetBool("Returning", returning);//determines which animation to play
+        Destroy(animator);
+        if (animator == null)
+        {
+            Debug.Log("Animator's out");
+        }
+        //loadingAnim.enabled = true;
+        animator = null;
+        loadingAnim.sprite = im;
  
-    }*/
+        animator = gameObject.AddComponent<Animator>();
+        if (animator != null)
+        {
+            Debug.Log("Animator's in");
+        }
+        animator.runtimeAnimatorController = rac;
+        //animator.enabled = true;
+        //animator.SetBool("Returning", returning);//determines which animation to play
+ 
+    }
 
     public void LoadScene(string sceneName, Transform playerSpawn, Vector3 desiredCameraRotation)
     {
