@@ -87,7 +87,6 @@ public class handBehavior : MonoBehaviour
             {
                 
                 prevSideResult = getSideHit(temp);
-
                 holdingXOffset = Vector3.Magnitude(temp.transform.position - prevSideResult) * -hQ; //Technically a little long but works out to be good enough
             }
             if (prevSideResult != Vector3.zero && temp!= null)
